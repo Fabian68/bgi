@@ -72,10 +72,13 @@
     <ClCompile Include="Aleatoire.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Attaque.cpp">
+    <ClCompile Include="Fabian.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CompetenceFabian.cpp">
+    <ClCompile Include="Nicolas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Lapin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,10 +119,13 @@
     <ClInclude Include="Aleatoire.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Attaque.h">
+    <ClInclude Include="Fabian.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CompetenceFabian.h">
+    <ClInclude Include="Nicolas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lapin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

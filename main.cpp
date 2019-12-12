@@ -2,9 +2,11 @@
 #include "Point.h"
 #include <ctime>
 #include <cstdlib>
-#include <string>
 #include "Combat.h"
 #include "Aleatoire.h"
+#include "Fabian.h"
+#include "Nicolas.h"
+#include "Lapin.h"
 
 
 #define PI 3.14159265
@@ -34,22 +36,23 @@ int main()
 	}*/
 
 	
-	Personnage Fabian(1, 1, "Fabian", 2000, 4, 4, 100, 100, 70, 0, 0, 7, 17, 0);
-	Personnage Nicolas(1, 1, "Niquola", 2, 4, 4, 10, 10, 10, 0, 0, 7, 17, 0);
-	Equipes Gentil(false);
-	Gentil.ajouterPerso(Nicolas);
-	Gentil.ajouterPerso(Fabian);
+	
+	
+	Equipes  Gentil(false);
+	Fabian F(Gentil);
+	Nicolas N(Gentil);
+	Gentil.ajouterPerso(&N);
+	Gentil.ajouterPerso(&F);
+	
 
-	Personnage Didier(1, 1, "Didier", 8, 1, 1,10,10,75,5,50,15,5,1);
-	Personnage LOOL(1, 1, "LOL", 6, 2, 2,10,10,10,10,10,10,10,1) ;
-	Personnage THOMY(1, 1, "THOMY", 6, 2, 2, 10,10,50,75,50,0,0,1);
-	Personnage SACAPV(1, 3, "PVVV", 100, 10, 10, 0, 0, 0, 0, 0, 0, 0, 1);
 	Equipes Meuchant(true);
-	Meuchant.ajouterPerso(Didier);
-	Meuchant.ajouterPerso(LOOL);
-	Meuchant.ajouterPerso(THOMY);
-	Meuchant.ajouterPerso(SACAPV);
-	Combat(Gentil, Meuchant);
+	Lapin L(&Meuchant,50);
+	Meuchant.ajouterPerso(&L);
+	
+	F.setEnnemis(Meuchant);
+	N.setEnnemis(Meuchant);
+	L.setEnnemis(Gentil);
+	Combat C(Gentil,Meuchant);
 	/*Affichage Hi;
 	Hi.dessinerDeuxEquipes(Gentil,Meuchant);
 	for (int i = 0;i <= 100000000000;i++) {

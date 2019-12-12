@@ -1,7 +1,8 @@
 #include "Combat.h"
-#include "Attaque.h"
+#include "Affichage.h"
+#include <iostream>
 
-Combat::Combat(Equipes & Joueur, Equipes & Ia) : _joueur{Joueur}, _ia{Ia}
+Combat::Combat(Equipes  Joueur, Equipes  Ia) : _joueur{Joueur}, _ia{Ia}
 {
 	int somme = 0;
 	int max = INT_MIN;
@@ -10,21 +11,21 @@ Combat::Combat(Equipes & Joueur, Equipes & Ia) : _joueur{Joueur}, _ia{Ia}
 	std::vector<int> nombreTourJoueur(_joueur.taille());
 	std::vector<int> nombreTourIa(_ia.taille());
 	for (int i = 0;i < _joueur.taille();i++) {
-		somme += _joueur.perso(i).vitesse();
+		somme += _joueur.perso(i)->vitesse();
 	}
 	for (int i = 0;i < _ia.taille();i++) {
-		somme += _ia.perso(i).vitesse();
+		somme += _ia.perso(i)->vitesse();
 	}
 	int moyenne = somme / nombrePersonnages;
 
 	for (int i = 0;i < _joueur.taille();i++) {
-		nombreTourJoueur[i] = ceil((_joueur.perso(i).vitesse()*1.0) / (moyenne*1.0));
+		nombreTourJoueur[i] = ceil((_joueur.perso(i)->vitesse()*1.0) / (moyenne*1.0));
 		if (nombreTourJoueur[i] > max) {
 			max = nombreTourJoueur[i];
 		}
 	}
 	for (int i = 0;i < _ia.taille();i++) {
-		nombreTourIa[i] = ceil((_ia.perso(i).vitesse() *1.0) / (moyenne*1.0));
+		nombreTourIa[i] = ceil((_ia.perso(i)->vitesse() *1.0) / (moyenne*1.0));
 		if (nombreTourIa[i] > max) {
 			max = nombreTourIa[i];
 		}
@@ -46,19 +47,14 @@ Combat::Combat(Equipes & Joueur, Equipes & Ia) : _joueur{Joueur}, _ia{Ia}
 	while (_joueur.estEnVie() && _ia.estEnVie()) {
 		for (int i = 0;i < _quiJoue.size();i++) {
 			if ((_joueur.estEnVie() && _ia.estEnVie())) {
-				if (_quiJoue[i].ia()) {
-					if (_ia.perso(_quiJoue[i].indiceEquipe()).estEnVie()) {
-						Attaque(_quiJoue[i], _joueur, _ia);
+					if (_quiJoue[i]->estEnVie()) {
+						_quiJoue[i]->attaqueEnnemis();
+						Affichage().dessinerDeuxEquipes(_joueur, _ia);
 					}
-				}
-				else {
-					if (_joueur.perso(_quiJoue[i].indiceEquipe()).estEnVie()) {
-						Attaque(_quiJoue[i], _ia, _joueur);
-					}
-				}
 			}
 		}
 	}
+	Affichage().dessinerDeuxEquipes(_joueur, _ia);
 	std::cout << "Combat finis" << std::endl;
 }
 
@@ -66,6 +62,8 @@ Combat::Combat(Equipes & Joueur, Equipes & Ia) : _joueur{Joueur}, _ia{Ia}
 Combat::~Combat()
 {
 }
+
+
 
 /*
 void InitQuiJoue(){

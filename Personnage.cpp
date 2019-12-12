@@ -1,17 +1,16 @@
 #include "Personnage.h"
 #include "Aleatoire.h"
 #include "Affichage.h"
+#include <iostream>
 
 
 
-Personnage::Personnage() : _vieMax{ 100 }, _vie{ 100 }, _nom{ "BASE" }
-{
-}
 
-Personnage::Personnage(int id,int LVL, std::string nom,int vieLVL,int forceLVL,int vitesseLVL,int chanceDoubleAttaque,int chanceHabilete,int pourcentageReduction,int pourcentageDeviation,int pourcentageBlocage,int pourcentageEsquive,int pourcentageRicochet,bool ia) : 
+
+Personnage::Personnage(int id,int LVL, std::string nom,int vieLVL,int forceLVL,int vitesseLVL,int chanceDoubleAttaque,int chanceHabilete,int pourcentageReduction,int pourcentageDeviation,int pourcentageBlocage,int pourcentageEsquive,int pourcentageRicochet,Equipes A) : 
 	_vieMax{ vieLVL*LVL }, _vie{ vieLVL*LVL }, _nom{ nom },_id{id},_niveau{LVL},_force{forceLVL*LVL},_vitesse{vitesseLVL*LVL},_chanceDoubleAttaque{chanceDoubleAttaque},
 	_chanceHabilete{chanceHabilete},_pourcentageReduction{pourcentageReduction},_pourcentageDeviation{pourcentageDeviation},_pourcentageBlocage{pourcentageBlocage},_pourcentageEsquive{pourcentageEsquive},_pourcentageRicochet{pourcentageRicochet},
-	_mana{0},_pourcentageCritique{10},_degatCritique{50},_nbFoisJouer{0},_bouclier{0},_ia{ia}
+	_mana{0},_pourcentageCritique{10},_degatCritique{50},_nbFoisJouer{0},_bouclier{0},_A{A}
 {
 }
 
@@ -55,11 +54,6 @@ int Personnage::pourcentageVie() const
 	return ceil((static_cast<double>(_vie)/ static_cast<double>(_vieMax))*100);
 }
 
-void Personnage::competence1()
-{
-	std::cout << "Perso normal";
-}
-
 bool Personnage::estEnVie()const {
 	return _vie > 0;
 }
@@ -71,11 +65,6 @@ int Personnage::force()const {
 int Personnage::vitesse() const
 {
 	return _vitesse;
-}
-
-bool Personnage::ia() const
-{
-	return _ia;
 }
 
 int Personnage::soins(double RatioMin,double RatioMax) const {
@@ -102,9 +91,9 @@ int Personnage::degats(double RatioMin, double RatioMax) const
 	return static_cast<int>(degat);
 }
 
-void Personnage::soigner(int soins,Personnage & P)
+void Personnage::soigner(int soins,Personnage * P)
 {
-	P.AjouterVie(soins);
+	P->AjouterVie(soins);
 }
 
 void Personnage::AjouterVie(int montant) {
@@ -118,31 +107,51 @@ bool Personnage::estAttaquable()const {
 	return (estEnVie() && _pourcentageEsquive < Aleatoire().entier());
 }
 
-void  Personnage::Attaque(int Degat, Personnage & Defenseur) 
+void Personnage::setEnnemis(Equipes E)
 {
-	std::cout << _nom << " attaque " << Defenseur.nom() << std::endl;
+	_E = E;
+}
+
+void Personnage::setAllier(Equipes A)
+{
+	_A = A;
+}
+
+Equipes Personnage::equipeAllier() const
+{
+	return _A;
+}
+
+Equipes Personnage::equipeEnnemi() const
+{
+	return _E;
+}
+
+void  Personnage::Attaque(int Degat, Personnage * Defenseur) 
+{
+	std::cout << _nom << " attaque " << Defenseur->nom() << std::endl;
 	
-	if (Defenseur.estAttaquable()) {
-		if (Defenseur.bloque()) {
+	if (Defenseur->estAttaquable()) {
+		if (Defenseur->bloque()) {
 			Degat /= 2;
 		}
-		Degat = Defenseur.reductionDesDegats(Degat);
+		Degat = Defenseur->reductionDesDegats(Degat);
 		if (Degat < 0) {
 			Degat = 0;
 		}
-		if (Defenseur.devie()) {
+		if (Defenseur->devie()) {
 			std::cout << "Devie";
-			Defenseur.Attaque(Degat, *this);
+			Defenseur->Attaque(Degat, this);
 			std::cout << _vie << std::endl;
 		}
 		else {
 			Affichage H;
-			H.dessinerAttaque(*this, Defenseur);
-			H.dessinerJoueur(Defenseur.indiceEquipe()+1, Defenseur.ia(), Defenseur);
-			Defenseur.reduireVie(Degat);
-			H.dessinerJoueur(Defenseur.indiceEquipe() + 1, Defenseur.ia(), Defenseur);
-			if (!Defenseur.estEnVie()) {
-
+			H.dessinerAttaque(this, Defenseur);
+			H.dessinerJoueur(Defenseur->indiceEquipe()+1, Defenseur->equipeAllier().ia(), Defenseur);
+			Defenseur->reduireVie(Degat);
+			H.dessinerJoueur(Defenseur->indiceEquipe()+1, Defenseur->equipeAllier().ia(), Defenseur);
+			if (!Defenseur->estEnVie()) {
+				//plus tard
 			}
 		}
 	}
@@ -174,6 +183,11 @@ bool Personnage::ricoche()const {
 
 void Personnage::modifierIndiceEquipe(int i) {
 	_indiceEquipe = i;
+}
+
+int Personnage::choixAttaque()
+{
+	return Aleatoire(0, (_mana % 4 + 1)).entier();
 }
 
 int Personnage::indiceEquipe()const {

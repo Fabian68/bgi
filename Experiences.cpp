@@ -55,3 +55,8 @@ bool Experiences::ecrireEXP(const std::string& fichier)
 Experiences::~Experiences()
 {
 }
+
+int Experiences::calculNiveau(int indiceTabxp) const
+{
+	return 0;//a faire
+}

@@ -1,14 +1,12 @@
-#ifndef PERSONNAGE_H
-#define PERSONNAGE_H
-#endif // !PERSONNAGE_H
+#pragma once
 
-#include <iostream>
+#include <string>
+#include "Equipes.h"
 
 class Personnage
 {
 public:
-	Personnage();
-	Personnage(int id, int LVL, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet,bool ia);
+	Personnage(int id, int LVL, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet,Equipes A);
 	virtual ~Personnage();
 	int id() const;
 	int mana()const;
@@ -17,17 +15,20 @@ public:
 	int vieMax()const;
 	void reduireVie(int nb);
 	int pourcentageVie()const;
-	virtual void competence1();
+	virtual void attaqueEnnemis()=0;
 	bool estEnVie() const;
 	int force() const;
 	int vitesse()const;
-	bool ia() const;
 	int soins(double RatioMin, double RatioMax) const;
 	int degats(double RatioMin, double RatioMax) const;
-	void soigner(int soins,Personnage & P);
+	void soigner(int soins,Personnage * P);
 	void AjouterVie(int montant);
 	bool estAttaquable() const;
-    void   Attaque(int Degat, Personnage & Defenseur) ;
+	void setEnnemis(Equipes E);
+	void setAllier(Equipes A);
+	Equipes equipeAllier()const;
+	Equipes equipeEnnemi() const;
+    void   Attaque(int Degat, Personnage * Defenseur) ;
 	bool bloque() const;
 	bool attaqueDouble() const;
 	void ajouterMana(int n);
@@ -35,17 +36,15 @@ public:
 	bool devie() const;
 	bool ricoche() const;
 	void modifierIndiceEquipe(int i);
+	int choixAttaque();
 	int indiceEquipe() const;
 private:
 	int _id;
 	int _niveau;
 	int _vieMax;
 	int _vie;
-	int _vieParNiveau;
 	int _force;
-	int _forceParNiveau;
 	int _vitesse;
-	int _vitesseParNiveau;
 	int _bouclier;
 	int _mana;
 	int _pourcentageCritique;
@@ -58,10 +57,9 @@ private:
 	int _pourcentageRicochet;
 	int _pourcentageEsquive;
 	int _pourcentageBlocage;
-	bool _ia;
 	int _indiceEquipe;
-
-
+	Equipes _A;
+	Equipes _E;
 	std::string _nom;
 };
 

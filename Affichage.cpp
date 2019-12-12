@@ -1,12 +1,13 @@
 #include "Affichage.h"
 #include "Equipes.h"
+#include "Personnage.h"
 
 
 Affichage::Affichage()
 {
 }
 
-void Affichage::dessinerJoueur(int indice, bool equipeIA,Personnage  P) const
+void Affichage::dessinerJoueur(int indice, bool equipeIA,Personnage*  P) const
 {
 	int x;
 	if (equipeIA) {
@@ -15,13 +16,13 @@ void Affichage::dessinerJoueur(int indice, bool equipeIA,Personnage  P) const
 	else {
 		x = 60;
 	}
-	std::string str = P.nom();
+	std::string str = P->nom();
 	char* perso = const_cast<char*>(str.c_str());
 
 	int y = -50 + 70 * indice;
 	rectangle(x, y, x + 300, y + 65);
 	outtextxy(x + 2, y + 5, perso);
-	int pourcentageVie = P.pourcentageVie();
+	int pourcentageVie = P->pourcentageVie();
 	setfillstyle(1, GREEN);
 	int Tab[8] = { x + 2,y + 25,x + 2 + pourcentageVie*2,y + 25,x + 2 + pourcentageVie * 2,y + 40,x + 2,y + 40 };
 	fillpoly(4, Tab);
@@ -64,7 +65,7 @@ void Affichage::dessinerDeuxEquipes(Equipes Joueur,Equipes IA) const
 	dessinerEquipeIA(IA);
 }
 
-void Affichage::dessinerAttaque(Personnage & Attaquant, Personnage & Defenseur) {
+void Affichage::dessinerAttaque(Personnage * Attaquant, Personnage * Defenseur) {
 	
 	setfillstyle(1, BLACK);
 	setcolor(BLACK);
@@ -73,16 +74,16 @@ void Affichage::dessinerAttaque(Personnage & Attaquant, Personnage & Defenseur) 
 	setcolor(RED);
 	
 	int i, j;
-	if (!Attaquant.ia()) {
-		 i = Attaquant.indiceEquipe() + 1;
-		 j = Defenseur.indiceEquipe() + 1;
+	if (!Attaquant->equipeAllier().ia()) {
+		 i = Attaquant->indiceEquipe() + 1;
+		 j = Defenseur->indiceEquipe() + 1;
 	}
 	else {
-		 j = Attaquant.indiceEquipe() + 1;
-		 i = Defenseur.indiceEquipe() + 1;
+		 j = Attaquant->indiceEquipe() + 1;
+		 i = Defenseur->indiceEquipe() + 1;
 	}
 	line(370, -25 + 70 * i, 830, -25 + 70 * j);
-	if (!Attaquant.ia()) {
+	if (!Attaquant->equipeAllier().ia()) {
 		line(810, -5 + 70 *j, 830, -25 + 70 * j);
 		line(810, -45 + 70 * j, 830, -25 + 70 * j);
 	}
