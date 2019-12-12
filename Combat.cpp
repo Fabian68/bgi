@@ -49,12 +49,11 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia) : _joueur{Joueur}, _ia{Ia}
 			if ((_joueur.estEnVie() && _ia.estEnVie())) {
 					if (_quiJoue[i]->estEnVie()) {
 						_quiJoue[i]->attaqueEnnemis();
-						Affichage().dessinerDeuxEquipes(_joueur, _ia);
 					}
 			}
 		}
 	}
-	Affichage().dessinerDeuxEquipes(_joueur, _ia);
+	
 	std::cout << "Combat finis" << std::endl;
 }
 

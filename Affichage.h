@@ -11,6 +11,8 @@ class Affichage
 public:
 	Affichage();
 	void dessinerJoueur(int indice, bool equipeIA, Personnage* P)const;
+	void dessinerDegats(Personnage* P,int degats) const;
+	void dessinerSoins(Personnage* P, int soins) const;
 	void dessinerTexte(std::string texte)const;
 	void dessinerEquipeJoueur(Equipes  J)const;
 	void dessinerEquipeIA(Equipes I)const;

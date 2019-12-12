@@ -36,6 +36,43 @@ void Affichage::dessinerJoueur(int indice, bool equipeIA,Personnage*  P) const
 	fillpoly(4, Tab2);
 }
 
+void Affichage::dessinerDegats(Personnage* P, int degats) const {
+	int x;
+	if (P->equipeAllier().ia()) {
+		x = 1200 - 150;
+		
+	}
+	else {
+		x = 270;
+	}
+	int y = -50 + 100 * (P->indiceEquipe()+1);setcolor(BLACK);
+	setfillstyle(1,BLACK);
+	int Tab[8] = { x - 5,y -5,x +80 ,y -5,x+80 ,y + 20,x -5,y + 20 };
+	fillpoly(4, Tab);
+	std::string texte = " - " + std::to_string(degats);
+	setcolor(RED);
+	char* txt = const_cast<char*>(texte.c_str());
+	outtextxy(x, y,txt);
+	delay(250);
+}
+
+void Affichage::dessinerSoins(Personnage* P, int soins) const {
+	int x;
+	if (P->equipeAllier().ia()) {
+		x = 1200 - 150;
+	}
+	else {
+		x = 270;
+	}
+	int y = -50 + 100 * (P->indiceEquipe() + 1);
+	setcolor(GREEN);
+	std::string texte = " + " + std::to_string(soins);
+	
+	char* txt = const_cast<char*>(texte.c_str());
+	outtextxy(x, y, txt);
+	delay(250);
+}
+
 void Affichage::dessinerTexte(std::string texte)const {
 	setfillstyle(1, BLACK);
 	setcolor(BLACK);
@@ -91,7 +128,7 @@ void Affichage::dessinerAttaque(Personnage * Attaquant, Personnage * Defenseur) 
 		line(390, -5 + 70 * i, 370, -25 + 70 * i);
 		line(390, -45 + 70 * i, 370, -25 + 70 * i);
 	}
-	delay(500);
+	delay(250);
 }
 
 Affichage::~Affichage()

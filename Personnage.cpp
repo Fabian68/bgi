@@ -93,7 +93,10 @@ int Personnage::degats(double RatioMin, double RatioMax) const
 
 void Personnage::soigner(int soins,Personnage * P)
 {
+	Affichage H;
 	P->AjouterVie(soins);
+	H.dessinerJoueur(P->indiceEquipe() + 1, P->equipeAllier().ia(), P);
+	H.dessinerSoins(P, soins);
 }
 
 void Personnage::AjouterVie(int montant) {
@@ -147,9 +150,10 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 		else {
 			Affichage H;
 			H.dessinerAttaque(this, Defenseur);
-			H.dessinerJoueur(Defenseur->indiceEquipe()+1, Defenseur->equipeAllier().ia(), Defenseur);
 			Defenseur->reduireVie(Degat);
+			
 			H.dessinerJoueur(Defenseur->indiceEquipe()+1, Defenseur->equipeAllier().ia(), Defenseur);
+			H.dessinerDegats(Defenseur, Degat);
 			if (!Defenseur->estEnVie()) {
 				//plus tard
 			}
