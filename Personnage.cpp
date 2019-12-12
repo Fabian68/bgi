@@ -7,10 +7,10 @@
 
 
 
-Personnage::Personnage(int id,int LVL, std::string nom,int vieLVL,int forceLVL,int vitesseLVL,int chanceDoubleAttaque,int chanceHabilete,int pourcentageReduction,int pourcentageDeviation,int pourcentageBlocage,int pourcentageEsquive,int pourcentageRicochet,Equipes A) : 
+Personnage::Personnage(int id,int LVL, std::string nom,int vieLVL,int forceLVL,int vitesseLVL,int chanceDoubleAttaque,int chanceHabilete,int pourcentageReduction,int pourcentageDeviation,int pourcentageBlocage,int pourcentageEsquive,int pourcentageRicochet) : 
 	_vieMax{ vieLVL*LVL }, _vie{ vieLVL*LVL }, _nom{ nom },_id{id},_niveau{LVL},_force{forceLVL*LVL},_vitesse{vitesseLVL*LVL},_chanceDoubleAttaque{chanceDoubleAttaque},
 	_chanceHabilete{chanceHabilete},_pourcentageReduction{pourcentageReduction},_pourcentageDeviation{pourcentageDeviation},_pourcentageBlocage{pourcentageBlocage},_pourcentageEsquive{pourcentageEsquive},_pourcentageRicochet{pourcentageRicochet},
-	_mana{0},_pourcentageCritique{10},_degatCritique{50},_nbFoisJouer{0},_bouclier{0},_A{A}
+	_mana{0},_pourcentageCritique{10},_degatCritique{50},_nbFoisJouer{0},_bouclier{0}
 {
 }
 
@@ -107,22 +107,22 @@ bool Personnage::estAttaquable()const {
 	return (estEnVie() && _pourcentageEsquive < Aleatoire().entier());
 }
 
-void Personnage::setEnnemis(Equipes E)
+void Personnage::setEnnemis(Equipes & E)
 {
 	_E = E;
 }
 
-void Personnage::setAllier(Equipes A)
+void Personnage::setAllier(Equipes & A)
 {
 	_A = A;
 }
 
-Equipes Personnage::equipeAllier() const
+Equipes & Personnage::equipeAllier() 
 {
 	return _A;
 }
 
-Equipes Personnage::equipeEnnemi() const
+Equipes & Personnage::equipeEnnemi() 
 {
 	return _E;
 }

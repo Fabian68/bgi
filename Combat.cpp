@@ -2,7 +2,7 @@
 #include "Affichage.h"
 #include <iostream>
 
-Combat::Combat(Equipes  Joueur, Equipes  Ia) : _joueur{Joueur}, _ia{Ia}
+Combat::Combat(Equipes  & Joueur, Equipes  & Ia) : _joueur{Joueur}, _ia{Ia}
 {
 	int somme = 0;
 	int max = INT_MIN;

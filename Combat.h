@@ -6,7 +6,7 @@
 class Combat
 {
 public:
-	Combat(Equipes  Joueur,Equipes  Ia);
+	Combat(Equipes  & Joueur,Equipes  & Ia);
 	~Combat();
 
 private:

@@ -44,7 +44,7 @@ Personnage* Equipes::plusLoinVivant()
 {
 	int trouver = false;
 	int i = _equipe.size()-1;
-	while (i >0) {
+	while (i >-1) {
 		//std::cout << "Plus loin" << std::endl;
 		if (_equipe[i]->estEnVie()) {
 			return _equipe[i];
@@ -59,6 +59,7 @@ Personnage* Equipes::plusFaible()
 	int vie = INT_MAX;
 	int j = 0;
 	for (int i = 0;i < _equipe.size();i++) {
+		std::cout << "b";
 		if (_equipe[i]->vie()>0) {
 			std::cout << " plus faible" << std::endl;
 			vie = _equipe[i]->vie();
@@ -86,6 +87,7 @@ Equipes::~Equipes()
 void Equipes::ajouterPerso(Personnage * P)
 {
 	P->modifierIndiceEquipe(_equipe.size());
+	P->setAllier(*this);
 	_equipe.emplace_back(P);
 }
 

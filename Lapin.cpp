@@ -1,9 +1,9 @@
 #include "Lapin.h"
 
 
-Lapin::Lapin(Equipes A,int LVL) : Personnage(3, LVL, "Lapin", 2, 4, 4, 30, 0, 0, 0, 0, 10, 0, A) {}
+Lapin::Lapin(int LVL) : Personnage(3, LVL, "Lapin", 2000, 4, 4, 30, 0, 0, 0, 0, 10, 0) {}
 void Lapin::attaqueEnnemis() {
-	Attaque(force()/10, equipeEnnemi().plusProcheVivant());
+	Attaque(force()/100, equipeEnnemi().plusProcheVivant());
 	
 	
 }

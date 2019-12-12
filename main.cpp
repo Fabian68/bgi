@@ -7,7 +7,7 @@
 #include "Fabian.h"
 #include "Nicolas.h"
 #include "Lapin.h"
-
+#include <iostream>
 
 #define PI 3.14159265
 
@@ -39,14 +39,16 @@ int main()
 	
 	
 	Equipes  Gentil(false);
-	Fabian F(Gentil);
-	Nicolas N(Gentil);
+	Fabian F;
+	Nicolas N;
 	Gentil.ajouterPerso(&N);
 	Gentil.ajouterPerso(&F);
 	
-
+	std::cout << Gentil[0]->nom()<< std::endl;
+	std::cout << F.equipeAllier()[0]->nom() << std::endl;
 	Equipes Meuchant(true);
-	Lapin L(&Meuchant,50);
+	Lapin L(200);
+
 	Meuchant.ajouterPerso(&L);
 	
 	F.setEnnemis(Meuchant);

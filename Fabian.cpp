@@ -2,24 +2,22 @@
 #include "Affichage.h"
 #include <iostream>
 
-Fabian::Fabian(Equipes A): Personnage(0,50,"Fabian",2,4,4,10,10,10,7,10,10,17,A){}
+Fabian::Fabian(): Personnage(0,50,"Fabian",2,4,4,10,10,10,7,10,10,17){}
 void Fabian::attaqueEnnemis()
 {
-	Attaque(force() / 10, equipeEnnemi().plusProcheVivant());
-	/*
 	int choix = choixAttaque();
 	int DEGATS;
 	int SOINS;
-	/if ((Tour % 3) == 0) {
+	/*if ((Tour % 3) == 0) {
 		cout << Personnage[Joueur] << " Le froid de la chambre a Fabian le renforce, il est désormait plus résistant ! " << endl;
 		PersoCarac[Joueur][REDUCTION]++;
-	}/
+	}*/
 	std::string a = nom();
 	std::cout << a;
 	std::cout << "-2" << std::endl;
 	SOINS = soins(0.07, 0.7);
 	Affichage().dessinerTexte(nom() + "Soins Unity");
-	soigner(SOINS, equipeAllier().plusFaible());
+	soigner(10000, equipeAllier().plusFaible());
 	switch (choix) {
 
 	case 0:
@@ -42,10 +40,10 @@ void Fabian::attaqueEnnemis()
 				Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 			}
 		}
-		/if (tiragePersoCarac(Joueur, CHANCEDOUBLEATTAQUE) && EquipeEnVie(TeamEnnemie(Joueur)) == true) {
+		/*if (tiragePersoCarac(Joueur, CHANCEDOUBLEATTAQUE) && EquipeEnVie(TeamEnnemie(Joueur)) == true) {
 			cout << " Attention j'ai fais de la muscu !  Sa force a augmentee ! " << endl;
 			PersoCarac[Joueur][FORCE] = static_cast<int>(PersoCarac[Joueur][FORCE] * ((1.0 + (3 * Tour) / 100)));
-		}/
+		}*/
 		ajouterMana(3);
 		break;
 	case 1:
@@ -57,12 +55,12 @@ void Fabian::attaqueEnnemis()
 			std::cout << "00" << std::endl;
 			DEGATS = degats(0.77, 1.17);
 			DEGATS += static_cast<int>(ceil(0.17 * equipeEnnemi().plusProcheVivant()->vie()));
-			Attaque(DEGATS, equipeEnnemi().plusLoinVivant());
+			//Attaque(DEGATS, equipeEnnemi().plusLoinVivant());
 			while (ricoche() && equipeEnnemi().estEnVie()) {
 				Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 			}
 		}
-		/if (tiragePersoCarac(Joueur, HABILETE)) {
+		/*if (tiragePersoCarac(Joueur, HABILETE)) {
 			cout << endl << " BOUGE !!! " << endl;
 			int a = rand_a_b(PREMIER, CINQUIEME + 1);
 			int b = rand_a_b(PREMIER, CINQUIEME + 1);
@@ -70,7 +68,7 @@ void Fabian::attaqueEnnemis()
 			Equipe[TeamEnnemie(Joueur)][a] = Equipe[TeamEnnemie(Joueur)][b];
 			Equipe[TeamEnnemie(Joueur)][b] = tmp;
 			cout << endl << " Des joueurs ont bouges . " << endl;
-		}/
+		}*/
 		ajouterMana(-1);
 		break;
 	case 2:
@@ -131,5 +129,5 @@ void Fabian::attaqueEnnemis()
 		}
 		ajouterMana(-3);
 		break;
-	}*/
+	}
 }

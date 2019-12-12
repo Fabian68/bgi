@@ -6,7 +6,7 @@
 class Personnage
 {
 public:
-	Personnage(int id, int LVL, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet,Equipes A);
+	Personnage(int id, int LVL, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet);
 	virtual ~Personnage();
 	int id() const;
 	int mana()const;
@@ -24,10 +24,10 @@ public:
 	void soigner(int soins,Personnage * P);
 	void AjouterVie(int montant);
 	bool estAttaquable() const;
-	void setEnnemis(Equipes E);
-	void setAllier(Equipes A);
-	Equipes equipeAllier()const;
-	Equipes equipeEnnemi() const;
+	void setEnnemis(Equipes & E);
+	void setAllier(Equipes & A);
+	Equipes& equipeAllier();
+	Equipes& equipeEnnemi();
     void   Attaque(int Degat, Personnage * Defenseur) ;
 	bool bloque() const;
 	bool attaqueDouble() const;
