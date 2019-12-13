@@ -65,7 +65,7 @@ int Experiences::calculNiveau(int indiceTabxp) const
 	while (xp > _tabXp[i]) {
 		i++;
 	}
-	return i;//a faire
+	return i;
 }
 
 void Experiences::ajouterXP(int indiceTabxp,int montant) {

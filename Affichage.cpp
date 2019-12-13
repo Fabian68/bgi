@@ -45,7 +45,7 @@ void Affichage::dessinerDegats(Personnage* P, int degats) const {
 	else {
 		x = 270;
 	}
-	int y = -50 + 100 * (P->indiceEquipe()+1);setcolor(BLACK);
+	int y = -20 + 70 * (P->indiceEquipe()+1);setcolor(BLACK);
 	setfillstyle(1,BLACK);
 	int Tab[8] = { x - 5,y -5,x +80 ,y -5,x+80 ,y + 20,x -5,y + 20 };
 	fillpoly(4, Tab);
