@@ -56,13 +56,13 @@ Personnage* Equipes::plusLoinVivant()
 
 Personnage* Equipes::plusFaible()
 {
-	int vie = INT_MAX;
+	int vieMin = INT_MAX;
 	int j = 0;
 	for (int i = 0;i < _equipe.size();i++) {
 		std::cout << "b";
-		if (_equipe[i]->vie()>0) {
+		if (_equipe[i]->vie()>0&& _equipe[i]->vie()<vieMin) {
 			std::cout << " plus faible" << std::endl;
-			vie = _equipe[i]->vie();
+			vieMin = _equipe[i]->vie();
 			j = i;
 		}
 	}
@@ -79,6 +79,29 @@ Personnage* Equipes::aleatoireEnVie() {
 	
 }
 
+void Equipes::attaqueZone(int Degats,Personnage * Attaquant)
+{
+	for (int i = 0; i < _equipe.size(); i++) {
+		Attaquant->Attaque(Degats, _equipe[i]);
+	}
+}
+
+void Equipes::soignerZone(int soins, Personnage* Soigneur)
+{
+	for (int i = 0; i < _equipe.size(); i++) {
+		Soigneur->soigner(soins, _equipe[i]);
+	}
+}
+
+int Equipes::xpDonner() const
+{
+	int xp = 0;
+	for (int i = 0; i < _equipe.size(); i++) {
+		xp += _equipe[i]->xpDonner();
+	}
+	return xp;
+}
+
 
 Equipes::~Equipes()
 {
@@ -87,10 +110,15 @@ Equipes::~Equipes()
 void Equipes::ajouterPerso(Personnage * P)
 {
 	P->modifierIndiceEquipe(_equipe.size());
-	P->setAllier(*this);
 	_equipe.push_back(P);
 }
 
+void Equipes::setAllierEtEnnemis(Equipes E) {
+	for (int i = 0; i < _equipe.size(); i++) {
+		_equipe[i]->setAllier(*this);
+		_equipe[i]->setEnnemis(E);
+	}
+}
 bool Equipes::estEnVie()const {
 	int j = 0;
 	for (int i = 0;i < _equipe.size();i++) {

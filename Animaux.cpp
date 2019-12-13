@@ -34,6 +34,12 @@ Animaux::Animaux()
 	is.close();
 }
 
+void Animaux::animalDuPersonnage(int indicePersonnage, int& indiceAnimal, int& rareteAnimal) const
+{
+	indiceAnimal = _animauxUtiliser[indicePersonnage];
+	rareteAnimal = _animauxPosseder[indicePersonnage][indiceAnimal];
+}
+
 void Animaux::sauvegarder()
 {
 	std::ofstream os("Animaux.txt");

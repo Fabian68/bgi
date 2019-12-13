@@ -15,8 +15,12 @@ public:
 	Personnage* plusLoinVivant();
 	Personnage* plusFaible();
 	Personnage* aleatoireEnVie();
+	void attaqueZone(int Degats,Personnage*Attaquant);
+	void soignerZone(int soins, Personnage* Soigneur);
+	int xpDonner()const;
 	~Equipes();
 	void ajouterPerso(Personnage* P);
+	void setAllierEtEnnemis(Equipes E);
 	bool estEnVie() const;
 	bool ia() const;
 private:

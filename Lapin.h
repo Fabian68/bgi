@@ -6,7 +6,7 @@ class Lapin :
 	public Personnage
 {
 public:
-	Lapin(int LVL);
+	Lapin(int LVL,int difficulte=0);
 private:
 	virtual void attaqueEnnemis()override;
 };

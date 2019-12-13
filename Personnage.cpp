@@ -7,17 +7,17 @@
 
 
 
-Personnage::Personnage(int LVL, std::string nom,int vieLVL,int forceLVL,int vitesseLVL,int chanceDoubleAttaque,int chanceHabilete,int pourcentageReduction,int pourcentageDeviation,int pourcentageBlocage,int pourcentageEsquive,int pourcentageRicochet) : 
-	_vieMax{ vieLVL*LVL }, _vie{ vieLVL*LVL }, _nom{ nom },_id{-1},_niveau{LVL},_force{forceLVL*LVL},_vitesse{vitesseLVL*LVL},_chanceDoubleAttaque{chanceDoubleAttaque},
+Personnage::Personnage(int LVL, std::string nom,int vieLVL,int forceLVL,int vitesseLVL,int chanceDoubleAttaque,int chanceHabilete,int pourcentageReduction,int pourcentageDeviation,int pourcentageBlocage,int pourcentageEsquive,int pourcentageRicochet, int indiceAnimal, int rareteAnimal) :
+	_vieMax{ vieLVL*LVL*10 }, _vie{ vieLVL*LVL*10 }, _nom{ nom },_id{-1},_niveau{LVL},_force{forceLVL*LVL},_vitesse{vitesseLVL*LVL},_chanceDoubleAttaque{chanceDoubleAttaque},
 	_chanceHabilete{chanceHabilete},_pourcentageReduction{pourcentageReduction},_pourcentageDeviation{pourcentageDeviation},_pourcentageBlocage{pourcentageBlocage},_pourcentageEsquive{pourcentageEsquive},_pourcentageRicochet{pourcentageRicochet},
-	_mana{0},_pourcentageCritique{10},_degatCritique{50},_nbFoisJouer{0},_bouclier{0}
+	_mana{0},_pourcentageCritique{10},_degatCritique{50},_nbFoisJouer{0},_bouclier{0},_indiceAnimal{indiceAnimal},_rareteAnimal{rareteAnimal}
 {
 }
 
 Personnage::Personnage(int id,Experiences E,Orbes O,Animaux A, std::string nom, int vieLVL, int forceLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet) :
 	_nom{ nom }, _id{ id }, _chanceDoubleAttaque{ chanceDoubleAttaque },
 	_chanceHabilete{ chanceHabilete }, _pourcentageReduction{ pourcentageReduction }, _pourcentageDeviation{ pourcentageDeviation }, _pourcentageBlocage{ pourcentageBlocage }, _pourcentageEsquive{ pourcentageEsquive }, _pourcentageRicochet{ pourcentageRicochet },
-	_mana{ 0 }, _pourcentageCritique{ 10 }, _degatCritique{ 50 }, _nbFoisJouer{ 0 }, _bouclier{ 0 },_An{A}
+	_mana{ 0 }, _pourcentageCritique{ 10 }, _degatCritique{ 50 }, _nbFoisJouer{ 0 }, _bouclier{ 0 }
 {
 	int bonusLVLattaque;
 	int bonusLVLvie;
@@ -28,6 +28,7 @@ Personnage::Personnage(int id,Experiences E,Orbes O,Animaux A, std::string nom, 
 	_vieMax = _vie;
 	_force = (forceLVL+bonusLVLattaque) * _niveau;
 	_vitesse = (vitesseLVL+bonusLVLvitesse) * _niveau;
+	A.animalDuPersonnage(_id, _indiceAnimal, _rareteAnimal);
 }
 
 Personnage::~Personnage()
@@ -85,6 +86,27 @@ int Personnage::vitesse() const
 
 int Personnage::niveau()const {
 	return _niveau;
+}
+void Personnage::ajouterForce(int montant)
+{
+	_force += montant;
+}
+void Personnage::ajouterVitesse(int montant)
+{
+	_vitesse += montant;
+}
+void Personnage::ajouterVie(int montant)
+{
+	_vie += montant;
+	_vieMax = _vie;
+}
+int Personnage::xpDonner() const
+{
+	double xp;
+	double multiplicateur = 1.0;
+	xp = _force / 10.0 + _vitesse / 10.0 + _vieMax / 100.0;
+	multiplicateur += _chanceDoubleAttaque / 100.0 + _chanceHabilete / 100.0 + _pourcentageRicochet / 100.0 + _pourcentageReduction / 100.0 + _pourcentageEsquive / 100.0 + _pourcentageDeviation / 100.0 + _pourcentageBlocage / 100.0;
+	return round(xp * multiplicateur);
 }
 int Personnage::soins(double RatioMin,double RatioMax) const {
 	double SOINS = Aleatoire(RatioMin,RatioMax).decimal()*force();

@@ -56,10 +56,13 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia) : _joueur{Joueur}, _ia{Ia}
 	}
 	if (_joueur.estEnVie()) {
 		Experiences E;
-		for (int i = 0; i < _joueur.taille(); i++) {
-			E.ajouterXP(_joueur[i]->id(), 1);
-			E.ecrireEXP("T1.txt");
+		int xp;
+		xp = _ia.xpDonner();
+		std::cout << std::endl << "Les joueurs recoivent " << xp << " montant d'experience." << std::endl;
+		for (int i = 0; i < _joueur.taille(); i++) {	
+			E.ajouterXP(_joueur[i]->id(), xp);	
 		}
+		E.ecrireEXP("T1.txt");
 	}
 	Affichage().dessinerDeuxEquipes(_joueur, _ia);
 	std::cout << "Combat finis" << std::endl;

@@ -5,6 +5,7 @@ class Animaux
 {
 public:
 	Animaux();
+	void animalDuPersonnage(int indicePersonnage, int& indiceAnimal, int& rareteAnimal)const;
 	void sauvegarder();
 private:
 	std::vector<std::vector<int >> _animauxPosseder;

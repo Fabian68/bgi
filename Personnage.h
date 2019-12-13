@@ -9,7 +9,7 @@ class Personnage
 {
 public:
 	Personnage(int id, Experiences E,Orbes O,Animaux A, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet);
-	Personnage(int LVL, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet);
+	Personnage(int LVL, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet,int indiceAnimal,int rareteAnimal);
 	virtual ~Personnage();
 	int id() const;
 	int mana()const;
@@ -23,6 +23,10 @@ public:
 	int force() const;
 	int vitesse()const;
 	int niveau() const;
+	void ajouterForce(int montant);
+	void ajouterVitesse(int montant);
+	void ajouterVie(int montant);
+	int xpDonner()const;
 	int soins(double RatioMin, double RatioMax) const;
 	int degats(double RatioMin, double RatioMax) const;
 	void soigner(int soins,Personnage * P);
@@ -64,7 +68,8 @@ private:
 	int _indiceEquipe;
 	Equipes _A;
 	Equipes _E;
-	Animaux _An;
+	int _indiceAnimal;
+	int _rareteAnimal;
 	std::string _nom;
 };
 

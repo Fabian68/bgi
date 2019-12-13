@@ -64,7 +64,7 @@ void Affichage::dessinerSoins(Personnage* P, int soins) const {
 	else {
 		x = 270;
 	}
-	int y = -50 + 100 * (P->indiceEquipe() + 1);
+	int y = -20 + 70 * (P->indiceEquipe() + 1);
 	setcolor(GREEN);
 	std::string texte = " + " + std::to_string(soins);
 	

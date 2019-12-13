@@ -41,6 +41,16 @@ void Zones::equipeEnZone(int i,Equipes & E)
 		E.ajouterPerso(new Lapin(3));
 		E.ajouterPerso(new Lapin(1));
 		break;
+	case 4:
+		E.ajouterPerso(new Lapin(2));
+		E.ajouterPerso(new Lapin(4));
+		E.ajouterPerso(new Lapin(2));
+		break;
+	case 5:
+		E.ajouterPerso(new Lapin(3));
+		E.ajouterPerso(new Lapin(5,1));
+		E.ajouterPerso(new Lapin(3));
+		break;
 	}
 }
 

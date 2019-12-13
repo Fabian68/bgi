@@ -42,12 +42,9 @@ int main()
 	
 	Equipes Meuchant(true);
 	
-	Z.equipeEnZone(3, Meuchant);
-	for (int i = 0; i < Meuchant.taille(); i++) {
-		Meuchant[i]->setEnnemis(Gentil);
-	}
-	F.setEnnemis(Meuchant);
-	N.setEnnemis(Meuchant);
+	Z.equipeEnZone(5, Meuchant);
+	Gentil.setAllierEtEnnemis(Meuchant);
+	Meuchant.setAllierEtEnnemis(Gentil);
 	
 	Combat C(Gentil,Meuchant);
 	
