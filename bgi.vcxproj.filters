@@ -81,6 +81,9 @@
     <ClCompile Include="Lapin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Zones.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="winbgim.h">
@@ -126,6 +129,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Lapin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Zones.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

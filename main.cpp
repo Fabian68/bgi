@@ -8,6 +8,7 @@
 #include "Nicolas.h"
 #include "Lapin.h"
 #include "Experiences.h"
+#include "Zones.h"
 #include <iostream>
 
 #define PI 3.14159265
@@ -39,8 +40,8 @@ int main()
 	
 	
 	Experiences E;
+	Zones Z;
 	Equipes  Gentil(false);
-	E.ajouterXP(0, 100);
 	Fabian F(E);
 	
 	Nicolas N(E);
@@ -48,13 +49,14 @@ int main()
 	Gentil.ajouterPerso(&F);
 	
 	Equipes Meuchant(true);
-	Lapin L(5);
-
-	Meuchant.ajouterPerso(&L);
 	
+	Z.equipeEnZone(3, Meuchant);
+	for (int i = 0; i < Meuchant.taille(); i++) {
+		Meuchant[i]->setEnnemis(Gentil);
+	}
 	F.setEnnemis(Meuchant);
 	N.setEnnemis(Meuchant);
-	L.setEnnemis(Gentil);
+	
 	Combat C(Gentil,Meuchant);
 	/*Affichage Hi;
 	Hi.dessinerDeuxEquipes(Gentil,Meuchant);

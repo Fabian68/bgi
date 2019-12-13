@@ -88,7 +88,7 @@ void Equipes::ajouterPerso(Personnage * P)
 {
 	P->modifierIndiceEquipe(_equipe.size());
 	P->setAllier(*this);
-	_equipe.emplace_back(P);
+	_equipe.push_back(P);
 }
 
 bool Equipes::estEnVie()const {
