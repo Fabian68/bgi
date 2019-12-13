@@ -14,16 +14,20 @@ Personnage::Personnage(int LVL, std::string nom,int vieLVL,int forceLVL,int vite
 {
 }
 
-Personnage::Personnage(int id,Experiences E, std::string nom, int vieLVL, int forceLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet) :
+Personnage::Personnage(int id,Experiences E,Orbes O,Animaux A, std::string nom, int vieLVL, int forceLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet) :
 	_nom{ nom }, _id{ id }, _chanceDoubleAttaque{ chanceDoubleAttaque },
 	_chanceHabilete{ chanceHabilete }, _pourcentageReduction{ pourcentageReduction }, _pourcentageDeviation{ pourcentageDeviation }, _pourcentageBlocage{ pourcentageBlocage }, _pourcentageEsquive{ pourcentageEsquive }, _pourcentageRicochet{ pourcentageRicochet },
-	_mana{ 0 }, _pourcentageCritique{ 10 }, _degatCritique{ 50 }, _nbFoisJouer{ 0 }, _bouclier{ 0 }
+	_mana{ 0 }, _pourcentageCritique{ 10 }, _degatCritique{ 50 }, _nbFoisJouer{ 0 }, _bouclier{ 0 },_An{A}
 {
+	int bonusLVLattaque;
+	int bonusLVLvie;
+	int bonusLVLvitesse;
+	O.buffOrbes(_id, bonusLVLattaque, bonusLVLvie, bonusLVLvitesse);
 	_niveau = E.calculNiveau(id);
-	_vie = vieLVL * _niveau * 10;
+	_vie = (vieLVL+bonusLVLvie) * _niveau * 10;
 	_vieMax = _vie;
-	_force = forceLVL * _niveau;
-	_vitesse = vitesseLVL * _niveau;
+	_force = (forceLVL+bonusLVLattaque) * _niveau;
+	_vitesse = (vitesseLVL+bonusLVLvitesse) * _niveau;
 }
 
 Personnage::~Personnage()

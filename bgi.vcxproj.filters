@@ -84,6 +84,12 @@
     <ClCompile Include="Zones.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Orbes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animaux.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="winbgim.h">
@@ -132,6 +138,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Zones.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Orbes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animaux.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

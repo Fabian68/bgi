@@ -65,6 +65,7 @@
   <ItemGroup>
     <ClCompile Include="Affichage.cpp" />
     <ClCompile Include="Aleatoire.cpp" />
+    <ClCompile Include="Animaux.cpp" />
     <ClCompile Include="bgiout.cxx" />
     <ClCompile Include="Combat.cpp" />
     <ClCompile Include="dibutil.cxx" />
@@ -78,6 +79,7 @@
     <ClCompile Include="misc.cxx" />
     <ClCompile Include="mouse.cxx" />
     <ClCompile Include="Nicolas.cpp" />
+    <ClCompile Include="Orbes.cpp" />
     <ClCompile Include="palette.cxx" />
     <ClCompile Include="main.cxx" />
     <ClCompile Include="Personnage.cpp" />
@@ -90,6 +92,7 @@
   <ItemGroup>
     <ClInclude Include="Affichage.h" />
     <ClInclude Include="Aleatoire.h" />
+    <ClInclude Include="Animaux.h" />
     <ClInclude Include="Combat.h" />
     <ClInclude Include="dibutil.h" />
     <ClInclude Include="Equipes.h" />
@@ -98,6 +101,7 @@
     <ClInclude Include="graphics.h" />
     <ClInclude Include="Lapin.h" />
     <ClInclude Include="Nicolas.h" />
+    <ClInclude Include="Orbes.h" />
     <ClInclude Include="Personnage.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="winbgi.h" />

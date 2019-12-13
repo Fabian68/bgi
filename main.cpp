@@ -9,6 +9,7 @@
 #include "Lapin.h"
 #include "Experiences.h"
 #include "Zones.h"
+#include "Animaux.h"
 #include <iostream>
 
 #define PI 3.14159265
@@ -28,23 +29,14 @@ int main()
 	initwindow(1200,800, "First Sample");
 	setbkcolor(0);
 	setcolor(RED);
-	
-	/*
-	for (size_t i = 0; i <= 3000; i++)
-	{
-		dessinerAttaque(static_cast<int>(frand_a_b(1.0, 9.0)), static_cast<int>(frand_a_b(1.0, 9.0)), static_cast<int>(frand_a_b(0.0, 2.0)));
-		delay(200);
-		nettoyerZoneAttaque();
-	}*/
 
-	
-	
 	Experiences E;
 	Zones Z;
+	Orbes O;
+	Animaux A;
 	Equipes  Gentil(false);
-	Fabian F(E);
-	
-	Nicolas N(E);
+	Fabian F(E,O,A);	
+	Nicolas N(E,O,A);
 	Gentil.ajouterPerso(&N);
 	Gentil.ajouterPerso(&F);
 	
@@ -58,17 +50,6 @@ int main()
 	N.setEnnemis(Meuchant);
 	
 	Combat C(Gentil,Meuchant);
-	/*Affichage Hi;
-	Hi.dessinerDeuxEquipes(Gentil,Meuchant);
-	for (int i = 0;i <= 100000000000;i++) {
-		Attaque(Gentil.perso(1), Meuchant, Gentil);
-	
-		//Attaque(Didier, Gentil, Meuchant);
-		//std::cout << Fabian.vie() <<" "<<Gentil[1].vie()<<std::endl;
-		delay(500);
-		Hi.dessinerDeuxEquipes(Gentil, Meuchant);
-
-	}*/
 	
 	while (!kbhit())
 	{

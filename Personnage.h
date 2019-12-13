@@ -3,10 +3,12 @@
 #include <string>
 #include "Equipes.h"
 #include "Experiences.h"
+#include "Orbes.h"
+#include "Animaux.h"
 class Personnage
 {
 public:
-	Personnage(int id, Experiences E, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet);
+	Personnage(int id, Experiences E,Orbes O,Animaux A, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet);
 	Personnage(int LVL, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet);
 	virtual ~Personnage();
 	int id() const;
@@ -62,6 +64,7 @@ private:
 	int _indiceEquipe;
 	Equipes _A;
 	Equipes _E;
+	Animaux _An;
 	std::string _nom;
 };
 

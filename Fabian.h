@@ -6,7 +6,7 @@ class Fabian :
 	public Personnage
 {
 public:
-	Fabian(Experiences E);
+	Fabian(Experiences E,Orbes O,Animaux A);
 private:
 	virtual void attaqueEnnemis()override;
 };
