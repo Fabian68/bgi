@@ -16,7 +16,7 @@ void Affichage::dessinerJoueur(int indice, bool equipeIA,Personnage*  P) const
 	else {
 		x = 60;
 	}
-	std::string str = P->nom();
+	std::string str = P->nom()+" "+std::to_string(P->niveau());
 	char* perso = const_cast<char*>(str.c_str());
 
 	int y = -50 + 70 * indice;

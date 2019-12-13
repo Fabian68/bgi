@@ -18,6 +18,7 @@ Experiences::Experiences()
 	// lecture tantque possible
 	while (!is.eof())
 	{
+		_ExperiencesPersonnages.resize(51);
 		is >> _ExperiencesPersonnages[i];
 		i++;
 	}
@@ -58,5 +59,15 @@ Experiences::~Experiences()
 
 int Experiences::calculNiveau(int indiceTabxp) const
 {
-	return 0;//a faire
+	int niv = 1;
+	int xp = _ExperiencesPersonnages[indiceTabxp];
+	int i = 0;
+	while (xp > _tabXp[i]) {
+		i++;
+	}
+	return i;//a faire
+}
+
+void Experiences::ajouterXP(int indiceTabxp,int montant) {
+	_ExperiencesPersonnages[indiceTabxp] += montant;
 }

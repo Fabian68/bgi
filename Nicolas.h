@@ -6,7 +6,7 @@ class Nicolas :
 	public Personnage
 {
 public:
-	Nicolas();
+	Nicolas(Experiences E);
 private:
 	virtual void attaqueEnnemis()override;
 };

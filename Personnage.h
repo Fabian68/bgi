@@ -2,11 +2,12 @@
 
 #include <string>
 #include "Equipes.h"
-
+#include "Experiences.h"
 class Personnage
 {
 public:
-	Personnage(int id, int LVL, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet);
+	Personnage(int id, Experiences E, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet);
+	Personnage(int LVL, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet);
 	virtual ~Personnage();
 	int id() const;
 	int mana()const;
@@ -19,6 +20,7 @@ public:
 	bool estEnVie() const;
 	int force() const;
 	int vitesse()const;
+	int niveau() const;
 	int soins(double RatioMin, double RatioMax) const;
 	int degats(double RatioMin, double RatioMax) const;
 	void soigner(int soins,Personnage * P);

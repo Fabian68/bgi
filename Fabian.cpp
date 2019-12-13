@@ -2,7 +2,7 @@
 #include "Affichage.h"
 #include <iostream>
 
-Fabian::Fabian(): Personnage(0,50,"Fabian",2,4,4,10,10,10,7,10,10,17){}
+Fabian::Fabian(Experiences E): Personnage(0, E,"Fabian",2,4,4,10,10,10,7,10,10,17){}
 void Fabian::attaqueEnnemis()
 {
 	int choix = choixAttaque();
@@ -17,7 +17,7 @@ void Fabian::attaqueEnnemis()
 	std::cout << "-2" << std::endl;
 	SOINS = soins(0.07, 0.7);
 	Affichage().dessinerTexte(nom() + "Soins Unity");
-	soigner(10000, equipeAllier().plusFaible());
+	soigner(SOINS, equipeAllier().plusFaible());
 	switch (choix) {
 
 	case 0:

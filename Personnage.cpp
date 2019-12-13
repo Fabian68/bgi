@@ -7,11 +7,23 @@
 
 
 
-Personnage::Personnage(int id,int LVL, std::string nom,int vieLVL,int forceLVL,int vitesseLVL,int chanceDoubleAttaque,int chanceHabilete,int pourcentageReduction,int pourcentageDeviation,int pourcentageBlocage,int pourcentageEsquive,int pourcentageRicochet) : 
-	_vieMax{ vieLVL*LVL }, _vie{ vieLVL*LVL }, _nom{ nom },_id{id},_niveau{LVL},_force{forceLVL*LVL},_vitesse{vitesseLVL*LVL},_chanceDoubleAttaque{chanceDoubleAttaque},
+Personnage::Personnage(int LVL, std::string nom,int vieLVL,int forceLVL,int vitesseLVL,int chanceDoubleAttaque,int chanceHabilete,int pourcentageReduction,int pourcentageDeviation,int pourcentageBlocage,int pourcentageEsquive,int pourcentageRicochet) : 
+	_vieMax{ vieLVL*LVL }, _vie{ vieLVL*LVL }, _nom{ nom },_id{-1},_niveau{LVL},_force{forceLVL*LVL},_vitesse{vitesseLVL*LVL},_chanceDoubleAttaque{chanceDoubleAttaque},
 	_chanceHabilete{chanceHabilete},_pourcentageReduction{pourcentageReduction},_pourcentageDeviation{pourcentageDeviation},_pourcentageBlocage{pourcentageBlocage},_pourcentageEsquive{pourcentageEsquive},_pourcentageRicochet{pourcentageRicochet},
 	_mana{0},_pourcentageCritique{10},_degatCritique{50},_nbFoisJouer{0},_bouclier{0}
 {
+}
+
+Personnage::Personnage(int id,Experiences E, std::string nom, int vieLVL, int forceLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet) :
+	_nom{ nom }, _id{ id }, _chanceDoubleAttaque{ chanceDoubleAttaque },
+	_chanceHabilete{ chanceHabilete }, _pourcentageReduction{ pourcentageReduction }, _pourcentageDeviation{ pourcentageDeviation }, _pourcentageBlocage{ pourcentageBlocage }, _pourcentageEsquive{ pourcentageEsquive }, _pourcentageRicochet{ pourcentageRicochet },
+	_mana{ 0 }, _pourcentageCritique{ 10 }, _degatCritique{ 50 }, _nbFoisJouer{ 0 }, _bouclier{ 0 }
+{
+	_niveau = E.calculNiveau(id);
+	_vie = vieLVL * _niveau * 10;
+	_vieMax = _vie;
+	_force = forceLVL * _niveau;
+	_vitesse = vitesseLVL * _niveau;
 }
 
 Personnage::~Personnage()
@@ -67,6 +79,9 @@ int Personnage::vitesse() const
 	return _vitesse;
 }
 
+int Personnage::niveau()const {
+	return _niveau;
+}
 int Personnage::soins(double RatioMin,double RatioMax) const {
 	double SOINS = Aleatoire(RatioMin,RatioMax).decimal()*force();
 	if (Aleatoire().entier() < _pourcentageCritique) {
