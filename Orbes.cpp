@@ -1,4 +1,5 @@
 #include "Orbes.h"
+#include <iostream>
 
 Orbes::Orbes()
 {
@@ -71,5 +72,50 @@ void Orbes::buffOrbes(int indiceJoueur, int& attaqueLvlBonus, int& vieLvLBonus, 
 			break;
 		}
 	}
+}
+
+bool Orbes::orbeDebloquer(int indiceJoueur, int rareter) const
+{
+	return _orbesLVL[indiceJoueur][rareter-1] != 0;
+}
+
+void Orbes::deblocageOrbe(int indiceJoueur, int rareter)
+{
+	std::cout << "Vous avez débloquer une orbe ";
+	std::cout << " de rarete ";
+	switch (rareter) {
+	case 1:
+		std::cout << " commune ( 1 ";
+		break;
+	case 2:
+		std::cout << " rare ( 2 ";
+		break;
+	case 3:
+		std::cout << " epique ( 3 ";
+		break;
+	case 4:
+		std::cout << " LEGENDAIRE ( 4 ";
+		break;
+	case 5:
+		std::cout << " CHEATER ( 5 ";
+		break;
+	}
+	std::cout << "points de stats par niveaux) ,vous dever choisir ou l'equiper, entrer ";
+	std::cout << std::endl;
+	std::cout << " 1 pour attaque ";
+	std::cout << std::endl;
+	std::cout << " 2 pour vie ";
+	std::cout << std::endl;
+	std::cout << " 3 pour vitesse ";
+	std::cout << std::endl;
+	int entrer;
+	std::cin >> entrer;
+	if (entrer < 1 || entrer >3) {
+		entrer = 1;
+	}
+	_orbesLVL[indiceJoueur][rareter - 1] = 1;
+	_choixOrbes[indiceJoueur][rareter - 1] = entrer;
+
+	sauvegarder();
 }
 

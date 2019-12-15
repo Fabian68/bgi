@@ -1,7 +1,7 @@
 #include "Lapin.h"
 
 
-Lapin::Lapin(int LVL,int difficulte) : Personnage(LVL, "Lapin", 2, 4, 4, 30, 0, 0, 0, 0, 10, 0,-1,0) 
+Lapin::Lapin(int LVL,int difficulte,int animal,int rareteAnimal) : Personnage(LVL, "Lapin", 2, 4, 4, 30, 0, 0, 0, 0, 10, 0,animal,rareteAnimal) 
 {
 	if (difficulte == 1) {
 		ajouterForce(force());
@@ -11,6 +11,6 @@ Lapin::Lapin(int LVL,int difficulte) : Personnage(LVL, "Lapin", 2, 4, 4, 30, 0, 
 }
 void Lapin::attaqueEnnemis() {
 	Attaque(force()/3, equipeEnnemi().plusLoinVivant());
-	
+	bouclier(50, this);
 	
 }

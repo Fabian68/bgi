@@ -9,6 +9,8 @@ public:
 	void ecrireZone();
 	void equipeEnZone(int i,Equipes & E);
 	void choixNiveau(int i);
+	int niveauActuel()const;
+	int niveauMax()const;
 	void niveauBattu();
 	void zoneBattue();
 private:

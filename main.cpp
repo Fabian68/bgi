@@ -11,6 +11,7 @@
 #include "Zones.h"
 #include "Animaux.h"
 #include <iostream>
+#include "Affichage.h"
 
 #define PI 3.14159265
 
@@ -34,20 +35,24 @@ int main()
 	Zones Z;
 	Orbes O;
 	Animaux A;
+	Affichage H;
+	
 	Equipes  Gentil(false);
-	Fabian F(E,O,A);	
+
+	Fabian F(E,O,A);
+
 	Nicolas N(E,O,A);
 	Gentil.ajouterPerso(&N);
 	Gentil.ajouterPerso(&F);
-	
+	H.afficherJoueurs(Gentil);
 	Equipes Meuchant(true);
 	
 	Z.equipeEnZone(5, Meuchant);
 	Gentil.setAllierEtEnnemis(Meuchant);
 	Meuchant.setAllierEtEnnemis(Gentil);
 	
-	Combat C(Gentil,Meuchant);
-	
+	Combat C(Gentil,Meuchant,Z,A,O);
+	Sleep(1000000);
 	while (!kbhit())
 	{
 		delay(200);

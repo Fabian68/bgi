@@ -17,7 +17,9 @@ public:
 	int vie()const;
 	int vieMax()const;
 	void reduireVie(int nb);
+	int reduireBouclier(int nb);
 	int pourcentageVie()const;
+	int pourcentageBouclier() const;
 	virtual void attaqueEnnemis()=0;
 	bool estEnVie() const;
 	int force() const;
@@ -31,12 +33,17 @@ public:
 	int degats(double RatioMin, double RatioMax) const;
 	void soigner(int soins,Personnage * P);
 	void AjouterVie(int montant);
+	void bouclier(int soins, Personnage* P);
+	void AjouterBouclier(int montant);
+	int bouclierMax()const;
 	bool estAttaquable() const;
 	void setEnnemis(Equipes & E);
 	void setAllier(Equipes & A);
 	Equipes& equipeAllier();
 	Equipes& equipeEnnemi();
+	void traitementAnimaux();
     void   Attaque(int Degat, Personnage * Defenseur) ;
+	int bouclier() const;
 	bool bloque() const;
 	bool attaqueDouble() const;
 	void ajouterMana(int n);
@@ -46,6 +53,13 @@ public:
 	void modifierIndiceEquipe(int i);
 	int choixAttaque();
 	int indiceEquipe() const;
+	int chanceDoubleAttaque()const;
+	int chanceHabileter()const;
+	int pourcentageDeviation()const;
+	int pourcentageReduction()const;
+	int pourcentageRicochet()const;
+	int pourcentageEsquive()const;
+	int pourcentageBlocage()const;
 private:
 	int _id;
 	int _niveau;

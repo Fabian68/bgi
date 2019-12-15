@@ -28,7 +28,10 @@ Personnage::Personnage(int id,Experiences E,Orbes O,Animaux A, std::string nom, 
 	_vieMax = _vie;
 	_force = (forceLVL+bonusLVLattaque) * _niveau;
 	_vitesse = (vitesseLVL+bonusLVLvitesse) * _niveau;
-	A.animalDuPersonnage(_id, _indiceAnimal, _rareteAnimal);
+	_indiceAnimal = A.indiceAnimal(_id);
+	_rareteAnimal = A.rareteAnimal(_id, _indiceAnimal);
+	//A.animalDuPersonnage(_id, _indiceAnimal, _rareteAnimal);
+	std::cout << _indiceAnimal << " " << _rareteAnimal;
 }
 
 Personnage::~Personnage()
@@ -66,9 +69,28 @@ void Personnage::reduireVie(int nb)
 	}
 }
 
+int Personnage::reduireBouclier(int nb)
+{
+	int ecart;
+	if (nb > _bouclier) {
+		ecart = nb - _bouclier;
+		_bouclier = 0;
+	}
+	else {
+		ecart = 0;
+		_bouclier = _bouclier - nb;
+	}
+	return ecart;
+}
+
 int Personnage::pourcentageVie() const
 {
 	return ceil((static_cast<double>(_vie)/ static_cast<double>(_vieMax))*100);
+}
+
+int Personnage::pourcentageBouclier() const
+{
+	return ceil((static_cast<double>(_bouclier) / static_cast<double>(bouclierMax()) * 100));
 }
 
 bool Personnage::estEnVie()const {
@@ -134,19 +156,51 @@ int Personnage::degats(double RatioMin, double RatioMax) const
 
 void Personnage::soigner(int soins,Personnage * P)
 {
-	Affichage H;
-	P->AjouterVie(soins);
-	H.dessinerJoueur(P->indiceEquipe() + 1, P->equipeAllier().ia(), P);
-	H.dessinerSoins(P, soins);
-}
-
-void Personnage::AjouterVie(int montant) {
-	_vie += montant;
-	if (_vie > _vieMax) {
-		_vie = _vieMax;
+	if (P->estEnVie()) {
+		P->AjouterVie(soins);	
 	}
 }
 
+void Personnage::AjouterVie(int montant) {
+	if (montant < 0) {
+		montant = 0;
+	}
+	_vie += montant;
+	Affichage H;
+	H.dessinerSoins(this, montant);
+	
+	if (_vie > _vieMax) {
+		_vie = _vieMax;	
+	}
+	H.dessinerJoueur(this->indiceEquipe() + 1, this->equipeAllier().ia(), this);
+}
+
+void Personnage::bouclier(int soins, Personnage* P)
+{
+	if (P->estEnVie()) {
+		P->AjouterBouclier(soins);
+	}
+}
+
+void Personnage::AjouterBouclier(int montant) {
+	if (montant < 0) {
+		montant = 0;
+	}
+	_bouclier += montant;
+	Affichage H;
+
+	
+	H.dessinerBouclier(this,montant);
+	if (_bouclier > bouclierMax()) {
+		_bouclier = bouclierMax();
+		
+	}
+	H.dessinerJoueur(this->indiceEquipe() + 1, this->equipeAllier().ia(), this);
+}
+
+int Personnage::bouclierMax()const {
+	return (_force * 10 + _vieMax)/2;
+}
 bool Personnage::estAttaquable()const {
 	return (estEnVie() && _pourcentageEsquive < Aleatoire().entier());
 }
@@ -170,7 +224,46 @@ Equipes & Personnage::equipeEnnemi()
 {
 	return _E;
 }
-
+void Personnage::traitementAnimaux() {
+	switch (_indiceAnimal) {
+	case 0:
+		if (Aleatoire(0, 101).entier() < (6 +3 * (_rareteAnimal-1))) {
+			int Soins=soins(0.08 * _rareteAnimal - 1, 0.08 * _rareteAnimal);
+			_A.soignerZone(Soins, this);
+		}
+		break;
+	case 1:
+		if (Aleatoire(0, 101).entier() < (10 + 5 * (_rareteAnimal - 1))) {
+			int Soins = soins(pow(2, _rareteAnimal - 1) * 0.05, pow(2, _rareteAnimal - 1) * 0.10);
+			soigner(Soins, _A.plusFaible());
+		}
+		break;
+	case 2:
+		if (Aleatoire(0, 101).entier() < (3 + 8 * (_rareteAnimal - 1))) {
+			int Soins = soins(_rareteAnimal * 0.10, 0.15 + 0.20 *(_rareteAnimal-1));
+			soigner(Soins, _A.aleatoireEnVie());
+		}
+		break;
+	case 3:
+		if (Aleatoire(0, 101).entier() < (4 + 4 * (_rareteAnimal - 1))) {
+			int Degats = degats(0.02 * _rareteAnimal - 1, 0.06 * _rareteAnimal);
+			Attaque(Degats, _E.plusFaible());
+		}
+		break;
+	case 4:
+		if (Aleatoire(0, 101).entier() < (2 + 5 * (_rareteAnimal - 1))) {
+			int Degats = degats(pow(2, _rareteAnimal - 1) * 0.01+0.01, pow(2, _rareteAnimal ) * 0.01 + 0.02);
+			_E.attaqueZone(Degats, this);
+		}
+		break;
+	case 5:
+		if (Aleatoire(0, 101).entier() < (2 + 8 * (_rareteAnimal - 1))) {
+			int Degats = degats(0.06 * _rareteAnimal - 1, 0.12 * _rareteAnimal);
+			Attaque(Degats, _E.aleatoireEnVie());
+		}
+		break;
+	}
+}
 void  Personnage::Attaque(int Degat, Personnage * Defenseur) 
 {
 	std::cout << _nom << " attaque " << Defenseur->nom() << std::endl;
@@ -189,10 +282,18 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 			std::cout << _vie << std::endl;
 		}
 		else {
+			Defenseur->traitementAnimaux();
+			this->traitementAnimaux();
 			Affichage H;
-			H.dessinerAttaque(this, Defenseur);
-			Defenseur->reduireVie(Degat);
 			
+			H.dessinerAttaque(this, Defenseur);
+		
+			if (Defenseur->bouclier() > 0) {
+				Degat=Defenseur->reduireBouclier(Degat);
+			}
+			if (Degat > 0) {
+				Defenseur->reduireVie(Degat);
+			}
 			H.dessinerJoueur(Defenseur->indiceEquipe()+1, Defenseur->equipeAllier().ia(), Defenseur);
 			H.dessinerDegats(Defenseur, Degat);
 			if (!Defenseur->estEnVie()) {
@@ -200,9 +301,13 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 			}
 		}
 	}
-	
+	if (ricoche()&&_E.estEnVie()) {
+		Attaque(Degat, _E.aleatoireEnVie());
+	}
 }
-
+int Personnage::bouclier()const {
+	return _bouclier;
+}
 bool Personnage::bloque()const {
 	return Aleatoire().entier() < _pourcentageBlocage;
 }
@@ -237,4 +342,39 @@ int Personnage::choixAttaque()
 
 int Personnage::indiceEquipe()const {
 	return _indiceEquipe;
+}
+
+int Personnage::chanceDoubleAttaque() const
+{
+	return _chanceDoubleAttaque;
+}
+
+int Personnage::chanceHabileter() const
+{
+	return _chanceHabilete;
+}
+
+int Personnage::pourcentageDeviation() const
+{
+	return _pourcentageDeviation;
+}
+
+int Personnage::pourcentageReduction() const
+{
+	return _pourcentageReduction;
+}
+
+int Personnage::pourcentageRicochet() const
+{
+	return _pourcentageRicochet;
+}
+
+int Personnage::pourcentageEsquive() const
+{
+	return _pourcentageEsquive;
+}
+
+int Personnage::pourcentageBlocage() const
+{
+	return _pourcentageBlocage;
 }

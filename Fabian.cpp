@@ -26,19 +26,13 @@ void Fabian::attaqueEnnemis()
 		DEGATS += static_cast<int>(ceil(0.01 * equipeEnnemi().plusProcheVivant()->vie()));
 		Affichage().dessinerTexte(nom() + " attaque de base");
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-		while (ricoche() && equipeEnnemi().estEnVie()) {
-			std::cout << "-11" << std::endl;
-			Attaque(DEGATS,equipeEnnemi().plusProcheVivant());
-
-		}
+		
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 			std::cout << "-111" << std::endl;
 			DEGATS = degats(0.27, 0.77);
 			DEGATS += static_cast<int>(ceil(0.1 * equipeEnnemi().plusProcheVivant()->vie() / 10.0));
 			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-			while (ricoche() && equipeEnnemi().estEnVie()) {
-				Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-			}
+			
 		}
 		/*if (tiragePersoCarac(Joueur, CHANCEDOUBLEATTAQUE) && EquipeEnVie(TeamEnnemie(Joueur)) == true) {
 			cout << " Attention j'ai fais de la muscu !  Sa force a augmentee ! " << endl;
@@ -56,9 +50,7 @@ void Fabian::attaqueEnnemis()
 			DEGATS = degats(0.77, 1.17);
 			DEGATS += static_cast<int>(ceil(0.17 * equipeEnnemi().plusProcheVivant()->vie()));
 			//Attaque(DEGATS, equipeEnnemi().plusLoinVivant());
-			while (ricoche() && equipeEnnemi().estEnVie()) {
-				Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-			}
+			
 		}
 		/*if (tiragePersoCarac(Joueur, HABILETE)) {
 			cout << endl << " BOUGE !!! " << endl;
@@ -78,15 +70,10 @@ void Fabian::attaqueEnnemis()
 			std::cout << "1" << std::endl;
 			DEGATS = degats(0.07 + i * 0.07, 0.17 + i * 0.17);
 			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
-			while (ricoche() && equipeEnnemi().estEnVie()) {
-				Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-			}
 			if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 				DEGATS = degats(0.07 + i * 0.14, 0.17 + i * 0.34);
 				Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
-				while (ricoche() && equipeEnnemi().estEnVie()) {
-					Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-				}
+				
 			}
 
 		}
@@ -98,15 +85,9 @@ void Fabian::attaqueEnnemis()
 			std::cout << "2" << std::endl;
 			DEGATS = degats(0.17, 0.255);
 			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
-			while (ricoche() && equipeEnnemi().estEnVie()) {
-				Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-			}
 			if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 				DEGATS = degats(0.14, 0.28);
 				Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
-				while (ricoche() && equipeEnnemi().estEnVie()) {
-					Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-				}
 			}
 		}
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
@@ -114,15 +95,9 @@ void Fabian::attaqueEnnemis()
 			for (int i = 0; i < 7 && estEnVie(); i++) {
 				DEGATS = degats(0.35, 0.7);
 				Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
-				while (ricoche() && equipeEnnemi().estEnVie()) {
-					Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-				}
 				if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 					DEGATS = degats(0.17, 0.34);
 					Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
-					while (ricoche() && equipeEnnemi().estEnVie()) {
-						Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-					}
 				}
 			}
 

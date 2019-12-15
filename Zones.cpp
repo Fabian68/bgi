@@ -48,7 +48,7 @@ void Zones::equipeEnZone(int i,Equipes & E)
 		break;
 	case 5:
 		E.ajouterPerso(new Lapin(3));
-		E.ajouterPerso(new Lapin(5,1));
+		E.ajouterPerso(new Lapin(5,1,0,5));
 		E.ajouterPerso(new Lapin(3));
 		break;
 	}
@@ -62,6 +62,16 @@ void Zones::choixNiveau(int i)
 	else {
 		_niveauActuel = i;
 	}
+}
+
+int Zones::niveauActuel() const
+{
+	return _niveauActuel;
+}
+
+int Zones::niveauMax() const
+{
+	return _niveauMax;
 }
 
 void Zones::niveauBattu()

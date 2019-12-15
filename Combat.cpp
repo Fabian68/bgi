@@ -2,8 +2,9 @@
 #include "Affichage.h"
 #include "Experiences.h"
 #include <iostream>
+#include "Aleatoire.h"
 
-Combat::Combat(Equipes  & Joueur, Equipes  & Ia) : _joueur{Joueur}, _ia{Ia}
+Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O) : _joueur{Joueur}, _ia{Ia},_tour{0}
 {
 	int somme = 0;
 	int max = INT_MIN;
@@ -45,16 +46,22 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia) : _joueur{Joueur}, _ia{Ia}
 		}
 	}
 	Affichage().dessinerDeuxEquipes(_joueur, _ia);
+	int nbFoisJouer = 0;
 	while (_joueur.estEnVie() && _ia.estEnVie()) {
 		for (int i = 0;i < _quiJoue.size();i++) {
 			if ((_joueur.estEnVie() && _ia.estEnVie())) {
 					if (_quiJoue[i]->estEnVie()) {
+						nbFoisJouer++;
+						if (nbFoisJouer%nombrePersonnages == 0) {
+							_tour++;
+						}
 						_quiJoue[i]->attaqueEnnemis();
 					}
 			}
 		}
 	}
 	if (_joueur.estEnVie()) {
+		Z.niveauBattu();
 		Experiences E;
 		int xp;
 		xp = _ia.xpDonner();
@@ -63,12 +70,42 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia) : _joueur{Joueur}, _ia{Ia}
 			E.ajouterXP(_joueur[i]->id(), xp);	
 		}
 		E.ecrireEXP("T1.txt");
+		tirageRecompenses(Z, A, O);
 	}
 	Affichage().dessinerDeuxEquipes(_joueur, _ia);
 	std::cout << "Combat finis" << std::endl;
 }
 
-
+void Combat::tirageRecompenses(Zones Z,Animaux A,Orbes O) {
+	int indiceJoueur;
+	int chanceTirage = Z.niveauActuel() * Z.niveauActuel() + Z.niveauMax();
+	int nombreDuTirage;
+	//Pour chaque perso
+	for (int i = 0; i < _joueur.taille(); i++) {
+		//Pour chaque animal
+		indiceJoueur = _joueur[i]->id();
+		for (int j = 0; j < 9; j++) {
+			//Pour chaque rarete animal
+			for (int k = 1; k <= 5; k++) {
+				nombreDuTirage = pow(100, k) * 100;
+				if (Aleatoire(0, nombreDuTirage).entier() < chanceTirage) {
+					if (!A.animalDebloquer(indiceJoueur, j, k)) {
+						A.deblocageAnimal(indiceJoueur, j, k);
+					}
+				}
+			}
+		}
+		//Pour chaque rareter d'orbe
+		for (int j = 1; j <= 5; j++) {
+			nombreDuTirage = pow(100, j) * 100;
+			if (Aleatoire(0, nombreDuTirage).entier() < chanceTirage) {
+				if (!O.orbeDebloquer(indiceJoueur,j)) {
+					O.deblocageOrbe(indiceJoueur, j);
+				}
+			}
+		}
+	}
+}
 Combat::~Combat()
 {
 }

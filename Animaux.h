@@ -6,6 +6,10 @@ class Animaux
 public:
 	Animaux();
 	void animalDuPersonnage(int indicePersonnage, int& indiceAnimal, int& rareteAnimal)const;
+	int indiceAnimal(int indicePersonnage) const;
+	int rareteAnimal(int indicePersonnage, int indiceAnimal) const;
+	bool animalDebloquer(int indicePersonnage, int indiceAnimal, int rareteAnimal)const;
+	void deblocageAnimal(int indicePersonnage, int indiceAnimal, int rareteAnimal);
 	void sauvegarder();
 private:
 	std::vector<std::vector<int >> _animauxPosseder;
