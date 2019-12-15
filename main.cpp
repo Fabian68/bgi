@@ -12,6 +12,7 @@
 #include "Animaux.h"
 #include <iostream>
 #include "Affichage.h"
+#include "Bouton.h"
 
 #define PI 3.14159265
 
@@ -38,20 +39,51 @@ int main()
 	Affichage H;
 	
 	Equipes  Gentil(false);
+	Equipes choix(false);
 
 	Fabian F(E,O,A);
-
 	Nicolas N(E,O,A);
+
+	choix.ajouterPerso(&F);
+	choix.ajouterPerso(&N);
+
 	Gentil.ajouterPerso(&N);
 	Gentil.ajouterPerso(&F);
-	H.afficherJoueurs(Gentil);
+	
 	Equipes Meuchant(true);
 	
 	Z.equipeEnZone(5, Meuchant);
 	Gentil.setAllierEtEnnemis(Meuchant);
 	Meuchant.setAllierEtEnnemis(Gentil);
+	Bouton AfficherJoueurs(500, 50, "AfficherJoueurs");
+	AfficherJoueurs.afficher();
+	Bouton Jouer(500, 100, "Jouer");
+	Jouer.afficher();
+	const int DELAY = 50; // Milliseconds of delay between checks
+	int x, y;
+	while (true) {
+		AfficherJoueurs.afficher();
+		Jouer.afficher();
+		do {
+			while (!ismouseclick(WM_LBUTTONDOWN)) {
+				delay(DELAY);
+			}
+			getmouseclick(WM_LBUTTONDOWN, x, y);
+		} while (!AfficherJoueurs.comprendLesCoord(x, y) && !Jouer.comprendLesCoord(x, y));
+
+		if (AfficherJoueurs.comprendLesCoord(x, y)) {
+			cleardevice();
+			H.afficherJoueurs(0,choix);
+		}
+		else if (Jouer.comprendLesCoord(x, y)) {
+			cleardevice();
+			Combat C(Gentil, Meuchant, Z, A, O);
+		}
+	}
 	
-	Combat C(Gentil,Meuchant,Z,A,O);
+	
+	
+	
 	Sleep(1000000);
 	while (!kbhit())
 	{

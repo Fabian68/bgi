@@ -1,7 +1,7 @@
 #include "Affichage.h"
 #include "Equipes.h"
 #include "Personnage.h"
-
+#include "Bouton.h"
 
 Affichage::Affichage()
 {
@@ -10,52 +10,67 @@ void afficherTexte(int x, int y, std::string texte) {
 	char *perso = const_cast<char*>(texte.c_str());
 	outtextxy(x, y, perso);
 }
-void Affichage::afficherJoueurs(Equipes E)const {
+
+void Affichage::afficherJoueurs(int indice,Equipes Liste)const {
 	int x = 50;
 	int y = 20;
 	std::string str;
 	setbkcolor(BLACK);
-	setcolor(WHITE);
-
-	for (int i = 0; i < E.taille(); i++,y+=250) {
-		
-		str = "Pseudo : "+E[i]->nom();
+	setcolor(WHITE);		
+		str = "Pseudo : "+Liste[indice]->nom();
 		afficherTexte(x, y, str);
 	
-		str = "Niveau : " +std::to_string(E[i]->niveau());
+		str = "Niveau : " +std::to_string(Liste[indice]->niveau());
 		afficherTexte(x, y+20, str);
 
-		str = "Force : "  +std::to_string(E[i]->force());
+		str = "Force : "  +std::to_string(Liste[indice]->force());
 		afficherTexte(x, y+40, str);
 
-		str = "Vie : "  +std::to_string(E[i]->vieMax());
+		str = "Vie : "  +std::to_string(Liste[indice]->vieMax());
 		afficherTexte(x, y+60, str);
 
-		str = "Vitesse : "  +std::to_string(E[i]->vitesse());
+		str = "Vitesse : "  +std::to_string(Liste[indice]->vitesse());
 		afficherTexte(x, y+80, str);
 
-		str = "Chance de double attaque : "  +std::to_string(E[i]->chanceDoubleAttaque());
+		str = "Chance de double attaque : "  +std::to_string(Liste[indice]->chanceDoubleAttaque());
 		afficherTexte(x, y+100, str);
 
-		str = "Chance de coup habile : "  +std::to_string(E[i]->chanceHabileter());
+		str = "Chance de coup habile : "  +std::to_string(Liste[indice]->chanceHabileter());
 		afficherTexte(x, y+120, str);
 
-		str = "Chance de deviation : "  +std::to_string(E[i]->pourcentageDeviation());
+		str = "Chance de deviation : "  +std::to_string(Liste[indice]->pourcentageDeviation());
 		afficherTexte(x, y+140, str);
 
-		str = "Pourcentage de reduction de degats : "  +std::to_string(E[i]->pourcentageReduction());
+		str = "Pourcentage de reduction de degats : "  +std::to_string(Liste[indice]->pourcentageReduction());
 		afficherTexte(x, y+160, str);
 
-		str = "Chance de ricochet : " + std::to_string(E[i]->pourcentageRicochet());
+		str = "Chance de ricochet : " + std::to_string(Liste[indice]->pourcentageRicochet());
 		afficherTexte(x, y+180, str);
 
-		str = "Chance esquive : " + std::to_string(E[i]->pourcentageEsquive());
+		str = "Chance esquive : " + std::to_string(Liste[indice]->pourcentageEsquive());
 		afficherTexte(x, y+200, str);
 
-		str = "Chance de blocage : " + std::to_string(E[i]->pourcentageBlocage());
+		str = "Chance de blocage : " + std::to_string(Liste[indice]->pourcentageBlocage());
 		afficherTexte(x, y+220, str);
-	}
-	getch();
+	
+		Bouton Retour(300,600, "RETOUR");
+		Retour.afficher();
+		Bouton Suivant(600, 600, "Suivant");
+		Suivant.afficher();
+		const int DELAY = 50; // Milliseconds of delay between checks
+		int xc, yc;
+			do {
+				while (!ismouseclick(WM_LBUTTONDOWN)) {
+					delay(DELAY);
+				}
+				getmouseclick(WM_LBUTTONDOWN, xc, yc);
+			} while (!Retour.comprendLesCoord(xc, yc) && !Suivant.comprendLesCoord(xc, yc));
+
+			if (Suivant.comprendLesCoord(xc, yc)) {
+				indice = (indice + 1) % Liste.taille();
+				cleardevice();
+				afficherJoueurs(indice, Liste);
+			}	
 	cleardevice();
 }
 void Affichage::dessinerJoueur(int indice, bool equipeIA,Personnage*  P) const

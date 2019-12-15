@@ -90,6 +90,9 @@
     <ClCompile Include="Animaux.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Bouton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="winbgim.h">
@@ -144,6 +147,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Animaux.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bouton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

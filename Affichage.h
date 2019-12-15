@@ -11,7 +11,7 @@ class Affichage
 public:
 	Affichage();
 	
-	void afficherJoueurs(Equipes E) const;
+	void afficherJoueurs(int indice, Equipes Liste) const;
 	void dessinerJoueur(int indice, bool equipeIA, Personnage* P)const;
 	void dessinerDegats(Personnage* P,int degats) const;
 	void dessinerSoins(Personnage* P, int soins) const;

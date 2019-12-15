@@ -67,6 +67,7 @@
     <ClCompile Include="Aleatoire.cpp" />
     <ClCompile Include="Animaux.cpp" />
     <ClCompile Include="bgiout.cxx" />
+    <ClCompile Include="Bouton.cpp" />
     <ClCompile Include="Combat.cpp" />
     <ClCompile Include="dibutil.cxx" />
     <ClCompile Include="drawing.cxx" />
@@ -93,6 +94,7 @@
     <ClInclude Include="Affichage.h" />
     <ClInclude Include="Aleatoire.h" />
     <ClInclude Include="Animaux.h" />
+    <ClInclude Include="Bouton.h" />
     <ClInclude Include="Combat.h" />
     <ClInclude Include="dibutil.h" />
     <ClInclude Include="Equipes.h" />
