@@ -8,7 +8,7 @@ public:
 	void sauvegarder();
 	void buffOrbes(int indiceJoueur, int& attaqueLvlBonus, int& vieLvLBonus, int& vitesseLvlBonus)const;
 	bool orbeDebloquer(int indiceJoueur, int rareter)const;
-	void deblocageOrbe(int indiceJoueur, int rareter);
+	void deblocageOrbe(int indiceJoueur, int rareter, std::string perso);
 
 private:
 	std::vector<std::vector<int>> _orbesLVL;

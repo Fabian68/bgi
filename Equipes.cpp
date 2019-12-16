@@ -92,6 +92,56 @@ void Equipes::soignerZone(int soins, Personnage* Soigneur)
 		Soigneur->soigner(soins, _equipe[i]);
 	}
 }
+void Equipes::vider()
+{
+	_equipe.resize(0);
+}
+void Equipes::ajouterExperience(int xp, Experiences E) {
+	xp /= _equipe.size();
+	std::cout << "Les joueurs gagnent " << xp << " d experiences." << std::endl;
+	for (int i = 0; i < _equipe.size(); i++) {
+		E.ajouterXP(_equipe[i]->id(), xp);
+	}
+	E.ecrireEXP("T1.txt");
+}
+void Equipes::chargerEquipe(Equipes Liste)
+{
+	FILE* file = fopen("monEquipe.txt", "r");
+	if (file == NULL) {
+		std::ofstream os("monEquipe.txt");
+
+		for (int i = 0; i < 10; i++) {
+			os << -1 << " ";
+			os << std::endl;
+		}
+		os.close();
+	}
+
+	std::ifstream is("monEquipe.txt");
+	int perso;
+	for (int i = 0; i < 10; i++) {
+		
+		is >> perso;
+		if (perso != - 1) {
+			_equipe.push_back(Liste[perso]);
+		}
+	}
+	is.close();
+}
+
+void Equipes::sauvegarderEquipe()
+{
+	std::ofstream os("monEquipe.txt");
+	for (int i = 0; i < _equipe.size(); i++) {
+		os << _equipe[i]->id();
+		os << std::endl;
+	}
+	for (int i = _equipe.size(); i < 10; i++) {
+		os << -1 << " ";
+		os << std::endl;
+	}
+	os.close();
+}
 
 int Equipes::xpDonner() const
 {
@@ -111,6 +161,11 @@ void Equipes::ajouterPerso(Personnage * P)
 {
 	P->modifierIndiceEquipe(_equipe.size());
 	_equipe.push_back(P);
+}
+
+void Equipes::retirerDernierPerso()
+{
+	_equipe.pop_back();
 }
 
 void Equipes::setAllierEtEnnemis(Equipes E) {

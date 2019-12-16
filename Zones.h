@@ -11,6 +11,7 @@ public:
 	void choixNiveau(int i);
 	int niveauActuel()const;
 	int niveauMax()const;
+	int nbPersoJouable()const;
 	void niveauBattu();
 	void zoneBattue();
 private:

@@ -6,6 +6,7 @@
 #pragma once
 class Personnage;
 class Equipes;
+class Zones;
 class Affichage
 {
 public:
@@ -19,6 +20,8 @@ public:
 	void dessinerTexte(std::string texte)const;
 	void dessinerEquipeJoueur(Equipes  J)const;
 	void dessinerEquipeIA(Equipes I)const;
+	void  choixNiveau(Zones Z,int & niveau)const;
+	void menuModifierEquipe(Equipes& Gentil, Equipes choix,int max)const;
 	void dessinerDeuxEquipes(Equipes J,Equipes E)const;
 	void dessinerAttaque(Personnage * Attaquant, Personnage * Defenseur);
 	~Affichage();

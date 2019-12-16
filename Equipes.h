@@ -3,6 +3,7 @@
 
 
 class Personnage;
+class Experiences;
 class Equipes
 {
 public:
@@ -17,9 +18,14 @@ public:
 	Personnage* aleatoireEnVie();
 	void attaqueZone(int Degats,Personnage*Attaquant);
 	void soignerZone(int soins, Personnage* Soigneur);
+	void vider();
+	void chargerEquipe(Equipes Liste);
+	void sauvegarderEquipe();
 	int xpDonner()const;
 	~Equipes();
 	void ajouterPerso(Personnage* P);
+	void retirerDernierPerso();
+	void ajouterExperience(int xp, Experiences E);
 	void setAllierEtEnnemis(Equipes E);
 	bool estEnVie() const;
 	bool ia() const;

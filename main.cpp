@@ -32,36 +32,41 @@ int main()
 	setbkcolor(0);
 	setcolor(RED);
 
-	Experiences E;
-	Zones Z;
-	Orbes O;
-	Animaux A;
-	Affichage H;
+	
 	
 	Equipes  Gentil(false);
+	
+
+	
+	//Gentil.chargerEquipe(choix);
+//	Gentil.ajouterPerso(&N);
+//	Gentil.ajouterPerso(&F);
 	Equipes choix(false);
-
-	Fabian F(E,O,A);
-	Nicolas N(E,O,A);
-
-	choix.ajouterPerso(&F);
-	choix.ajouterPerso(&N);
-
-	Gentil.ajouterPerso(&N);
-	Gentil.ajouterPerso(&F);
+	
 	
 	Equipes Meuchant(true);
 	
-	Z.equipeEnZone(5, Meuchant);
-	Gentil.setAllierEtEnnemis(Meuchant);
-	Meuchant.setAllierEtEnnemis(Gentil);
-	Bouton AfficherJoueurs(500, 50, "AfficherJoueurs");
-	AfficherJoueurs.afficher();
-	Bouton Jouer(500, 100, "Jouer");
-	Jouer.afficher();
+	Bouton modifierEquipe(500, 50, "Modifier equipe");
+	Bouton AfficherJoueurs(500, 100, "AfficherJoueurs");
+	Bouton Jouer(500, 150, "Jouer");
+
 	const int DELAY = 50; // Milliseconds of delay between checks
 	int x, y;
 	while (true) {
+		Experiences E;
+		Zones Z;
+		Orbes O;
+		Animaux A;
+		Affichage H;
+
+		choix.vider();
+		Fabian F(E, O, A);
+		Nicolas N(E, O, A);
+		choix.ajouterPerso(&F);
+		choix.ajouterPerso(&N);
+		Gentil.vider();
+		Gentil.chargerEquipe(choix);
+		modifierEquipe.afficher();
 		AfficherJoueurs.afficher();
 		Jouer.afficher();
 		do {
@@ -69,7 +74,7 @@ int main()
 				delay(DELAY);
 			}
 			getmouseclick(WM_LBUTTONDOWN, x, y);
-		} while (!AfficherJoueurs.comprendLesCoord(x, y) && !Jouer.comprendLesCoord(x, y));
+		} while (!AfficherJoueurs.comprendLesCoord(x, y) && !Jouer.comprendLesCoord(x, y)&&!modifierEquipe.comprendLesCoord(x,y));
 
 		if (AfficherJoueurs.comprendLesCoord(x, y)) {
 			cleardevice();
@@ -78,6 +83,11 @@ int main()
 		else if (Jouer.comprendLesCoord(x, y)) {
 			cleardevice();
 			Combat C(Gentil, Meuchant, Z, A, O);
+			cleardevice();
+		}
+		else if (modifierEquipe.comprendLesCoord(x, y)) {
+			cleardevice();
+			H.menuModifierEquipe(Gentil,choix,Z.nbPersoJouable()-Gentil.taille());
 		}
 	}
 	

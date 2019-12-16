@@ -79,9 +79,9 @@ bool Orbes::orbeDebloquer(int indiceJoueur, int rareter) const
 	return _orbesLVL[indiceJoueur][rareter-1] != 0;
 }
 
-void Orbes::deblocageOrbe(int indiceJoueur, int rareter)
+void Orbes::deblocageOrbe(int indiceJoueur, int rareter, std::string perso)
 {
-	std::cout << "Vous avez débloquer une orbe ";
+	std::cout <<perso<< " a débloquer une orbe ";
 	std::cout << " de rarete ";
 	switch (rareter) {
 	case 1:

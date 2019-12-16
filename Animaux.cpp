@@ -58,9 +58,9 @@ bool Animaux::animalDebloquer(int indicePersonnage, int indiceAnimal, int rarete
 	return _animauxPosseder[indicePersonnage][indiceAnimal]>=rareteAnimal;
 }
 
-void Animaux::deblocageAnimal(int indicePersonnage, int indiceAnimal, int rareteAnimal)
+void Animaux::deblocageAnimal(int indicePersonnage, int indiceAnimal, int rareteAnimal,std::string perso)
 {
-	std::cout << "Vous avez débloquer un animal ";
+	std::cout <<perso<< " a débloquer un animal ";
 	switch (indiceAnimal) {
 	case 0:
 		std::cout << " de soins de zone ";

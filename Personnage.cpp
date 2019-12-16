@@ -229,36 +229,42 @@ void Personnage::traitementAnimaux() {
 	case 0:
 		if (Aleatoire(0, 101).entier() < (6 +3 * (_rareteAnimal-1))) {
 			int Soins=soins(0.08 * _rareteAnimal - 1, 0.08 * _rareteAnimal);
+			Affichage().dessinerTexte(this->nom()+" soin de zone animal");
 			_A.soignerZone(Soins, this);
 		}
 		break;
 	case 1:
 		if (Aleatoire(0, 101).entier() < (10 + 5 * (_rareteAnimal - 1))) {
 			int Soins = soins(pow(2, _rareteAnimal - 1) * 0.05, pow(2, _rareteAnimal - 1) * 0.10);
+			Affichage().dessinerTexte(this->nom() + " soigne le plus faible animal");
 			soigner(Soins, _A.plusFaible());
 		}
 		break;
 	case 2:
 		if (Aleatoire(0, 101).entier() < (3 + 8 * (_rareteAnimal - 1))) {
 			int Soins = soins(_rareteAnimal * 0.10, 0.15 + 0.20 *(_rareteAnimal-1));
+			Affichage().dessinerTexte(this->nom() + " soingne une personne aleatoire animal");
 			soigner(Soins, _A.aleatoireEnVie());
 		}
 		break;
 	case 3:
 		if (Aleatoire(0, 101).entier() < (4 + 4 * (_rareteAnimal - 1))) {
 			int Degats = degats(0.02 * _rareteAnimal - 1, 0.06 * _rareteAnimal);
+			Affichage().dessinerTexte(this->nom() + " attaque le plus faible animal ");
 			Attaque(Degats, _E.plusFaible());
 		}
 		break;
 	case 4:
 		if (Aleatoire(0, 101).entier() < (2 + 5 * (_rareteAnimal - 1))) {
 			int Degats = degats(pow(2, _rareteAnimal - 1) * 0.01+0.01, pow(2, _rareteAnimal ) * 0.01 + 0.02);
+			Affichage().dessinerTexte(this->nom() + " attaque de zone animal");
 			_E.attaqueZone(Degats, this);
 		}
 		break;
 	case 5:
 		if (Aleatoire(0, 101).entier() < (2 + 8 * (_rareteAnimal - 1))) {
 			int Degats = degats(0.06 * _rareteAnimal - 1, 0.12 * _rareteAnimal);
+			Affichage().dessinerTexte(this->nom() + " attaque une personne aleatoire animal");
 			Attaque(Degats, _E.aleatoireEnVie());
 		}
 		break;

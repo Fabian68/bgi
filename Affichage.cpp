@@ -2,6 +2,7 @@
 #include "Equipes.h"
 #include "Personnage.h"
 #include "Bouton.h"
+#include "Zones.h"
 
 Affichage::Affichage()
 {
@@ -193,6 +194,124 @@ void Affichage::dessinerEquipeIA(Equipes I) const
 	for (int i = 0;i < I.taille();i++) {
 		dessinerJoueur(i + 1, true, I.perso(i));
 	}
+}
+
+void Affichage::choixNiveau(Zones Z, int & niveau) const
+{
+	
+	int niveauMax = Z.niveauMax();
+	if (niveau < 1) {
+		niveau = 1;
+	}
+	else if (niveau > niveauMax) {
+		niveau = niveauMax;
+	}
+	afficherTexte(100, 100, "Choix du niveau, niveau max = "+std::to_string(niveauMax));
+	Bouton plus1(100, 200, " + 1 ");
+	Bouton moins1(100, 300, " - 1 ");
+	Bouton plus10(200, 200, " + 10 ");
+	Bouton moins10(200, 300, " - 10 ");
+
+	Bouton niveauActuel(300, 100, std::to_string(niveau));
+	niveauActuel.afficher();
+
+	Bouton confirmer(150, 400, "Confirmer");
+	confirmer.afficher();
+	plus1.afficher();
+	moins1.afficher();
+	plus10.afficher();
+	moins10.afficher();
+
+	bool bouttonHit = false;
+	const int DELAY = 50; // Milliseconds of delay between checks
+	int xc, yc;
+	do {
+		while (!ismouseclick(WM_LBUTTONDOWN)) {
+			delay(DELAY);
+		}
+		getmouseclick(WM_LBUTTONDOWN, xc, yc);
+		if (plus1.comprendLesCoord(xc, yc)) {
+				
+			bouttonHit = true;
+			choixNiveau(Z, ++niveau);
+		}else if (plus10.comprendLesCoord(xc, yc)) {
+			bouttonHit = true;
+			niveau = niveau + 10;
+			choixNiveau(Z, niveau);
+		}else if (moins1.comprendLesCoord(xc, yc)) {
+
+			bouttonHit = true;
+			choixNiveau(Z, --niveau);
+		}
+		else if (moins10.comprendLesCoord(xc, yc)) {
+			bouttonHit = true;
+			niveau = niveau - 10;
+			choixNiveau(Z, niveau);
+		}	
+	} while (!confirmer.comprendLesCoord(xc,yc)&&!bouttonHit);
+	cleardevice();
+}
+
+void Affichage::menuModifierEquipe(Equipes& Gentil, Equipes choix,int max) const
+{
+	afficherTexte(100, 20, "Equipe actuel");
+	for (int i = 0; i < Gentil.taille(); i++) {
+		Bouton(100, (i + 1) * 50, std::to_string(i) + Gentil[i]->nom()).afficher();
+	}
+	if (max > 0) {
+		afficherTexte(400, 20, "Personnages selectionnable");
+		for (int i = 0; i < choix.taille(); i++) {
+			Bouton(400, (i + 1) * 50, std::to_string(i) + choix[i]->nom()).afficher();
+		}
+	}
+	else {
+		afficherTexte(400, 20, "Maximum de personnages selectionnable atteintes");
+	}
+	Bouton retirer(200, 400, "Retirer le dernier personnage");
+	if (Gentil.taille() > 0) {
+		retirer.afficher();
+	}
+
+	Bouton Sauvegarder(400, 400, "Sauvegarder");
+	Sauvegarder.afficher();
+	Bouton Retour(600, 400, "Retour");
+	Retour.afficher();
+	const int DELAY = 50; // Milliseconds of delay between checks
+	int xc, yc;
+	bool boutonSelectionnerPerso = false;
+	bool boutonSelectionnerAutre = false;
+	do {
+		while (!ismouseclick(WM_LBUTTONDOWN)) {
+			delay(DELAY);
+		}
+		getmouseclick(WM_LBUTTONDOWN, xc, yc);
+		if (max > 0) {
+			for (int i = 0; i < choix.taille(); i++) {
+				if (Bouton(400, (i + 1) * 50, std::to_string(i) + choix[i]->nom()).comprendLesCoord(xc, yc)) {
+					Gentil.ajouterPerso(choix[i]);
+					boutonSelectionnerPerso = true;
+					menuModifierEquipe(Gentil, choix, --max);
+				}
+			}
+		}
+		if (Gentil.taille() > 0) {
+			if (retirer.comprendLesCoord(xc, yc)) {
+				boutonSelectionnerAutre = true;
+				Gentil.retirerDernierPerso();
+				cleardevice();
+				menuModifierEquipe(Gentil, choix, ++max);
+			}
+		}
+		if (Sauvegarder.comprendLesCoord(xc, yc)) {
+			Gentil.sauvegarderEquipe();
+			boutonSelectionnerAutre = true;
+			menuModifierEquipe(Gentil, choix, max);
+		}
+		else if (Retour.comprendLesCoord(xc, yc)) {
+			boutonSelectionnerAutre = true;
+		}
+	} while (!boutonSelectionnerPerso && !boutonSelectionnerAutre);
+	cleardevice();
 }
 
 void Affichage::dessinerDeuxEquipes(Equipes Joueur,Equipes IA) const

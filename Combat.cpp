@@ -8,6 +8,12 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 {
 	int somme = 0;
 	int max = INT_MIN;
+	int niveauChoisit = 1;;
+	Affichage().choixNiveau(Z,niveauChoisit);
+	Z.choixNiveau(niveauChoisit);
+	Z.equipeEnZone(Z.niveauActuel(),_ia);
+	_joueur.setAllierEtEnnemis(_ia);
+	_ia.setAllierEtEnnemis(_joueur);
 	int nombrePersonnages = _joueur.taille() + _ia.taille();
 
 	std::vector<int> nombreTourJoueur(_joueur.taille());
@@ -65,11 +71,7 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 		Experiences E;
 		int xp;
 		xp = _ia.xpDonner();
-		std::cout << std::endl << "Les joueurs recoivent " << xp << " montant d'experience." << std::endl;
-		for (int i = 0; i < _joueur.taille(); i++) {	
-			E.ajouterXP(_joueur[i]->id(), xp);	
-		}
-		E.ecrireEXP("T1.txt");
+		_joueur.ajouterExperience(xp, E);
 		tirageRecompenses(Z, A, O);
 	}
 	Affichage().dessinerDeuxEquipes(_joueur, _ia);
@@ -90,7 +92,7 @@ void Combat::tirageRecompenses(Zones Z,Animaux A,Orbes O) {
 				nombreDuTirage = pow(100, k) * 100;
 				if (Aleatoire(0, nombreDuTirage).entier() < chanceTirage) {
 					if (!A.animalDebloquer(indiceJoueur, j, k)) {
-						A.deblocageAnimal(indiceJoueur, j, k);
+						A.deblocageAnimal(indiceJoueur, j, k, _joueur[i]->nom());
 					}
 				}
 			}
@@ -100,7 +102,7 @@ void Combat::tirageRecompenses(Zones Z,Animaux A,Orbes O) {
 			nombreDuTirage = pow(100, j) * 100;
 			if (Aleatoire(0, nombreDuTirage).entier() < chanceTirage) {
 				if (!O.orbeDebloquer(indiceJoueur,j)) {
-					O.deblocageOrbe(indiceJoueur, j);
+					O.deblocageOrbe(indiceJoueur, j, _joueur[i]->nom());
 				}
 			}
 		}

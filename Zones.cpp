@@ -9,11 +9,8 @@ Zones::Zones()
 		os << 1 << std::endl;
 		os.close();
 	}
-	std::ifstream is("Zones.txt");
-	int i = 0;	
+	std::ifstream is("Zones.txt");	
 	is >> _niveauMax;
-	_niveauActuel = _niveauMax;
-	i++;
 	is.close();
 }
 
@@ -26,11 +23,11 @@ void Zones::ecrireZone()
 
 void Zones::equipeEnZone(int i,Equipes & E)
 {
+	
 	switch (i)
 	{
 	case 1:
 		E.ajouterPerso(new Lapin(1));
-	
 		break;
 	case 2:
 		E.ajouterPerso(new Lapin(2));
@@ -72,6 +69,21 @@ int Zones::niveauActuel() const
 int Zones::niveauMax() const
 {
 	return _niveauMax;
+}
+
+int Zones::nbPersoJouable() const
+{
+	int nb = 1;
+	if (_niveauMax >= 3) {
+		nb++;
+	}
+	if (_niveauMax >= 6) {
+		nb++;
+	}
+	if (_niveauMax >= 16) {
+		nb++;
+	}
+	return nb;
 }
 
 void Zones::niveauBattu()
