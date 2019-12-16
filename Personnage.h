@@ -21,6 +21,8 @@ public:
 	int pourcentageVie()const;
 	int pourcentageBouclier() const;
 	virtual void attaqueEnnemis()=0;
+	virtual void passif(int tour) = 0 ;
+	virtual void passifDefensif() = 0;
 	bool estEnVie() const;
 	int force() const;
 	int vitesse()const;
@@ -43,6 +45,7 @@ public:
 	Equipes& equipeEnnemi();
 	void traitementAnimaux();
     void   Attaque(int Degat, Personnage * Defenseur) ;
+	void ajouterReduction(int montant);
 	int bouclier() const;
 	bool bloque() const;
 	bool attaqueDouble() const;

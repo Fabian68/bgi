@@ -55,6 +55,16 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 						if (nbFoisJouer%nombrePersonnages == 0) {
 							_tour++;
 						}
+						for (int i = 0; i < _joueur.taille(); i++) {
+							if (_joueur[i]->estEnVie()) {
+								_joueur[i]->passif(_tour);
+							}
+						}
+						for (int i = 0; i < _ia.taille(); i++) {
+							if (_ia[i]->estEnVie()) {
+								_ia[i]->passif(_tour);
+							}
+						}
 						_quiJoue[i]->attaqueEnnemis();
 					}
 			}

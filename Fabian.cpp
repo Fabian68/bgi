@@ -106,3 +106,15 @@ void Fabian::attaqueEnnemis()
 		break;
 	}
 }
+
+void Fabian::passif(int tour)
+{
+	if ((tour % 7) == 0) {
+		ajouterReduction(7);
+		Affichage().dessinerTexte(this->nom() + " devient plus resistant grace au froid de sa chambre ! ");
+	}
+}
+
+void Fabian::passifDefensif()
+{
+}

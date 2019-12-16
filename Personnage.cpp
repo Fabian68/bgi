@@ -288,6 +288,7 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 			std::cout << _vie << std::endl;
 		}
 		else {
+			Defenseur->passifDefensif();
 			Defenseur->traitementAnimaux();
 			this->traitementAnimaux();
 			Affichage H;
@@ -309,6 +310,13 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 	}
 	if (ricoche()&&_E.estEnVie()) {
 		Attaque(Degat, _E.aleatoireEnVie());
+	}
+}
+
+void Personnage::ajouterReduction(int montant) {
+	_pourcentageReduction += montant;
+	if (_pourcentageReduction >= 100) {
+		_pourcentageReduction = 99;
 	}
 }
 int Personnage::bouclier()const {

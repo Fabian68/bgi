@@ -14,3 +14,11 @@ void Lapin::attaqueEnnemis() {
 	bouclier(50, this);
 	
 }
+
+void Lapin::passif(int tour)
+{
+}
+
+void Lapin::passifDefensif()
+{
+}
