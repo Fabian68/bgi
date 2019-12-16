@@ -10,6 +10,9 @@ Equipes::Equipes() : _equipe{}, _equipeIA(true)
 Equipes::Equipes(bool equipeIA) : _equipeIA{equipeIA}
 {
 }
+Equipes::~Equipes() {
+	
+}
 
 int Equipes::taille() const
 {
@@ -150,11 +153,6 @@ int Equipes::xpDonner() const
 		xp += _equipe[i]->xpDonner();
 	}
 	return xp;
-}
-
-
-Equipes::~Equipes()
-{
 }
 
 void Equipes::ajouterPerso(Personnage * P)

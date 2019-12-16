@@ -23,7 +23,25 @@ void nettoyerZoneAttaque() {
 	fillpoly(4, Tab);
 }
 
+void reinitListeEquipe(Equipes& Liste) {
+	
+	Experiences E;
+	Orbes O;
+	Animaux A;
 
+	Liste.vider();
+	
+	Fabian F(E, O, A);
+	Nicolas N(E, O, A);
+	Liste.ajouterPerso(new Fabian(E,O,A));
+	Liste.ajouterPerso(new Nicolas(E, O, A));
+
+}
+
+void reinitEquipe(Equipes& monEquipe, Equipes ListePerso) {
+	monEquipe.vider();
+	monEquipe.chargerEquipe(ListePerso);
+}
 int main()
 {
 	srand(time(0));
@@ -53,19 +71,16 @@ int main()
 	const int DELAY = 50; // Milliseconds of delay between checks
 	int x, y;
 	while (true) {
-		Experiences E;
+		
 		Zones Z;
 		Orbes O;
 		Animaux A;
 		Affichage H;
-
-		choix.vider();
-		Fabian F(E, O, A);
-		Nicolas N(E, O, A);
-		choix.ajouterPerso(&F);
-		choix.ajouterPerso(&N);
-		Gentil.vider();
-		Gentil.chargerEquipe(choix);
+		
+	
+		Meuchant.vider();
+		reinitListeEquipe(choix);
+		reinitEquipe(Gentil, choix);
 		modifierEquipe.afficher();
 		AfficherJoueurs.afficher();
 		Jouer.afficher();
@@ -82,8 +97,20 @@ int main()
 		}
 		else if (Jouer.comprendLesCoord(x, y)) {
 			cleardevice();
-			Combat C(Gentil, Meuchant, Z, A, O);
-			cleardevice();
+			int niveauChoisit = 1;
+			int repetition = 1;
+			Affichage().choixNiveau(Z, niveauChoisit,repetition);
+			Z.choixNiveau(niveauChoisit);
+			for (int i = 0; i < repetition; i++) {
+				Meuchant.vider();
+				reinitListeEquipe(choix);
+				reinitEquipe(Gentil, choix);
+				Z.equipeEnZone(Z.niveauActuel(), Meuchant);
+				Gentil.setAllierEtEnnemis(Meuchant);
+				Meuchant.setAllierEtEnnemis(Gentil);
+				Combat C(Gentil, Meuchant, Z, A, O);
+				cleardevice();
+			}
 		}
 		else if (modifierEquipe.comprendLesCoord(x, y)) {
 			cleardevice();

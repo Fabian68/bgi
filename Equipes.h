@@ -8,6 +8,7 @@ class Equipes
 {
 public:
 	Equipes();
+	~Equipes();
 	Equipes(bool equipeIA);
 	int taille()const;
 	Personnage* operator[](int i)const;
@@ -21,8 +22,7 @@ public:
 	void vider();
 	void chargerEquipe(Equipes Liste);
 	void sauvegarderEquipe();
-	int xpDonner()const;
-	~Equipes();
+	int xpDonner() const;
 	void ajouterPerso(Personnage* P);
 	void retirerDernierPerso();
 	void ajouterExperience(int xp, Experiences E);

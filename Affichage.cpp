@@ -196,7 +196,7 @@ void Affichage::dessinerEquipeIA(Equipes I) const
 	}
 }
 
-void Affichage::choixNiveau(Zones Z, int & niveau) const
+void Affichage::choixNiveau(Zones Z, int & niveau,int & repetition) const
 {
 	
 	int niveauMax = Z.niveauMax();
@@ -206,21 +206,42 @@ void Affichage::choixNiveau(Zones Z, int & niveau) const
 	else if (niveau > niveauMax) {
 		niveau = niveauMax;
 	}
+	if (repetition < 1) {
+		repetition = 1;
+	}
+	else if (repetition > 100) {
+		repetition = 100;
+	}
+
 	afficherTexte(100, 100, "Choix du niveau, niveau max = "+std::to_string(niveauMax));
 	Bouton plus1(100, 200, " + 1 ");
 	Bouton moins1(100, 300, " - 1 ");
 	Bouton plus10(200, 200, " + 10 ");
 	Bouton moins10(200, 300, " - 10 ");
-
-	Bouton niveauActuel(300, 100, std::to_string(niveau));
-	niveauActuel.afficher();
-
+	Bouton niveauActuel(350, 100, std::to_string(niveau));
+	
+	afficherTexte(400, 100, "Choix du nombre de repetition, max = 100 ");
+	Bouton plus1r(400, 200, " + 1 ");
+	Bouton moins1r(400, 300, " - 1 ");
+	Bouton plus10r(500, 200, " + 10 ");
+	Bouton moins10r(500, 300, " - 10 ");
+	Bouton repetitionActuel(600, 100, std::to_string(repetition));
+	
 	Bouton confirmer(150, 400, "Confirmer");
-	confirmer.afficher();
+	
 	plus1.afficher();
 	moins1.afficher();
 	plus10.afficher();
 	moins10.afficher();
+	niveauActuel.afficher();
+
+	confirmer.afficher();
+
+	plus1r.afficher();
+	moins1r.afficher();
+	plus10r.afficher();
+	moins10r.afficher();
+	repetitionActuel.afficher();
 
 	bool bouttonHit = false;
 	const int DELAY = 50; // Milliseconds of delay between checks
@@ -230,24 +251,46 @@ void Affichage::choixNiveau(Zones Z, int & niveau) const
 			delay(DELAY);
 		}
 		getmouseclick(WM_LBUTTONDOWN, xc, yc);
+
 		if (plus1.comprendLesCoord(xc, yc)) {
 				
 			bouttonHit = true;
-			choixNiveau(Z, ++niveau);
+			choixNiveau(Z, ++niveau,repetition);
 		}else if (plus10.comprendLesCoord(xc, yc)) {
 			bouttonHit = true;
 			niveau = niveau + 10;
-			choixNiveau(Z, niveau);
+			choixNiveau(Z, niveau,repetition);
 		}else if (moins1.comprendLesCoord(xc, yc)) {
 
 			bouttonHit = true;
-			choixNiveau(Z, --niveau);
+			choixNiveau(Z, --niveau,repetition);
 		}
 		else if (moins10.comprendLesCoord(xc, yc)) {
 			bouttonHit = true;
 			niveau = niveau - 10;
-			choixNiveau(Z, niveau);
-		}	
+			choixNiveau(Z, niveau,repetition);
+		}
+		else if (plus1r.comprendLesCoord(xc, yc)) {
+
+			bouttonHit = true;
+			choixNiveau(Z, niveau, ++repetition);
+		}
+		else if (plus10r.comprendLesCoord(xc, yc)) {
+			bouttonHit = true;
+			repetition += 10;
+			choixNiveau(Z, niveau, repetition);
+		}
+		else if (moins1r.comprendLesCoord(xc, yc)) {
+
+			bouttonHit = true;
+			choixNiveau(Z, niveau, --repetition);
+		}
+		else if (moins10r.comprendLesCoord(xc, yc)) {
+
+			bouttonHit = true;
+			repetition -= 10;
+			choixNiveau(Z, niveau, repetition);
+		}
 	} while (!confirmer.comprendLesCoord(xc,yc)&&!bouttonHit);
 	cleardevice();
 }

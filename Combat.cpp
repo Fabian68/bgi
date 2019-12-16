@@ -8,12 +8,6 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 {
 	int somme = 0;
 	int max = INT_MIN;
-	int niveauChoisit = 1;;
-	Affichage().choixNiveau(Z,niveauChoisit);
-	Z.choixNiveau(niveauChoisit);
-	Z.equipeEnZone(Z.niveauActuel(),_ia);
-	_joueur.setAllierEtEnnemis(_ia);
-	_ia.setAllierEtEnnemis(_joueur);
 	int nombrePersonnages = _joueur.taille() + _ia.taille();
 
 	std::vector<int> nombreTourJoueur(_joueur.taille());

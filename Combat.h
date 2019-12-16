@@ -6,7 +6,7 @@
 class Combat
 {
 public:
-	Combat(Equipes  & Joueur,Equipes  & Ia,Zones & Z,Animaux& A, Orbes& O);
+	Combat(Equipes   & Joueur,Equipes  & Ia,Zones & Z,Animaux& A, Orbes& O);
 	void tirageRecompenses(Zones Z, Animaux A, Orbes O);
 	~Combat();
 
