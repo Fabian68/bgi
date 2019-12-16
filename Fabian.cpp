@@ -8,13 +8,7 @@ void Fabian::attaqueEnnemis()
 	int choix = choixAttaque();
 	int DEGATS;
 	int SOINS;
-	/*if ((Tour % 3) == 0) {
-		cout << Personnage[Joueur] << " Le froid de la chambre a Fabian le renforce, il est désormait plus résistant ! " << endl;
-		PersoCarac[Joueur][REDUCTION]++;
-	}*/
 	std::string a = nom();
-	std::cout << a;
-	std::cout << "-2" << std::endl;
 	SOINS = soins(0.07, 0.7);
 	Affichage().dessinerTexte(nom() + "Soins Unity");
 	soigner(SOINS, equipeAllier().plusFaible());
@@ -22,13 +16,13 @@ void Fabian::attaqueEnnemis()
 
 	case 0:
 		DEGATS = degats(0.27, 0.77);
-		std::cout << "-1" << std::endl;
+	
 		DEGATS += static_cast<int>(ceil(0.01 * equipeEnnemi().plusProcheVivant()->vie()));
 		Affichage().dessinerTexte(nom() + " attaque de base");
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 		
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
-			std::cout << "-111" << std::endl;
+			
 			DEGATS = degats(0.27, 0.77);
 			DEGATS += static_cast<int>(ceil(0.1 * equipeEnnemi().plusProcheVivant()->vie() / 10.0));
 			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
@@ -43,10 +37,10 @@ void Fabian::attaqueEnnemis()
 	case 1:
 		Affichage().dessinerTexte(nom() + " trugdorite");
 		DEGATS = degats(0.77, 1.17);
-		std::cout << "0" << std::endl;
+		
 		Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
-			std::cout << "00" << std::endl;
+		
 			DEGATS = degats(0.77, 1.17);
 			DEGATS += static_cast<int>(ceil(0.17 * equipeEnnemi().plusProcheVivant()->vie()));
 			//Attaque(DEGATS, equipeEnnemi().plusLoinVivant());
@@ -67,7 +61,7 @@ void Fabian::attaqueEnnemis()
 
 		Affichage().dessinerTexte(nom() + " ricochet");
 		for (int i = 0; i < 7 && equipeEnnemi().estEnVie(); i++) {
-			std::cout << "1" << std::endl;
+		
 			DEGATS = degats(0.07 + i * 0.07, 0.17 + i * 0.17);
 			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
 			if (attaqueDouble() && equipeEnnemi().estEnVie()) {
@@ -82,7 +76,7 @@ void Fabian::attaqueEnnemis()
 	case 3:
 		Affichage().dessinerTexte(nom() + " raffales");
 		for (int i = 0; i < 17 && equipeEnnemi().estEnVie(); i++) {
-			std::cout << "2" << std::endl;
+			
 			DEGATS = degats(0.17, 0.255);
 			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
 			if (attaqueDouble() && equipeEnnemi().estEnVie()) {
@@ -91,8 +85,8 @@ void Fabian::attaqueEnnemis()
 			}
 		}
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
-			std::cout << "3" << std::endl;
-			for (int i = 0; i < 7 && estEnVie(); i++) {
+			
+			for (int i = 0; i < 7 && equipeEnnemi().estEnVie(); i++) {
 				DEGATS = degats(0.35, 0.7);
 				Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
 				if (attaqueDouble() && equipeEnnemi().estEnVie()) {
@@ -109,9 +103,13 @@ void Fabian::attaqueEnnemis()
 
 void Fabian::passif(int tour)
 {
-	if ((tour % 7) == 0) {
+	if (((tour+1) % 7) == 0) {
 		ajouterReduction(7);
 		Affichage().dessinerTexte(this->nom() + " devient plus resistant grace au froid de sa chambre ! ");
+	}
+	if (((tour + 1) % 17) == 0) {
+		ajouterForce(round(force() * 0.17));
+		Affichage().dessinerTexte(this->nom() + " a fait de la muscu attention ! ");
 	}
 }
 

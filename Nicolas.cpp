@@ -5,8 +5,98 @@
 
 Nicolas::Nicolas(Experiences E,Orbes O,Animaux A) : Personnage(1, E,O,A, "Niquola", 4, 3, 3, 10, 10, 50, 0, 50, 25, 0) {}
 void Nicolas::attaqueEnnemis() {
-	//equipeEnnemi().attaqueZone(25, this);
-	//equipeAllier().soignerZone(25, this);
+	int choix = choixAttaque();
+	int DEGATS;
+	int SOINS;
+	/*if ((Tour % 3) == 0) {
+		cout << Personnage[Joueur] << " Le froid de la chambre a Fabian le renforce, il est désormait plus résistant ! " << endl;
+		PersoCarac[Joueur][REDUCTION]++;
+	}*/
+	std::string a = nom();
+
+	int i, j;
+	switch (choix) {
+
+	case 0:
+		DEGATS = degats(0.6, 0.8);
+		Affichage().dessinerTexte(nom() + " Coup de couteau ");
+		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
+
+		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
+		
+			Affichage().dessinerTexte(nom() + " Coup de couteau ");
+			DEGATS = degats(0.4, 0.7);
+			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
+			ajouterMana(1);
+		}
+		ajouterMana(1);
+		break;
+	case 1:
+		i = 0;
+		j;
+		while (i < equipeEnnemi().taille() && !equipeEnnemi()[i]->estEnVie()) {
+			i++;
+		}
+		if (i < equipeEnnemi().taille()) {
+			DEGATS = degats(1.0, 2.5);
+			Affichage().dessinerTexte(nom() + " Coup de pompe ");
+			
+			Attaque(DEGATS, equipeEnnemi()[i]);
+			if (attaqueDouble()) {
+				Attaque(DEGATS, equipeEnnemi()[i]);
+			}
+			i++;
+		}
+		j = i;
+		while (i < equipeEnnemi().taille()) {
+			if (equipeEnnemi()[i]->estEnVie()) {
+				DEGATS = degats(0.10, 0.25);
+				Affichage().dessinerTexte(nom() + " residues de pompes ");
+				Attaque(DEGATS, equipeEnnemi()[i]);
+				if (attaqueDouble()) {
+					Attaque(DEGATS, equipeEnnemi()[i]);
+				}
+			}
+			i++;
+		}
+		if (attaqueDouble()) {
+			if (equipeEnnemi()[j]->estEnVie()) {
+				DEGATS = degats(0.10, 0.25);
+				Affichage().dessinerTexte(nom() + " residues de pompes ");
+				Attaque(DEGATS, equipeEnnemi()[j]);
+				if (attaqueDouble()) {
+					Attaque(DEGATS, equipeEnnemi()[j]);
+				}
+			}
+			j++;
+		}
+		ajouterMana(-1);
+		break;
+	case 2:
+
+		Affichage().dessinerTexte(nom() + " fusil d'assaut ! ");
+		for (int i = 0; i< Aleatoire(20, 40).entier() && equipeEnnemi().estEnVie() ; i++) {
+			DEGATS = degats(0.10, 0.25);
+			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+		}
+		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
+			for (int i = 0; i < Aleatoire(10, 50).entier() && equipeEnnemi().estEnVie(); i++) {
+				DEGATS = degats(0.05, 0.30);
+				Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+			}
+		}
+		ajouterMana(-2);
+		break;
+	case 3:
+		Affichage().dessinerTexte(nom() + " partage Equipement Minecraft !");
+		for (int i = 0; i <equipeAllier().taille(); i++) {
+			if (equipeAllier()[i] != this && equipeAllier()[i]->estEnVie()) {
+				equipeAllier()[i]->ajouterForce(round(equipeAllier()[i]->force() / 10.0));
+			}
+		}
+		ajouterMana(-3);
+		break;
+	}
 }
 
 void Nicolas::passif(int tour)

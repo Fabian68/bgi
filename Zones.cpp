@@ -27,26 +27,26 @@ void Zones::equipeEnZone(int i,Equipes & E)
 	switch (i)
 	{
 	case 1:
-		E.ajouterPerso(new Lapin(1));
+		E.ajouterPerso(new Lapin(1,"Lapin nain"));
 		break;
 	case 2:
-		E.ajouterPerso(new Lapin(2));
-		E.ajouterPerso(new Lapin(1));
+		E.ajouterPerso(new Lapin(2, "Lapin nain"));
+		E.ajouterPerso(new Lapin(1, "Lapin nain"));
 		break;
 	case 3:
-		E.ajouterPerso(new Lapin(2));
-		E.ajouterPerso(new Lapin(3));
-		E.ajouterPerso(new Lapin(1));
+		E.ajouterPerso(new Lapin(2, "Lapin nain"));
+		E.ajouterPerso(new Lapin(3, "Petit lapin"));
+		E.ajouterPerso(new Lapin(1,"Lapin nain"));
 		break;
 	case 4:
-		E.ajouterPerso(new Lapin(2));
-		E.ajouterPerso(new Lapin(4));
-		E.ajouterPerso(new Lapin(2));
+		E.ajouterPerso(new Lapin(2, "Lapin nain"));
+		E.ajouterPerso(new Lapin(4, "Petit lapin"));
+		E.ajouterPerso(new Lapin(2, "Lapin nain"));
 		break;
 	case 5:
-		E.ajouterPerso(new Lapin(3));
-		E.ajouterPerso(new Lapin(5,1,0,5));
-		E.ajouterPerso(new Lapin(3));
+		E.ajouterPerso(new Lapin(3, "Petit lapin"));
+		E.ajouterPerso(new Lapin(5, "Jojo le lapin",1,0,5));
+		E.ajouterPerso(new Lapin(3, "Petit lapin"));
 		break;
 	}
 }

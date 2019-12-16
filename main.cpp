@@ -102,6 +102,8 @@ int main()
 			Affichage().choixNiveau(Z, niveauChoisit,repetition);
 			Z.choixNiveau(niveauChoisit);
 			for (int i = 0; i < repetition; i++) {
+				Orbes O;
+				Animaux A;
 				Meuchant.vider();
 				reinitListeEquipe(choix);
 				reinitEquipe(Gentil, choix);

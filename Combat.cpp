@@ -47,12 +47,13 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 	}
 	Affichage().dessinerDeuxEquipes(_joueur, _ia);
 	int nbFoisJouer = 0;
+	int nbJouerPourAugmenterTour = nombrePersonnages / 2;
 	while (_joueur.estEnVie() && _ia.estEnVie()) {
 		for (int i = 0;i < _quiJoue.size();i++) {
 			if ((_joueur.estEnVie() && _ia.estEnVie())) {
 					if (_quiJoue[i]->estEnVie()) {
 						nbFoisJouer++;
-						if (nbFoisJouer%nombrePersonnages == 0) {
+						if (nbFoisJouer%nbJouerPourAugmenterTour == 0) {
 							_tour++;
 						}
 						for (int i = 0; i < _joueur.taille(); i++) {
@@ -93,7 +94,7 @@ void Combat::tirageRecompenses(Zones Z,Animaux A,Orbes O) {
 		for (int j = 0; j < 9; j++) {
 			//Pour chaque rarete animal
 			for (int k = 1; k <= 5; k++) {
-				nombreDuTirage = pow(100, k) * 100;
+				nombreDuTirage = pow(10000, k) ;
 				if (Aleatoire(0, nombreDuTirage).entier() < chanceTirage) {
 					if (!A.animalDebloquer(indiceJoueur, j, k)) {
 						A.deblocageAnimal(indiceJoueur, j, k, _joueur[i]->nom());
@@ -103,7 +104,7 @@ void Combat::tirageRecompenses(Zones Z,Animaux A,Orbes O) {
 		}
 		//Pour chaque rareter d'orbe
 		for (int j = 1; j <= 5; j++) {
-			nombreDuTirage = pow(100, j) * 100;
+			nombreDuTirage = pow(10000, j) ;
 			if (Aleatoire(0, nombreDuTirage).entier() < chanceTirage) {
 				if (!O.orbeDebloquer(indiceJoueur,j)) {
 					O.deblocageOrbe(indiceJoueur, j, _joueur[i]->nom());

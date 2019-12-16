@@ -81,12 +81,16 @@ void Animaux::deblocageAnimal(int indicePersonnage, int indiceAnimal, int rarete
 		std::cout << " qui attaque une cible aleatoire ";
 		break;
 	case 6:
+		std::cout << " qui bouclier de zone ";
 		break;
 	case 7:
+		std::cout << " qui bouclier le plus faible ";
 		break;
 	case 8:
+		std::cout << " qui bouclier une cible aleatoire ";
 		break;
 	case 9:
+		std::cout << " qui soigne et bouclier de zone ";
 		break;
 	}
 	std::cout << " de rarete ";

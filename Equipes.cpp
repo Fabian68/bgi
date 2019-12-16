@@ -95,6 +95,12 @@ void Equipes::soignerZone(int soins, Personnage* Soigneur)
 		Soigneur->soigner(soins, _equipe[i]);
 	}
 }
+void Equipes::bouclierZone(int montantBouclier, Personnage* bouclierMan)
+{
+	for (int i = 0; i < _equipe.size(); i++) {
+		bouclierMan->bouclier(montantBouclier, _equipe[i]);
+	}
+}
 void Equipes::vider()
 {
 	_equipe.resize(0);

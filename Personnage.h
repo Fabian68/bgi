@@ -45,6 +45,8 @@ public:
 	Equipes& equipeEnnemi();
 	void traitementAnimaux();
     void   Attaque(int Degat, Personnage * Defenseur) ;
+	void ajouterChanceDoubleAttaque(int montant);
+	void ajouterChanceHabileter(int montant);
 	void ajouterReduction(int montant);
 	int bouclier() const;
 	bool bloque() const;

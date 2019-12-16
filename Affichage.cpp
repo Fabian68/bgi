@@ -180,7 +180,7 @@ void Affichage::dessinerTexte(std::string texte)const {
 	fillpoly(4, Tab);
 	setcolor(RED);
 	char* txt = const_cast<char*>(texte.c_str());
-	outtextxy(500,15, txt);	
+	outtextxy(400,15, txt);	
 }
 void Affichage::dessinerEquipeJoueur(Equipes J) const
 {

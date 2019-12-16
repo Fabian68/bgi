@@ -19,6 +19,7 @@ public:
 	Personnage* aleatoireEnVie();
 	void attaqueZone(int Degats,Personnage*Attaquant);
 	void soignerZone(int soins, Personnage* Soigneur);
+	void bouclierZone(int bouclier, Personnage* bouclierMan);
 	void vider();
 	void chargerEquipe(Equipes Liste);
 	void sauvegarderEquipe();

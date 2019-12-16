@@ -243,7 +243,7 @@ void Personnage::traitementAnimaux() {
 	case 2:
 		if (Aleatoire(0, 101).entier() < (3 + 8 * (_rareteAnimal - 1))) {
 			int Soins = soins(_rareteAnimal * 0.10, 0.15 + 0.20 *(_rareteAnimal-1));
-			Affichage().dessinerTexte(this->nom() + " soingne une personne aleatoire animal");
+			Affichage().dessinerTexte(this->nom() + " soigne une personne aleatoire animal");
 			soigner(Soins, _A.aleatoireEnVie());
 		}
 		break;
@@ -266,6 +266,36 @@ void Personnage::traitementAnimaux() {
 			int Degats = degats(0.06 * _rareteAnimal - 1, 0.12 * _rareteAnimal);
 			Affichage().dessinerTexte(this->nom() + " attaque une personne aleatoire animal");
 			Attaque(Degats, _E.aleatoireEnVie());
+		}
+		break;
+	case 6:
+		if (Aleatoire(0, 101).entier() < (3 + 4 * (_rareteAnimal - 1))) {
+			int Soins = soins(0.04 * _rareteAnimal - 1, 0.09 * _rareteAnimal);
+			Affichage().dessinerTexte(this->nom() + " bouclier de zone animal");
+			_A.bouclierZone(Soins, this);
+		}
+		break;
+	case 7:
+		if (Aleatoire(0, 101).entier() < (3 + 8 * (_rareteAnimal - 1))) {
+			int Soins = soins(pow(2, _rareteAnimal - 1) * 0.03, pow(2, _rareteAnimal - 1) * 0.06);
+			Affichage().dessinerTexte(this->nom() + " bouclier le plus faible animal");
+			bouclier(Soins, _A.plusFaible());
+		}
+		break;
+	case 8:
+		if (Aleatoire(0, 101).entier() < (1 + 10 * (_rareteAnimal - 1))) {
+			int Soins = soins(_rareteAnimal * 0.05, 0.10 + 0.10 * (_rareteAnimal - 1));
+			Affichage().dessinerTexte(this->nom() + " bouclier une personne aleatoire animal");
+			bouclier(Soins, _A.aleatoireEnVie());
+		}
+		break;
+	case 9:
+		if (Aleatoire(0, 101).entier() < (1 + 11 * (_rareteAnimal - 1))) {
+			int Soins = soins(_rareteAnimal * 0.03, 0.06 + 0.06 * (_rareteAnimal - 1));
+			Affichage().dessinerTexte(this->nom() + " soin et bouclier de zone");
+			_A.soignerZone(Soins, this);
+			Soins = soins(_rareteAnimal * 0.01, 0.03 + 0.03 * (_rareteAnimal - 1));
+			_A.bouclierZone(Soins, this);
 		}
 		break;
 	}
@@ -313,6 +343,12 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 	}
 }
 
+void Personnage::ajouterChanceDoubleAttaque(int montant) {
+	_chanceDoubleAttaque += montant;
+}
+void Personnage::ajouterChanceHabileter(int montant) {
+	_chanceHabilete += montant;
+}
 void Personnage::ajouterReduction(int montant) {
 	_pourcentageReduction += montant;
 	if (_pourcentageReduction >= 100) {
