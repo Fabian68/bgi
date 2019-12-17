@@ -9,7 +9,8 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 	int somme = 0;
 	int max = INT_MIN;
 	int nombrePersonnages = _joueur.taille() + _ia.taille();
-
+	int xp;
+	xp = _ia.xpDonner();
 	std::vector<int> nombreTourJoueur(_joueur.taille());
 	std::vector<int> nombreTourIa(_ia.taille());
 	for (int i = 0;i < _joueur.taille();i++) {
@@ -54,18 +55,19 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 					if (_quiJoue[i]->estEnVie()) {
 						nbFoisJouer++;
 						if (nbFoisJouer%nbJouerPourAugmenterTour == 0) {
-							_tour++;
-						}
-						for (int i = 0; i < _joueur.taille(); i++) {
-							if (_joueur[i]->estEnVie()) {
-								_joueur[i]->passif(_tour);
+							_tour++;	
+							for (int i = 0; i < _joueur.taille(); i++) {
+								if (_joueur[i]->estEnVie()) {
+									_joueur[i]->passif(_tour);
+								}
+							}
+							for (int i = 0; i < _ia.taille(); i++) {
+								if (_ia[i]->estEnVie()) {
+									_ia[i]->passif(_tour);
+								}
 							}
 						}
-						for (int i = 0; i < _ia.taille(); i++) {
-							if (_ia[i]->estEnVie()) {
-								_ia[i]->passif(_tour);
-							}
-						}
+					
 						_quiJoue[i]->attaqueEnnemis();
 					}
 			}
@@ -74,8 +76,7 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 	if (_joueur.estEnVie()) {
 		Z.niveauBattu();
 		Experiences E;
-		int xp;
-		xp = _ia.xpDonner();
+		
 		_joueur.ajouterExperience(xp, E);
 		tirageRecompenses(Z, A, O);
 	}

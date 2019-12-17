@@ -28,10 +28,6 @@ void Fabian::attaqueEnnemis()
 			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 			
 		}
-		/*if (tiragePersoCarac(Joueur, CHANCEDOUBLEATTAQUE) && EquipeEnVie(TeamEnnemie(Joueur)) == true) {
-			cout << " Attention j'ai fais de la muscu !  Sa force a augmentee ! " << endl;
-			PersoCarac[Joueur][FORCE] = static_cast<int>(PersoCarac[Joueur][FORCE] * ((1.0 + (3 * Tour) / 100)));
-		}*/
 		ajouterMana(3);
 		break;
 	case 1:

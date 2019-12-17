@@ -59,16 +59,19 @@ void Nicolas::attaqueEnnemis() {
 			}
 			i++;
 		}
+		
 		if (attaqueDouble()) {
-			if (equipeEnnemi()[j]->estEnVie()) {
-				DEGATS = degats(0.10, 0.25);
-				Affichage().dessinerTexte(nom() + " residues de pompes ");
-				Attaque(DEGATS, equipeEnnemi()[j]);
-				if (attaqueDouble()) {
+			while (j < equipeEnnemi().taille()) {
+				if (equipeEnnemi()[j]->estEnVie()) {
+					DEGATS = degats(0.10, 0.25);
+					Affichage().dessinerTexte(nom() + " residues de pompes ");
 					Attaque(DEGATS, equipeEnnemi()[j]);
+					if (attaqueDouble()) {
+						Attaque(DEGATS, equipeEnnemi()[j]);
+					}
 				}
+				j++;
 			}
-			j++;
 		}
 		ajouterMana(-1);
 		break;

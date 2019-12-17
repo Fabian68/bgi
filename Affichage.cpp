@@ -3,6 +3,7 @@
 #include "Personnage.h"
 #include "Bouton.h"
 #include "Zones.h"
+#include  <iostream>
 
 Affichage::Affichage()
 {
@@ -10,6 +11,28 @@ Affichage::Affichage()
 void afficherTexte(int x, int y, std::string texte) {
 	char *perso = const_cast<char*>(texte.c_str());
 	outtextxy(x, y, perso);
+}
+
+void Affichage::animationCercle(int xDepart, int yDepart, int xArriver, int yArriver) const
+{
+	int delais = 18;
+	int pasX = static_cast<int>((xArriver*1.0 - xDepart*1.0) / 30.0);
+	int pasY = static_cast<int>((yArriver*1.0 - yDepart*1.0) / 30.0);
+	std::cout << pasY;
+	setcolor(RED);
+	setfillstyle(1, RED);
+	fillellipse(xDepart, yDepart, 10, 10);
+	delay(delais);
+	for (int i = 1; i <= 31; i++) {
+	 	setcolor(BLACK);
+		setfillstyle(1, BLACK);
+		fillellipse(xDepart + (i - 1) * pasX, yDepart + (i - 1) * pasY, 11, 11);
+		setcolor(RED);
+		setfillstyle(1, RED);
+		circle(xDepart + i * pasX, yDepart + i * pasY, 10);
+		fillellipse(xDepart + i * pasX, yDepart + i * pasY, 10, 10);
+		delay(delais);
+	}
 }
 
 void Affichage::afficherJoueurs(int indice,Equipes Liste)const {
@@ -85,7 +108,7 @@ void Affichage::dessinerJoueur(int indice, bool equipeIA,Personnage*  P) const
 	}
 	std::string str = P->nom()+" "+std::to_string(P->niveau());
 	char* perso = const_cast<char*>(str.c_str());
-
+//	setcolor(GREEN);
 	int y = -50 + 70 * indice;
 	rectangle(x, y, x + 300, y + 65);
 	outtextxy(x + 2, y + 5, perso);
@@ -181,6 +204,7 @@ void Affichage::dessinerTexte(std::string texte)const {
 	setcolor(RED);
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(400,15, txt);	
+	delay(200);
 }
 void Affichage::dessinerEquipeJoueur(Equipes J) const
 {
@@ -375,21 +399,26 @@ void Affichage::dessinerAttaque(Personnage * Attaquant, Personnage * Defenseur) 
 	if (!Attaquant->equipeAllier().ia()) {
 		 i = Attaquant->indiceEquipe() + 1;
 		 j = Defenseur->indiceEquipe() + 1;
+		//animationCercle(390, -20 + 70 * i, 810, -20 + 70 * j);
+		
 	}
 	else {
 		 j = Attaquant->indiceEquipe() + 1;
 		 i = Defenseur->indiceEquipe() + 1;
+	//	animationCercle(810, -20 + 70 * j, 390, -20 + 70 * i);
 	}
 	line(370, -25 + 70 * i, 830, -25 + 70 * j);
 	if (!Attaquant->equipeAllier().ia()) {
+		
 		line(810, -5 + 70 *j, 830, -25 + 70 * j);
 		line(810, -45 + 70 * j, 830, -25 + 70 * j);
 	}
 	else {
 		line(390, -5 + 70 * i, 370, -25 + 70 * i);
 		line(390, -45 + 70 * i, 370, -25 + 70 * i);
+		
 	}
-	delay(250);
+	delay(300);
 }
 
 Affichage::~Affichage()

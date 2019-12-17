@@ -68,6 +68,7 @@
     <ClCompile Include="Animaux.cpp" />
     <ClCompile Include="bgiout.cxx" />
     <ClCompile Include="Bouton.cpp" />
+    <ClCompile Include="Cerf.cpp" />
     <ClCompile Include="Combat.cpp" />
     <ClCompile Include="dibutil.cxx" />
     <ClCompile Include="drawing.cxx" />
@@ -85,7 +86,9 @@
     <ClCompile Include="main.cxx" />
     <ClCompile Include="Personnage.cpp" />
     <ClCompile Include="Point.cpp" />
+    <ClCompile Include="Sanglier.cpp" />
     <ClCompile Include="text.cxx" />
+    <ClCompile Include="Thomas.cpp" />
     <ClCompile Include="winbgi.cxx" />
     <ClCompile Include="winthread.cxx" />
     <ClCompile Include="Zones.cpp" />
@@ -95,6 +98,7 @@
     <ClInclude Include="Aleatoire.h" />
     <ClInclude Include="Animaux.h" />
     <ClInclude Include="Bouton.h" />
+    <ClInclude Include="Cerf.h" />
     <ClInclude Include="Combat.h" />
     <ClInclude Include="dibutil.h" />
     <ClInclude Include="Equipes.h" />
@@ -106,6 +110,8 @@
     <ClInclude Include="Orbes.h" />
     <ClInclude Include="Personnage.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="Sanglier.h" />
+    <ClInclude Include="Thomas.h" />
     <ClInclude Include="winbgi.h" />
     <ClInclude Include="winbgim.h" />
     <ClInclude Include="winbgitypes.h" />

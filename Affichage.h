@@ -12,6 +12,7 @@ class Affichage
 public:
 	Affichage();
 	
+	void animationCercle(int xDepart, int yDepart, int xArriver, int yArriver)const;
 	void afficherJoueurs(int indice, Equipes Liste) const;
 	void dessinerJoueur(int indice, bool equipeIA, Personnage* P)const;
 	void dessinerDegats(Personnage* P,int degats) const;

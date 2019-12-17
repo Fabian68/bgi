@@ -6,6 +6,7 @@
 #include "Aleatoire.h"
 #include "Fabian.h"
 #include "Nicolas.h"
+#include "Thomas.h"
 #include "Lapin.h"
 #include "Experiences.h"
 #include "Zones.h"
@@ -33,8 +34,10 @@ void reinitListeEquipe(Equipes& Liste) {
 	
 	Fabian F(E, O, A);
 	Nicolas N(E, O, A);
+	Thomas T(E, O, A);
 	Liste.ajouterPerso(new Fabian(E,O,A));
 	Liste.ajouterPerso(new Nicolas(E, O, A));
+	Liste.ajouterPerso(new Thomas(E, O, A));
 
 }
 
@@ -77,7 +80,7 @@ int main()
 		Animaux A;
 		Affichage H;
 		
-	
+		H.dessinerTexte("Version 1.04");
 		Meuchant.vider();
 		reinitListeEquipe(choix);
 		reinitEquipe(Gentil, choix);
@@ -97,7 +100,7 @@ int main()
 		}
 		else if (Jouer.comprendLesCoord(x, y)) {
 			cleardevice();
-			int niveauChoisit = 1;
+			int niveauChoisit = Z.niveauActuel();
 			int repetition = 1;
 			Affichage().choixNiveau(Z, niveauChoisit,repetition);
 			Z.choixNiveau(niveauChoisit);

@@ -93,6 +93,15 @@
     <ClCompile Include="Bouton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sanglier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Thomas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cerf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="winbgim.h">
@@ -150,6 +159,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Bouton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sanglier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Thomas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cerf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

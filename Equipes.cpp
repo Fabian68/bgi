@@ -132,6 +132,7 @@ void Equipes::chargerEquipe(Equipes Liste)
 		
 		is >> perso;
 		if (perso != - 1) {
+			Liste[perso]->modifierIndiceEquipe(_equipe.size());
 			_equipe.push_back(Liste[perso]);
 		}
 	}

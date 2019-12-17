@@ -15,9 +15,6 @@ void Lapin::attaqueEnnemis() {
 	int DEGATS;
 	int SOINS;
 	
-	std::string a = nom();
-
-	int i, j;
 	switch (choix) {
 
 	case 0:
@@ -26,7 +23,7 @@ void Lapin::attaqueEnnemis() {
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
-			Affichage().dessinerTexte(nom() + " Coup de couteau ");
+			Affichage().dessinerTexte(nom() + " Coup de bougnoule ");
 			DEGATS = degats(0.2, 0.8);
 			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 			ajouterMana(1);
