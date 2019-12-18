@@ -65,6 +65,9 @@ public:
 	int pourcentageRicochet()const;
 	int pourcentageEsquive()const;
 	int pourcentageBlocage()const;
+	void setId(int val);
+	Animal animal()const;
+	int rareterAnimal()const;
 private:
 	int _id;
 	int _niveau;
@@ -78,7 +81,6 @@ private:
 	int _degatCritique;
 	int _chanceDoubleAttaque;
 	int _chanceHabilete;
-	int _nbFoisJouer;
 	int _pourcentageDeviation;
 	int _pourcentageReduction;
 	int _pourcentageRicochet;
@@ -89,6 +91,7 @@ private:
 	Equipes _E;
 	int _indiceAnimal;
 	int _rareteAnimal;
+	Animal _animal;
 	std::string _nom;
 };
 

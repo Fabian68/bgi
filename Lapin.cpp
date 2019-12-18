@@ -2,12 +2,19 @@
 #include "Affichage.h"
 
 
-Lapin::Lapin(int LVL,std::string nom,int difficulte,int animal,int rareteAnimal) : Personnage(LVL, nom, 2, 4, 4, 30, 0, 0, 0, 0, 10, 0,animal,rareteAnimal) 
+Lapin::Lapin(int LVL,std::string nom,int difficulte,int animal,int rareteAnimal,int id) : Personnage(LVL, nom, 2, 4, 4, 30, 0, 0, 0, 0, 10, 0,animal,rareteAnimal) 
 {
+	setId(id);
 	if (difficulte == 1) {
 		ajouterForce(force());
 		ajouterVitesse(vitesse());
 		ajouterVie(9*vie());
+	}
+	if (difficulte == 2) {
+		ajouterForce(force());
+		ajouterVitesse(vitesse());
+		ajouterVie(19 * vie());
+		ajouterReduction(99);
 	}
 }
 void Lapin::attaqueEnnemis() {

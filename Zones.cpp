@@ -106,6 +106,36 @@ void Zones::equipeEnZone(int i,Equipes & E)
 		E.ajouterPerso(new Cerf(50, "Cerf gilet jaune",1,3,2));
 		E.ajouterPerso(new Cerf(40, "Cerf"));
 		break;
+	case 16:
+		E.ajouterPerso(new Sanglier(60, "Sanglier"));
+		E.ajouterPerso(new Cerf(62, "Cerf"));
+		E.ajouterPerso(new Cerf(61, "Cerf"));
+		E.ajouterPerso(new Lapin(68, "Lapin"));
+		break;
+	case 17:
+		E.ajouterPerso(new Sanglier(65, "Sanglier"));
+		E.ajouterPerso(new Sanglier(68, "Sanglier"));
+		E.ajouterPerso(new Cerf(67, "Cerf"));
+		E.ajouterPerso(new Lapin(69, "Lapin"));
+		break;
+	case 18:
+		E.ajouterPerso(new Sanglier(80, "Sanglier"));
+		E.ajouterPerso(new Sanglier(74, "Sanglier"));
+		E.ajouterPerso(new Cerf(78, "Cerf"));
+		E.ajouterPerso(new Sanglier(76, "Sanglier"));
+		break;
+	case 19:
+		E.ajouterPerso(new Sanglier(86, "Sanglier"));
+		E.ajouterPerso(new Lapin(89, "Lapin"));
+		E.ajouterPerso(new Cerf(84, "Cerf"));
+		E.ajouterPerso(new Sanglier(87, "Sanglier"));
+		break;
+	case 20:
+		E.ajouterPerso(new Lapin(90, "Lapinou",2,9,5));
+		E.ajouterPerso(new Lapin(95, "Lapin",0,2,1));
+		E.ajouterPerso(new Cerf(99, "Cerf",0,3,2));
+		E.ajouterPerso(new Sanglier(92, "Sanglier",0,5,2));
+		break;
 	}
 
 	

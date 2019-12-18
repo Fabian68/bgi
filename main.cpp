@@ -14,6 +14,7 @@
 #include <iostream>
 #include "Affichage.h"
 #include "Bouton.h"
+#include "Fiona.h"
 
 #define PI 3.14159265
 
@@ -35,9 +36,11 @@ void reinitListeEquipe(Equipes& Liste) {
 	Fabian F(E, O, A);
 	Nicolas N(E, O, A);
 	Thomas T(E, O, A);
+	Fiona FF(E, O, A);
 	Liste.ajouterPerso(new Fabian(E,O,A));
 	Liste.ajouterPerso(new Nicolas(E, O, A));
 	Liste.ajouterPerso(new Thomas(E, O, A));
+	Liste.ajouterPerso(new Fiona(E, O, A));
 
 }
 
@@ -69,7 +72,9 @@ int main()
 	
 	Bouton modifierEquipe(500, 50, "Modifier equipe");
 	Bouton AfficherJoueurs(500, 100, "AfficherJoueurs");
-	Bouton Jouer(500, 150, "Jouer");
+	Bouton AfficherAnimaux(500, 150, "AfficherAnimaux");
+	Bouton Jouer(500, 200, "Jouer");
+	
 
 	const int DELAY = 50; // Milliseconds of delay between checks
 	int x, y;
@@ -80,23 +85,28 @@ int main()
 		Animaux A;
 		Affichage H;
 		
-		H.dessinerTexte("Version 1.04");
+		H.dessinerTexte("Version 1.05");
 		Meuchant.vider();
 		reinitListeEquipe(choix);
 		reinitEquipe(Gentil, choix);
 		modifierEquipe.afficher();
 		AfficherJoueurs.afficher();
+		AfficherAnimaux.afficher();
 		Jouer.afficher();
 		do {
 			while (!ismouseclick(WM_LBUTTONDOWN)) {
 				delay(DELAY);
 			}
 			getmouseclick(WM_LBUTTONDOWN, x, y);
-		} while (!AfficherJoueurs.comprendLesCoord(x, y) && !Jouer.comprendLesCoord(x, y)&&!modifierEquipe.comprendLesCoord(x,y));
+		} while (!AfficherJoueurs.comprendLesCoord(x, y) && !Jouer.comprendLesCoord(x, y)&&!modifierEquipe.comprendLesCoord(x,y) && !AfficherAnimaux.comprendLesCoord(x, y));
 
 		if (AfficherJoueurs.comprendLesCoord(x, y)) {
 			cleardevice();
 			H.afficherJoueurs(0,choix);
+		}
+		else if (AfficherAnimaux.comprendLesCoord(x, y)) {
+			cleardevice();
+			H.afficherAnimaux(A);
 		}
 		else if (Jouer.comprendLesCoord(x, y)) {
 			cleardevice();

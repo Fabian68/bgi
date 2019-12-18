@@ -65,6 +65,7 @@
   <ItemGroup>
     <ClCompile Include="Affichage.cpp" />
     <ClCompile Include="Aleatoire.cpp" />
+    <ClCompile Include="Animal.cpp" />
     <ClCompile Include="Animaux.cpp" />
     <ClCompile Include="bgiout.cxx" />
     <ClCompile Include="Bouton.cpp" />
@@ -76,6 +77,7 @@
     <ClCompile Include="Experiences.cpp" />
     <ClCompile Include="Fabian.cpp" />
     <ClCompile Include="file.cxx" />
+    <ClCompile Include="Fiona.cpp" />
     <ClCompile Include="Lapin.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="misc.cxx" />
@@ -96,6 +98,7 @@
   <ItemGroup>
     <ClInclude Include="Affichage.h" />
     <ClInclude Include="Aleatoire.h" />
+    <ClInclude Include="Animal.h" />
     <ClInclude Include="Animaux.h" />
     <ClInclude Include="Bouton.h" />
     <ClInclude Include="Cerf.h" />
@@ -104,6 +107,7 @@
     <ClInclude Include="Equipes.h" />
     <ClInclude Include="Experiences.h" />
     <ClInclude Include="Fabian.h" />
+    <ClInclude Include="Fiona.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="Lapin.h" />
     <ClInclude Include="Nicolas.h" />

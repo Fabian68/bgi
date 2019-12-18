@@ -10,14 +10,15 @@
 Personnage::Personnage(int LVL, std::string nom,int vieLVL,int forceLVL,int vitesseLVL,int chanceDoubleAttaque,int chanceHabilete,int pourcentageReduction,int pourcentageDeviation,int pourcentageBlocage,int pourcentageEsquive,int pourcentageRicochet, int indiceAnimal, int rareteAnimal) :
 	_vieMax{ vieLVL*LVL*10 }, _vie{ vieLVL*LVL*10 }, _nom{ nom },_id{-1},_niveau{LVL},_force{forceLVL*LVL},_vitesse{vitesseLVL*LVL},_chanceDoubleAttaque{chanceDoubleAttaque},
 	_chanceHabilete{chanceHabilete},_pourcentageReduction{pourcentageReduction},_pourcentageDeviation{pourcentageDeviation},_pourcentageBlocage{pourcentageBlocage},_pourcentageEsquive{pourcentageEsquive},_pourcentageRicochet{pourcentageRicochet},
-	_mana{0},_pourcentageCritique{10},_degatCritique{50},_nbFoisJouer{0},_bouclier{0},_indiceAnimal{indiceAnimal},_rareteAnimal{rareteAnimal}
+	_mana{0},_pourcentageCritique{10},_degatCritique{50},_bouclier{0},_indiceAnimal{indiceAnimal},_rareteAnimal{rareteAnimal}
 {
+	_animal = Animal(_indiceAnimal);
 }
 
 Personnage::Personnage(int id,Experiences E,Orbes O,Animaux A, std::string nom, int vieLVL, int forceLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet) :
 	_nom{ nom }, _id{ id }, _chanceDoubleAttaque{ chanceDoubleAttaque },
 	_chanceHabilete{ chanceHabilete }, _pourcentageReduction{ pourcentageReduction }, _pourcentageDeviation{ pourcentageDeviation }, _pourcentageBlocage{ pourcentageBlocage }, _pourcentageEsquive{ pourcentageEsquive }, _pourcentageRicochet{ pourcentageRicochet },
-	_mana{ 0 }, _pourcentageCritique{ 10 }, _degatCritique{ 50 }, _nbFoisJouer{ 0 }, _bouclier{ 0 }
+	_mana{ 0 }, _pourcentageCritique{ 10 }, _degatCritique{ 50 }, _bouclier{ 0 }
 {
 	int bonusLVLattaque;
 	int bonusLVLvie;
@@ -32,6 +33,7 @@ Personnage::Personnage(int id,Experiences E,Orbes O,Animaux A, std::string nom, 
 	_rareteAnimal = A.rareteAnimal(_id, _indiceAnimal);
 	//A.animalDuPersonnage(_id, _indiceAnimal, _rareteAnimal);
 	std::cout << _indiceAnimal << " " << _rareteAnimal;
+	_animal = Animal(_indiceAnimal);
 }
 
 Personnage::~Personnage()
@@ -225,79 +227,43 @@ Equipes & Personnage::equipeEnnemi()
 	return _E;
 }
 void Personnage::traitementAnimaux() {
-	switch (_indiceAnimal) {
-	case 0:
-		if (Aleatoire(0, 101).entier() < (6 +3 * (_rareteAnimal-1))) {
-			int Soins=soins(0.08 * _rareteAnimal - 1, 0.08 * _rareteAnimal);
-			//Affichage().dessinerTexte(this->nom()+" soin de zone animal");
-			_A.soignerZone(Soins, this);
+	if (_animal.activer(_rareteAnimal)) {
+		int Soins = soins(_animal.ratioMin(_rareteAnimal), _animal.ratioMax(_rareteAnimal));
+		int Degats = degats(_animal.ratioMin(_rareteAnimal), _animal.ratioMax(_rareteAnimal));
+		std::cout << _nom+_animal.type()+"animal" << std::endl;
+		switch (_indiceAnimal) {
+		case 0:
+				_A.soignerZone(Soins, this);
+			break;
+		case 1:
+				soigner(Soins, _A.plusFaible());	
+			break;
+		case 2:
+				soigner(Soins, _A.aleatoireEnVie());
+			break;
+		case 3:
+				Attaque(Degats, _E.plusFaible());
+			break;
+		case 4:
+				_E.attaqueZone(Degats, this);
+			break;
+		case 5:
+				Attaque(Degats, _E.aleatoireEnVie());
+			break;
+		case 6:
+				_A.bouclierZone(Soins, this);
+			break;
+		case 7:
+				bouclier(Soins, _A.plusFaible());
+			break;
+		case 8:
+				bouclier(Soins, _A.aleatoireEnVie());
+			break;
+		case 9:
+				_A.soignerZone(Soins, this);
+				_A.bouclierZone(Soins, this);
+			break;
 		}
-		break;
-	case 1:
-		if (Aleatoire(0, 101).entier() < (10 + 5 * (_rareteAnimal - 1))) {
-			int Soins = soins(pow(2, _rareteAnimal - 1) * 0.05, pow(2, _rareteAnimal - 1) * 0.10);
-		//	Affichage().dessinerTexte(this->nom() + " soigne le plus faible animal");
-			soigner(Soins, _A.plusFaible());
-		}
-		break;
-	case 2:
-		if (Aleatoire(0, 101).entier() < (3 + 8 * (_rareteAnimal - 1))) {
-			int Soins = soins(_rareteAnimal * 0.10, 0.15 + 0.20 *(_rareteAnimal*1.0-1.0));
-		//	Affichage().dessinerTexte(this->nom() + " soigne une personne aleatoire animal");
-			soigner(Soins, _A.aleatoireEnVie());
-		}
-		break;
-	case 3:
-		if (Aleatoire(0, 101).entier() < (4 + 4 * (_rareteAnimal - 1))) {
-			int Degats = degats(0.02 * _rareteAnimal - 1, 0.06 * _rareteAnimal);
-		//	Affichage().dessinerTexte(this->nom() + " attaque le plus faible animal ");
-			Attaque(Degats, _E.plusFaible());
-		}
-		break;
-	case 4:
-		if (Aleatoire(0, 101).entier() < (2 + 5 * (_rareteAnimal - 1))) {
-			int Degats = degats(pow(2, _rareteAnimal - 1) * 0.01+0.01, pow(2, _rareteAnimal ) * 0.01 + 0.02);
-		//	Affichage().dessinerTexte(this->nom() + " attaque de zone animal");
-			_E.attaqueZone(Degats, this);
-		}
-		break;
-	case 5:
-		if (Aleatoire(0, 101).entier() < (2 + 8 * (_rareteAnimal - 1))) {
-			int Degats = degats(0.06 * _rareteAnimal - 1, 0.12 * _rareteAnimal);
-		//	Affichage().dessinerTexte(this->nom() + " attaque une personne aleatoire animal");
-			Attaque(Degats, _E.aleatoireEnVie());
-		}
-		break;
-	case 6:
-		if (Aleatoire(0, 101).entier() < (3 + 4 * (_rareteAnimal - 1))) {
-			int Soins = soins(0.04 * _rareteAnimal - 1, 0.09 * _rareteAnimal);
-		//	Affichage().dessinerTexte(this->nom() + " bouclier de zone animal");
-			_A.bouclierZone(Soins, this);
-		}
-		break;
-	case 7:
-		if (Aleatoire(0, 101).entier() < (3 + 8 * (_rareteAnimal - 1))) {
-			int Soins = soins(pow(2, _rareteAnimal - 1) * 0.03, pow(2, _rareteAnimal - 1) * 0.06);
-		//	Affichage().dessinerTexte(this->nom() + " bouclier le plus faible animal");
-			bouclier(Soins, _A.plusFaible());
-		}
-		break;
-	case 8:
-		if (Aleatoire(0, 101).entier() < (1 + 10 * (_rareteAnimal - 1))) {
-			int Soins = soins(_rareteAnimal * 0.05, 0.10 + 0.10 * (_rareteAnimal*1.0 - 1.0));
-		//	Affichage().dessinerTexte(this->nom() + " bouclier une personne aleatoire animal");
-			bouclier(Soins, _A.aleatoireEnVie());
-		}
-		break;
-	case 9:
-		if (Aleatoire(0, 101).entier() < (1 + 11 * (_rareteAnimal - 1))) {
-			int Soins = soins(_rareteAnimal * 0.03, 0.06 + 0.06 * (_rareteAnimal*1.0 - 1.0));
-		//	Affichage().dessinerTexte(this->nom() + " soin et bouclier de zone");
-			_A.soignerZone(Soins, this);
-			Soins = soins(_rareteAnimal * 0.01, 0.03 + 0.03 * (_rareteAnimal*1.0 - 1.0));
-			_A.bouclierZone(Soins, this);
-		}
-		break;
 	}
 }
 void  Personnage::Attaque(int Degat, Personnage * Defenseur) 
@@ -424,4 +390,19 @@ int Personnage::pourcentageEsquive() const
 int Personnage::pourcentageBlocage() const
 {
 	return _pourcentageBlocage;
+}
+
+void Personnage::setId(int val)
+{
+	_id = val;
+}
+
+Animal Personnage::animal() const
+{
+	return _animal;
+}
+
+int Personnage::rareterAnimal() const
+{
+	return _rareteAnimal;
 }

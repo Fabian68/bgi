@@ -77,6 +77,24 @@ void Affichage::afficherJoueurs(int indice,Equipes Liste)const {
 		str = "Chance de blocage : " + std::to_string(Liste[indice]->pourcentageBlocage());
 		afficherTexte(x, y+220, str);
 	
+		x = x + 250;
+		y += 100;
+		rectangle(x + 80, y - 10, x + 550, y + 130);
+		
+		Animal A = Liste[indice]->animal();
+		
+		afficherTexte(x+150, y , " Animal "+A.type());
+		int rareter = Liste[indice]->rareterAnimal();
+		rectangle(x + 90, y + 30, x + 400, y + 70);
+		afficherTexte(x + 100, y+40, " Ratio Min : ");
+		afficherTexte(x + 180, y + 40, std::to_string((int)(A.ratioMin(rareter)*100))+ " %");
+		afficherTexte(x + 230, y + 40, " Ratio Max : ");
+		afficherTexte(x + 310, y + 40, std::to_string((int)(A.ratioMax(rareter) * 100))+ " %");
+
+		rectangle(x + 90, y + 80, x + 515, y + 110);
+		afficherTexte(x + 100, y + 90, " Pourcentage d'activation quand attaque ou est attaquer : ");
+		afficherTexte(x + 475, y + 90, std::to_string(A.pourcentageActivation(rareter))+" %");
+
 		Bouton Retour(300,600, "RETOUR");
 		Retour.afficher();
 		Bouton Suivant(600, 600, "Suivant");
@@ -95,6 +113,69 @@ void Affichage::afficherJoueurs(int indice,Equipes Liste)const {
 				cleardevice();
 				afficherJoueurs(indice, Liste);
 			}	
+	cleardevice();
+}
+void Affichage::afficherAnimaux(Animaux A) const
+{
+	setcolor(RED);
+	int x,y;
+	int j = 0;
+	std::string ratio;
+	afficherTexte(300, 50, "Liste des animaux");
+	for (int i = 0; i < 5; i++,j++) {
+		x = 150 + 200 * i;
+		y = 100;
+		rectangle(x, y, x + 180, y + 30);
+		afficherTexte(x + 5, y + 10, A.animalNumero(j).type());
+	
+		rectangle(x, y + 30, x + 90, y + 60);	
+		afficherTexte(x + 15, y + 40,"%PROC");
+
+		rectangle(x + 90, y + 30, x + 180, y + 60);
+		afficherTexte(x + 105, y + 40, "%RATIO");
+		y = y + 60;
+		for (int i = 0; i < 5; i++) {
+			rectangle(x, y + 30 * i, x + 90, y + 30 * (i + 1));
+			afficherTexte(x + 15, y +10 + 30*i, std::to_string(A.animalNumero(j).pourcentageActivation(i+1))+" %");
+			
+			ratio = std::to_string((int)(A.animalNumero(j).ratioMin(i+1)*100)) + " % - " + std::to_string((int)(A.animalNumero(j).ratioMax(i+1)*100))+" %";
+			rectangle(x + 90, y + 30 * i, x + 180, y + 30 * (i + 1));
+			afficherTexte(x + 105, y + 10 + 30 * i,ratio);
+		}
+	}
+	for (int i = 0; i < 5; i++,j++) {
+		x = 150 + 200 * i;
+		y = 400;
+		rectangle(x, y, x + 180, y + 30);
+		afficherTexte(x + 5, y + 10, A.animalNumero(j).type());
+
+		rectangle(x, y + 30, x + 90, y + 60);
+		afficherTexte(x + 15, y + 40, "%PROC");
+
+		rectangle(x + 90, y + 30, x + 180, y + 60);
+		afficherTexte(x + 105, y + 40, "%RATIO");
+		y = y + 60;
+		for (int i = 0; i < 5; i++) {
+			rectangle(x, y + 30 * i, x + 90, y + 30 * (i + 1));
+			afficherTexte(x + 15, y + 10 + 30 * i, std::to_string(A.animalNumero(j).pourcentageActivation(i + 1)) + " %");
+
+			ratio = std::to_string((int)(A.animalNumero(j).ratioMin(i+1) * 100)) + " % - " + std::to_string((int)(A.animalNumero(j).ratioMax(i+1) * 100)) + " %";
+			rectangle(x + 90, y + 30 * i, x + 180, y + 30 * (i + 1));
+			afficherTexte(x + 105, y + 10 + 30 * i, ratio);
+		}
+	}
+	afficherTexte(150,670,"Le proc est le pourcentage de chance que l'animal s'active quand votre personnage attaque ou ce fait attaquer pour chaque rareter.");
+	afficherTexte(150, 700, "Le Ratio montre le ratio minimum et maximum de l'attaque concernant cet effet pour chaque rareter.");
+	Bouton retour(50, 675, " Retour ");
+	retour.afficher();
+	const int DELAY = 50; // Milliseconds of delay between checks
+	int xc, yc;
+	do {
+		while (!ismouseclick(WM_LBUTTONDOWN)) {
+			delay(DELAY);
+		}
+		getmouseclick(WM_LBUTTONDOWN, xc, yc);
+	} while (!retour.comprendLesCoord(xc, yc));
 	cleardevice();
 }
 void Affichage::dessinerJoueur(int indice, bool equipeIA,Personnage*  P) const
@@ -242,14 +323,14 @@ void Affichage::choixNiveau(Zones Z, int & niveau,int & repetition) const
 	Bouton moins1(100, 300, " - 1 ");
 	Bouton plus10(200, 200, " + 10 ");
 	Bouton moins10(200, 300, " - 10 ");
-	Bouton niveauActuel(350, 100, std::to_string(niveau));
+	Bouton niveauActuel(330, 90, std::to_string(niveau));
 	
 	afficherTexte(400, 100, "Choix du nombre de repetition, max = 100 ");
 	Bouton plus1r(400, 200, " + 1 ");
 	Bouton moins1r(400, 300, " - 1 ");
 	Bouton plus10r(500, 200, " + 10 ");
 	Bouton moins10r(500, 300, " - 10 ");
-	Bouton repetitionActuel(600, 100, std::to_string(repetition));
+	Bouton repetitionActuel(680, 90, std::to_string(repetition));
 	
 	Bouton confirmer(150, 400, "Confirmer");
 	
@@ -334,7 +415,7 @@ void Affichage::menuModifierEquipe(Equipes& Gentil, Equipes choix,int max) const
 	else {
 		afficherTexte(400, 20, "Maximum de personnages selectionnable atteintes");
 	}
-	Bouton retirer(200, 400, "Retirer le dernier personnage");
+	Bouton retirer(100, 400, "Retirer le dernier personnage");
 	if (Gentil.taille() > 0) {
 		retirer.afficher();
 	}

@@ -33,6 +33,10 @@ Animaux::Animaux()
 		is >> _animauxUtiliser[i];
 	}
 	is.close();
+	_listeAnimaux.resize(10);
+	for (int i = 0; i < 10; i++) {
+		_listeAnimaux[i] = Animal(i);
+	}
 }
 
 void Animaux::animalDuPersonnage(int indicePersonnage, int& indiceAnimal, int& rareteAnimal) const
@@ -133,4 +137,9 @@ void Animaux::sauvegarder()
 		os << std::endl;
 	}
 	os.close();
+}
+
+Animal Animaux::animalNumero(int indice) const
+{
+	return _listeAnimaux[indice];
 }

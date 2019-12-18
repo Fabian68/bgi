@@ -28,7 +28,7 @@ void Fabian::attaqueEnnemis()
 			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 			
 		}
-		ajouterMana(3);
+		ajouterMana(2);
 		break;
 	case 1:
 		Affichage().dessinerTexte(nom() + " trugdorite");

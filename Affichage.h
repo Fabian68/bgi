@@ -7,6 +7,7 @@
 class Personnage;
 class Equipes;
 class Zones;
+class Animaux;
 class Affichage
 {
 public:
@@ -14,6 +15,7 @@ public:
 	
 	void animationCercle(int xDepart, int yDepart, int xArriver, int yArriver)const;
 	void afficherJoueurs(int indice, Equipes Liste) const;
+	void afficherAnimaux(Animaux A)const;
 	void dessinerJoueur(int indice, bool equipeIA, Personnage* P)const;
 	void dessinerDegats(Personnage* P,int degats) const;
 	void dessinerSoins(Personnage* P, int soins) const;
