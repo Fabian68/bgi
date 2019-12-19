@@ -37,14 +37,17 @@ public:
 	void AjouterVie(int montant);
 	void bouclier(int soins, Personnage* P);
 	void AjouterBouclier(int montant);
+	void ajouterBouclier(int montant);
 	int bouclierMax()const;
 	bool estAttaquable() const;
 	void setEnnemis(Equipes & E);
 	void setAllier(Equipes & A);
 	Equipes& equipeAllier();
 	Equipes& equipeEnnemi();
+	bool habile() const;
 	void traitementAnimaux();
     void   Attaque(int Degat, Personnage * Defenseur) ;
+	void setReduction(int montant);
 	void ajouterChanceDoubleAttaque(int montant);
 	void ajouterChanceHabileter(int montant);
 	void ajouterReduction(int montant);
@@ -66,6 +69,7 @@ public:
 	int pourcentageEsquive()const;
 	int pourcentageBlocage()const;
 	void setId(int val);
+	void setAnimal(Animal A);
 	Animal animal()const;
 	int rareterAnimal()const;
 private:

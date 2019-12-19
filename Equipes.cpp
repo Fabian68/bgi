@@ -40,6 +40,7 @@ Personnage* Equipes::plusProcheVivant()
 		}
 		i++;
 	}
+	return _equipe[0];
 	
 }
 
@@ -54,6 +55,7 @@ Personnage* Equipes::plusLoinVivant()
 		}
 		i--;
 	}
+	return _equipe[0];
 	
 }
 
@@ -62,9 +64,9 @@ Personnage* Equipes::plusFaible()
 	int vieMin = INT_MAX;
 	int j = 0;
 	for (int i = 0;i < _equipe.size();i++) {
-		std::cout << "b";
+		
 		if (_equipe[i]->vie()>0&& _equipe[i]->vie()<vieMin) {
-			std::cout << " plus faible" << std::endl;
+		
 			vieMin = _equipe[i]->vie();
 			j = i;
 		}
@@ -75,6 +77,9 @@ Personnage* Equipes::plusFaible()
 Personnage* Equipes::aleatoireEnVie() {
 	
 	int i;
+	if (!estEnVie()) {
+		return _equipe[0];
+	}
 	do { 	
 		i = Aleatoire(0, _equipe.size()).entier();
 	} while (!_equipe[i]->estEnVie());
@@ -186,7 +191,7 @@ bool Equipes::estEnVie()const {
 			j++;
 		}
 	}
-	std::cout << j << std::endl;
+	
 	return j > 0;
 }
 

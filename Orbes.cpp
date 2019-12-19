@@ -119,3 +119,16 @@ void Orbes::deblocageOrbe(int indiceJoueur, int rareter, std::string perso)
 	sauvegarder();
 }
 
+int Orbes::choixOrbe(int indicePerso, int rareter) const
+{
+	return _choixOrbes[indicePerso][rareter - 1];
+}
+
+void Orbes::setChoixOrbe(int indicePerso, int rareter, int choix)
+{
+	_choixOrbes[indicePerso][rareter - 1]=choix;
+	sauvegarder();
+}
+
+
+

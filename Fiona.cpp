@@ -1,6 +1,7 @@
 #include "Fiona.h"
 #include "Affichage.h"
 #include "Lapin.h"
+#include "Sanglier.h"	
 
 Fiona::Fiona(Experiences E, Orbes O, Animaux A) : Personnage(3, E, O, A, "Fiona", 3, 5, 2, 0, 7, -17, 7, 7, 7, 70) , _nbAnimaux{0} {}
 
@@ -14,9 +15,7 @@ void Fiona::attaqueEnnemis()
 
 	case 0:
 		equipeEnnemi().plusProcheVivant()->ajouterReduction(-1);
-		DEGATS = degats(0.1, 0.2);
-
-		
+		DEGATS = degats(0.4, 0.8);
 		Affichage().dessinerTexte(nom() + " tire oreille");
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 
@@ -37,21 +36,20 @@ void Fiona::attaqueEnnemis()
 		Affichage().dessinerTexte(nom() + " les 3 pichnettes ");
 		for (int i = 1; i <= 3 && equipeEnnemi().estEnVie(); i++) {
 			equipeEnnemi().plusProcheVivant()->ajouterReduction(-1);
-			DEGATS = degats(0.1 * i , 0.2 *i);
+			DEGATS = degats(0.2 * i , 0.4 *i);
 			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
 		}
 		ajouterMana(-2);
 		break;
 	case 3:
 
-		equipeEnnemi().plusProcheVivant()->ajouterReduction(-1);
+	
 		DEGATS = degats(0.7, 1.7);
 		equipeEnnemi().plusProcheVivant()->ajouterReduction(-7);
 
 		Affichage().dessinerTexte(nom() + " pûissance 17 ");
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 
-		ajouterMana(1);
 		ajouterMana(-3);
 		break;
 	}
@@ -65,13 +63,15 @@ void Fiona::passif(int tour)
 		if (equipeAllier().taille() < 10) {
 			if (_nbAnimaux == 0) {
 				nom = " Perle";
+				equipeAllier().ajouterPerso(new Lapin(this->niveau(), nom, 1, 9, 5, 3));
 			}
 			else if (_nbAnimaux == 1) {
 				nom = " Oxanne";
+				equipeAllier().ajouterPerso(new Sanglier(this->niveau(), nom, 1, 9, 5, 3));
 			}
 			if (_nbAnimaux < 2) {
 				Affichage().dessinerTexte(this->nom() + " adopte un animal ! ");
-				equipeAllier().ajouterPerso(new Lapin(this->niveau(), nom, 1, 9, 5,3));
+				
 				equipeAllier()[equipeAllier().taille() - 1]->setEnnemis(equipeEnnemi());
 				equipeAllier()[equipeAllier().taille() - 1]->setAllier(equipeAllier());
 				Affichage().dessinerEquipeJoueur(equipeAllier());

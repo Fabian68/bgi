@@ -143,3 +143,9 @@ Animal Animaux::animalNumero(int indice) const
 {
 	return _listeAnimaux[indice];
 }
+
+void Animaux::setAnimalPersonnage(int indicePersonnage, int indiceAnimal)
+{
+	_animauxUtiliser[indicePersonnage] = indiceAnimal;
+	sauvegarder();
+}

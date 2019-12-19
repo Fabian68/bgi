@@ -7,6 +7,7 @@ Animal::Animal()
 
 Animal::Animal(int numero)
 {
+	_indice = numero;
 	_pourcentagesActivations.resize(5);
 	_ratioMin.resize(5);
 	_ratioMax.resize(5);
@@ -115,4 +116,9 @@ std::string Animal::type()const {
 bool Animal::activer(int rareter) const
 {
 	return Aleatoire(0,101).entier()<_pourcentagesActivations[rareter-1];
+}
+
+int Animal::indice() const
+{
+	return _indice;
 }

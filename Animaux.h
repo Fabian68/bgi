@@ -13,6 +13,7 @@ public:
 	void deblocageAnimal(int indicePersonnage, int indiceAnimal, int rareteAnimal, std::string perso);
 	void sauvegarder();
 	Animal animalNumero(int indice)const;
+	void setAnimalPersonnage(int indicePersonnage, int  indiceAnimal);
 private:
 	std::vector<std::vector<int >> _animauxPosseder;
 	std::vector<int> _animauxUtiliser;

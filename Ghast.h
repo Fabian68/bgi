@@ -1,11 +1,10 @@
 #pragma once
 #include "Personnage.h"
-
-class Sanglier :
+class Ghast :
 	public Personnage
 {
 public:
-	Sanglier(int LVL, std::string nom, int difficulte = 0, int animal = -1, int rareteAnimal = 0, int id = -1);
+	Ghast(int LVL, std::string nom, int difficulte = 0, int animal = 4, int rareteAnimal = 3, int id = -1);
 private:
 	virtual void attaqueEnnemis()override;
 	virtual void passif(int tour)override;

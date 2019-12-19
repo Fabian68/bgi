@@ -2,8 +2,9 @@
 #include "Affichage.h"
 #include "Aleatoire.h"
 
-Sanglier::Sanglier(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal) : Personnage(LVL, nom, 4, 4, 2, 0, 30, 30, 3, 30, 0, 0, animal, rareteAnimal)
+Sanglier::Sanglier(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal,int id) : Personnage(LVL, nom, 4, 4, 2, 0, 30, 30, 3, 30, 0, 0, animal, rareteAnimal)
 {
+	setId(id);
 	if (difficulte == 1) {
 		ajouterForce(force());
 		ajouterVitesse(vitesse());

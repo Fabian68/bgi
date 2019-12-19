@@ -134,10 +134,10 @@ int Personnage::xpDonner() const
 }
 int Personnage::soins(double RatioMin,double RatioMax) const {
 	double SOINS = Aleatoire(RatioMin,RatioMax).decimal()*force();
-	if (Aleatoire().entier() < _pourcentageCritique) {
+	if (Aleatoire().entier() <= _pourcentageCritique) {
 		SOINS *= (_degatCritique / 100.0 + 1);
 	}
-	if (Aleatoire().entier() < _chanceHabilete) {
+	if (Aleatoire().entier() <= _chanceHabilete) {
 		SOINS *= 2;
 	}
 	return static_cast<int>(SOINS);
@@ -200,6 +200,9 @@ void Personnage::AjouterBouclier(int montant) {
 	H.dessinerJoueur(this->indiceEquipe() + 1, this->equipeAllier().ia(), this);
 }
 
+void Personnage::ajouterBouclier(int montant) {
+	_bouclier += montant;
+}
 int Personnage::bouclierMax()const {
 	return (_force * 10 + _vieMax)/2;
 }
@@ -225,6 +228,10 @@ Equipes & Personnage::equipeAllier()
 Equipes & Personnage::equipeEnnemi() 
 {
 	return _E;
+}
+
+bool Personnage::habile()const {
+	return Aleatoire(0, 101).entier() <= _chanceHabilete;
 }
 void Personnage::traitementAnimaux() {
 	if (_animal.activer(_rareteAnimal)) {
@@ -268,8 +275,8 @@ void Personnage::traitementAnimaux() {
 }
 void  Personnage::Attaque(int Degat, Personnage * Defenseur) 
 {
-	std::cout << _nom << " attaque " << Defenseur->nom() << std::endl;
 	
+	int degatEffectif;
 	if (Defenseur->estAttaquable()) {
 		if (Defenseur->bloque()) {
 			Degat /= 2;
@@ -279,16 +286,18 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 			Degat = 0;
 		}
 		if (Defenseur->devie()) {
-			std::cout << "Devie";
+			
 			Defenseur->Attaque(Degat, this);
-			std::cout << _vie << std::endl;
+			
 		}
 		else {
 			Defenseur->passifDefensif();
 			Defenseur->traitementAnimaux();
 			this->traitementAnimaux();
 		
-		
+			degatEffectif = Degat;
+			std::cout << _nom << " attaque " <<Defenseur->indiceEquipe()<< Defenseur->nom();
+			std::cout << " "<<Degat << std::endl;
 			if (Defenseur->bouclier() > 0) {
 				Degat=Defenseur->reduireBouclier(Degat);
 			}
@@ -298,14 +307,25 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 			Affichage H;
 			H.dessinerAttaque(this, Defenseur);
 			H.dessinerJoueur(Defenseur->indiceEquipe()+1, Defenseur->equipeAllier().ia(), Defenseur);
-			H.dessinerDegats(Defenseur, Degat);
+			H.dessinerDegats(Defenseur, degatEffectif);
+		}
+		if (ricoche()&&_E.estEnVie()) {
+			
+			if (Aleatoire().entier() < _pourcentageCritique) {
+				Degat *= (_degatCritique / 100.0 + 1);
+			}
+			if (Aleatoire().entier() < _chanceHabilete) {
+				Degat *= 2;
+			}
+			Attaque(Degat, _E.aleatoireEnVie());
 		}
 	}
-	if (ricoche()&&_E.estEnVie()) {
-		Attaque(Degat, _E.aleatoireEnVie());
-	}
+	
 }
 
+void Personnage::setReduction(int montant) {
+	_pourcentageReduction = montant;
+}
 void Personnage::ajouterChanceDoubleAttaque(int montant) {
 	_chanceDoubleAttaque += montant;
 }
@@ -322,11 +342,11 @@ int Personnage::bouclier()const {
 	return _bouclier;
 }
 bool Personnage::bloque()const {
-	return Aleatoire().entier() < _pourcentageBlocage;
+	return Aleatoire().entier() <= _pourcentageBlocage;
 }
 
 bool Personnage::attaqueDouble()const {
-	return Aleatoire().entier() < _chanceDoubleAttaque;
+	return Aleatoire().entier() <= _chanceDoubleAttaque;
 }
 
 void Personnage::ajouterMana(int n) {
@@ -337,11 +357,11 @@ int Personnage::reductionDesDegats(int entier)const {
 }
 
 bool Personnage::devie()const {
-	return Aleatoire().entier() < _pourcentageDeviation;
+	return Aleatoire().entier() <= _pourcentageDeviation;
 }
 
 bool Personnage::ricoche()const {
-	return Aleatoire().entier() < _pourcentageRicochet;
+	return Aleatoire().entier() <= _pourcentageRicochet;
 }
 
 void Personnage::modifierIndiceEquipe(int i) {
@@ -395,6 +415,11 @@ int Personnage::pourcentageBlocage() const
 void Personnage::setId(int val)
 {
 	_id = val;
+}
+
+void Personnage::setAnimal(Animal A)
+{
+	_animal = A;
 }
 
 Animal Personnage::animal() const

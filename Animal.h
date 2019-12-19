@@ -11,11 +11,13 @@ public:
 	double ratioMax(int rareter)const;
 	std::string type()const;
 	bool activer(int rareter)const;
+	int indice()const;
 private:
 	std::vector<int> _pourcentagesActivations;
 	std::vector<double> _ratioMin;
 	std::vector<double> _ratioMax;
 	std::string _type;
+	int _indice;
 
 };
 

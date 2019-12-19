@@ -13,6 +13,10 @@ void afficherTexte(int x, int y, std::string texte) {
 	outtextxy(x, y, perso);
 }
 
+void Affichage::affichageTexte(int x, int y, std::string texte) {
+	char* perso = const_cast<char*>(texte.c_str());
+	outtextxy(x, y, perso);
+}
 void Affichage::animationCercle(int xDepart, int yDepart, int xArriver, int yArriver) const
 {
 	int delais = 18;
@@ -78,12 +82,12 @@ void Affichage::afficherJoueurs(int indice,Equipes Liste)const {
 		afficherTexte(x, y+220, str);
 	
 		x = x + 250;
-		y += 100;
+	
 		rectangle(x + 80, y - 10, x + 550, y + 130);
 		
 		Animal A = Liste[indice]->animal();
 		
-		afficherTexte(x+150, y , " Animal "+A.type());
+		afficherTexte(x+150, y , " Animal equiper : "+A.type());
 		int rareter = Liste[indice]->rareterAnimal();
 		rectangle(x + 90, y + 30, x + 400, y + 70);
 		afficherTexte(x + 100, y+40, " Ratio Min : ");
@@ -95,24 +99,152 @@ void Affichage::afficherJoueurs(int indice,Equipes Liste)const {
 		afficherTexte(x + 100, y + 90, " Pourcentage d'activation quand attaque ou est attaquer : ");
 		afficherTexte(x + 475, y + 90, std::to_string(A.pourcentageActivation(rareter))+" %");
 
-		Bouton Retour(300,600, "RETOUR");
+		Animaux N;
+
+		rectangle(x + 80, y + 140, x + 500, y+600);
+		x += 90;
+		y += 150;
+		afficherTexte(x+100, y,"Liste des animaux posseder");
+		y += 50;
+		std::string texteAnimaux;
+		for (int i = 0; i < 9; i++) {
+			if (N.animalDebloquer(Liste[indice]->id(), i, 1)&&i!=A.indice()) {
+				texteAnimaux = Animal(i).type();
+				rareter = N.rareteAnimal(Liste[indice]->id(), i);
+				switch (rareter)
+				{
+				case 1:
+					texteAnimaux += " commun";
+					break;
+				case 2:
+					texteAnimaux += " rare";
+					break;
+				case 3:
+					texteAnimaux += " epique";
+					break;
+				case 4:
+					texteAnimaux += " legendaire";
+					break;
+				case 5:
+					texteAnimaux += " cheater";
+					break;
+				}
+				afficherTexte(x, y, texteAnimaux);
+				Bouton(x + 275, y - 10, "Equiper",0,WHITE,WHITE).afficher();
+				y += 50;
+			}
+		}
+
+		y = 170;
+		afficherTexte(x + 500, 10, "Les orbes sont équiper que sur une seul stat");
+		afficherTexte(x + 500, 40, "Cliquer sur un bouton pour modifier le choix");
+		afficherTexte(x + 500, 70, "La changement s'applique quand vous quitter cet page");
+		afficherTexte(x + 500, y, "Liste des orbes equiper");
+		x += 440;
+		Orbes O;
+		std::string texteOrbe;
+		bool OrbeChoisit = false;
+		int xpas;
+		for (int i = 1,k= 220; i <= 5; i++) {
+			if (O.orbeDebloquer(indice, i)) {
+				switch (i) {
+				case 1:
+					texteOrbe= " commune ( 1 ";
+					break;
+				case 2:
+					texteOrbe = " rare ( 2 ";
+					break;
+				case 3:
+					texteOrbe = " epique ( 3 ";
+					break;
+				case 4:
+					texteOrbe = " LEGENDAIRE ( 4 ";
+					break;
+				case 5:
+					texteOrbe = " CHEATER ( 5 ";
+					break;
+				}
+				texteOrbe+="S/ LVL ) Equiper : ";
+				afficherTexte(x, k, texteOrbe);
+				for (int jj = 1,xpas=0; jj <= 3; jj++) {
+					if (O.choixOrbe(indice, i) != jj) {
+						switch (jj) {
+						case 1:
+							Bouton(x + 210+xpas, k-10, "ATK",0,WHITE,WHITE).afficher();
+							break;
+						case 2 :
+							Bouton(x + 210+xpas, k-10, "VIE", 0, WHITE, WHITE).afficher();
+							break;
+						case 3 :
+							Bouton(x + 210 + xpas, k-10, "VIT", 0, WHITE, WHITE).afficher();
+							break;
+						}
+						xpas += 50;
+					}
+				}
+				k += 50;
+			}
+		}
+		Experiences E;
+		
+		Bouton Retour(300,700, "RETOUR");
 		Retour.afficher();
-		Bouton Suivant(600, 600, "Suivant");
+		Bouton Precedent(450, 700, "Precedent");
+		Precedent.afficher();
+		Bouton Suivant(600, 700, "Suivant");
 		Suivant.afficher();
 		const int DELAY = 50; // Milliseconds of delay between checks
 		int xc, yc;
+		bool equiperAnimal = false;
 			do {
 				while (!ismouseclick(WM_LBUTTONDOWN)) {
 					delay(DELAY);
 				}
 				getmouseclick(WM_LBUTTONDOWN, xc, yc);
-			} while (!Retour.comprendLesCoord(xc, yc) && !Suivant.comprendLesCoord(xc, yc));
+				for (int i = 0,k=210; i < 9; i++) {
+					if (N.animalDebloquer(Liste[indice]->id(), i, 1) && i != A.indice()) {
+						if (Bouton(665, k, "Equiper").comprendLesCoord(xc, yc)) {
+							
+							N.setAnimalPersonnage(indice, i);
+							Liste[indice]->setAnimal(Animal(i));
+							equiperAnimal = true;
+						}
+						k += 50;
+					}
+				}
+				for (int i = 1, k = 220; i <= 5; i++) {
+					if (O.orbeDebloquer(indice, i)) {
+						for (int jj = 1, xpas = 0; jj <= 3; jj++) {
+							if (O.choixOrbe(indice, i) != jj) {
+								if (Bouton(x + 210 + xpas, k - 10, "ATK", 0, WHITE, WHITE).comprendLesCoord(xc, yc)) {
+									O.setChoixOrbe(indice, i, jj);
+									OrbeChoisit = true;
+								}
+								xpas += 50;
+							}
+						}
+						k += 50;
+					}
+				}
+			} while (!Retour.comprendLesCoord(xc, yc) && !Suivant.comprendLesCoord(xc, yc)&&!equiperAnimal&&!Precedent.comprendLesCoord(xc,yc)&&!OrbeChoisit);
 
 			if (Suivant.comprendLesCoord(xc, yc)) {
 				indice = (indice + 1) % Liste.taille();
 				cleardevice();
 				afficherJoueurs(indice, Liste);
-			}	
+			}
+			else if (Precedent.comprendLesCoord(xc,yc)) {
+				indice--;
+				if (indice < 0) {
+					indice = Liste.taille() - 1;
+				}
+				cleardevice();
+				afficherJoueurs(indice, Liste);
+			}
+			else if (equiperAnimal||OrbeChoisit) {
+				cleardevice();
+				afficherJoueurs(indice, Liste);
+			}
 	cleardevice();
 }
 void Affichage::afficherAnimaux(Animaux A) const
@@ -231,7 +363,7 @@ void Affichage::dessinerDegats(Personnage* P, int degats) const {
 	setcolor(RED);
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(x, y,txt);
-	delay(250);
+	delay(200);
 }
 
 void Affichage::dessinerSoins(Personnage* P, int soins) const {
@@ -252,7 +384,7 @@ void Affichage::dessinerSoins(Personnage* P, int soins) const {
 	
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(x, y, txt);
-	delay(250);
+	delay(200);
 }
 
 void Affichage::dessinerBouclier(Personnage* P, int soins) const {
@@ -274,7 +406,7 @@ void Affichage::dessinerBouclier(Personnage* P, int soins) const {
 
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(x, y, txt);
-	delay(250);
+	delay(200);
 }
 
 void Affichage::dessinerTexte(std::string texte)const {
@@ -499,7 +631,7 @@ void Affichage::dessinerAttaque(Personnage * Attaquant, Personnage * Defenseur) 
 		line(390, -45 + 70 * i, 370, -25 + 70 * i);
 		
 	}
-	delay(300);
+	delay(200);
 }
 
 Affichage::~Affichage()

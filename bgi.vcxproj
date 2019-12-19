@@ -71,6 +71,7 @@
     <ClCompile Include="Bouton.cpp" />
     <ClCompile Include="Cerf.cpp" />
     <ClCompile Include="Combat.cpp" />
+    <ClCompile Include="Creeper.cpp" />
     <ClCompile Include="dibutil.cxx" />
     <ClCompile Include="drawing.cxx" />
     <ClCompile Include="Equipes.cpp" />
@@ -78,10 +79,12 @@
     <ClCompile Include="Fabian.cpp" />
     <ClCompile Include="file.cxx" />
     <ClCompile Include="Fiona.cpp" />
+    <ClCompile Include="Ghast.cpp" />
     <ClCompile Include="Lapin.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="misc.cxx" />
     <ClCompile Include="mouse.cxx" />
+    <ClCompile Include="Moustick.cpp" />
     <ClCompile Include="Nicolas.cpp" />
     <ClCompile Include="Orbes.cpp" />
     <ClCompile Include="palette.cxx" />
@@ -89,10 +92,14 @@
     <ClCompile Include="Personnage.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Sanglier.cpp" />
+    <ClCompile Include="SqueletteArcher.cpp" />
     <ClCompile Include="text.cxx" />
     <ClCompile Include="Thomas.cpp" />
     <ClCompile Include="winbgi.cxx" />
     <ClCompile Include="winthread.cxx" />
+    <ClCompile Include="Wither.cpp" />
+    <ClCompile Include="WitherSquelette.cpp" />
+    <ClCompile Include="Zombie.cpp" />
     <ClCompile Include="Zones.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -103,22 +110,29 @@
     <ClInclude Include="Bouton.h" />
     <ClInclude Include="Cerf.h" />
     <ClInclude Include="Combat.h" />
+    <ClInclude Include="Creeper.h" />
     <ClInclude Include="dibutil.h" />
     <ClInclude Include="Equipes.h" />
     <ClInclude Include="Experiences.h" />
     <ClInclude Include="Fabian.h" />
     <ClInclude Include="Fiona.h" />
+    <ClInclude Include="Ghast.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="Lapin.h" />
+    <ClInclude Include="Moustick.h" />
     <ClInclude Include="Nicolas.h" />
     <ClInclude Include="Orbes.h" />
     <ClInclude Include="Personnage.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Sanglier.h" />
+    <ClInclude Include="SqueletteArcher.h" />
     <ClInclude Include="Thomas.h" />
     <ClInclude Include="winbgi.h" />
     <ClInclude Include="winbgim.h" />
     <ClInclude Include="winbgitypes.h" />
+    <ClInclude Include="Wither.h" />
+    <ClInclude Include="WitherSquelette.h" />
+    <ClInclude Include="Zombie.h" />
     <ClInclude Include="Zones.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

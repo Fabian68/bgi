@@ -12,6 +12,8 @@ class Affichage
 {
 public:
 	Affichage();
+
+	void affichageTexte(int x, int y, std::string texte);
 	
 	void animationCercle(int xDepart, int yDepart, int xArriver, int yArriver)const;
 	void afficherJoueurs(int indice, Equipes Liste) const;

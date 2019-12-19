@@ -49,13 +49,15 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 	Affichage().dessinerDeuxEquipes(_joueur, _ia);
 	int nbFoisJouer = 0;
 	int nbJouerPourAugmenterTour = nombrePersonnages / 2;
+	Affichage().affichageTexte(5, 5, "Tour : " + std::to_string(_tour + 1));
 	while (_joueur.estEnVie() && _ia.estEnVie()) {
 		for (int i = 0;i < _quiJoue.size();i++) {
 			if ((_joueur.estEnVie() && _ia.estEnVie())) {
 					if (_quiJoue[i]->estEnVie()) {
 						nbFoisJouer++;
 						if (nbFoisJouer%nbJouerPourAugmenterTour == 0) {
-							_tour++;	
+							_tour++;
+							Affichage().affichageTexte(5, 5, "Tour : " + std::to_string(_tour+1));
 							for (int i = 0; i < _joueur.taille(); i++) {
 								if (_joueur[i]->estEnVie()) {
 									_joueur[i]->passif(_tour);

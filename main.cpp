@@ -15,6 +15,7 @@
 #include "Affichage.h"
 #include "Bouton.h"
 #include "Fiona.h"
+#include "Moustick.h"
 
 #define PI 3.14159265
 
@@ -32,15 +33,12 @@ void reinitListeEquipe(Equipes& Liste) {
 	Animaux A;
 
 	Liste.vider();
-	
-	Fabian F(E, O, A);
-	Nicolas N(E, O, A);
-	Thomas T(E, O, A);
-	Fiona FF(E, O, A);
+
 	Liste.ajouterPerso(new Fabian(E,O,A));
 	Liste.ajouterPerso(new Nicolas(E, O, A));
 	Liste.ajouterPerso(new Thomas(E, O, A));
 	Liste.ajouterPerso(new Fiona(E, O, A));
+	Liste.ajouterPerso(new Moustick(E, O, A));
 
 }
 
@@ -85,7 +83,7 @@ int main()
 		Animaux A;
 		Affichage H;
 		
-		H.dessinerTexte("Version 1.05");
+		H.dessinerTexte("Version 1.07");
 		Meuchant.vider();
 		reinitListeEquipe(choix);
 		reinitEquipe(Gentil, choix);
