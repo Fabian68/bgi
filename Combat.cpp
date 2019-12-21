@@ -83,6 +83,10 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 		tirageRecompenses(Z, A, O);
 	}
 	Affichage().dessinerDeuxEquipes(_joueur, _ia);
+	std::cout << "Meilleur DPS : " << _joueur.meilleurDegats()->nom() << " " << _joueur.meilleurDegats()->stats().degatsProvoquer() << " degats." << std::endl;
+	std::cout << "Meilleur TANK : " << _joueur.meilleurTank()->nom() << " " << _joueur.meilleurTank()->stats().degatsRecu() << " degats." << std::endl;
+	std::cout << "Meilleur Soigneur : " << _joueur.meilleurSoigneur()->nom() << " " << _joueur.meilleurSoigneur()->stats().soinsDonner() << " vie." << std::endl;
+	std::cout << "Meilleur Bouclier : " << _joueur.meilleurBouclier()->nom() << " " << _joueur.meilleurBouclier()->stats().bouclierDonner() << " bouclier." << std::endl;
 	std::cout << "Combat finis" << std::endl;
 }
 
@@ -97,7 +101,7 @@ void Combat::tirageRecompenses(Zones Z,Animaux A,Orbes O) {
 		for (int j = 0; j < 9; j++) {
 			//Pour chaque rarete animal
 			for (int k = 1; k <= 5; k++) {
-				nombreDuTirage = pow(10000, k) ;
+				nombreDuTirage = pow(10000, k)*_joueur.taille() ;
 				if (Aleatoire(0, nombreDuTirage).entier() < chanceTirage) {
 					if (!A.animalDebloquer(indiceJoueur, j, k)) {
 						A.deblocageAnimal(indiceJoueur, j, k, _joueur[i]->nom());
@@ -107,7 +111,7 @@ void Combat::tirageRecompenses(Zones Z,Animaux A,Orbes O) {
 		}
 		//Pour chaque rareter d'orbe
 		for (int j = 1; j <= 5; j++) {
-			nombreDuTirage = pow(10000, j) ;
+			nombreDuTirage = pow(10000, j) * _joueur.taille();
 			if (Aleatoire(0, nombreDuTirage).entier() < chanceTirage) {
 				if (!O.orbeDebloquer(indiceJoueur,j)) {
 					O.deblocageOrbe(indiceJoueur, j, _joueur[i]->nom());

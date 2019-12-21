@@ -69,6 +69,7 @@
     <ClCompile Include="Animaux.cpp" />
     <ClCompile Include="bgiout.cxx" />
     <ClCompile Include="Bouton.cpp" />
+    <ClCompile Include="Bryan.cpp" />
     <ClCompile Include="Cerf.cpp" />
     <ClCompile Include="Combat.cpp" />
     <ClCompile Include="Creeper.cpp" />
@@ -93,6 +94,7 @@
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Sanglier.cpp" />
     <ClCompile Include="SqueletteArcher.cpp" />
+    <ClCompile Include="Statistiques.cpp" />
     <ClCompile Include="text.cxx" />
     <ClCompile Include="Thomas.cpp" />
     <ClCompile Include="winbgi.cxx" />
@@ -108,6 +110,7 @@
     <ClInclude Include="Animal.h" />
     <ClInclude Include="Animaux.h" />
     <ClInclude Include="Bouton.h" />
+    <ClInclude Include="Bryan.h" />
     <ClInclude Include="Cerf.h" />
     <ClInclude Include="Combat.h" />
     <ClInclude Include="Creeper.h" />
@@ -126,6 +129,7 @@
     <ClInclude Include="Point.h" />
     <ClInclude Include="Sanglier.h" />
     <ClInclude Include="SqueletteArcher.h" />
+    <ClInclude Include="Statistiques.h" />
     <ClInclude Include="Thomas.h" />
     <ClInclude Include="winbgi.h" />
     <ClInclude Include="winbgim.h" />

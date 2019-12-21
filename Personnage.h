@@ -5,6 +5,7 @@
 #include "Experiences.h"
 #include "Orbes.h"
 #include "Animaux.h"
+#include "Statistiques.h"
 class Personnage
 {
 public:
@@ -32,6 +33,7 @@ public:
 	void ajouterVie(int montant);
 	int xpDonner()const;
 	int soins(double RatioMin, double RatioMax) const;
+	Statistiques& stats();
 	int degats(double RatioMin, double RatioMax) const;
 	void soigner(int soins,Personnage * P);
 	void AjouterVie(int montant);
@@ -47,6 +49,8 @@ public:
 	bool habile() const;
 	void traitementAnimaux();
     void   Attaque(int Degat, Personnage * Defenseur) ;
+	void AttaqueBrut(int Degat, Personnage* Defenseur);
+	int degatsCritiques() const;
 	void setReduction(int montant);
 	void ajouterChanceDoubleAttaque(int montant);
 	void ajouterChanceHabileter(int montant);
@@ -72,6 +76,8 @@ public:
 	void setAnimal(Animal A);
 	Animal animal()const;
 	int rareterAnimal()const;
+	void ajouterCoupCritique(int pourcentage);
+	void ajouterDegatsCritique(int pourcentage);
 private:
 	int _id;
 	int _niveau;
@@ -97,5 +103,6 @@ private:
 	int _rareteAnimal;
 	Animal _animal;
 	std::string _nom;
+	Statistiques _S;
 };
 

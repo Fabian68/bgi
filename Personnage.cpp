@@ -65,9 +65,13 @@ int Personnage::vieMax() const
 
 void Personnage::reduireVie(int nb)
 {
-	_vie -= nb;
-	if (_vie < 0) {
+	if (_vie < nb) {
+		_S.ajouterDegatsRecu(_vie);
 		_vie = 0;
+	}
+	else {
+		_vie -= nb;
+		_S.ajouterDegatsRecu(nb);
 	}
 }
 
@@ -77,10 +81,12 @@ int Personnage::reduireBouclier(int nb)
 	if (nb > _bouclier) {
 		ecart = nb - _bouclier;
 		_bouclier = 0;
+		_S.ajouterDegatsRecu(ecart);
 	}
 	else {
 		ecart = 0;
 		_bouclier = _bouclier - nb;
+		_S.ajouterDegatsRecu(nb);
 	}
 	return ecart;
 }
@@ -144,6 +150,9 @@ int Personnage::soins(double RatioMin,double RatioMax) const {
 
 }
 
+Statistiques& Personnage::stats() {
+	return _S;
+}
 int Personnage::degats(double RatioMin, double RatioMax) const
 {
 	double degat = Aleatoire(RatioMin, RatioMax).decimal()*(force()*1.0);
@@ -157,8 +166,12 @@ int Personnage::degats(double RatioMin, double RatioMax) const
 }
 
 void Personnage::soigner(int soins,Personnage * P)
-{
-	if (P->estEnVie()) {
+{	if (P->estEnVie()) {
+		if ((soins + _vie) > _vieMax) {
+			soins = _vieMax - _vie;
+			
+		}
+		P->stats().ajouterSoinsDonner(soins);
 		P->AjouterVie(soins);	
 	}
 }
@@ -180,6 +193,11 @@ void Personnage::AjouterVie(int montant) {
 void Personnage::bouclier(int soins, Personnage* P)
 {
 	if (P->estEnVie()) {
+		if ((soins + _bouclier) >bouclierMax()) {
+			soins = bouclierMax() - _bouclier;
+
+		}
+		P->stats().ajouterBouclierDonner(soins);
 		P->AjouterBouclier(soins);
 	}
 }
@@ -296,12 +314,19 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 			this->traitementAnimaux();
 		
 			degatEffectif = Degat;
+			
 			std::cout << _nom << " attaque " <<Defenseur->indiceEquipe()<< Defenseur->nom();
 			std::cout << " "<<Degat << std::endl;
 			if (Defenseur->bouclier() > 0) {
 				Degat=Defenseur->reduireBouclier(Degat);
 			}
 			if (Degat > 0) {
+				if (Degat > Defenseur->vie()) {
+					Degat = Defenseur->vie();
+				}
+				_S.ajouterDegatsProvoquer(Degat);
+				_S.incrementerNbAttaques();
+				Defenseur->stats().incrementerNbAttaquesRecues();
 				Defenseur->reduireVie(Degat);
 			}
 			Affichage H;
@@ -323,6 +348,31 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 	
 }
 
+void  Personnage::AttaqueBrut(int Degat, Personnage* Defenseur)
+{
+	if (Defenseur->estAttaquable()) {
+			std::cout << _nom << " attaqueBrut " << Defenseur->indiceEquipe() << Defenseur->nom();
+			std::cout << " " << Degat << std::endl;
+			if (Degat > 0) {
+				if (Degat > Defenseur->vie()) {
+					Degat = Defenseur->vie();
+				}
+				_S.ajouterDegatsProvoquer(Degat);
+				_S.incrementerNbAttaques();
+				Defenseur->stats().incrementerNbAttaquesRecues();
+				Defenseur->reduireVie(Degat);
+			}
+			Affichage H;
+			H.dessinerAttaque(this, Defenseur);
+			H.dessinerJoueur(Defenseur->indiceEquipe() + 1, Defenseur->equipeAllier().ia(), Defenseur);
+			H.dessinerDegats(Defenseur, Degat);
+	}
+
+}
+
+int Personnage::degatsCritiques()const {
+	return _degatCritique;
+}
 void Personnage::setReduction(int montant) {
 	_pourcentageReduction = montant;
 }
@@ -430,4 +480,17 @@ Animal Personnage::animal() const
 int Personnage::rareterAnimal() const
 {
 	return _rareteAnimal;
+}
+
+void Personnage::ajouterCoupCritique(int pourcentage)
+{
+	_pourcentageCritique += pourcentage;
+	if (_pourcentageCritique > 100) {
+		_pourcentageCritique = 100;
+	}
+}
+
+void Personnage::ajouterDegatsCritique(int pourcentage)
+{
+	_degatCritique += pourcentage;
 }

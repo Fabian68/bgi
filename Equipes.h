@@ -17,6 +17,10 @@ public:
 	Personnage* plusLoinVivant();
 	Personnage* plusFaible();
 	Personnage* aleatoireEnVie();
+	Personnage* meilleurDegats();
+	Personnage* meilleurTank();
+	Personnage* meilleurSoigneur();
+	Personnage* meilleurBouclier();
 	void attaqueZone(int Degats,Personnage*Attaquant);
 	void soignerZone(int soins, Personnage* Soigneur);
 	void bouclierZone(int bouclier, Personnage* bouclierMan);

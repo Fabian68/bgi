@@ -129,6 +129,12 @@
     <ClCompile Include="Moustick.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Statistiques.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bryan.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="winbgim.h">
@@ -222,6 +228,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Moustick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Statistiques.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bryan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

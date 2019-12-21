@@ -16,6 +16,7 @@
 #include "Bouton.h"
 #include "Fiona.h"
 #include "Moustick.h"
+#include "Bryan.h"
 
 #define PI 3.14159265
 
@@ -39,6 +40,7 @@ void reinitListeEquipe(Equipes& Liste) {
 	Liste.ajouterPerso(new Thomas(E, O, A));
 	Liste.ajouterPerso(new Fiona(E, O, A));
 	Liste.ajouterPerso(new Moustick(E, O, A));
+	Liste.ajouterPerso(new Bryan(E, O, A));
 
 }
 

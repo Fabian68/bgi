@@ -87,6 +87,58 @@ Personnage* Equipes::aleatoireEnVie() {
 	
 }
 
+Personnage* Equipes::meilleurDegats()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().degatsProvoquer() > max) {
+			max = _equipe[i]->stats().degatsProvoquer();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurTank()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().degatsRecu() > max) {
+			max = _equipe[i]->stats().degatsRecu();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurSoigneur()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().soinsDonner() > max) {
+			max = _equipe[i]->stats().soinsDonner();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurBouclier()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().bouclierDonner() > max) {
+			max = _equipe[i]->stats().bouclierDonner();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
 void Equipes::attaqueZone(int Degats,Personnage * Attaquant)
 {
 	for (int i = 0; i < _equipe.size(); i++) {
