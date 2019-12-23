@@ -17,6 +17,7 @@ public:
 	std::string nom()const;
 	int vie()const;
 	int vieMax()const;
+	void ajouterVieMax(int montant);
 	void reduireVie(int nb);
 	int reduireBouclier(int nb);
 	int pourcentageVie()const;

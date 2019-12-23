@@ -104,6 +104,11 @@ void Nicolas::attaqueEnnemis() {
 
 void Nicolas::passif(int tour)
 {
+	if ((tour+1)%20==0 ) {
+	
+		Affichage().dessinerTexte(this->nom() + " ce fait mal en voulant impressioner ses amis ! ");
+		reduireVie(vie() / 2);
+	}
 	if (tour>100) {
 		int Degats = degats(tour/10.0, tour/5.0);
 		Affichage().dessinerTexte(this->nom() + " est enerver le combat est trop long ! ");

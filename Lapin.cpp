@@ -25,13 +25,13 @@ void Lapin::attaqueEnnemis() {
 	switch (choix) {
 
 	case 0:
-		DEGATS = degats(0.1, 0.2);
+		DEGATS = degats(0.2, 0.4);
 		Affichage().dessinerTexte(nom() + " bondissage ");
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 			Affichage().dessinerTexte(nom() + " Coup de bougnoule ");
-			DEGATS = degats(0.2, 0.8);
+			DEGATS = degats(0.4, 0.8);
 			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 			ajouterMana(1);
 		}

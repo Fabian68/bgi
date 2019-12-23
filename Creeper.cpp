@@ -34,7 +34,6 @@ void Creeper::attaqueEnnemis()
 		else {
 			if (tirage >= 50 && tirage < 76) {
 				DEGATS = degats(0.0, 2.5);
-				Attaque(DEGATS, equipeEnnemi()[i]);
 			}
 			else if (tirage >= 76 && tirage < 89) {
 				DEGATS = degats(2.5, 5.0);
@@ -61,5 +60,5 @@ void Creeper::passif(int tour)
 
 void Creeper::passifDefensif()
 {
-	attaqueEnnemis();
+	
 }

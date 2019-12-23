@@ -2,7 +2,7 @@
 #include "Affichage.h"
 #include <iostream>
 
-Fabian::Fabian(Experiences E,Orbes O,Animaux A): Personnage(0, E,O,A,"Fabian",2,4,4,10,10,10,7,10,10,17){}
+Fabian::Fabian(Experiences E,Orbes O,Animaux A): Personnage(0, E,O,A,"Fabian",2,4,4,10,10,10,-70,10,10,17){}
 void Fabian::attaqueEnnemis()
 {
 	int choix = choixAttaque();

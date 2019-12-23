@@ -65,14 +65,17 @@
   <ItemGroup>
     <ClCompile Include="Affichage.cpp" />
     <ClCompile Include="Aleatoire.cpp" />
+    <ClCompile Include="Amine.cpp" />
     <ClCompile Include="Animal.cpp" />
     <ClCompile Include="Animaux.cpp" />
     <ClCompile Include="bgiout.cxx" />
     <ClCompile Include="Bouton.cpp" />
     <ClCompile Include="Bryan.cpp" />
     <ClCompile Include="Cerf.cpp" />
+    <ClCompile Include="Cloe.cpp" />
     <ClCompile Include="Combat.cpp" />
     <ClCompile Include="Creeper.cpp" />
+    <ClCompile Include="David.cpp" />
     <ClCompile Include="dibutil.cxx" />
     <ClCompile Include="drawing.cxx" />
     <ClCompile Include="Equipes.cpp" />
@@ -81,6 +84,7 @@
     <ClCompile Include="file.cxx" />
     <ClCompile Include="Fiona.cpp" />
     <ClCompile Include="Ghast.cpp" />
+    <ClCompile Include="Isidore.cpp" />
     <ClCompile Include="Lapin.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="misc.cxx" />
@@ -93,6 +97,7 @@
     <ClCompile Include="Personnage.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Sanglier.cpp" />
+    <ClCompile Include="Sebastien.cpp" />
     <ClCompile Include="SqueletteArcher.cpp" />
     <ClCompile Include="Statistiques.cpp" />
     <ClCompile Include="text.cxx" />
@@ -107,13 +112,16 @@
   <ItemGroup>
     <ClInclude Include="Affichage.h" />
     <ClInclude Include="Aleatoire.h" />
+    <ClInclude Include="Amine.h" />
     <ClInclude Include="Animal.h" />
     <ClInclude Include="Animaux.h" />
     <ClInclude Include="Bouton.h" />
     <ClInclude Include="Bryan.h" />
     <ClInclude Include="Cerf.h" />
+    <ClInclude Include="Cloe.h" />
     <ClInclude Include="Combat.h" />
     <ClInclude Include="Creeper.h" />
+    <ClInclude Include="David.h" />
     <ClInclude Include="dibutil.h" />
     <ClInclude Include="Equipes.h" />
     <ClInclude Include="Experiences.h" />
@@ -121,6 +129,7 @@
     <ClInclude Include="Fiona.h" />
     <ClInclude Include="Ghast.h" />
     <ClInclude Include="graphics.h" />
+    <ClInclude Include="Isidore.h" />
     <ClInclude Include="Lapin.h" />
     <ClInclude Include="Moustick.h" />
     <ClInclude Include="Nicolas.h" />
@@ -128,6 +137,7 @@
     <ClInclude Include="Personnage.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Sanglier.h" />
+    <ClInclude Include="Sebastien.h" />
     <ClInclude Include="SqueletteArcher.h" />
     <ClInclude Include="Statistiques.h" />
     <ClInclude Include="Thomas.h" />

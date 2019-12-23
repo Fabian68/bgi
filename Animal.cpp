@@ -15,8 +15,8 @@ Animal::Animal(int numero)
 	case 0:
 		for (int i = 0; i < 5; i++) {
 			_pourcentagesActivations[i] = 6 + 3 * i;
-			_ratioMin[i] = 0.08 * i;
-			_ratioMax[i] = 0.08 +0.08*i;
+			_ratioMin[i] = 0.02 * i;
+			_ratioMax[i] = 0.04 +0.04*i;
 			_type = " soins de zone ";
 		}
 		break;
@@ -63,8 +63,8 @@ Animal::Animal(int numero)
 	case 6:
 		for (int i = 0; i < 5; i++) {
 			_pourcentagesActivations[i] = 3 + 4 * i;
-			_ratioMin[i] = 0.04 * i;
-			_ratioMax[i] = 0.09 * (i*1.0+1);
+			_ratioMin[i] = 0.02 * i;
+			_ratioMax[i] = 0.03 * (i*1.0+1);
 			_type = " bouclier de zone ";
 		}
 		break;

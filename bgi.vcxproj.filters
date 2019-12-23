@@ -135,6 +135,21 @@
     <ClCompile Include="Bryan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="David.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Isidore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sebastien.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cloe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Amine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="winbgim.h">
@@ -234,6 +249,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Bryan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="David.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Isidore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sebastien.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cloe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Amine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

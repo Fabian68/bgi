@@ -9,6 +9,7 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 	int somme = 0;
 	int max = INT_MIN;
 	int nombrePersonnages = _joueur.taille() + _ia.taille();
+	std::cout << nombrePersonnages << " ";
 	int xp;
 	xp = _ia.xpDonner();
 	std::vector<int> nombreTourJoueur(_joueur.taille());
@@ -20,20 +21,21 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 		somme += _ia.perso(i)->vitesse();
 	}
 	int moyenne = somme / nombrePersonnages;
-
+	std::cout << moyenne << " ";
 	for (int i = 0;i < _joueur.taille();i++) {
 		nombreTourJoueur[i] = ceil((_joueur.perso(i)->vitesse()*1.0) / (moyenne*1.0));
 		if (nombreTourJoueur[i] > max) {
 			max = nombreTourJoueur[i];
 		}
 	}
+	
 	for (int i = 0;i < _ia.taille();i++) {
 		nombreTourIa[i] = ceil((_ia.perso(i)->vitesse() *1.0) / (moyenne*1.0));
 		if (nombreTourIa[i] > max) {
 			max = nombreTourIa[i];
 		}
-		std::cout << max << std::endl;
 	}
+	std::cout << max << " ";
 	for (int j = max;j > 0;j--) {
 		for (int i = 0;i < _joueur.taille();i++) {
 			if (nombreTourJoueur[i] >= j) {
@@ -92,17 +94,16 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 
 void Combat::tirageRecompenses(Zones Z,Animaux A,Orbes O) {
 	int indiceJoueur;
-	int chanceTirage = Z.niveauActuel() * Z.niveauActuel() + Z.niveauMax();
-	int nombreDuTirage;
+	int nombreDutirage = _joueur.taille()*(1000000000-Z.niveauActuel()*Z.niveauActuel() * 10 + Z.niveauMax());
+	int chanceTirage;
 	//Pour chaque perso
 	for (int i = 0; i < _joueur.taille(); i++) {
 		//Pour chaque animal
 		indiceJoueur = _joueur[i]->id();
 		for (int j = 0; j < 9; j++) {
 			//Pour chaque rarete animal
-			for (int k = 1; k <= 5; k++) {
-				nombreDuTirage = pow(10000, k)*_joueur.taille() ;
-				if (Aleatoire(0, nombreDuTirage).entier() < chanceTirage) {
+			for (int k = 1,chanceTirage=10000; k <= 5; k++,chanceTirage/=10) {
+				if (Aleatoire(0, nombreDutirage).entier() <= chanceTirage) {
 					if (!A.animalDebloquer(indiceJoueur, j, k)) {
 						A.deblocageAnimal(indiceJoueur, j, k, _joueur[i]->nom());
 					}
@@ -110,9 +111,8 @@ void Combat::tirageRecompenses(Zones Z,Animaux A,Orbes O) {
 			}
 		}
 		//Pour chaque rareter d'orbe
-		for (int j = 1; j <= 5; j++) {
-			nombreDuTirage = pow(10000, j) * _joueur.taille();
-			if (Aleatoire(0, nombreDuTirage).entier() < chanceTirage) {
+		for (int j = 1, chanceTirage = 10000; j <= 5; j++, chanceTirage /= 10) {
+			if (Aleatoire(0, nombreDutirage).entier() <= chanceTirage) {
 				if (!O.orbeDebloquer(indiceJoueur,j)) {
 					O.deblocageOrbe(indiceJoueur, j, _joueur[i]->nom());
 				}

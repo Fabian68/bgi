@@ -62,6 +62,9 @@ int Personnage::vieMax() const
 {
 	return _vieMax;
 }
+void Personnage::ajouterVieMax(int montant) {
+	_vieMax += montant;
+}
 
 void Personnage::reduireVie(int nb)
 {
@@ -146,7 +149,7 @@ int Personnage::soins(double RatioMin,double RatioMax) const {
 	if (Aleatoire().entier() <= _chanceHabilete) {
 		SOINS *= 2;
 	}
-	return static_cast<int>(SOINS);
+	return round(SOINS);
 
 }
 
@@ -156,13 +159,13 @@ Statistiques& Personnage::stats() {
 int Personnage::degats(double RatioMin, double RatioMax) const
 {
 	double degat = Aleatoire(RatioMin, RatioMax).decimal()*(force()*1.0);
-	if (Aleatoire().entier() < _pourcentageCritique) {
+	if (Aleatoire().entier() <= _pourcentageCritique) {
 		degat *= (_degatCritique / 100.0 + 1);
 	}
-	if (Aleatoire().entier() < _chanceHabilete) {
+	if (Aleatoire().entier() <= _chanceHabilete) {
 		degat *= 2;
 	}
-	return static_cast<int>(degat);
+	return round(degat);
 }
 
 void Personnage::soigner(int soins,Personnage * P)
@@ -222,7 +225,7 @@ void Personnage::ajouterBouclier(int montant) {
 	_bouclier += montant;
 }
 int Personnage::bouclierMax()const {
-	return (_force * 10 + _vieMax)/2;
+	return (_force * 10 + _vieMax)/4;
 }
 bool Personnage::estAttaquable()const {
 	return (estEnVie() && _pourcentageEsquive < Aleatoire().entier());
@@ -384,8 +387,8 @@ void Personnage::ajouterChanceHabileter(int montant) {
 }
 void Personnage::ajouterReduction(int montant) {
 	_pourcentageReduction += montant;
-	if (_pourcentageReduction >= 100) {
-		_pourcentageReduction = 99;
+	if (_pourcentageReduction >= 90) {
+		_pourcentageReduction = 90;
 	}
 }
 int Personnage::bouclier()const {

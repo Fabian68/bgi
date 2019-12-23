@@ -547,14 +547,14 @@ void Affichage::menuModifierEquipe(Equipes& Gentil, Equipes choix,int max) const
 	else {
 		afficherTexte(400, 20, "Maximum de personnages selectionnable atteintes");
 	}
-	Bouton retirer(100, 400, "Retirer le dernier personnage");
+	Bouton retirer(100, 700, "Retirer le dernier personnage");
 	if (Gentil.taille() > 0) {
 		retirer.afficher();
 	}
 
-	Bouton Sauvegarder(400, 400, "Sauvegarder");
+	Bouton Sauvegarder(600, 700, "Sauvegarder");
 	Sauvegarder.afficher();
-	Bouton Retour(600, 400, "Retour");
+	Bouton Retour(800, 700, "Retour");
 	Retour.afficher();
 	const int DELAY = 50; // Milliseconds of delay between checks
 	int xc, yc;

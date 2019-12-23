@@ -1,7 +1,7 @@
 #include "Thomas.h"
 #include "Affichage.h"
 #include "Aleatoire.h"
-Thomas::Thomas(Experiences E, Orbes O, Animaux A) : Personnage(2, E, O, A, "Thomas", 6, 3, 1, 0, 10, 80, 3, 80, 0, 3)
+Thomas::Thomas(Experiences E, Orbes O, Animaux A) : Personnage(2, E, O, A, "Thomas", 6, 3, 1, 0, 10, 80, 3, 8, 0, 3)
 {
 }
 
@@ -72,7 +72,7 @@ void Thomas::passif(int tour)
 void Thomas::passifDefensif()
 {
 	if (Aleatoire(0, 101).entier() <= 10) {
-		AjouterBouclier(round(vieMax()*1.02));
+		AjouterBouclier(round(vieMax()*0.02));
 	
 	}
 }
