@@ -14,8 +14,8 @@ void Thomas::attaqueEnnemis()
 	switch (choix) {
 
 	case 0:
-		DEGATS = degats(0.15, 0.45);
-		DEGATS += round(0.10 * vie()+0.05 * vieMax());
+		DEGATS = degats(0.1, 0.30);
+		DEGATS += round(0.05 * vie()+0.025 * vieMax());
 		Affichage().dessinerTexte(nom() + " coup de bide ! ");
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 		if (chanceHabileter() > Aleatoire(0, 101).entier()) {

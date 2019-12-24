@@ -13,6 +13,7 @@ public:
 	int taille()const;
 	Personnage* operator[](int i)const;
 	Personnage* perso(int i);
+	void setIndiceANul(int indice);
 	Personnage* plusProcheVivant();
 	Personnage* plusLoinVivant();
 	Personnage* plusFaible();

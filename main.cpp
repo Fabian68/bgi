@@ -39,7 +39,7 @@ void reinitListeEquipe(Equipes& Liste) {
 	Animaux A;
 
 	Liste.vider();
-
+	
 	Liste.ajouterPerso(new Fabian(E,O,A));
 	Liste.ajouterPerso(new Nicolas(E, O, A));
 	Liste.ajouterPerso(new Thomas(E, O, A));
@@ -95,7 +95,7 @@ int main()
 		Animaux A;
 		Affichage H;
 		
-		H.dessinerTexte("Version 1.09");
+		H.dessinerTexte("Version 1.10.02");
 		Meuchant.vider();
 		reinitListeEquipe(choix);
 		reinitEquipe(Gentil, choix);

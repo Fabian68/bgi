@@ -38,6 +38,8 @@ Personnage::Personnage(int id,Experiences E,Orbes O,Animaux A, std::string nom, 
 
 Personnage::~Personnage()
 {
+	
+
 }
 
 int Personnage::id()const 

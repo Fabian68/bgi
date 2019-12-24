@@ -29,6 +29,10 @@ Personnage*  Equipes::perso(int i)
 	return _equipe[i];
 }
 
+void Equipes::setIndiceANul(int indice) {
+	_equipe[indice]=nullptr;
+}
+
 Personnage* Equipes::plusProcheVivant() 
 {
 	int trouver = false;

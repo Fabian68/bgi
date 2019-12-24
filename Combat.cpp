@@ -102,7 +102,7 @@ void Combat::tirageRecompenses(Zones Z,Animaux A,Orbes O) {
 		indiceJoueur = _joueur[i]->id();
 		for (int j = 0; j < 9; j++) {
 			//Pour chaque rarete animal
-			for (int k = 1,chanceTirage=10000; k <= 5; k++,chanceTirage/=10) {
+			for (int k = 1,chanceTirage=625; k <= 5; k++,chanceTirage/=5) {
 				if (Aleatoire(0, nombreDutirage).entier() <= chanceTirage) {
 					if (!A.animalDebloquer(indiceJoueur, j, k)) {
 						A.deblocageAnimal(indiceJoueur, j, k, _joueur[i]->nom());
@@ -111,7 +111,7 @@ void Combat::tirageRecompenses(Zones Z,Animaux A,Orbes O) {
 			}
 		}
 		//Pour chaque rareter d'orbe
-		for (int j = 1, chanceTirage = 10000; j <= 5; j++, chanceTirage /= 10) {
+		for (int j = 1, chanceTirage = 625; j <= 5; j++, chanceTirage /= 5) {
 			if (Aleatoire(0, nombreDutirage).entier() <= chanceTirage) {
 				if (!O.orbeDebloquer(indiceJoueur,j)) {
 					O.deblocageOrbe(indiceJoueur, j, _joueur[i]->nom());
