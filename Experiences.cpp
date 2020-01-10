@@ -12,6 +12,9 @@ Experiences::Experiences()
 		}
 		os.close();
 	}
+	else {
+		fclose(file);
+	}
 	std::ifstream is("T1.txt");
 
 	int i = 0;

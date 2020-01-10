@@ -17,6 +17,9 @@ Zones::Zones()
 		os << 1 << std::endl;
 		os.close();
 	}
+	else {
+		fclose(file);
+	}
 	std::ifstream is("Zones.txt");	
 	is >> _niveauMax;
 	is.close();

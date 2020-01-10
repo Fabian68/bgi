@@ -164,7 +164,21 @@ void Equipes::bouclierZone(int montantBouclier, Personnage* bouclierMan)
 }
 void Equipes::vider()
 {
+/*for (int i = 0;i < _equipe.size();i++) {
+		if (! nullptr) {
+			delete _equipe[i];
+		}
+	}*/
 	_equipe.resize(0);
+}
+void Equipes::liberer()
+{
+	for (int i = 0;i < _equipe.size();i++) {
+		if (!nullptr) {
+			delete _equipe[i];
+		}
+	}
+		_equipe.resize(0);
 }
 void Equipes::ajouterExperience(int xp, Experiences E) {
 	xp /= _equipe.size();
@@ -186,6 +200,10 @@ void Equipes::chargerEquipe(Equipes Liste)
 		}
 		os.close();
 	}
+	else {
+		fclose(file);
+	}
+	
 
 	std::ifstream is("monEquipe.txt");
 	int perso;

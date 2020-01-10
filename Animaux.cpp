@@ -17,6 +17,9 @@ Animaux::Animaux()
 		}
 		os.close();
 	}
+	else {
+		fclose(file);
+	}
 
 	_animauxPosseder.resize(25);
 	_animauxUtiliser.resize(25);

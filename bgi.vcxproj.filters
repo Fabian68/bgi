@@ -150,6 +150,12 @@
     <ClCompile Include="Amine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Florian.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JeanBaptiste.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="winbgim.h">
@@ -264,6 +270,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Amine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Florian.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JeanBaptiste.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

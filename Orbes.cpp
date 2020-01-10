@@ -18,6 +18,9 @@ Orbes::Orbes()
 		}
 		os.close();
 	}
+	else {
+		fclose(file);
+	}
 
 	_orbesLVL.resize(25);
 	_choixOrbes.resize(25);

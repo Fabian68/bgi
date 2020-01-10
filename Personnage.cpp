@@ -499,3 +499,5 @@ void Personnage::ajouterDegatsCritique(int pourcentage)
 {
 	_degatCritique += pourcentage;
 }
+
+

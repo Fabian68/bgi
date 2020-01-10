@@ -83,8 +83,10 @@
     <ClCompile Include="Fabian.cpp" />
     <ClCompile Include="file.cxx" />
     <ClCompile Include="Fiona.cpp" />
+    <ClCompile Include="Florian.cpp" />
     <ClCompile Include="Ghast.cpp" />
     <ClCompile Include="Isidore.cpp" />
+    <ClCompile Include="JeanBaptiste.cpp" />
     <ClCompile Include="Lapin.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="misc.cxx" />
@@ -127,9 +129,11 @@
     <ClInclude Include="Experiences.h" />
     <ClInclude Include="Fabian.h" />
     <ClInclude Include="Fiona.h" />
+    <ClInclude Include="Florian.h" />
     <ClInclude Include="Ghast.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="Isidore.h" />
+    <ClInclude Include="JeanBaptiste.h" />
     <ClInclude Include="Lapin.h" />
     <ClInclude Include="Moustick.h" />
     <ClInclude Include="Nicolas.h" />

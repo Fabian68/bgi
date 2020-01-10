@@ -22,6 +22,7 @@
 #include "Sebastien.h"
 #include "Cloe.h"
 #include "Amine.h"
+#include "Florian.h"
 
 #define PI 3.14159265
 
@@ -38,7 +39,7 @@ void reinitListeEquipe(Equipes& Liste) {
 	Orbes O;
 	Animaux A;
 
-	Liste.vider();
+	Liste.liberer();
 	
 	Liste.ajouterPerso(new Fabian(E,O,A));
 	Liste.ajouterPerso(new Nicolas(E, O, A));
@@ -51,10 +52,11 @@ void reinitListeEquipe(Equipes& Liste) {
 	Liste.ajouterPerso(new Sebastien(E, O, A));
 	Liste.ajouterPerso(new Cloe(E, O, A));
 	Liste.ajouterPerso(new Amine(E, O, A));
+	Liste.ajouterPerso(new Florian(E,O,A));
 
 }
 
-void reinitEquipe(Equipes& monEquipe, Equipes ListePerso) {
+void reinitEquipe(Equipes& monEquipe, Equipes & ListePerso) {
 	monEquipe.vider();
 	monEquipe.chargerEquipe(ListePerso);
 }
@@ -95,8 +97,8 @@ int main()
 		Animaux A;
 		Affichage H;
 		
-		H.dessinerTexte("Version 1.10.02");
-		Meuchant.vider();
+		H.dessinerTexte("Version 1.11");
+		Meuchant.liberer();
 		reinitListeEquipe(choix);
 		reinitEquipe(Gentil, choix);
 		modifierEquipe.afficher();
@@ -125,9 +127,10 @@ int main()
 			Affichage().choixNiveau(Z, niveauChoisit,repetition);
 			Z.choixNiveau(niveauChoisit);
 			for (int i = 0; i < repetition; i++) {
+				std::cout << i+1 << std::endl;
 				Orbes O;
 				Animaux A;
-				Meuchant.vider();
+				Meuchant.liberer();
 				reinitListeEquipe(choix);
 				reinitEquipe(Gentil, choix);
 				Z.equipeEnZone(Z.niveauActuel(), Meuchant);

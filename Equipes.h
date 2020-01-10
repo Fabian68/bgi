@@ -26,10 +26,11 @@ public:
 	void soignerZone(int soins, Personnage* Soigneur);
 	void bouclierZone(int bouclier, Personnage* bouclierMan);
 	void vider();
+	void liberer();
 	void chargerEquipe(Equipes Liste);
 	void sauvegarderEquipe();
 	int xpDonner() const;
-	void ajouterPerso(Personnage* P);
+	void ajouterPerso(Personnage * P);
 	void retirerDernierPerso();
 	void ajouterExperience(int xp, Experiences E);
 	void setAllierEtEnnemis(Equipes E);
