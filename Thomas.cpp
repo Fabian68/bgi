@@ -15,13 +15,13 @@ void Thomas::attaqueEnnemis()
 
 	case 0:
 		DEGATS = degats(0.1, 0.30);
-		DEGATS += round(0.05 * vie()+0.025 * vieMax());
+		DEGATS += round(0.03 * vie()+0.01 * vieMax());
 		Affichage().dessinerTexte(nom() + " coup de bide ! ");
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 		if (chanceHabileter() > Aleatoire(0, 101).entier()) {
 			Affichage().dessinerTexte(nom() + " pete un gros coups, ca asphyxie tout le monde ! ");
 			for (int i = 0; i < equipeEnnemi().taille() ; i++) {
-				DEGATS = round(Aleatoire(0.02, 0.06).decimal() * (vie()*1.0 + bouclier()*1.0));
+				DEGATS = round(Aleatoire(0.01, 0.05).decimal() * (vie()*1.0 + bouclier()*1.0));
 				Attaque(DEGATS, equipeEnnemi()[i]);
 			}
 			ajouterMana(1);

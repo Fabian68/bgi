@@ -36,7 +36,7 @@ void Amine::attaqueEnnemis()
 	case 3:
 		Affichage().dessinerTexte(nom() + " ASURA STRIKE ! ");
 		DEGATS = degats(7.5, 12.5);
-		reduireBouclier(niveau() * 100);
+		reduireBouclier(bouclierMax());
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 		ajouterMana(-3);
 		break;
@@ -47,8 +47,9 @@ void Amine::passif(int tour)
 {
 	int DEGATS;
 	double ratio = equipeEnnemi().plusProcheVivant()->pourcentageReduction() / 30.0;
-	Affichage().dessinerTexte(nom() + " fist du dragon ! ");
+	
 	if ((tour + 1) % 10 == 0) {
+		Affichage().dessinerTexte(nom() + " fist du dragon ! ");
 		DEGATS = degats(ratio, ratio / 3.0);
 		AttaqueBrut(DEGATS, equipeEnnemi().plusProcheVivant());
 	}

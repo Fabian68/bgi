@@ -23,6 +23,9 @@
 #include "Cloe.h"
 #include "Amine.h"
 #include "Florian.h"
+#include "JeanBaptiste.h"
+#include "Maelle.h"
+#include "Pollyana.h"
 
 #define PI 3.14159265
 
@@ -53,6 +56,9 @@ void reinitListeEquipe(Equipes& Liste) {
 	Liste.ajouterPerso(new Cloe(E, O, A));
 	Liste.ajouterPerso(new Amine(E, O, A));
 	Liste.ajouterPerso(new Florian(E,O,A));
+	Liste.ajouterPerso(new JeanBaptiste(E, O, A));
+	Liste.ajouterPerso(new Maelle(E, O, A));
+	Liste.ajouterPerso(new Pollyana(E, O, A));
 
 }
 
@@ -97,7 +103,7 @@ int main()
 		Animaux A;
 		Affichage H;
 		
-		H.dessinerTexte("Version 1.11");
+		H.dessinerTexte("Version 1.14 ");
 		Meuchant.liberer();
 		reinitListeEquipe(choix);
 		reinitEquipe(Gentil, choix);

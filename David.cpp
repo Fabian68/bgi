@@ -39,10 +39,10 @@ void David::attaqueEnnemis()
 		else {
 			for (int i = 0;i < equipeAllier().taille();i++) {
 				SOINS = soins(ratio / 8.0, ratio / 4.0);
-				soigner(SOINS, equipeEnnemi()[i]);
+				soigner(SOINS, equipeAllier()[i]);
 
 				SOINS = soins(ratio / 10.0, ratio / 5.0);
-				bouclier(SOINS, equipeEnnemi()[i]);
+				bouclier(SOINS, equipeAllier()[i]);
 			}
 		}
 		ajouterMana(+1);

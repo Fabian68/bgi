@@ -58,7 +58,7 @@ void Sebastien::attaqueEnnemis()
 	case 2:
 
 		Affichage().dessinerTexte(nom() + " coup épée ");
-		DEGATS = degats(3.0, 6.0);
+		DEGATS = degats(2.0, 4.0);
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 			DEGATS = degats(1.5, 3.0);

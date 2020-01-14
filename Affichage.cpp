@@ -81,6 +81,170 @@ void Affichage::afficherJoueurs(int indice,Equipes Liste)const {
 		str = "Chance de blocage : " + std::to_string(Liste[indice]->pourcentageBlocage());
 		afficherTexte(x, y+220, str);
 	
+		int x2 = x - 20;
+		switch (indice) {
+		case 0:
+			afficherTexte(x2, y + 250, "Soigne l'allier le plus faible chaque tour");
+			afficherTexte(x2, y + 270, "Augmente sa resistance tout les 7 tours");
+			afficherTexte(x2, y + 290, "Augmente sa force tout les 17 tours");
+			afficherTexte(x2, y + 310, "C1: Attaque ennemi proche ( vie ennemi ");
+			afficherTexte(x2, y + 330, "force Fabian)");
+			afficherTexte(x2, y + 350, "C2: Attaque comme précédente mais plus puissant");
+			afficherTexte(x2, y + 370, "C3: Beaucoup d'attaques mais faible degats");
+			afficherTexte(x2, y + 390, "ennemi aleatoire (force)");
+			afficherTexte(x2, y + 410, "C4: Beaucoup d'attaques mais degats moyen");
+			afficherTexte(x2, y + 430, "ennemis aleatoire (force)");
+			break;
+		case 1:
+			afficherTexte(x2, y + 250, "Tout les 20 tours s'inflige des degats");
+			afficherTexte(x2, y + 270, "A partir de 100 tour attaque les ennemis avec");
+			afficherTexte(x2, y + 290, "une nouvelle competence (force)");
+			afficherTexte(x2, y + 310, "Contre attaque quand se fait attaquer (force)");
+			afficherTexte(x2, y + 330, "C1: Attaque cible proche, degats correct ");
+			afficherTexte(x2, y + 350, "(force)");
+			afficherTexte(x2, y + 370, "C2: Attaque puissante (force)");
+			afficherTexte(x2, y + 390, "C3: Beaucoup d'attaques mais degats moyen");
+			afficherTexte(x2, y + 410, "(force)");
+			afficherTexte(x2, y + 430, "C4: Augmente la force des alliers");
+			afficherTexte(x2, y + 450, "Prout");
+			break;
+		case 2:
+			afficherTexte(x2, y + 250, "Tout les 5 tours se soigne (force)");
+			afficherTexte(x2, y + 270, "Quand se fait attaquer il se donne un bouclier");
+			afficherTexte(x2, y + 290, "a partir d'une partie de sa vie maximum");
+			afficherTexte(x2, y + 310, "---");
+			afficherTexte(x2, y + 330, "C1: Attaque cible proche, degats correct ");
+			afficherTexte(x2, y + 350, "(force,vie,vie max)");
+			afficherTexte(x2, y + 370, "C1 BIS: Attaque de zone (PEC vie et bouclier)");
+			afficherTexte(x2, y + 390, "C2: Saute dans le tas, degats moyen (force)");
+			afficherTexte(x2, y + 410, "C3: Soins moyen de l'equipe (force)");
+			afficherTexte(x2, y + 430, "C4: Attaque ennemi aleatoire ");
+			afficherTexte(x2, y + 450, "force,vie,vie max, bouclier ");
+			afficherTexte(x2, y + 470, "Prout");
+			break;
+		case 3:
+			afficherTexte(x2, y + 250, "Tout les 10 tours appelle un animal pour l'aider");
+			afficherTexte(x2, y + 270, "maximum 2 animaux, ils defendent Fiona");
+			afficherTexte(x2, y + 290, "Augmente sa reduction lorsque elle se fait attaquer");
+			afficherTexte(x2, y + 310, "---");
+			afficherTexte(x2, y + 330, "C1: Attaque cible proche, degats correct (force)");
+			afficherTexte(x2, y + 350, "C2: Soigne le plus faible(force)");
+			afficherTexte(x2, y + 370, "C3: Attaque 3 ennemis (force)");
+			afficherTexte(x2, y + 390, "et reduit leurs resistances");
+			afficherTexte(x2, y + 430, "C4: Attaque lennemi le plus proche(force) ");
+			afficherTexte(x2, y + 450, "et reduit fortement sa resistance ");
+			afficherTexte(x2, y + 470, "Prout");
+			break;
+		case 4:
+			afficherTexte(x2, y + 250, "Moins il a de pv plus il est resistant");
+			afficherTexte(x2, y + 270, "C1: Attaque l'ennemi le plus proche(force)");
+			afficherTexte(x2, y + 290, "moins il a de vie plus il attaque");
+			afficherTexte(x2, y + 310, "et la puissance de l'attaque augmente");
+			afficherTexte(x2, y + 330, "C2: Attaque puissante ennemi proche (force)");
+			afficherTexte(x2, y + 350, "C3: Comme C1 mais plus puissant");
+			afficherTexte(x2, y + 370, "C4: Divise la vie par 2 et rejoue ");
+			break;
+		case 5:
+			afficherTexte(x2, y + 250, "Augmente son pourcentage de degats critique");
+			afficherTexte(x2, y + 270, "et ses degats critique chaque tour");
+			afficherTexte(x2, y + 290, "Peut parfois se bouclier quand se fait attaquer");
+			afficherTexte(x2, y + 310, "(vitesse)");
+			afficherTexte(x2, y + 330, "Fait une attaque faible brut avant chaque C (force)");
+			afficherTexte(x2, y + 350, "C1: Attaque l'ennemi le plus proche (force) ");
+			afficherTexte(x2, y + 370, "C2: Attaque l'ennemi le plus faible (force) ");
+			afficherTexte(x2, y + 390, "degats augmentent en fonction de la vie ennemi");
+			afficherTexte(x2, y + 410, "C3: Attaque brut l'ennemi le plus loin (force)");
+			afficherTexte(x2, y + 430, "C4: Ajoutes stats critique et se soigne (force)");
+			break;
+		case 6:
+			afficherTexte(x2, y + 250, "Se soigne tout les tours (vie max)");
+			afficherTexte(x2, y + 270, "C1: Attaque le plus faible (vitesse)");
+			afficherTexte(x2, y + 290, "C2: Fait le passif");
+			afficherTexte(x2, y + 310, "C3: Soigne et bouclier l'equipe(vitesse et force)");
+			afficherTexte(x2, y + 330, "ou attaque l'equipe ennemi(vitesse et force)");
+			afficherTexte(x2, y + 350, "C4: Attaque des ennemi aleatoire avec de gros ");
+			afficherTexte(x2, y + 370, "degats (vitesse)");
+			break;
+		case 7:
+			afficherTexte(x2, y + 250, "Augmente sa force et vie maximum tout les 5 tours");
+			afficherTexte(x2, y + 270, "Se soigne entièrement tout les 30 tours");
+			afficherTexte(x2, y + 290, "C1: Faible chance d'attaque l'ennemi proche");
+			afficherTexte(x2, y + 310, "gros degats (force) ");
+			afficherTexte(x2, y + 330, "C2: Se soigne longuement(force) ");
+			afficherTexte(x2, y + 350, "C3: Reduit la resistance des ennemis");
+			afficherTexte(x2, y + 370, "C4: Attaque un ennemi aleatoire gros degats (force)");
+			afficherTexte(x2, y + 390, "C4: reduit egalement sa resistance");
+			break;
+		case 8:
+			afficherTexte(x2, y + 250, "Si ne se fait pas toucher pendant 4 tous");
+			afficherTexte(x2, y + 270, "remplie son bouclier");
+			afficherTexte(x2, y + 290, "Augmente ses chances de doubles attaques");
+			afficherTexte(x2, y + 310, "quand se fait attaquer");
+			afficherTexte(x2, y + 330, "C1: Enormément d'Attaque sur l'ennemi le plus ");
+			afficherTexte(x2, y + 350, "proche,faible degats (force)");
+			afficherTexte(x2, y + 370, "C2: Attaque l'ennemi le plus faible (force) ");
+			afficherTexte(x2, y + 390, "peut attaquer plusieurs fois");
+			afficherTexte(x2, y + 410, "C3: Attaque puissante ennemi proche (force)");
+			afficherTexte(x2, y + 430, "C4: Attaque de zone variable (force)");
+			break;
+		case 9:
+			afficherTexte(x2, y + 250, "S'enleve de la vie tout les 5 tours");
+			afficherTexte(x2, y + 270, "Augmente sa reduction quand ce fait attaquer");
+			afficherTexte(x2, y + 350, "C1: Soins et bouclier de zone multiple (force) ");
+			afficherTexte(x2, y + 370, "C2: Ajoute force et reduction a un allier ");
+			afficherTexte(x2, y + 390, "aleatoire (niveau)");
+			afficherTexte(x2, y + 410, "C3: Soigne l'equipe (force)");
+			afficherTexte(x2, y + 430, "C4: Attaque l'equipe ennemi (force)");
+			break;
+		case 10:
+			afficherTexte(x2, y + 250, "Bouclier lorsqu'il ce fait attaquer(niveau)");
+			afficherTexte(x2, y + 270, "Peut attaquer tout les tours avec la competence");
+			afficherTexte(x2, y + 290, "Competence tout les 10 tours :");
+			afficherTexte(x2, y + 310, "Attaque brut ennemi proche(force)");
+			afficherTexte(x2, y + 330, "plus lennemi est resistant plus les degats sont fort");
+			afficherTexte(x2, y + 350, "C1: Attaque ennemi proche (force) ");
+			afficherTexte(x2, y + 370, "reduit fortement sa resistance");
+			afficherTexte(x2, y + 390, "C2: Se soigne et bouclier (force) ");
+			afficherTexte(x2, y + 410, "C3: Ne fait rien");
+			afficherTexte(x2, y + 430, "C4: ENORME ataque ennemi proche (force)");
+			break;
+		case 11:
+			afficherTexte(x2, y + 250, "Tout les 5 tours augmente la reduction");
+			afficherTexte(x2, y + 270, "de toute l'équipe");
+			afficherTexte(x2, y + 290, "Tout les 50 tours augmente les stats de toute ");
+			afficherTexte(x2, y + 310, "l'équipe, double attaque, habileter et CC");
+			afficherTexte(x2, y + 330, "C1: Se bouclier(force) peut aussi attaquer ");
+			afficherTexte(x2, y + 350, "ennemi proche (force)");
+			afficherTexte(x2, y + 370, "C2: Se soigne (force) peut aussi attaquer");
+			afficherTexte(x2, y + 390, "equipe ennemi (force,vie, vie max)");
+			afficherTexte(x2, y + 410, "C3:Soigne l'equipe(force) peut aussi");
+			afficherTexte(x2, y + 430, "attaquer equipe ennemi (force,vitesse)");
+			afficherTexte(x2, y + 450, "C4: Attaque ennemi aleatoire (force)");
+			break;
+		case 12:
+			afficherTexte(x2, y + 250, "Donne de l'xp a l'equipe tout les 10 tours");
+			afficherTexte(x2, y + 270, "Possède 10 fois plus de vie");
+			afficherTexte(x2, y + 290, "C1:Faible chance d'attaque ");
+			afficherTexte(x2, y + 310, "ennemi proche (force)");
+			afficherTexte(x2, y + 330, "C2: Se soigne (vie,vie max) ");
+			afficherTexte(x2, y + 350, "C3:Soigne l'equipe(force)");
+			afficherTexte(x2, y + 370, "C4: Ajoute enormément de reduction");
+			afficherTexte(x2, y + 390, "a l'allier le plus faible");
+			break;
+		case 13:
+			afficherTexte(x2, y + 250, "Se bouclier quand ce fait attaquer(niveau,vie max)");
+			afficherTexte(x2, y + 270, "Se soigne tout les 10 tours (vie)");
+			afficherTexte(x2, y + 290, "C1: Attaque ennemi proche, degats croissant ");
+			afficherTexte(x2, y + 310, "nombre attaque variant (force)");
+			afficherTexte(x2, y + 330, "C2: S'attaque et se soigne sur une longue ");
+			afficherTexte(x2, y + 350, "durée (force)");
+			afficherTexte(x2, y + 370, "C3:Augmente ses chance critiques et");
+			afficherTexte(x2, y + 390, "degats critiques");
+			afficherTexte(x2, y + 410, "C4: Se transforme (qu'une seule fois)");
+			afficherTexte(x2, y + 430, "force*2,vie*10");
+			break;
+
+		}
 		x = x + 250;
 	
 		rectangle(x + 80, y - 10, x + 550, y + 130);

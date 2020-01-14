@@ -32,7 +32,7 @@ void JeanBaptiste::attaqueEnnemis()
 		case 1:
 			Affichage().dessinerTexte(nom() + " mange sans gluten");
 
-			SOINS = vieMax() * 0.025+vie()*0.05;
+			SOINS = vieMax() * 0.005+vie()*0.03;
 			soigner(SOINS, this);
 			ajouterMana(1);
 			break;
@@ -59,24 +59,24 @@ void JeanBaptiste::attaqueEnnemis()
 void JeanBaptiste::passif(int tour)
 {
 	int xp;
-	Affichage().dessinerTexte(nom() + " donne de l'xp a lequipe ! ");
+	
 	if ((tour + 1) % 10 == 0) {
-		if (niveau() > 7000) {
+		Affichage().dessinerTexte(nom() + " donne de l'xp a lequipe ! ");
+		if (niveau() >= 7000) {
 			xp = 7000;
-		}else if (niveau() > 700) {
+		}else if (niveau() >= 700) {
 			xp = 700;
 		}
-		else if (niveau() > 70) {
+		else if (niveau() >= 70) {
 		xp = 70;
 		}
-		else if (niveau() > 7) {
+		else if (niveau() >= 7) {
 			xp = 7;
 		}
 		else {
 			xp = 1;
 		}
 		Experiences E;
-
 		equipeAllier().ajouterExperience(xp, E);
 	}
 	

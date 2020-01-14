@@ -156,6 +156,27 @@
     <ClCompile Include="JeanBaptiste.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Maelle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Elite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Grognard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Brute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rapace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Chasseur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pollyana.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="winbgim.h">
@@ -276,6 +297,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="JeanBaptiste.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Maelle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Elite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Grognard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Brute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rapace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Chasseur.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pollyana.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

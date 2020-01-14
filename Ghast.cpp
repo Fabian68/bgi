@@ -20,18 +20,18 @@ void Ghast::attaqueEnnemis()
 
 	Affichage().dessinerTexte(nom() + " boule de feu ! ");
 	for (int i = 0; i < equipeEnnemi().taille()&&equipeEnnemi().estEnVie(); i++) {
-		DEGATS = degats(1.0, 2.5);
+		DEGATS = degats(0.8, 1.6);
 		Attaque(DEGATS, equipeEnnemi()[i]);
 		if (habile() && equipeEnnemi().estEnVie()) {
-			DEGATS = degats(0.25, 0.75);
+			DEGATS = degats(0.4, 0.8);
 			Attaque(DEGATS, equipeEnnemi()[i]);
 		}
 		if (habile() && equipeEnnemi().estEnVie()) {
-			DEGATS = degats(0.20, 0.60);
+			DEGATS = degats(0.3, 0.7);
 			Attaque(DEGATS, equipeEnnemi()[i]);
 		}
 		if (habile() && equipeEnnemi().estEnVie()) {
-			DEGATS = degats(0.15, 0.45);
+			DEGATS = degats(0.2, 0.6);
 			Attaque(DEGATS, equipeEnnemi()[i]);
 		}
 	}

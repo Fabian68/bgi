@@ -18,6 +18,7 @@ public:
 	int vie()const;
 	int vieMax()const;
 	void ajouterVieMax(int montant);
+	void reduireVieMax(int montant);
 	void reduireVie(int nb);
 	int reduireBouclier(int nb);
 	int pourcentageVie()const;
@@ -79,6 +80,7 @@ public:
 	int rareterAnimal()const;
 	void ajouterCoupCritique(int pourcentage);
 	void ajouterDegatsCritique(int pourcentage);
+	void setNom(std::string nom);
 private:
 	int _id;
 	int _niveau;

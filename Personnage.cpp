@@ -68,6 +68,9 @@ void Personnage::ajouterVieMax(int montant) {
 	_vieMax += montant;
 }
 
+void Personnage::reduireVieMax(int montant) {
+	ajouterVieMax(-montant);
+}
 void Personnage::reduireVie(int nb)
 {
 	if (_vie < nb) {
@@ -498,6 +501,11 @@ void Personnage::ajouterCoupCritique(int pourcentage)
 void Personnage::ajouterDegatsCritique(int pourcentage)
 {
 	_degatCritique += pourcentage;
+}
+
+void Personnage::setNom(std::string nom)
+{
+	_nom = nom;
 }
 
 

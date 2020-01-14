@@ -9,6 +9,12 @@
 #include "Ghast.h"
 #include "WitherSquelette.h"
 #include "Wither.h"
+#include "Grognard.h"
+#include "Elite.h"
+#include "Brute.h"
+#include "Chasseur.h"
+#include "Rapace.h"
+
 Zones::Zones()
 {
 	FILE* file = fopen("Zones.txt", "r");
@@ -110,22 +116,22 @@ void Zones::equipeEnZone(int i,Equipes & E)
 		E.ajouterPerso(new Cerf(37, "Dans sa maison un grand cerf"));
 		break;
 	case 15:
-		E.ajouterPerso(new Cerf(55, "Cerf d'acier",2,8,2));
-		E.ajouterPerso(new Cerf(52, "CerfLaPince",1,3,3));
+		E.ajouterPerso(new Cerf(42, "Cerf d'acier",2,8,2));
+		E.ajouterPerso(new Cerf(45, "CerfLaPince",1,3,3));
 		E.ajouterPerso(new Cerf(50, "Cerf gilet jaune",1,3,2));
 		E.ajouterPerso(new Cerf(40, "Cerf"));
 		break;
 	case 16:
-		E.ajouterPerso(new Sanglier(60, "Sanglier"));
-		E.ajouterPerso(new Cerf(62, "Cerf"));
-		E.ajouterPerso(new Cerf(61, "Cerf"));
-		E.ajouterPerso(new Lapin(68, "Lapin"));
+		E.ajouterPerso(new Sanglier(50, "Sanglier"));
+		E.ajouterPerso(new Cerf(52, "Cerf"));
+		E.ajouterPerso(new Cerf(57, "Cerf"));
+		E.ajouterPerso(new Lapin(59, "Lapin"));
 		break;
 	case 17:
-		E.ajouterPerso(new Sanglier(65, "Sanglier"));
-		E.ajouterPerso(new Sanglier(68, "Sanglier"));
-		E.ajouterPerso(new Cerf(67, "Cerf"));
-		E.ajouterPerso(new Lapin(69, "Lapin"));
+		E.ajouterPerso(new Sanglier(60, "Sanglier"));
+		E.ajouterPerso(new Sanglier(62, "Sanglier"));
+		E.ajouterPerso(new Cerf(63, "Cerf"));
+		E.ajouterPerso(new Lapin(65, "Lapin"));
 		break;
 	case 18:
 		E.ajouterPerso(new Sanglier(80, "Sanglier"));
@@ -228,6 +234,118 @@ void Zones::equipeEnZone(int i,Equipes & E)
 		E.ajouterPerso(new WitherSquelette(245, "Wither Squelette"));
 		E.ajouterPerso(new WitherSquelette(240, "Wither Squelette"));
 		break;
+	case 35:
+		E.ajouterPerso(new Grognard(250, "Grognard"));
+		E.ajouterPerso(new Grognard(250, "Grognard"));
+		E.ajouterPerso(new Grognard(250, "Grognard"));
+		E.ajouterPerso(new Grognard(250, "Grognard"));
+		E.ajouterPerso(new Grognard(250, "Grognard"));
+		break;
+	case 36:
+		E.ajouterPerso(new Grognard(255, "Grognard"));
+		E.ajouterPerso(new Grognard(255, "Grognard"));
+		E.ajouterPerso(new Elite(255, "Elite"));
+		E.ajouterPerso(new Grognard(255, "Grognard"));
+		E.ajouterPerso(new Grognard(255, "Grognard"));
+		break;
+	case 37:
+		E.ajouterPerso(new Elite(262, "Elite"));
+		E.ajouterPerso(new Grognard(260, "Grognard"));
+		E.ajouterPerso(new Grognard(267, "Grognard"));
+		E.ajouterPerso(new Grognard(263, "Grognard"));
+		E.ajouterPerso(new Elite(263, "Elite"));
+		break;
+	case 38:
+		E.ajouterPerso(new Elite(273, "Elite"));
+		E.ajouterPerso(new Grognard(265, "Grognard"));
+		E.ajouterPerso(new Grognard(270, "Grognard"));
+		E.ajouterPerso(new Rapace(272, "Rapace"));
+		E.ajouterPerso(new Elite(275, "Elite"));
+		break;
+	case 39:
+		E.ajouterPerso(new Elite(285, "Elite"));
+		E.ajouterPerso(new Rapace(273, "Rapace"));
+		E.ajouterPerso(new Grognard(290, "Grognard"));
+		E.ajouterPerso(new Rapace(280, "Rapace"));
+		E.ajouterPerso(new Elite(282, "Elite"));
+		break;
+	case 40:
+		E.ajouterPerso(new Chasseur(300, "Chasseur"));
+		E.ajouterPerso(new Chasseur(300, "Chasseur"));
+		break;
+	case 41:
+		E.ajouterPerso(new Brute(310, "Brute"));
+		E.ajouterPerso(new Brute(310, "Brute"));
+		E.ajouterPerso(new Grognard(320, "Grognard"));
+		E.ajouterPerso(new Rapace(315, "Rapace"));
+		E.ajouterPerso(new Rapace(315, "Rapace"));
+		break;
+	case 42:
+		E.ajouterPerso(new Brute(320, "Brute"));
+		E.ajouterPerso(new Brute(320, "Brute"));
+		E.ajouterPerso(new Brute(324, "Brute"));
+		E.ajouterPerso(new Rapace(323, "Rapace"));
+		E.ajouterPerso(new Rapace(325, "Rapace"));
+		break;
+	case 43:
+		E.ajouterPerso(new Brute(333, "Brute"));
+		E.ajouterPerso(new Brute(328, "Brute"));
+		E.ajouterPerso(new Brute(335, "Brute"));
+		E.ajouterPerso(new Grognard(338, "Grognard"));
+		E.ajouterPerso(new Grognard(331, "Grognard"));
+		break;
+	case 44:
+		E.ajouterPerso(new Chasseur(340, "Chasseur"));
+		E.ajouterPerso(new Chasseur(344, "Chasseur"));
+		E.ajouterPerso(new Brute(345, "Brute"));
+		E.ajouterPerso(new Rapace(342, "Rapace"));
+		E.ajouterPerso(new Rapace(343, "Rapace"));
+		break;
+	case 45:
+		E.ajouterPerso(new Chasseur(350, "Chasseur"));
+		E.ajouterPerso(new Chasseur(351, "Chasseur"));
+		E.ajouterPerso(new Elite(355, "Elite"));
+		E.ajouterPerso(new Grognard(350, "Grognard"));
+		E.ajouterPerso(new Grognard(353, "Grognard"));
+		break;
+	case 46:
+		E.ajouterPerso(new Grognard(360, "Grognardmaggedon",1));
+		E.ajouterPerso(new Grognard(365, "Grognardmaggedon",1));
+		E.ajouterPerso(new Grognard(370, "Grognardmaggedon",1));
+		E.ajouterPerso(new Grognard(360, "Grognardmaggedon",1));
+		E.ajouterPerso(new Grognard(365, "Grognardmaggedon",1));
+		break;
+	case 47:
+		E.ajouterPerso(new Elite(360, "Elite"));
+		E.ajouterPerso(new Elite(362, "Elite"));
+		E.ajouterPerso(new Elite(364, "Elite"));
+		E.ajouterPerso(new Elite(366, "Elite"));
+		E.ajouterPerso(new Elite(368, "Elite"));
+		break;
+	case 48:
+		E.ajouterPerso(new Brute(370, "Brute"));
+		E.ajouterPerso(new Brute(372, "Brute"));
+		E.ajouterPerso(new Brute(374, "Chef Brute (LTOUCA)",1));
+		E.ajouterPerso(new Brute(376, "Brute"));
+		E.ajouterPerso(new Brute(378, "Brute"));
+		break;
+	case 49:
+		E.ajouterPerso(new Chasseur(380, "Chasseur"));
+		E.ajouterPerso(new Chasseur(380, "Chasseur"));
+		E.ajouterPerso(new Chasseur(390, "Chasseur"));
+		E.ajouterPerso(new Chasseur(390, "Chasseur"));
+		break;
+	case 50:
+		E.ajouterPerso(new Chasseur(400, "Chasseur LTOUCA",1));
+		E.ajouterPerso(new Chasseur(400, "Chasseur LTOUCA",1));
+		E.ajouterPerso(new Elite(400, "Elite LTOUCA",1));
+		E.ajouterPerso(new Elite(400, "Elite LTOUCA",1));
+		E.ajouterPerso(new Rapace(400, "Rapace LTOUCA",1));
+		E.ajouterPerso(new Rapace(400, "Rapace LTOUCA",1));
+		break;
+	case 51:
+		E.ajouterPerso(new Grognard(5000, "ATTENDRE MISE A JOUR", 1));
+		break;
 	}
 
 	
@@ -266,6 +384,9 @@ int Zones::nbPersoJouable() const
 		nb++;
 	}
 	if (_niveauMax >= 35) {
+		nb++;
+	}
+	if (_niveauMax >= 51) {
 		nb++;
 	}
 	return nb;

@@ -54,7 +54,7 @@ void Isidore::attaqueEnnemis()
 	case 3:
 		cible = equipeEnnemi().aleatoireEnVie()->indiceEquipe();
 		Affichage().dessinerTexte(nom() + " encule " + equipeEnnemi()[cible]->nom());
-		DEGATS = degats(2.0, 6.0);
+		DEGATS = degats(2.0, 5.0);
 		Attaque(DEGATS, equipeEnnemi()[cible]);
 		ajouterMana(-3);
 		break;
