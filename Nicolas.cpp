@@ -108,6 +108,7 @@ void Nicolas::passif(int tour)
 	
 		Affichage().dessinerTexte(this->nom() + " ce fait mal en voulant impressioner ses amis ! ");
 		reduireVie(vie() / 2);
+		ajouterForce(niveau());
 	}
 	if (tour>100) {
 		int Degats = degats(tour/10.0, tour/5.0);

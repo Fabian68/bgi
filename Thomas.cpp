@@ -73,6 +73,6 @@ void Thomas::passifDefensif()
 {
 	if (Aleatoire(0, 101).entier() <= 10) {
 		AjouterBouclier(round(vieMax()*0.02));
-	
+		equipeAllier().moinsResistant()->ajouterReduction(1);
 	}
 }

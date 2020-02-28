@@ -72,15 +72,36 @@ void Florian::passif(int tour)
 		Affichage().dessinerTexte(nom() + " prie pour l'équipe ! ");
 		for (int i = 0;i < equipeAllier().taille();i++) {
 			equipeAllier()[i]->ajouterReduction(1);
+			if (habile()) {
+				equipeAllier()[i]->ajouterReduction(2);
+			}
 		}
 	}
-	if ((tour + 1) % 50 == 0) {
+	if ((tour + 1) % 25 == 0) {
 		Affichage().dessinerTexte(nom() + " joue sa piece de théatre ! ");
 		for (int i = 0;i < equipeAllier().taille();i++) {
 			equipeAllier()[i]->ajouterChanceDoubleAttaque(5);
 			equipeAllier()[i]->ajouterChanceHabileter(5);
 			equipeAllier()[i]->ajouterCoupCritique(5);
 			equipeAllier()[i]->ajouterDegatsCritique(10);
+			if (habile()) {
+				equipeAllier()[i]->ajouterChanceDoubleAttaque(5);
+				equipeAllier()[i]->ajouterChanceHabileter(5);
+				equipeAllier()[i]->ajouterCoupCritique(5);
+				equipeAllier()[i]->ajouterDegatsCritique(10);
+			}
+			if (attaqueDouble()) {
+				equipeAllier()[i]->ajouterChanceDoubleAttaque(5);
+				equipeAllier()[i]->ajouterChanceHabileter(5);
+				equipeAllier()[i]->ajouterCoupCritique(5);
+				equipeAllier()[i]->ajouterDegatsCritique(10);
+				if (habile()) {
+					equipeAllier()[i]->ajouterChanceDoubleAttaque(5);
+					equipeAllier()[i]->ajouterChanceHabileter(5);
+					equipeAllier()[i]->ajouterCoupCritique(5);
+					equipeAllier()[i]->ajouterDegatsCritique(10);
+				}
+			}
 		}
 	}
 }

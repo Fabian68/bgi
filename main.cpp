@@ -26,6 +26,7 @@
 #include "JeanBaptiste.h"
 #include "Maelle.h"
 #include "Pollyana.h"
+#include "Salim.h"
 
 #define PI 3.14159265
 
@@ -59,6 +60,7 @@ void reinitListeEquipe(Equipes& Liste) {
 	Liste.ajouterPerso(new JeanBaptiste(E, O, A));
 	Liste.ajouterPerso(new Maelle(E, O, A));
 	Liste.ajouterPerso(new Pollyana(E, O, A));
+	Liste.ajouterPerso(new Salim(E, O, A));
 
 }
 

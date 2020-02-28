@@ -70,6 +70,9 @@ void Personnage::ajouterVieMax(int montant) {
 
 void Personnage::reduireVieMax(int montant) {
 	ajouterVieMax(-montant);
+	if (_vie > _vieMax) {
+		_vie = _vieMax;
+	}
 }
 void Personnage::reduireVie(int nb)
 {

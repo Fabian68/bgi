@@ -105,6 +105,7 @@
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Pollyana.cpp" />
     <ClCompile Include="Rapace.cpp" />
+    <ClCompile Include="Salim.cpp" />
     <ClCompile Include="Sanglier.cpp" />
     <ClCompile Include="Sebastien.cpp" />
     <ClCompile Include="SqueletteArcher.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Point.h" />
     <ClInclude Include="Pollyana.h" />
     <ClInclude Include="Rapace.h" />
+    <ClInclude Include="Salim.h" />
     <ClInclude Include="Sanglier.h" />
     <ClInclude Include="Sebastien.h" />
     <ClInclude Include="SqueletteArcher.h" />

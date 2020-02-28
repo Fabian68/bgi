@@ -62,6 +62,7 @@ void Bryan::attaqueEnnemis()
 		if (habile()) {
 			ajouterCoupCritique(3);
 			ajouterDegatsCritique(6);
+			ajouterReduction(5);
 		}
 		SOINS = soins(0.5, 2.5);
 		soigner(SOINS, this);

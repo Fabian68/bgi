@@ -3,7 +3,7 @@
 #include "Lapin.h"
 #include "Sanglier.h"	
 
-Fiona::Fiona(Experiences E, Orbes O, Animaux A) : Personnage(3, E, O, A, "Fiona", 3, 5, 2, 7, 7, -17, 7, 7, 7, 70) , _nbAnimaux{0} {}
+Fiona::Fiona(Experiences E, Orbes O, Animaux A) : Personnage(3, E, O, A, "Fiona", 3, 5, 2, 17, 17, -17, 7, 7, 7, 70) , _nbAnimaux{0} {}
 
 void Fiona::attaqueEnnemis()
 {
@@ -77,6 +77,12 @@ void Fiona::passif(int tour)
 				Affichage().dessinerEquipeJoueur(equipeAllier());
 				_nbAnimaux++;
 			}
+		}
+	}
+	if (((tour + 1) % 7) == 0) {
+		ajouterCoupCritique(7);
+		if (habile()) {
+			ajouterDegatsCritique(14);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 #include "Cloe.h"
 #include "Affichage.h"
 
-Cloe::Cloe(Experiences E, Orbes O, Animaux A) : Personnage(9, E, O, A, "Cloe", 1, 6, 3, 25, 25, -50, 0, 0, 0, 0) {}
+Cloe::Cloe(Experiences E, Orbes O, Animaux A) : Personnage(9, E, O, A, "Cloe", 1, 6, 3, 25, 25, -50, 0, 75, 0, 0) {}
 
 
 void Cloe::attaqueEnnemis()

@@ -527,7 +527,7 @@ void Affichage::dessinerDegats(Personnage* P, int degats) const {
 	setcolor(RED);
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(x, y,txt);
-	delay(200);
+	delay(50);
 }
 
 void Affichage::dessinerSoins(Personnage* P, int soins) const {
@@ -548,7 +548,7 @@ void Affichage::dessinerSoins(Personnage* P, int soins) const {
 	
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(x, y, txt);
-	delay(200);
+	delay(50);
 }
 
 void Affichage::dessinerBouclier(Personnage* P, int soins) const {
@@ -570,18 +570,26 @@ void Affichage::dessinerBouclier(Personnage* P, int soins) const {
 
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(x, y, txt);
-	delay(200);
+	delay(50);
 }
 
 void Affichage::dessinerTexte(std::string texte)const {
+	delay(500);
 	setfillstyle(1, BLACK);
 	setcolor(BLACK);
 	int Tab[8] = { 365,0,835,0,835,30,365,30 };
 	fillpoly(4, Tab);
+
+	setfillstyle(1, BLACK);
+	setcolor(BLACK);
+	int Tab2[8] = { 365,30,835,30,835,800,365,800 };
+	fillpoly(4, Tab2);
+	setcolor(RED);
+
 	setcolor(RED);
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(400,15, txt);	
-	delay(200);
+	delay(500);
 }
 void Affichage::dessinerEquipeJoueur(Equipes J) const
 {
@@ -703,9 +711,9 @@ void Affichage::menuModifierEquipe(Equipes& Gentil, Equipes choix,int max) const
 		Bouton(100, (i + 1) * 50, std::to_string(i) + Gentil[i]->nom()).afficher();
 	}
 	if (max > 0) {
-		afficherTexte(400, 20, "Personnages selectionnable");
+		afficherTexte(400, 10, "Personnages selectionnable");
 		for (int i = 0; i < choix.taille(); i++) {
-			Bouton(400, (i + 1) * 50, std::to_string(i) + choix[i]->nom()).afficher();
+			Bouton(400, (i + 1) * 45, std::to_string(i) +" "+ choix[i]->nom()+ " LVL : " +std::to_string(choix[i]->niveau())).afficher();
 		}
 	}
 	else {
@@ -731,7 +739,7 @@ void Affichage::menuModifierEquipe(Equipes& Gentil, Equipes choix,int max) const
 		getmouseclick(WM_LBUTTONDOWN, xc, yc);
 		if (max > 0) {
 			for (int i = 0; i < choix.taille(); i++) {
-				if (Bouton(400, (i + 1) * 50, std::to_string(i) + choix[i]->nom()).comprendLesCoord(xc, yc)) {
+				if (Bouton(400, (i + 1) * 45, std::to_string(i) + choix[i]->nom()).comprendLesCoord(xc, yc)) {
 					Gentil.ajouterPerso(choix[i]);
 					boutonSelectionnerPerso = true;
 					menuModifierEquipe(Gentil, choix, --max);
@@ -795,7 +803,7 @@ void Affichage::dessinerAttaque(Personnage * Attaquant, Personnage * Defenseur) 
 		line(390, -45 + 70 * i, 370, -25 + 70 * i);
 		
 	}
-	delay(200);
+	delay(25);
 }
 
 Affichage::~Affichage()

@@ -29,6 +29,15 @@ Personnage*  Equipes::perso(int i)
 	return _equipe[i];
 }
 
+int Equipes::nbEnVie()const {
+	int nb = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->estEnVie()) {
+			nb++;
+		}
+	}
+	return nb;
+}
 void Equipes::setIndiceANul(int indice) {
 	_equipe[indice]=nullptr;
 }
@@ -72,6 +81,21 @@ Personnage* Equipes::plusFaible()
 		if (_equipe[i]->vie()>0&& _equipe[i]->vie()<vieMin) {
 		
 			vieMin = _equipe[i]->vie();
+			j = i;
+		}
+	}
+	return _equipe[j];
+}
+
+Personnage* Equipes::moinsResistant()
+{
+	int reductionMax = 100;
+	int j = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+
+		if (_equipe[i]->pourcentageReduction() > 0 && _equipe[i]->pourcentageReduction() < reductionMax) {
+
+			reductionMax = _equipe[i]->pourcentageReduction();
 			j = i;
 		}
 	}

@@ -9,9 +9,11 @@ void Fabian::attaqueEnnemis()
 	int DEGATS;
 	int SOINS;
 	std::string a = nom();
-	SOINS = soins(0.07, 0.7);
+	int nb = equipeAllier().nbEnVie();
+	SOINS = soins(0.7/nb, 1.7/nb);
 	Affichage().dessinerTexte(nom() + "Soins Unity");
-	soigner(SOINS, equipeAllier().plusFaible());
+	equipeAllier().soignerZone(SOINS, this);
+	//soigner(SOINS, equipeAllier().plusFaible());
 	switch (choix) {
 
 	case 0:

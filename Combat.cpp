@@ -57,6 +57,8 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 			if ((_joueur.estEnVie() && _ia.estEnVie())) {
 					if (_quiJoue[i]->estEnVie()) {
 						nbFoisJouer++;
+						nombrePersonnages = _joueur.nbEnVie() + _ia.nbEnVie();
+						nbJouerPourAugmenterTour = nombrePersonnages / 2;
 						if (nbFoisJouer%nbJouerPourAugmenterTour == 0) {
 							_tour++;
 							Affichage().affichageTexte(5, 5, "Tour : " + std::to_string(_tour+1));
@@ -71,7 +73,6 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 								}
 							}
 						}
-					
 						_quiJoue[i]->attaqueEnnemis();
 					}
 			}

@@ -49,7 +49,7 @@ void JeanBaptiste::attaqueEnnemis()
 			break;
 		case 3:
 			Affichage().dessinerTexte(nom() + " protege le plus faible ! ");
-			equipeAllier().plusFaible()->ajouterReduction(20);
+			equipeAllier().moinsResistant()->ajouterReduction(25);
 			ajouterMana(-3);
 			break;
 		}
