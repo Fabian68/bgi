@@ -57,11 +57,11 @@ void Bryan::attaqueEnnemis()
 		break;
 	case 3:
 		Affichage().dessinerTexte(nom() + " ce boost ! ");
-		ajouterCoupCritique(5);
-		ajouterDegatsCritique(10);
+		ajouterCoupCritique(1);
+		ajouterDegatsCritique(5);
 		if (habile()) {
-			ajouterCoupCritique(3);
-			ajouterDegatsCritique(6);
+			ajouterCoupCritique(1);
+			ajouterDegatsCritique(10);
 			ajouterReduction(5);
 		}
 		SOINS = soins(0.5, 2.5);
@@ -73,11 +73,13 @@ void Bryan::attaqueEnnemis()
 
 void Bryan::passif(int tour)
 {
-	ajouterCoupCritique(1);
-	ajouterDegatsCritique(2);
-	if (habile()) {
-		ajouterCoupCritique(2);
-		ajouterDegatsCritique(4);
+	if (tour % 10 == 0) {
+		ajouterCoupCritique(1);
+		ajouterDegatsCritique(2);
+		if (habile()) {
+			//ajouterCoupCritique(2);
+			ajouterDegatsCritique(4);
+		}
 	}
 }
 

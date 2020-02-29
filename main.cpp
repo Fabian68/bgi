@@ -105,7 +105,7 @@ int main()
 		Animaux A;
 		Affichage H;
 		
-		H.dessinerTexte("Version 1.14 ");
+		H.dessinerTexte("Version 1.15.1 ");
 		Meuchant.liberer();
 		reinitListeEquipe(choix);
 		reinitEquipe(Gentil, choix);

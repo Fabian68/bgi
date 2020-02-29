@@ -167,6 +167,97 @@ Personnage* Equipes::meilleurBouclier()
 	return _equipe[indice];
 }
 
+Personnage* Equipes::meilleurAugmentationForce()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationForce() > max) {
+			max = _equipe[i]->stats().augmentationForce();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurAugmentationVieMax()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationVieMax() > max) {
+			max = _equipe[i]->stats().augmentationVieMax();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurAugmentationReduction()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationReduction() > max) {
+			max = _equipe[i]->stats().augmentationReduction();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurAugmentationDegatsCritiques()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationDegatsCritique() > max) {
+			max = _equipe[i]->stats().augmentationDegatsCritique();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurAugmentationChanceCritiques()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationCoupCritiques() > max) {
+			max = _equipe[i]->stats().augmentationCoupCritiques();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurAugmentationHabileter()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationChanceHabileter() > max) {
+			max = _equipe[i]->stats().augmentationChanceHabileter();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurAugmentationChanceDoubleAttaque()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationChanceDoubleAttaque() > max) {
+			max = _equipe[i]->stats().augmentationChanceDoubleAttaque();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
 void Equipes::attaqueZone(int Degats,Personnage * Attaquant)
 {
 	for (int i = 0; i < _equipe.size(); i++) {

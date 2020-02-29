@@ -10,5 +10,6 @@ private:
 	virtual void passif(int tour)override;
 	virtual void passifDefensif()override;
 	bool estTransformer;
+	bool superTransformation;
 };
 

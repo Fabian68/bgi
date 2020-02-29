@@ -383,7 +383,7 @@ int Zones::nbPersoJouable() const
 	if (_niveauMax >= 16) {
 		nb++;
 	}
-	if (_niveauMax >= 35) {
+	if (_niveauMax >= 34) {
 		nb++;
 	}
 	if (_niveauMax >= 51) {

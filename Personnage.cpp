@@ -66,6 +66,7 @@ int Personnage::vieMax() const
 }
 void Personnage::ajouterVieMax(int montant) {
 	_vieMax += montant;
+	_S.ajouterAugmentationVieMax(montant);
 }
 
 void Personnage::reduireVieMax(int montant) {
@@ -131,6 +132,7 @@ int Personnage::niveau()const {
 void Personnage::ajouterForce(int montant)
 {
 	_force += montant;
+	_S.ajouterAugmentationForce(montant);
 }
 void Personnage::ajouterVitesse(int montant)
 {
@@ -389,12 +391,15 @@ void Personnage::setReduction(int montant) {
 }
 void Personnage::ajouterChanceDoubleAttaque(int montant) {
 	_chanceDoubleAttaque += montant;
+	_S.ajouterAugmentationChanceDoubleAttaque(montant);
 }
 void Personnage::ajouterChanceHabileter(int montant) {
 	_chanceHabilete += montant;
+	_S.ajouterAugmentationChanceHabileter(montant);
 }
 void Personnage::ajouterReduction(int montant) {
 	_pourcentageReduction += montant;
+	_S.ajouterAugmentationReduction(montant);
 	if (_pourcentageReduction >= 90) {
 		_pourcentageReduction = 90;
 	}
@@ -495,6 +500,7 @@ int Personnage::rareterAnimal() const
 
 void Personnage::ajouterCoupCritique(int pourcentage)
 {
+	_S.ajouterAugmentationCoupCritiques(pourcentage);
 	_pourcentageCritique += pourcentage;
 	if (_pourcentageCritique > 100) {
 		_pourcentageCritique = 100;
@@ -503,6 +509,7 @@ void Personnage::ajouterCoupCritique(int pourcentage)
 
 void Personnage::ajouterDegatsCritique(int pourcentage)
 {
+	_S.ajouterAugmentationDegatsCritique(pourcentage);
 	_degatCritique += pourcentage;
 }
 

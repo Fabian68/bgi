@@ -24,6 +24,13 @@ public:
 	Personnage* meilleurTank();
 	Personnage* meilleurSoigneur();
 	Personnage* meilleurBouclier();
+	Personnage* meilleurAugmentationForce();
+	Personnage* meilleurAugmentationVieMax();
+	Personnage* meilleurAugmentationReduction();
+	Personnage* meilleurAugmentationDegatsCritiques();
+	Personnage* meilleurAugmentationChanceCritiques();
+	Personnage* meilleurAugmentationHabileter();
+	Personnage* meilleurAugmentationChanceDoubleAttaque();
 	void attaqueZone(int Degats,Personnage*Attaquant);
 	void soignerZone(int soins, Personnage* Soigneur);
 	void bouclierZone(int bouclier, Personnage* bouclierMan);

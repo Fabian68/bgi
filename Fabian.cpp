@@ -102,7 +102,7 @@ void Fabian::attaqueEnnemis()
 void Fabian::passif(int tour)
 {
 	if (((tour+1) % 7) == 0) {
-		ajouterReduction(7);
+		ajouterReduction(17);
 		Affichage().dessinerTexte(this->nom() + " devient plus resistant grace au froid de sa chambre ! ");
 	}
 	if (((tour + 1) % 17) == 0) {

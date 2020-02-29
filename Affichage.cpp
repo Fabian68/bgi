@@ -13,6 +13,19 @@ void afficherTexte(int x, int y, std::string texte) {
 	outtextxy(x, y, perso);
 }
 
+std::string conversion(int nombre) {
+	std::string nombrestr;
+	if (nombre >= 1000000) {
+		nombrestr = std::to_string(nombre / 1000000) + "M";
+	}
+	else if (nombre >= 1000) {
+		nombrestr = std::to_string(nombre / 1000) + "K";
+	}
+	else {
+		nombrestr = std::to_string(nombre);
+	}
+	return nombrestr;
+}
 void Affichage::affichageTexte(int x, int y, std::string texte) {
 	char* perso = const_cast<char*>(texte.c_str());
 	outtextxy(x, y, perso);
@@ -478,52 +491,68 @@ void Affichage::dessinerJoueur(int indice, bool equipeIA,Personnage*  P) const
 {
 	int x;
 	if (equipeIA) {
-		x = 1200 - 360;
+		x = 1180 - 360;
 	}
 	else {
-		x = 60;
+		x = 20;
 	}
 	std::string str = P->nom()+" "+std::to_string(P->niveau());
 	char* perso = const_cast<char*>(str.c_str());
 //	setcolor(GREEN);
 	int y = -50 + 70 * indice;
-	rectangle(x, y, x + 300, y + 65);
+	rectangle(x, y, x + 360, y + 65);
 	outtextxy(x + 2, y + 5, perso);
 	int pourcentageVie = P->pourcentageVie();
 	int pourcentageBouclier = P->pourcentageBouclier();
+
 	setfillstyle(1, GREEN);
 	int Tab[8] = { x + 2,y + 25,x + 2 + pourcentageVie*2,y + 25,x + 2 + pourcentageVie * 2,y + 40,x + 2,y + 40 };
 	fillpoly(4, Tab);
-
 	setfillstyle(1, BLACK);
 	int Tab3[8] = { x + 2 + pourcentageVie * 2,y + 25,x + 202,y + 25,x + 202,y + 40,x + 2 + pourcentageVie * 2,y + 40 };
 	fillpoly(4, Tab3);
+
 	// y 45 et 60
 	setfillstyle(1, MAGENTA);
 	int Tab2[8] = { x + 2,y + 45,x +2 + pourcentageBouclier*2,y + 45,x + 2 + pourcentageBouclier*2,y + 60,x + 2,y + 60 };
 	fillpoly(4, Tab2);
-
 	setfillstyle(1, BLACK);
 	int Tab4[8] = { x + 2 + pourcentageBouclier * 2,y + 45,x + 202,y + 45,x + 202,y + 60,x + 2 + pourcentageBouclier * 2,y + 60 };
 	fillpoly(4, Tab4);
+	
+	setfillstyle(1, BLACK);
+	setcolor(BLACK);
+	int Taby[8] = { x+206,y+20,x+285,y+20,x+285,y+59,x+206,y+59 };
+	fillpoly(4, Taby);
+	setcolor(WHITE);
+	
+	str = conversion(P->vie()) + " / " + conversion(P->vieMax());
+	perso = const_cast<char*>(str.c_str());
+	outtextxy(x +210, y + 25, perso);
+
+	str = conversion(P->bouclier()) + " / " + conversion(P->bouclierMax());
+	perso = const_cast<char*>(str.c_str());
+	
+	outtextxy(x +210, y + 45, perso);
+
 
 }
 
 void Affichage::dessinerDegats(Personnage* P, int degats) const {
 	int x;
 	if (P->equipeAllier().ia()) {
-		x = 1200 - 150;
+		x = 1200 - 95;
 		
 	}
 	else {
-		x = 270;
+		x = 310;
 	}
 	int y = -20 + 70 * (P->indiceEquipe()+1);
 	setcolor(BLACK);
 	setfillstyle(1,BLACK);
-	int Tab[8] = { x - 5,y -5,x +80 ,y -5,x+80 ,y + 20,x -5,y + 20 };
+	int Tab[8] = { x - 5,y -5,x +50 ,y -5,x+50 ,y + 20,x -5,y + 20 };
 	fillpoly(4, Tab);
-	std::string texte = " - " + std::to_string(degats);
+	std::string texte = " - " + conversion(degats);
 	setcolor(RED);
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(x, y,txt);
@@ -533,18 +562,18 @@ void Affichage::dessinerDegats(Personnage* P, int degats) const {
 void Affichage::dessinerSoins(Personnage* P, int soins) const {
 	int x;
 	if (P->equipeAllier().ia()) {
-		x = 1200 - 150;
+		x = 1200 - 95;
 	}
 	else {
-		x = 270;
+		x = 310;
 	}
 	int y = -20 + 70 * (P->indiceEquipe() + 1);
 	setcolor(BLACK);
 	setfillstyle(1, BLACK);
-	int Tab[8] = { x - 5,y - 5,x + 80 ,y - 5,x + 80 ,y + 20,x - 5,y + 20 };
+	int Tab[8] = { x - 5,y - 5,x + 50 ,y - 5,x + 50 ,y + 20,x - 5,y + 20 };
 	fillpoly(4, Tab);
 	setcolor(GREEN);
-	std::string texte = " + " + std::to_string(soins);
+	std::string texte = " + " + conversion(soins);
 	
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(x, y, txt);
@@ -554,19 +583,19 @@ void Affichage::dessinerSoins(Personnage* P, int soins) const {
 void Affichage::dessinerBouclier(Personnage* P, int soins) const {
 	int x;
 	if (P->equipeAllier().ia()) {
-		x = 1200 - 150;
+		x = 1200 - 95;
 	}
 	else {
-		x = 270;
+		x = 310;
 	}
 	int y = -20 + 70 * (P->indiceEquipe() + 1);
 	setcolor(BLACK);
 	setfillstyle(1, BLACK);
 	
-	int Tab[8] = { x - 5,y - 5,x + 80 ,y - 5,x + 80 ,y + 20,x - 5,y + 20 };
+	int Tab[8] = { x - 5,y - 5,x + 50 ,y - 5,x + 50 ,y + 20,x - 5,y + 20 };
 	fillpoly(4, Tab);
 	setcolor(MAGENTA);
-	std::string texte = " + " + std::to_string(soins);
+	std::string texte = " + " + conversion(soins);
 
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(x, y, txt);
@@ -577,18 +606,18 @@ void Affichage::dessinerTexte(std::string texte)const {
 	delay(500);
 	setfillstyle(1, BLACK);
 	setcolor(BLACK);
-	int Tab[8] = { 365,0,835,0,835,30,365,30 };
+	int Tab[8] = { 385,0,780,0,780,30,385,30 };
 	fillpoly(4, Tab);
 
 	setfillstyle(1, BLACK);
 	setcolor(BLACK);
-	int Tab2[8] = { 365,30,835,30,835,800,365,800 };
+	int Tab2[8] = { 385,30,801,30,801,800,385,800 };
 	fillpoly(4, Tab2);
 	setcolor(RED);
 
 	setcolor(RED);
 	char* txt = const_cast<char*>(texte.c_str());
-	outtextxy(400,15, txt);	
+	outtextxy(390,5, txt);	
 	delay(500);
 }
 void Affichage::dessinerEquipeJoueur(Equipes J) const
@@ -776,7 +805,7 @@ void Affichage::dessinerAttaque(Personnage * Attaquant, Personnage * Defenseur) 
 	
 	setfillstyle(1, BLACK);
 	setcolor(BLACK);
-	int Tab[8] = { 365,30,835,30,835,800,365,800 };
+	int Tab[8] = { 385,30,801,30,801,800,385,800 };
 	fillpoly(4, Tab);
 	setcolor(RED);
 	
@@ -792,15 +821,15 @@ void Affichage::dessinerAttaque(Personnage * Attaquant, Personnage * Defenseur) 
 		 i = Defenseur->indiceEquipe() + 1;
 	//	animationCercle(810, -20 + 70 * j, 390, -20 + 70 * i);
 	}
-	line(370, -25 + 70 * i, 830, -25 + 70 * j);
+	line(385, -25 + 70 * i, 800, -25 + 70 * j);
 	if (!Attaquant->equipeAllier().ia()) {
 		
-		line(810, -5 + 70 *j, 830, -25 + 70 * j);
-		line(810, -45 + 70 * j, 830, -25 + 70 * j);
+		line(780, -5 + 70 *j, 800, -25 + 70 * j);
+		line(780, -45 + 70 * j, 800, -25 + 70 * j);
 	}
 	else {
-		line(390, -5 + 70 * i, 370, -25 + 70 * i);
-		line(390, -45 + 70 * i, 370, -25 + 70 * i);
+		line(405, -5 + 70 * i, 385, -25 + 70 * i);
+		line(405, -45 + 70 * i, 385, -25 + 70 * i);
 		
 	}
 	delay(25);

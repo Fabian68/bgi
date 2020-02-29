@@ -2,7 +2,7 @@
 #include "Affichage.h"
 #include "Aleatoire.h"
 
-Salim::Salim(Experiences E, Orbes O, Animaux A) : Personnage(15, E, O, A, "Salim", 6, 3, 1, 0, 25, 25, 0, 25, 0, 0) , estTransformer{ false } {}
+Salim::Salim(Experiences E, Orbes O, Animaux A) : Personnage(15, E, O, A, "Salim", 6, 3, 1, 0, 25, 25, 0, 25, 0, 0), estTransformer{ false }, superTransformation{ false } {}
 
 
 void Salim::attaqueEnnemis()
@@ -56,6 +56,15 @@ void Salim::attaqueEnnemis()
 			ajouterForce(force() * 2);
 			setNom("GRAND SALIMALEKUM");
 			estTransformer = true;
+			ajouterReduction(10);
+		}
+		else if (!superTransformation && mana() > 9) {
+			Affichage().dessinerTexte(nom() + "SUUUPPEEEERR TRANSFORMATION ! ");
+			reduireVieMax((vieMax() / 10) * 9);
+			ajouterForce(force() * 2);
+			setNom("GRAND SALIMALEKUM DIEUX DES TERRES ET DES OCEANS");
+			superTransformation = true;
+			ajouterReduction(20);
 		}
 		else {
 			Affichage().dessinerTexte(nom() + " rejuvenation ! ");
@@ -73,13 +82,14 @@ void Salim::attaqueEnnemis()
 void Salim::passif(int tour)
 {
 	int DEGATS;
+
 	if (habile()) {
-		ajouterVieMax(vieMax() / 50);
+		ajouterVieMax(force() / 5);
 		if (habile()) {
-			ajouterVieMax(vieMax() / 10);
+			ajouterVieMax(force());
 		}
 	}
-	ajouterVieMax(vieMax() / 100);
+	ajouterVieMax(force() / 10);
 	if ((tour + 1) % 100 == 0) {
 		Affichage().dessinerTexte(nom() + " jugement dernier ! ");
 		for (int i = 0;i < equipeEnnemi().taille();i++) {
@@ -97,10 +107,10 @@ void Salim::passif(int tour)
 void Salim::passifDefensif()
 {
 	if (habile()) {
-		ajouterVieMax(vieMax() / 50);
+		ajouterVieMax(force() / 5);
 		if (habile()) {
-			ajouterVieMax(vieMax() / 10);
+			ajouterVieMax(force());
 		}
 	}
-	ajouterVieMax(vieMax() / 100);
+	ajouterVieMax(force()/10);
 }

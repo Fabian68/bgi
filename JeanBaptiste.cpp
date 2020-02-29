@@ -79,7 +79,11 @@ void JeanBaptiste::passif(int tour)
 		Experiences E;
 		equipeAllier().ajouterExperience(xp, E);
 	}
-	
+	if (tour == 10 || tour == 20 || tour == 30) {
+		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
+		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax() / 5));
+		reduireVieMax((vieMax() / 10));
+	}
 	
 }
 

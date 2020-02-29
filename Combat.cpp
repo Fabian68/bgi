@@ -61,7 +61,7 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 						nbJouerPourAugmenterTour = nombrePersonnages / 2;
 						if (nbFoisJouer%nbJouerPourAugmenterTour == 0) {
 							_tour++;
-							Affichage().affichageTexte(5, 5, "Tour : " + std::to_string(_tour+1));
+							Affichage().affichageTexte(5, 3, "Tour : " + std::to_string(_tour+1));
 							for (int i = 0; i < _joueur.taille(); i++) {
 								if (_joueur[i]->estEnVie()) {
 									_joueur[i]->passif(_tour);
@@ -90,6 +90,14 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 	std::cout << "Meilleur TANK : " << _joueur.meilleurTank()->nom() << " " << _joueur.meilleurTank()->stats().degatsRecu() << " degats." << std::endl;
 	std::cout << "Meilleur Soigneur : " << _joueur.meilleurSoigneur()->nom() << " " << _joueur.meilleurSoigneur()->stats().soinsDonner() << " vie." << std::endl;
 	std::cout << "Meilleur Bouclier : " << _joueur.meilleurBouclier()->nom() << " " << _joueur.meilleurBouclier()->stats().bouclierDonner() << " bouclier." << std::endl;
+
+	std::cout << "Meilleur augmentation de vie force : " << _joueur.meilleurAugmentationForce()->nom() << " " << _joueur.meilleurAugmentationForce()->stats().augmentationForce() << " points." << std::endl;
+	std::cout << "Meilleur augmentation de vie maximum : " << _joueur.meilleurAugmentationVieMax()->nom() << " " << _joueur.meilleurAugmentationVieMax()->stats().augmentationVieMax() << " PV." << std::endl;
+	std::cout << "Meilleur augmentation de reduction de degats : " << _joueur.meilleurAugmentationReduction()->nom() << " " << _joueur.meilleurAugmentationReduction()->stats().augmentationReduction() << " %." << std::endl;
+	std::cout << "Meilleur augmentation de chance de coup habile : " << _joueur.meilleurAugmentationHabileter()->nom() << " " << _joueur.meilleurAugmentationHabileter()->stats().augmentationChanceHabileter() << " %." << std::endl;
+	std::cout << "Meilleur augmentation de degats critique : " << _joueur.meilleurAugmentationDegatsCritiques()->nom() << " " << _joueur.meilleurAugmentationDegatsCritiques()->stats().augmentationDegatsCritique() << " %." << std::endl;
+	std::cout << "Meilleur augmentation de chance de coup critique : " << _joueur.meilleurAugmentationChanceCritiques()->nom() << " " << _joueur.meilleurAugmentationChanceCritiques()->stats().augmentationCoupCritiques() << " %." << std::endl;
+	std::cout << "Meilleur augmentation de chance de double attaques : " << _joueur.meilleurAugmentationChanceDoubleAttaque()->nom() << " " << _joueur.meilleurAugmentationChanceDoubleAttaque()->stats().augmentationChanceDoubleAttaque() << " %." << std::endl;
 	std::cout << "Combat finis" << std::endl;
 }
 
