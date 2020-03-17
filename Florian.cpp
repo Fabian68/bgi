@@ -20,7 +20,7 @@ void Florian::attaqueEnnemis()
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 
 			Affichage().dessinerTexte(nom() + " se trompe ");
-			DEGATS = degats(0.27, 1.27);
+			DEGATS = degats(0.37, 1.37);
 			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 			ajouterMana(-2);
 		}
@@ -34,7 +34,7 @@ void Florian::attaqueEnnemis()
 
 		if (habile() && equipeEnnemi().estEnVie()) {
 			Affichage().dessinerTexte(nom() + " rote ");
-			DEGATS = degats(0.10, 0.20);
+			DEGATS = degats(0.15, 0.25);
 			DEGATS += static_cast<int>(Aleatoire(0.02, 0.07).decimal() * vieMax()+ Aleatoire(0.04, 0.14).decimal() * vie()) ;
 			equipeEnnemi().attaqueZone(DEGATS, this);
 			ajouterMana(-4);
@@ -51,7 +51,8 @@ void Florian::attaqueEnnemis()
 		}
 		if (habile() && attaqueDouble()) {
 			Affichage().dessinerTexte(nom() + " est fauché et fauche les ennemis ");
-			DEGATS = degats(0.10, 0.40) + static_cast<int>(Aleatoire(0.4, 0.8).decimal() * vitesse());
+			DEGATS = degats(0.20, 0.60) + static_cast<int>(Aleatoire(0.6, 2.6).decimal() * vitesse());
+			equipeEnnemi().attaqueZone(DEGATS, this);
 			ajouterMana(-2);
 		}
 		ajouterMana(1);
@@ -59,7 +60,7 @@ void Florian::attaqueEnnemis()
 		break;
 	case 3:
 		Affichage().dessinerTexte(nom() + " fait du bilboquet et touche un ennemi ! ");
-		DEGATS = degats(0.0, 6.0);
+		DEGATS = degats(0.65, 6.5);
 		Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
 		ajouterMana(-3);
 		break;
@@ -74,10 +75,13 @@ void Florian::passif(int tour)
 			equipeAllier()[i]->ajouterReduction(1);
 			if (habile()) {
 				equipeAllier()[i]->ajouterReduction(2);
+				if (attaqueDouble()) {
+					equipeAllier()[i]->ajouterReduction(3);
+				}
 			}
 		}
 	}
-	if ((tour + 1) % 25 == 0) {
+	if ((tour + 1) % 20 == 0) {
 		Affichage().dessinerTexte(nom() + " joue sa piece de théatre ! ");
 		for (int i = 0;i < equipeAllier().taille();i++) {
 			equipeAllier()[i]->ajouterChanceDoubleAttaque(5);
@@ -85,21 +89,21 @@ void Florian::passif(int tour)
 			equipeAllier()[i]->ajouterCoupCritique(5);
 			equipeAllier()[i]->ajouterDegatsCritique(10);
 			if (habile()) {
-				equipeAllier()[i]->ajouterChanceDoubleAttaque(5);
-				equipeAllier()[i]->ajouterChanceHabileter(5);
-				equipeAllier()[i]->ajouterCoupCritique(5);
-				equipeAllier()[i]->ajouterDegatsCritique(10);
+				equipeAllier()[i]->ajouterChanceDoubleAttaque(6);
+				equipeAllier()[i]->ajouterChanceHabileter(6);
+				equipeAllier()[i]->ajouterCoupCritique(6);
+				equipeAllier()[i]->ajouterDegatsCritique(12);
 			}
 			if (attaqueDouble()) {
-				equipeAllier()[i]->ajouterChanceDoubleAttaque(5);
-				equipeAllier()[i]->ajouterChanceHabileter(5);
-				equipeAllier()[i]->ajouterCoupCritique(5);
-				equipeAllier()[i]->ajouterDegatsCritique(10);
+				equipeAllier()[i]->ajouterChanceDoubleAttaque(8);
+				equipeAllier()[i]->ajouterChanceHabileter(8);
+				equipeAllier()[i]->ajouterCoupCritique(8);
+				equipeAllier()[i]->ajouterDegatsCritique(16);
 				if (habile()) {
-					equipeAllier()[i]->ajouterChanceDoubleAttaque(5);
-					equipeAllier()[i]->ajouterChanceHabileter(5);
-					equipeAllier()[i]->ajouterCoupCritique(5);
-					equipeAllier()[i]->ajouterDegatsCritique(10);
+					equipeAllier()[i]->ajouterChanceDoubleAttaque(10);
+					equipeAllier()[i]->ajouterChanceHabileter(10);
+					equipeAllier()[i]->ajouterCoupCritique(10);
+					equipeAllier()[i]->ajouterDegatsCritique(20);
 				}
 			}
 		}
@@ -109,6 +113,6 @@ void Florian::passif(int tour)
 void Florian::passifDefensif()
 {
 	Affichage().dessinerTexte(nom() + " est protéger par jesus ! ");
-	int SOINS = soins(0.0, 1.0);
+	int SOINS = soins(0.2, 2.0);
 	soigner(SOINS, this);
 }

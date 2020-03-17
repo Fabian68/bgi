@@ -20,7 +20,7 @@ void David::attaqueEnnemis()
 		Affichage().dessinerTexte(nom() + " joue du diabolo ");
 		for (int i = 0;i < 5 && equipeEnnemi().estEnVie();i++) {
 			if (habile()) {
-				DEGATS = Aleatoire(0.0, 1.0).decimal() * vitesse();
+				DEGATS = Aleatoire(0.2, 1.25).decimal() * vitesse();
 				Attaque(DEGATS, equipeEnnemi().plusFaible());	
 				ajouterMana(1);
 			}		
@@ -32,16 +32,16 @@ void David::attaqueEnnemis()
 
 		if (!habile()) {
 			for (int i = 0;i < equipeEnnemi().taille();i++) {
-				DEGATS = degats(ratio / 6.0, ratio / 3.0);
+				DEGATS = degats(ratio / 4.0, ratio / 2.0);
 				Attaque(DEGATS, equipeEnnemi()[i]);
 			}
 		}
 		else {
 			for (int i = 0;i < equipeAllier().taille();i++) {
-				SOINS = soins(ratio / 8.0, ratio / 4.0);
+				SOINS = soins(ratio / 4.0, ratio / 2.0);
 				soigner(SOINS, equipeAllier()[i]);
 
-				SOINS = soins(ratio / 10.0, ratio / 5.0);
+				SOINS = soins(ratio / 5.0, ratio / 2.5);
 				bouclier(SOINS, equipeAllier()[i]);
 			}
 		}
@@ -49,7 +49,7 @@ void David::attaqueEnnemis()
 		break;
 	case 2:
 		passif(0);
-		ajouterMana(-2);
+		ajouterMana(1);
 		break;
 	case 3:
 		Affichage().dessinerTexte(nom() + " roule sur les ennemis ");
@@ -59,6 +59,11 @@ void David::attaqueEnnemis()
 				DEGATS = static_cast<int>(Aleatoire(j, j * 2).decimal() * (vitesse()*1.0));
 				Attaque(DEGATS, equipeEnnemi()[i]);
 				j *=2;
+				if (habile()) {
+					j *= 2;
+					DEGATS = static_cast<int>(Aleatoire(j, j * 2).decimal() * (vitesse() * 1.0));
+					AttaqueBrut(DEGATS, equipeEnnemi()[i]);
+				}
 			}
 		}
 		ajouterMana(-3);

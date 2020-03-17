@@ -45,6 +45,7 @@ public:
 	void setAllierEtEnnemis(Equipes E);
 	bool estEnVie() const;
 	bool ia() const;
+	void modifierStats(std::vector<double> listeRatioModification);
 private:
 	std::vector<Personnage*> _equipe;
 	bool _equipeIA;

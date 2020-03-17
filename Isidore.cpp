@@ -9,7 +9,7 @@ void Isidore::attaqueEnnemis()
 	int choix = choixAttaque();
 	int DEGATS;
 	int SOINS;
-
+	ajouterVieMax(niveau() / 10);
 	int cible;
 	switch (choix) {
 
@@ -24,7 +24,7 @@ void Isidore::attaqueEnnemis()
 
 
 			Affichage().dessinerTexte(nom() + "saute sur " + equipeEnnemi()[cible]->nom());
-			DEGATS = degats(1.0, 4.0);
+			DEGATS = degats(1.0, 6.0);
 		
 			Attaque(DEGATS, equipeEnnemi()[cible]);
 			ajouterMana(2);
@@ -63,7 +63,7 @@ void Isidore::attaqueEnnemis()
 
 void Isidore::passif(int tour)
 {
-
+	ajouterVieMax(niveau()/10);
 	if ((tour + 1) % 5 == 0) {
 		Affichage().dessinerTexte(nom() + "grandit ! ");
 		ajouterForce(niveau() / 10);

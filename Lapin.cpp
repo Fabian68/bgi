@@ -16,6 +16,10 @@ Lapin::Lapin(int LVL,std::string nom,int difficulte,int animal,int rareteAnimal,
 		ajouterVie(19 * vie());
 		ajouterReduction(99);
 	}
+	else if (difficulte == 5) {
+		ajouterVie(vie());
+		ajouterReduction(90);
+	}
 }
 void Lapin::attaqueEnnemis() {
 	int choix = choixAttaque();

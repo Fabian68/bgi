@@ -180,6 +180,15 @@
     <ClCompile Include="Salim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Affinites.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dragon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Conseils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="winbgim.h">
@@ -324,6 +333,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Salim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Affinites.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dragon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Conseils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

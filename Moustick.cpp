@@ -12,7 +12,7 @@ void Moustick::attaqueEnnemis()
 	int ratio = 100 * static_cast<int>(1.0 - (vie() * 1.0) / (vieMax() * 1.0));
 	ratio = min(99, ratio);
 	int ratioPositif = static_cast<int>((vieMax() * 1.0) / (vie() * 1.0));
-	ratioPositif = min(ratioPositif, 10);
+	ratioPositif = min(ratioPositif, 20);
 	setReduction(ratio);
 	
 	switch (choix) {

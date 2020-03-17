@@ -9,7 +9,7 @@ void Fabian::attaqueEnnemis()
 	int DEGATS;
 	int SOINS;
 	std::string a = nom();
-	int nb = equipeAllier().nbEnVie();
+	double nb = equipeAllier().nbEnVie()*1.0;
 	SOINS = soins(0.7/nb, 1.7/nb);
 	Affichage().dessinerTexte(nom() + "Soins Unity");
 	equipeAllier().soignerZone(SOINS, this);

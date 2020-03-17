@@ -3,9 +3,16 @@
 #include "Experiences.h"
 #include <iostream>
 #include "Aleatoire.h"
+#include "Affinites.h"
 
 Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O) : _joueur{Joueur}, _ia{Ia},_tour{0}
 {
+	if (_joueur.taille() > 1) {
+		Affinites f;
+		std::vector<double> Aff;
+		Aff = f.listeAffinites(_joueur);
+		_joueur.modifierStats(Aff);
+	}
 	int somme = 0;
 	int max = INT_MIN;
 	int nombrePersonnages = _joueur.taille() + _ia.taille();
@@ -91,7 +98,7 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 	std::cout << "Meilleur Soigneur : " << _joueur.meilleurSoigneur()->nom() << " " << _joueur.meilleurSoigneur()->stats().soinsDonner() << " vie." << std::endl;
 	std::cout << "Meilleur Bouclier : " << _joueur.meilleurBouclier()->nom() << " " << _joueur.meilleurBouclier()->stats().bouclierDonner() << " bouclier." << std::endl;
 
-	std::cout << "Meilleur augmentation de vie force : " << _joueur.meilleurAugmentationForce()->nom() << " " << _joueur.meilleurAugmentationForce()->stats().augmentationForce() << " points." << std::endl;
+	std::cout << "Meilleur augmentation de force : " << _joueur.meilleurAugmentationForce()->nom() << " " << _joueur.meilleurAugmentationForce()->stats().augmentationForce() << " points." << std::endl;
 	std::cout << "Meilleur augmentation de vie maximum : " << _joueur.meilleurAugmentationVieMax()->nom() << " " << _joueur.meilleurAugmentationVieMax()->stats().augmentationVieMax() << " PV." << std::endl;
 	std::cout << "Meilleur augmentation de reduction de degats : " << _joueur.meilleurAugmentationReduction()->nom() << " " << _joueur.meilleurAugmentationReduction()->stats().augmentationReduction() << " %." << std::endl;
 	std::cout << "Meilleur augmentation de chance de coup habile : " << _joueur.meilleurAugmentationHabileter()->nom() << " " << _joueur.meilleurAugmentationHabileter()->stats().augmentationChanceHabileter() << " %." << std::endl;

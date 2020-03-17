@@ -3,6 +3,7 @@
 #include "Personnage.h"
 #include "Bouton.h"
 #include "Zones.h"
+#include "Affinites.h"
 #include  <iostream>
 
 Affichage::Affichage()
@@ -735,9 +736,17 @@ void Affichage::choixNiveau(Zones Z, int & niveau,int & repetition) const
 
 void Affichage::menuModifierEquipe(Equipes& Gentil, Equipes choix,int max) const
 {
-	afficherTexte(100, 20, "Equipe actuel");
+	Affinites f;
+	std::vector<double> Aff;
+	Aff=f.listeAffinites(Gentil);
+	std::string AffString;
+	afficherTexte(100, 20, "Equipe actuel");afficherTexte(220, 20, "Affinites");
 	for (int i = 0; i < Gentil.taille(); i++) {
 		Bouton(100, (i + 1) * 50, std::to_string(i) + Gentil[i]->nom()).afficher();
+		AffString = std::to_string(Aff[i]);
+		AffString.resize(4);
+		AffString+= "  ";
+		afficherTexte(220, (i + 1) * 50+10, AffString);
 	}
 	if (max > 0) {
 		afficherTexte(400, 10, "Personnages selectionnable");

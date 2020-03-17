@@ -9,6 +9,10 @@ Brute::Brute(int LVL, std::string nom, int difficulte, int animal, int rareteAni
 		ajouterVitesse(vitesse());
 		ajouterVie(9 * vie());
 	}
+	else if (difficulte == 5) {
+		ajouterVie(vie());
+		ajouterReduction(90);
+	}
 	enrager = false;
 }
 

@@ -111,7 +111,7 @@ void Nicolas::passif(int tour)
 		ajouterForce(niveau());
 	}
 	if (tour>100) {
-		int Degats = degats(tour/10.0, tour/5.0);
+		int Degats = degats(tour/20.0, tour/10.0);
 		Affichage().dessinerTexte(this->nom() + " est enerver le combat est trop long ! ");
 		equipeEnnemi().attaqueZone(Degats, this);
 	}
@@ -120,7 +120,7 @@ void Nicolas::passif(int tour)
 void Nicolas::passifDefensif()
 {
 	if (Aleatoire(0, 101).entier() <= 10) {
-		int Degats = degats(0.10, 0.25);
+		int Degats = degats(0.25, 0.5);
 		Affichage().dessinerTexte(this->nom() + " contre attaque ");
 		Attaque(Degats, equipeEnnemi().plusProcheVivant());
 	}

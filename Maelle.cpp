@@ -1,7 +1,7 @@
 #include "Maelle.h"
 #include "Affichage.h"
 
-Maelle::Maelle(Experiences E, Orbes O, Animaux A) : Personnage(13, E, O, A, "Maelle", 1, 8, 1, 50, 50, 20, 0, 0, 0, 0)
+Maelle::Maelle(Experiences E, Orbes O, Animaux A) : Personnage(13, E, O, A, "Maelle", 1, 8, 1, 30, 30, 20, 0, 0, 0, 0)
 {
 	estTransformer = false;
 }
@@ -12,26 +12,30 @@ void Maelle::attaqueEnnemis()
 	int DEGATS;
 	int SOINS;
 	int indice;
+	int compteur;
 	double k = 0.5;
 	if (habile()) {
 		switch (choix) {
 
 		case 0:
-			DEGATS = degats(0.01, 1.0);
-			
+			DEGATS = degats(0.01, 0.10);
+			compteur = 0;
 			Affichage().dessinerTexte(nom() + " s'enerve ! ");
 			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-			while (habile() && equipeEnnemi().estEnVie()) {
+			while (habile() && equipeEnnemi().estEnVie()&&compteur<=6) {
 				Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 				DEGATS = degats(k, k*2);
 				k *= 2;
+				compteur++;
 			}
 			if (attaqueDouble()) {
+				compteur = 0;
 				k /= 2;
-				while (habile() && equipeEnnemi().estEnVie()) {
+				while (habile() && equipeEnnemi().estEnVie() && compteur <= 6) {
 					Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 					DEGATS = degats(k, k * 2);
 					k *= 2;
+					compteur++;
 				}
 			}
 			
@@ -44,14 +48,22 @@ void Maelle::attaqueEnnemis()
 				Attaque(DEGATS,this);
 				SOINS = soins(i / 200, i / 100);
 				soigner(SOINS, this);
+				ajouterVieMax(niveau() / 100);
 			}
 			ajouterMana(-1);
 			break;
 		case 2:
 
 			Affichage().dessinerTexte(nom() + " joue a la tablette !  ");
-			ajouterCoupCritique(5);
-			ajouterDegatsCritique(10);
+			
+			if (habile()) {
+				ajouterCoupCritique(8);
+				ajouterDegatsCritique(20);
+			}
+			else {
+				ajouterCoupCritique(5);
+				ajouterDegatsCritique(10);
+			}
 			ajouterMana(-2);
 			break;
 		case 3:
@@ -60,7 +72,7 @@ void Maelle::attaqueEnnemis()
 				setNom("Maellosaure");
 				ajouterForce(force());
 				ajouterVitesse(vitesse());
-				ajouterVie(9 * vie());
+				ajouterVieMax(9 * vieMax());
 				ajouterMana(-3);
 				estTransformer = true;
 			}
@@ -83,6 +95,6 @@ void Maelle::passif(int tour)
 
 void Maelle::passifDefensif()
 {
-	Affichage().dessinerTexte(nom() + " La graisse protege maelle ! ");
+	//Affichage().dessinerTexte(nom() + " La graisse protege maelle ! ");
 	bouclier(vieMax()/100+niveau(), this);
 }

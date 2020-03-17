@@ -180,8 +180,8 @@ int Personnage::degats(double RatioMin, double RatioMax) const
 
 void Personnage::soigner(int soins,Personnage * P)
 {	if (P->estEnVie()) {
-		if ((soins + _vie) > _vieMax) {
-			soins = _vieMax - _vie;
+		if ((soins + P->vie()) > P->vieMax()) {
+			soins = P->vieMax() - P->vie();
 			
 		}
 		P->stats().ajouterSoinsDonner(soins);
@@ -190,24 +190,26 @@ void Personnage::soigner(int soins,Personnage * P)
 }
 
 void Personnage::AjouterVie(int montant) {
-	if (montant < 0) {
+	if (montant <= 0) {
 		montant = 0;
 	}
-	_vie += montant;
-	Affichage H;
-	H.dessinerSoins(this, montant);
+	else {
+		_vie += montant;
+		Affichage H;
+		H.dessinerSoins(this, montant);
 	
-	if (_vie > _vieMax) {
-		_vie = _vieMax;	
+		if (_vie > _vieMax) {
+			_vie = _vieMax;	
+		}
+		H.dessinerJoueur(this->indiceEquipe() + 1, this->equipeAllier().ia(), this);
 	}
-	H.dessinerJoueur(this->indiceEquipe() + 1, this->equipeAllier().ia(), this);
 }
 
 void Personnage::bouclier(int soins, Personnage* P)
 {
 	if (P->estEnVie()) {
-		if ((soins + _bouclier) >bouclierMax()) {
-			soins = bouclierMax() - _bouclier;
+		if ((soins + P->bouclier()) >P->bouclierMax()) {
+			soins = P->bouclierMax() - P->bouclier();
 
 		}
 		P->stats().ajouterBouclierDonner(soins);
@@ -216,19 +218,21 @@ void Personnage::bouclier(int soins, Personnage* P)
 }
 
 void Personnage::AjouterBouclier(int montant) {
-	if (montant < 0) {
+	if (montant <= 0) {
 		montant = 0;
 	}
-	_bouclier += montant;
-	Affichage H;
+	else {
+		_bouclier += montant;
+		Affichage H;
 
-	
-	H.dessinerBouclier(this,montant);
-	if (_bouclier > bouclierMax()) {
-		_bouclier = bouclierMax();
+		H.dessinerBouclier(this,montant);
+		if (_bouclier > bouclierMax()) {
+			_bouclier = bouclierMax();
 		
+		}
+		H.dessinerJoueur(this->indiceEquipe() + 1, this->equipeAllier().ia(), this);
 	}
-	H.dessinerJoueur(this->indiceEquipe() + 1, this->equipeAllier().ia(), this);
+	
 }
 
 void Personnage::ajouterBouclier(int montant) {
@@ -306,6 +310,7 @@ void Personnage::traitementAnimaux() {
 }
 void  Personnage::Attaque(int Degat, Personnage * Defenseur) 
 {
+	Degat++;
 	
 	int degatEffectif;
 	if (Defenseur->estAttaquable()) {
@@ -400,8 +405,8 @@ void Personnage::ajouterChanceHabileter(int montant) {
 void Personnage::ajouterReduction(int montant) {
 	_pourcentageReduction += montant;
 	_S.ajouterAugmentationReduction(montant);
-	if (_pourcentageReduction >= 90) {
-		_pourcentageReduction = 90;
+	if (_pourcentageReduction >= 95) {
+		_pourcentageReduction = 95;
 	}
 }
 int Personnage::bouclier()const {
@@ -516,6 +521,22 @@ void Personnage::ajouterDegatsCritique(int pourcentage)
 void Personnage::setNom(std::string nom)
 {
 	_nom = nom;
+}
+
+void Personnage::modifierStats(double ratio)
+{
+	if (ratio > -1.0) {
+		_force = round(_force * (1.0 + ratio));
+		_vie = round(_vie * (1.0 + ratio));
+		_vieMax = _vie;
+		_vitesse = round(_vitesse * (1.0+ratio));
+	}
+	else {
+		_force = 1;
+		_vie = 1;
+		_vieMax = 1;
+		_vitesse = 1;
+	}
 }
 
 

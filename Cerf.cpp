@@ -14,6 +14,10 @@ Cerf::Cerf(int LVL, std::string nom, int difficulte, int animal, int rareteAnima
 		ajouterVie(19 * vie());
 		ajouterReduction(90);
 	}
+	else if (difficulte == 5) {
+		ajouterVie(2*vie());
+		ajouterReduction(99);
+	}
 }
 
 void Cerf::attaqueEnnemis()

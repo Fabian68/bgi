@@ -38,7 +38,7 @@ void Pollyana::attaqueEnnemis()
 		Affichage().dessinerTexte(nom() + " Attaque des ombres ");
 		DEGATS = degats(3.0, 9.0);
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-		DEGATS = degats(2.0, 7.0);
+		DEGATS = degats(1.5, 4.5);
 		AttaqueBrut(DEGATS, this);
 		ajouterMana(-2);
 		break;

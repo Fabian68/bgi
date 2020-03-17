@@ -260,21 +260,21 @@ Personnage* Equipes::meilleurAugmentationChanceDoubleAttaque()
 
 void Equipes::attaqueZone(int Degats,Personnage * Attaquant)
 {
-	for (int i = 0; i < _equipe.size(); i++) {
-		Attaquant->Attaque(Degats, _equipe[i]);
+	for (int i = 0; i < Attaquant->equipeEnnemi().taille(); i++) {
+		Attaquant->Attaque(Degats, Attaquant->equipeEnnemi()[i]);
 	}
 }
 
 void Equipes::soignerZone(int soins, Personnage* Soigneur)
 {
-	for (int i = 0; i < _equipe.size(); i++) {
-		Soigneur->soigner(soins, _equipe[i]);
+	for (int i = 0; i < Soigneur->equipeAllier().taille(); i++) {
+		Soigneur->soigner(soins, Soigneur->equipeAllier()[i]);
 	}
 }
 void Equipes::bouclierZone(int montantBouclier, Personnage* bouclierMan)
 {
-	for (int i = 0; i < _equipe.size(); i++) {
-		bouclierMan->bouclier(montantBouclier, _equipe[i]);
+	for (int i = 0; i < bouclierMan->equipeAllier().taille(); i++) {
+		bouclierMan->bouclier(montantBouclier, bouclierMan->equipeAllier()[i]);
 	}
 }
 void Equipes::vider()
@@ -386,6 +386,12 @@ bool Equipes::estEnVie()const {
 
 bool Equipes::ia()const {
 	return _equipeIA;
+}
+
+void Equipes::modifierStats(std::vector<double> listeRatioModification) {
+	for (int i = 0;i < _equipe.size();i++) {
+		_equipe[i]->modifierStats(listeRatioModification[i]);
+	}
 }
 /*
 test envie equipe

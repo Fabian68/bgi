@@ -64,6 +64,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Affichage.cpp" />
+    <ClCompile Include="Affinites.cpp" />
     <ClCompile Include="Aleatoire.cpp" />
     <ClCompile Include="Amine.cpp" />
     <ClCompile Include="Animal.cpp" />
@@ -76,9 +77,11 @@
     <ClCompile Include="Chasseur.cpp" />
     <ClCompile Include="Cloe.cpp" />
     <ClCompile Include="Combat.cpp" />
+    <ClCompile Include="Conseils.cpp" />
     <ClCompile Include="Creeper.cpp" />
     <ClCompile Include="David.cpp" />
     <ClCompile Include="dibutil.cxx" />
+    <ClCompile Include="Dragon.cpp" />
     <ClCompile Include="drawing.cxx" />
     <ClCompile Include="Elite.cpp" />
     <ClCompile Include="Equipes.cpp" />
@@ -121,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affichage.h" />
+    <ClInclude Include="Affinites.h" />
     <ClInclude Include="Aleatoire.h" />
     <ClInclude Include="Amine.h" />
     <ClInclude Include="Animal.h" />
@@ -132,9 +136,11 @@
     <ClInclude Include="Chasseur.h" />
     <ClInclude Include="Cloe.h" />
     <ClInclude Include="Combat.h" />
+    <ClInclude Include="Conseils.h" />
     <ClInclude Include="Creeper.h" />
     <ClInclude Include="David.h" />
     <ClInclude Include="dibutil.h" />
+    <ClInclude Include="Dragon.h" />
     <ClInclude Include="Elite.h" />
     <ClInclude Include="Equipes.h" />
     <ClInclude Include="Experiences.h" />

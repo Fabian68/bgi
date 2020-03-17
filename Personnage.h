@@ -81,6 +81,7 @@ public:
 	void ajouterCoupCritique(int pourcentage);
 	void ajouterDegatsCritique(int pourcentage);
 	void setNom(std::string nom);
+	void modifierStats(double ratio);
 private:
 	int _id;
 	int _niveau;

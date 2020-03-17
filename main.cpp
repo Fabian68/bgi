@@ -27,7 +27,8 @@
 #include "Maelle.h"
 #include "Pollyana.h"
 #include "Salim.h"
-
+#include "Affinites.h"
+#include "Conseils.h"
 #define PI 3.14159265
 
 void nettoyerZoneAttaque() {
@@ -75,7 +76,7 @@ int main()
 	initwindow(1200,800, "First Sample");
 	setbkcolor(0);
 	setcolor(RED);
-
+	Affinites();
 	
 	
 	Equipes  Gentil(false);
@@ -87,13 +88,14 @@ int main()
 //	Gentil.ajouterPerso(&F);
 	Equipes choix(false);
 	
-	
+	Conseils C;
 	Equipes Meuchant(true);
 	
 	Bouton modifierEquipe(500, 50, "Modifier equipe");
 	Bouton AfficherJoueurs(500, 100, "AfficherJoueurs");
 	Bouton AfficherAnimaux(500, 150, "AfficherAnimaux");
 	Bouton Jouer(500, 200, "Jouer");
+	Bouton Conseil(100, 300, C.conseilAleatoire());
 	
 
 	const int DELAY = 50; // Milliseconds of delay between checks
@@ -105,7 +107,7 @@ int main()
 		Animaux A;
 		Affichage H;
 		
-		H.dessinerTexte("Version 1.15.1 ");
+		H.dessinerTexte("Version 1.17 ");
 		Meuchant.liberer();
 		reinitListeEquipe(choix);
 		reinitEquipe(Gentil, choix);
@@ -113,6 +115,8 @@ int main()
 		AfficherJoueurs.afficher();
 		AfficherAnimaux.afficher();
 		Jouer.afficher();
+		Bouton Conseil(100, 300, C.conseilAleatoire());
+		Conseil.afficher();
 		do {
 			while (!ismouseclick(WM_LBUTTONDOWN)) {
 				delay(DELAY);
