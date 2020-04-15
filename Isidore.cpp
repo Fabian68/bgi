@@ -9,7 +9,7 @@ void Isidore::attaqueEnnemis()
 	int choix = choixAttaque();
 	int DEGATS;
 	int SOINS;
-	ajouterVieMax(niveau() / 10);
+	ajouterVieMax(niveau());
 	int cible;
 	switch (choix) {
 
@@ -37,6 +37,8 @@ void Isidore::attaqueEnnemis()
 			if (habile()) {
 				SOINS = soins(i / 10.0, i / 10.0 + 0.01);
 				soigner(SOINS, this);
+			
+				ajouterVieMax(vieMax()*0.01);
 			}
 		}
 		ajouterMana(1);
@@ -65,9 +67,16 @@ void Isidore::passif(int tour)
 {
 	ajouterVieMax(niveau()/10);
 	if ((tour + 1) % 5 == 0) {
+		if (habile() || attaqueDouble()) {
+			ajouterForce(niveau() / 10);
+			ajouterVieMax(niveau()*10);
+		}
+		else {
+			ajouterForce(niveau() / 10);
+			ajouterVieMax(niveau());
+		}
 		Affichage().dessinerTexte(nom() + "grandit ! ");
-		ajouterForce(niveau() / 10);
-		ajouterVieMax(niveau());
+		
 	}
 	if ((tour + 1) % 30 == 0) {
 		Affichage().dessinerTexte(nom() + "se repose ! ");

@@ -21,7 +21,7 @@ void Salim::attaqueEnnemis()
 		DEGATS = Aleatoire(0.03, 0.06).decimal() * vieMax() + degats(0.1, 0.3);
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 		if (habile()&&equipeEnnemi().estEnVie()) {
-			DEGATS = Aleatoire(0.03, 0.06).decimal() * vieMax() + degats(0.1, 0.3);
+			DEGATS = Aleatoire(0.01, 0.02).decimal() * vieMax() + degats(0.05, 0.15);
 			AttaqueBrut(DEGATS, equipeEnnemi().plusProcheVivant());
 			ajouterMana(2);
 		}
@@ -47,7 +47,7 @@ void Salim::attaqueEnnemis()
 		SOINS = soins(0.2, 2.0);
 		soigner(SOINS, this);
 		ajouterReduction(5);
-		ajouterMana(1);
+		ajouterMana(-2);
 		break;
 	case 3:
 		if (!estTransformer) {
@@ -93,7 +93,7 @@ void Salim::passif(int tour)
 	if ((tour + 1) % 100 == 0) {
 		Affichage().dessinerTexte(nom() + " jugement dernier ! ");
 		for (int i = 0;i < equipeEnnemi().taille();i++) {
-			DEGATS = degats(1.0, 10.0);
+			DEGATS = degats(1.0, 11.0);
 			if (habile()) {
 				AttaqueBrut(DEGATS, equipeEnnemi()[i]);
 			}

@@ -33,7 +33,7 @@ void Dragon::attaqueEnnemis()
 		break;
 	case 1:
 		Affichage().dessinerTexte(nom() + " lance flamme ! ");
-		DEGATS = degats(5.0, 10.0);
+		DEGATS = degats(6.0, 12.0);
 		for (int i = 0;i < equipeEnnemi().taille();i++) {
 			if (equipeEnnemi()[i]->estEnVie()) {
 				Attaque(DEGATS*mult, equipeEnnemi()[i]);

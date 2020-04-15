@@ -28,20 +28,20 @@ void Creeper::attaqueEnnemis()
 	Affichage().dessinerTexte(nom() + " explose ! ");
 	for (int i = 0; i < equipeEnnemi().taille() && equipeEnnemi().estEnVie(); i++) {
 		tirage = Aleatoire(0, 101).entier();
-		if (tirage < 50) {
+		if (tirage < 30) {
 
 		}
 		else {
-			if (tirage >= 50 && tirage < 76) {
+			if (tirage >= 30 && tirage < 50) {
 				DEGATS = degats(0.0, 2.5);
 			}
-			else if (tirage >= 76 && tirage < 89) {
+			else if (tirage >= 50 && tirage < 70) {
 				DEGATS = degats(2.5, 5.0);
 			}
-			else if (tirage >= 89 && tirage < 96) {
+			else if (tirage >= 70 && tirage < 90) {
 				DEGATS = degats(5.0, 10.0);
 			}
-			else if (tirage >= 96 && tirage < 99) {
+			else if (tirage >= 90 && tirage < 97) {
 				DEGATS = degats(7.5, 15.0);
 			}
 			else {

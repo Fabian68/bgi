@@ -48,13 +48,13 @@ void Fiona::attaqueEnnemis()
 		for (int i = 1; i <= 3 && equipeEnnemi().estEnVie(); i++) {
 			equipeEnnemi().plusProcheVivant()->ajouterReduction(-1);
 			DEGATS = degats(0.2 * i , 0.4 *i);
-			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+			Attaque(DEGATS, equipeEnnemi().plusFort());
 		}
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 			for (int i = 1; i <= 3 && equipeEnnemi().estEnVie(); i++) {
 				equipeEnnemi().plusProcheVivant()->ajouterReduction(-1);
 				DEGATS = degats(0.3 * i, 0.6 * i);
-				Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+				Attaque(DEGATS, equipeEnnemi().plusFort());
 			}
 		}
 		ajouterMana(-2);
@@ -118,7 +118,7 @@ void Fiona::passif(int tour)
 		for (size_t i = 0; i < 17; i++)
 		{
 			Degats = degats(0.17, 0.18 + 0.01 * i);
-			Attaque(Degats, equipeEnnemi().aleatoireEnVie());
+			Attaque(Degats, equipeEnnemi().plusFort());
 		}
 	}
 }

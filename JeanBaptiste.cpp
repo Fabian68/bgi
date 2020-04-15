@@ -84,6 +84,41 @@ void JeanBaptiste::passif(int tour)
 		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax() / 5));
 		reduireVieMax((vieMax() / 10));
 	}
+	if (tour == 60 || tour == 80 || tour == 100) {
+		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
+		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax() / 4));
+		reduireVieMax((vieMax() / 20));
+	}
+	if (tour == 130 || tour == 160 || tour == 200) {
+		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
+		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax() / 3));
+		reduireVieMax((vieMax() / 30));
+	}
+	if (tour == 250 || tour == 300 || tour == 350) {
+		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
+		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax() / 2));
+		reduireVieMax((vieMax() / 40));
+	}
+	if (tour == 400 || tour == 450 || tour == 500) {
+		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
+		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax()));
+		reduireVieMax((vieMax() / 50));
+	}
+	if (tour == 600 || tour == 700 || tour == 800) {
+		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
+		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax()*2));
+		reduireVieMax((vieMax() / 60));
+	}
+	if (tour == 900 || tour == 1000 || tour == 1100) {
+		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
+		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax() * 3));
+		reduireVieMax((vieMax() / 70));
+	}
+	if (tour == 1300 || tour == 1500 || tour == 2000) {
+		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
+		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax() * 4));
+		reduireVieMax((vieMax() / 80));
+	}
 	
 }
 

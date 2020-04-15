@@ -18,6 +18,7 @@ public:
 	Personnage* plusProcheVivant();
 	Personnage* plusLoinVivant();
 	Personnage* plusFaible();
+	Personnage* plusFort();
 	Personnage* moinsResistant();
 	Personnage* aleatoireEnVie();
 	Personnage* meilleurDegats();

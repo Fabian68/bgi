@@ -87,6 +87,21 @@ Personnage* Equipes::plusFaible()
 	return _equipe[j];
 }
 
+Personnage* Equipes::plusFort()
+{
+	int forceMin = INT_MAX;
+	int j = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+
+		if ( _equipe[i]->force() < forceMin) {
+
+			forceMin = _equipe[i]->force();
+			j = i;
+		}
+	}
+	return _equipe[j];
+}
+
 Personnage* Equipes::moinsResistant()
 {
 	int reductionMax = 100;

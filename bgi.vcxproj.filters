@@ -189,6 +189,12 @@
     <ClCompile Include="Conseils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tellurique.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Magicien.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="winbgim.h">
@@ -342,6 +348,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Conseils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tellurique.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Magicien.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

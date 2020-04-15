@@ -54,7 +54,7 @@ void Thomas::attaqueEnnemis()
 	case 3:
 		Affichage().dessinerTexte(nom() + " J'ai bian manger j'ai bien bu ! ");
 		DEGATS = round(0.13 * vie() + 0.02 * vieMax() + 0.15 * bouclier()+0.10*force());
-		Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+		Attaque(DEGATS, equipeEnnemi().plusFort());
 		ajouterMana(-3);
 		break;
 	}
@@ -71,7 +71,7 @@ void Thomas::passif(int tour)
 
 void Thomas::passifDefensif()
 {
-	if (Aleatoire(0, 101).entier() <= 10) {
+	if (Aleatoire(0, 101).entier() <= chanceHabileter()) {
 		AjouterBouclier(round(vieMax()*0.02));
 		equipeAllier().moinsResistant()->ajouterReduction(1);
 	}

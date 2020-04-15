@@ -56,7 +56,7 @@ void Cerf::attaqueEnnemis()
 	case 3:
 		Affichage().dessinerTexte(nom() + "sacrifice !");
 		DEGATS = degats(10.0, 15.0);
-		Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+		Attaque(DEGATS, equipeEnnemi().plusFort());
 		minusVie = round(vie() * 0.999);
 		reduireVie(minusVie);
 		

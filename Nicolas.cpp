@@ -80,12 +80,12 @@ void Nicolas::attaqueEnnemis() {
 		Affichage().dessinerTexte(nom() + " fusil d'assaut ! ");
 		for (int i = 0; i< Aleatoire(20, 40).entier() && equipeEnnemi().estEnVie() ; i++) {
 			DEGATS = degats(0.10, 0.25);
-			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+			Attaque(DEGATS, equipeEnnemi().plusFort());
 		}
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 			for (int i = 0; i < Aleatoire(10, 50).entier() && equipeEnnemi().estEnVie(); i++) {
 				DEGATS = degats(0.05, 0.30);
-				Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+				Attaque(DEGATS, equipeEnnemi().plusFort());
 			}
 		}
 		ajouterMana(-2);

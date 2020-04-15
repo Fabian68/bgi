@@ -15,6 +15,8 @@
 #include "Chasseur.h"
 #include "Rapace.h"
 #include "Dragon.h"
+#include "Tellurique.h"
+#include "Magicien.h"
 
 Zones::Zones()
 {
@@ -467,10 +469,94 @@ void Zones::equipeEnZone(int i,Equipes & E)
 		E.ajouterPerso(new Dragon(797, "Dragon de l'END",1));	
 		break;
 	case 70:
-		E.ajouterPerso(new Sanglier(860000, "Sanglier de la mise a jour"));
+		E.ajouterPerso(new Sanglier(860, "Ancien Sanglier de la mise a jour"));
 		E.ajouterPerso(new Lapin(89, "Lapin"));
 		E.ajouterPerso(new Cerf(84, "Cerf"));
 		E.ajouterPerso(new Sanglier(87, "Sanglier"));
+		break;
+	case 71:
+		E.ajouterPerso(new Tellurique(800, "GOLEM"));
+		E.ajouterPerso(new Tellurique(825, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(804, "GOLEM"));
+		break;
+	case 72:
+		E.ajouterPerso(new Tellurique(814, "GOLEM"));
+		E.ajouterPerso(new Magicien(828, "blbl"));
+		E.ajouterPerso(new Tellurique(815, "GOLEM"));
+		break;
+	case 73:
+		E.ajouterPerso(new Tellurique(830, "GOLEM"));
+		E.ajouterPerso(new Tellurique(833, "Telluriforce"));
+		E.ajouterPerso(new Magicien(840, "blbl"));
+		E.ajouterPerso(new Magicien(832, "blbl"));
+		E.ajouterPerso(new Tellurique(830, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(850, "GOLEM"));
+		break;
+	case 74:
+		E.ajouterPerso(new Tellurique(890, "GOLEM"));
+		E.ajouterPerso(new Tellurique(863, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(893, "Telluriforce"));
+		E.ajouterPerso(new Magicien(921, "blbl"));
+		E.ajouterPerso(new Magicien(1000, "blbl"));
+		E.ajouterPerso(new Magicien(940, "blbl"));
+		E.ajouterPerso(new Tellurique(850, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(889, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(900, "GOLEM"));
+		break;
+	case 75:
+		E.ajouterPerso(new Tellurique(1490, "GOLEM"));
+		E.ajouterPerso(new Tellurique(1263, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1354, "Telluriforce"));
+		E.ajouterPerso(new Magicien(1052, "blbl"));
+		E.ajouterPerso(new Magicien(1500, "blbl"));
+		E.ajouterPerso(new Magicien(1356, "blbl"));
+		E.ajouterPerso(new Tellurique(1245, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1146, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1369, "GOLEM"));
+		break;
+	case 76:
+		E.ajouterPerso(new Tellurique(1790, "GOLEM"));
+		E.ajouterPerso(new Tellurique(1963, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1854, "Telluriforce"));
+		E.ajouterPerso(new Magicien(1952, "blbl"));
+		E.ajouterPerso(new Magicien(1999, "blbl"));
+		E.ajouterPerso(new Dragon(2000, "blbl"));
+		E.ajouterPerso(new Tellurique(1545, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1646, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1869, "GOLEM"));
+		break;
+	case 77:
+		E.ajouterPerso(new Tellurique(2290, "GOLEM"));
+		E.ajouterPerso(new Tellurique(2363, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(2454, "Telluriforce"));
+		E.ajouterPerso(new Magicien(2452, "blbl"));
+		E.ajouterPerso(new Magicien(2499, "blbl"));
+		E.ajouterPerso(new Dragon(2500, "blbl"));
+		E.ajouterPerso(new Tellurique(2345, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(2446, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(2469, "GOLEM"));
+		break;
+	case 78:
+		E.ajouterPerso(new Tellurique(2790, "GOLEM"));
+		E.ajouterPerso(new Tellurique(2963, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(2854, "Telluriforce"));
+		E.ajouterPerso(new Magicien(2952, "blbl"));
+		E.ajouterPerso(new Magicien(2999, "blbl"));
+		E.ajouterPerso(new Dragon(3000, "blbl"));
+		E.ajouterPerso(new Tellurique(2545, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(2646, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(2869, "GOLEM"));
+		break;
+	case 79:
+		E.ajouterPerso(new Tellurique(9790, "ATTENDRE MISE A JOUR"));
+		E.ajouterPerso(new Tellurique(9963, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(9854, "Telluriforce"));
+		E.ajouterPerso(new Magicien(9952, "blbl"));
+		E.ajouterPerso(new Magicien(9999, "blbl"));
+		E.ajouterPerso(new Dragon(9000, "blbl"));
+		E.ajouterPerso(new Tellurique(9545, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(9646, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(9869, "GOLEM"));
 		break;
 	/*case 20:
 		E.ajouterPerso(new Lapin(90, "Lapinou", 2, 9, 5));
@@ -720,6 +806,9 @@ int Zones::nbPersoJouable() const
 		nb++;
 	}
 	if (_niveauMax >= 70) {
+		nb++;
+	}
+	if (_niveauMax >= 77) {
 		nb++;
 	}
 	return nb;

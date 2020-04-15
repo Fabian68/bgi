@@ -64,7 +64,7 @@ void Brute::attaqueEnnemis()
 
 		Affichage().dessinerTexte(nom() + " coup enrager ");
 		DEGATS = degats(1.5, 3.0);
-		Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+		AttaqueBrut(DEGATS, equipeEnnemi().plusFort());
 		ajouterMana(-2);
 		break;
 	case 3:

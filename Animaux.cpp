@@ -87,7 +87,7 @@ void Animaux::deblocageAnimal(int indicePersonnage, int indiceAnimal, int rarete
 		txt += " qui attaque l'équipe ennemi ";
 		break;
 	case 5:
-		txt += " qui attaque une cible aleatoire ";
+		txt += " qui attaque l'ennemi le plus fort ";
 		break;
 	case 6:
 		txt += " qui bouclier de zone ";

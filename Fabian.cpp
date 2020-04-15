@@ -17,20 +17,36 @@ void Fabian::attaqueEnnemis()
 	switch (choix) {
 
 	case 0:
-		DEGATS = degats(0.27, 0.77);
-	
-		DEGATS += static_cast<int>(ceil(0.01 * equipeEnnemi().plusProcheVivant()->vie()));
-		Affichage().dessinerTexte(nom() + " attaque de base");
-		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-		
-		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
-			
-			DEGATS = degats(0.27, 0.77);
-			DEGATS += static_cast<int>(ceil(0.1 * equipeEnnemi().plusProcheVivant()->vie() / 10.0));
+		DEGATS = degats(0.07, 0.7);
+		if (habile()) {
+			DEGATS += static_cast<int>(ceil(0.17 * equipeEnnemi().plusProcheVivant()->vieMax()));
+			Affichage().dessinerTexte(nom() + " attaque de base");
 			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-			
+
+			if (attaqueDouble() && equipeEnnemi().estEnVie()) {
+
+				DEGATS = degats(0.27, 0.77);
+				DEGATS += static_cast<int>(ceil(0.07 * equipeEnnemi().plusProcheVivant()->vieMax()));
+				Affichage().dessinerTexte(nom() + " attaque de base");
+				AttaqueBrut(DEGATS, equipeEnnemi().plusProcheVivant());
+
+			}
+			ajouterMana(1);
 		}
-		ajouterMana(2);
+		else {
+			DEGATS += static_cast<int>(ceil(0.07 * equipeEnnemi().plusProcheVivant()->vie()));
+			Affichage().dessinerTexte(nom() + " attaque de base");
+			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
+
+			if (attaqueDouble() && equipeEnnemi().estEnVie()) {
+
+				DEGATS = degats(0.27, 0.77);
+				DEGATS += static_cast<int>(ceil(0.07 * equipeEnnemi().plusProcheVivant()->vie()));
+				AttaqueBrut(DEGATS, equipeEnnemi().plusProcheVivant());
+
+			}
+		}
+		ajouterMana(1);
 		break;
 	case 1:
 		Affichage().dessinerTexte(nom() + " trugdorite");
@@ -39,10 +55,13 @@ void Fabian::attaqueEnnemis()
 		Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 		
-			DEGATS = degats(0.77, 1.17);
-			DEGATS += static_cast<int>(ceil(0.17 * equipeEnnemi().plusProcheVivant()->vie()));
-			//Attaque(DEGATS, equipeEnnemi().plusLoinVivant());
+			DEGATS = degats(1.07, 2.17);
+			Attaque(DEGATS, equipeEnnemi().plusLoinVivant());
 			
+		}
+		if (habile() && equipeEnnemi().estEnVie()) {
+			DEGATS = degats(0.7, 1.7);
+			AttaqueBrut(DEGATS, equipeEnnemi().plusFaible());
 		}
 		/*if (tiragePersoCarac(Joueur, HABILETE)) {
 			cout << endl << " BOUGE !!! " << endl;
@@ -58,14 +77,17 @@ void Fabian::attaqueEnnemis()
 	case 2:
 
 		Affichage().dessinerTexte(nom() + " ricochet");
-		for (int i = 0; i < 7 && equipeEnnemi().estEnVie(); i++) {
+		for (int i = 0; i <= 7 && equipeEnnemi().estEnVie(); i++) {
 		
 			DEGATS = degats(0.07 + i * 0.07, 0.17 + i * 0.17);
-			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+			Attaque(DEGATS, equipeEnnemi().plusFort());
 			if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 				DEGATS = degats(0.07 + i * 0.14, 0.17 + i * 0.34);
-				Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
-				
+				Attaque(DEGATS, equipeEnnemi().plusFort());	
+			}
+			if (habile() && equipeEnnemi().estEnVie()) {
+				DEGATS = degats(0.07 + i * 0.14, 0.17 + i * 0.34);
+				AttaqueBrut(DEGATS, equipeEnnemi().plusProcheVivant());
 			}
 
 		}
@@ -73,23 +95,32 @@ void Fabian::attaqueEnnemis()
 		break;
 	case 3:
 		Affichage().dessinerTexte(nom() + " raffales");
-		for (int i = 0; i < 17 && equipeEnnemi().estEnVie(); i++) {
+		for (int i = 0; i <= 17 && equipeEnnemi().estEnVie(); i++) {
 			
 			DEGATS = degats(0.17, 0.255);
-			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+			Attaque(DEGATS, equipeEnnemi().plusFort());
 			if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 				DEGATS = degats(0.14, 0.28);
-				Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+				Attaque(DEGATS, equipeEnnemi().plusFort());
 			}
 		}
-		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
+		if (attaqueDouble() && habile() && equipeEnnemi().estEnVie()) {
+			for (int i = 0; i < 7 && equipeEnnemi().estEnVie(); i++) {
+				DEGATS = degats(0.7*i, 0.7+0.7*i);
+				Attaque(DEGATS, equipeEnnemi().plusFort());
+				if (habile() && equipeEnnemi().estEnVie()) {
+					DEGATS = degats(0.07*i, 0.17+0.17*i);
+					AttaqueBrut(DEGATS, equipeEnnemi().plusFort());
+				}
+			}
+		}else if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 			
 			for (int i = 0; i < 7 && equipeEnnemi().estEnVie(); i++) {
 				DEGATS = degats(0.35, 0.7);
-				Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+				Attaque(DEGATS, equipeEnnemi().plusFort());
 				if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 					DEGATS = degats(0.17, 0.34);
-					Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+					Attaque(DEGATS, equipeEnnemi().plusFort());
 				}
 			}
 

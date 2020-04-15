@@ -23,19 +23,19 @@ void SqueletteArcher::attaqueEnnemis()
 	Affichage().dessinerTexte(nom() + " fleches ");
 	for (int i = 1; i <= 3&& equipeEnnemi().estEnVie(); i++) {
 		DEGATS = degats(0.3*i, 0.3*(i+1.0));
-		Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+		Attaque(DEGATS, equipeEnnemi().plusFaible());
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 			DEGATS = degats(0.3 * i, 0.3 * (i + 1.0));
-			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+			Attaque(DEGATS, equipeEnnemi().plusFaible());
 		}
 	}
 	if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 		for (int i = 1; i <= 3 && equipeEnnemi().estEnVie(); i++) {
 			DEGATS = degats(0.3 * i, 0.3 * (i + 1.0));
-			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+			Attaque(DEGATS, equipeEnnemi().plusFaible());
 			if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 				DEGATS = degats(0.3 * i, 0.3 * (i + 1.0));
-				Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+				Attaque(DEGATS, equipeEnnemi().plusFaible());
 			}
 		}
 	}
