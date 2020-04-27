@@ -4,7 +4,7 @@ class David :
 	public Personnage
 {
 public:
-	David(Experiences E, Orbes O, Animaux A);
+	David(Experiences E, Orbes O, Animaux A, Objets Obj);
 private:
 
 	virtual void attaqueEnnemis()override;

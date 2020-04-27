@@ -1,7 +1,7 @@
 #include "Sebastien.h"
 #include "Affichage.h"
 
-Sebastien::Sebastien(Experiences E, Orbes O, Animaux A) : Personnage(8, E, O, A, "Sebastien", 2, 1, 7, 20, 0, -25, 0, 0, 0, 6), pause{ 0 } {}
+Sebastien::Sebastien(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(8, E, O, A, Obj, "Sebastien", 2, 1, 7, 20, 0, -25, 0, 0, 0, 6), pause{ 0 } {}
 
 
 void Sebastien::attaqueEnnemis()

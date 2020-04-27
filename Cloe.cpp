@@ -1,7 +1,7 @@
 #include "Cloe.h"
 #include "Affichage.h"
 
-Cloe::Cloe(Experiences E, Orbes O, Animaux A) : Personnage(9, E, O, A, "Cloe", 1, 6, 3, 25, 25, -50, 0, 75, 0, 0) {}
+Cloe::Cloe(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(9, E, O, A, Obj, "Cloe", 1, 6, 3, 25, 25, -50, 0, 75, 0, 0) {}
 
 
 void Cloe::attaqueEnnemis()
@@ -64,10 +64,12 @@ void Cloe::attaqueEnnemis()
 			if (!habile()) {
 				equipeAllier()[cible]->ajouterForce(niveau() / 20.0);
 				equipeAllier()[cible]->ajouterReduction(3);
+				equipeAllier()[cible]->status().ajouterCompteurProteger(3);
 			}
 			else {
 				equipeAllier()[cible]->ajouterForce(niveau() / 10.0);
 				equipeAllier()[cible]->ajouterReduction(6);
+				equipeAllier()[cible]->status().ajouterCompteurProteger(6);
 			}
 		}
 

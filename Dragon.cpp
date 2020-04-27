@@ -37,6 +37,7 @@ void Dragon::attaqueEnnemis()
 		for (int i = 0;i < equipeEnnemi().taille();i++) {
 			if (equipeEnnemi()[i]->estEnVie()) {
 				Attaque(DEGATS*mult, equipeEnnemi()[i]);
+				equipeEnnemi()[i]->status().appliquerBrulure();
 				DEGATS = round(DEGATS * (1.0 - equipeEnnemi()[i]->pourcentageReduction() / 100.0));
 			}
 		}

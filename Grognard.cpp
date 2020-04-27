@@ -49,6 +49,7 @@ void Grognard::attaqueEnnemis()
 		Affichage().dessinerTexte(nom() + " sauver vous ! ");
 		for (int i = 0;i < equipeAllier().taille();i++) {
 			equipeAllier()[i]->ajouterReduction(1);
+			equipeAllier()[i]->status().ajouterCompteurProteger(1);
 		}
 		ajouterMana(-1);
 		break;
@@ -57,6 +58,7 @@ void Grognard::attaqueEnnemis()
 		Affichage().dessinerTexte(nom() + " a l'aide ! ");
 		for (int i = 0;i < equipeAllier().taille();i++) {
 			equipeAllier()[i]->ajouterReduction(1);
+			equipeAllier()[i]->status().ajouterCompteurProteger(1);
 		}
 		ajouterMana(-1);
 		break;

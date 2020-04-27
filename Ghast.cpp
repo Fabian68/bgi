@@ -22,6 +22,7 @@ void Ghast::attaqueEnnemis()
 	for (int i = 0; i < equipeEnnemi().taille()&&equipeEnnemi().estEnVie(); i++) {
 		DEGATS = degats(0.8, 1.6);
 		Attaque(DEGATS, equipeEnnemi()[i]);
+		equipeEnnemi()[i]->status().appliquerBrulure();
 		if (habile() && equipeEnnemi().estEnVie()) {
 			DEGATS = degats(0.4, 0.8);
 			Attaque(DEGATS, equipeEnnemi()[i]);

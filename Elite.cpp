@@ -78,6 +78,7 @@ void Elite::passif(int tour)
 {
 	if ((pause + 1) % 4 == 0) {
 		bouclier(bouclierMax(), this);
+		status().ajouterCompteurProteger(10);
 	}
 	pause++;
 }

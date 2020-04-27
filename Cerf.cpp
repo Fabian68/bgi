@@ -49,6 +49,7 @@ void Cerf::attaqueEnnemis()
 		for (int i = 0; i < equipeAllier().taille(); i++) {
 			SOINS = soins(0.45, 0.75);
 			soigner(SOINS, equipeAllier()[i]);
+			equipeAllier()[i]->status().ajouterCompteurProteger(1);
 		}
 		
 		ajouterMana(-2);

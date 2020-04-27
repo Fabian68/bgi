@@ -4,7 +4,7 @@ class Moustick :
 	public Personnage
 {
 public:
-	Moustick(Experiences E, Orbes O, Animaux A);
+	Moustick(Experiences E, Orbes O, Animaux A, Objets Obj);
 private:
 	virtual void attaqueEnnemis()override;
 	virtual void passif(int tour)override;

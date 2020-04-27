@@ -65,7 +65,7 @@ void Tellurique::attaqueEnnemis()
 					DEGATS = degats( i/2, i);
 				}
 				Attaque(DEGATS, equipeEnnemi()[i]);
-
+				equipeEnnemi()[i]->status().ajouterCompteurFragile(1);
 			}
 		}
 		else {
@@ -83,18 +83,22 @@ void Tellurique::attaqueEnnemis()
 void Tellurique::passif(int tour)
 {
 	AjouterBouclier(bouclierMax() / 5);
-	
+	status().ajouterCompteurProteger(1);
 }
 
 void Tellurique::passifDefensif()
 {
 	for (int i = 0;i < equipeAllier().taille();i++) {
 		equipeAllier()[i]->ajouterReduction(1);
+		equipeAllier()[i]->status().ajouterCompteurProteger(1);
 	}
 	if (premiereFoisToucher == false) {
 		for (int i = 0;i < equipeEnnemi().taille();i++) {
 			if (equipeEnnemi()[i]->estEnVie()) {
 				AttaqueBrut(equipeEnnemi()[i]->vieMax() / 5, equipeEnnemi()[i]);
+				if (!equipeEnnemi()[i]->status().estBruler()) {
+					equipeEnnemi()[i]->status().appliquerBrulure();
+				}
 			}
 		}
 		premiereFoisToucher = true;

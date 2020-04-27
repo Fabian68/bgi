@@ -66,6 +66,7 @@ void Rapace::passif(int tour)
 	if ((tour + 1) % 10 == 0) {
 		AjouterBouclier(bouclierMax());
 	}
+	status().ajouterCompteurProteger(1);
 }
 
 void Rapace::passifDefensif()

@@ -1,7 +1,7 @@
 #include "Maelle.h"
 #include "Affichage.h"
 
-Maelle::Maelle(Experiences E, Orbes O, Animaux A) : Personnage(13, E, O, A, "Maelle", 1, 8, 1, 30, 30, 20, 0, 0, 0, 0)
+Maelle::Maelle(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(13, E, O, A, Obj, "Maelle", 1, 8, 1, 30, 30, 20, 0, 0, 0, 0)
 {
 	estTransformer = false;
 }
@@ -19,21 +19,21 @@ void Maelle::attaqueEnnemis()
 
 		case 0:
 			DEGATS = degats(0.01, 0.10);
-			compteur = 0;
+			compteur = 1;
 			Affichage().dessinerTexte(nom() + " s'enerve ! ");
 			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 			while (habile() && equipeEnnemi().estEnVie()&&compteur<=6) {
 				Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-				DEGATS = degats(k, k*2);
+				DEGATS = degats(0.01*k, 0.10*k*2);
 				k *= 2;
 				compteur++;
 			}
 			if (attaqueDouble()) {
-				compteur = 0;
-				k /= 2;
+				compteur = 1;
+				k =1.0;
 				while (habile() && equipeEnnemi().estEnVie() && compteur <= 6) {
 					Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-					DEGATS = degats(k, k * 2);
+					DEGATS = degats(0.01*k,0.10* k * 2);
 					k *= 2;
 					compteur++;
 				}

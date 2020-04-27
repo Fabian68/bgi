@@ -29,6 +29,10 @@ void Zombie::attaqueEnnemis()
 	DEGATS = degats(0.5, 2.5);
 	Affichage().dessinerTexte(nom() + " mords ");
 	cible1 = equipeEnnemi().plusProcheVivant()->indiceEquipe();
+	if (!equipeEnnemi().plusProcheVivant()->status().estEmpoisoner()) {
+		equipeEnnemi().plusProcheVivant()->status().appliquerPoison();
+		equipeEnnemi().plusProcheVivant()->status().ajouterCompteurFragile(10);
+	}
 	Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 	if (equipeEnnemi().estEnVie()) {
 		cible2 = equipeEnnemi().plusProcheVivant()->indiceEquipe();

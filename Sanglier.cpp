@@ -28,13 +28,13 @@ void Sanglier::attaqueEnnemis()
 		Affichage().dessinerTexte(nom() + " charge ");
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 
-		ajouterChanceDoubleAttaque(round(force()*1.01));
 		ajouterMana(1);
 		break;
 	case 1:
 
 		SOINS = soins(0.5, 0.75);
 		Affichage().dessinerTexte(nom() + " se repose !  ");
+	    status().ajouterCompteurProteger(10);
 		soigner(SOINS, this);
 		
 		ajouterMana(1);
@@ -44,7 +44,8 @@ void Sanglier::attaqueEnnemis()
 		Affichage().dessinerTexte(nom() + " se gonfle !  ");
 
 		ajouterChanceHabileter(3);
-		ajouterForce(round(force() / 10.0));
+		equipeEnnemi().plusProcheVivant()->status().ajouterCompteurFragile(3);
+		ajouterForce(round(force() / 5.0));
 		ajouterMana(1);
 		break;
 	case 3:

@@ -4,7 +4,7 @@ class Maelle :
 	public Personnage
 {
 public:
-	Maelle(Experiences E, Orbes O, Animaux A);
+	Maelle(Experiences E, Orbes O, Animaux A, Objets Obj);
 private:
 	virtual void attaqueEnnemis()override;
 	virtual void passif(int tour)override;

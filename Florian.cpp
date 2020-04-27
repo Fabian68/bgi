@@ -2,7 +2,7 @@
 #include "Affichage.h"
 #include "Aleatoire.h"
 
-Florian::Florian(Experiences E, Orbes O, Animaux A) : Personnage(11, E, O, A, "Florian", 8, 1, 1, 20, 20, 20, 0, 0, 0, 0) {}
+Florian::Florian(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(11, E, O, A, Obj, "Florian", 8, 1, 1, 20, 20, 20, 0, 0, 0, 0) {}
 
 void Florian::attaqueEnnemis()
 {

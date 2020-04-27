@@ -134,6 +134,7 @@ void Magicien::passif(int tour)
 		ajouterReduction(10);
 		ajouterVieMax(vieMax());
 		setNom("Apprenti Magicien");
+		status().ajouterCompteurProteger(4);
 	}
 	else if (tour == 40) {
 		stade = 3;
@@ -144,6 +145,7 @@ void Magicien::passif(int tour)
 		ajouterReduction(20);
 		ajouterVieMax(vieMax());
 		setNom("Magicien confirmé");
+		status().ajouterCompteurProteger(12);
 	}
 	else if (tour == 80) {
 		stade = 4;
@@ -154,6 +156,7 @@ void Magicien::passif(int tour)
 		ajouterReduction(30);
 		ajouterVieMax(vieMax());
 		setNom("Grand mage");
+		status().ajouterCompteurProteger(36);
 	}
 	else if (tour == 160) {
 		stade = 5;
@@ -164,11 +167,14 @@ void Magicien::passif(int tour)
 		ajouterReduction(40);
 		ajouterVieMax(vieMax());
 		setNom("Archimage");
+		status().ajouterCompteurProteger(118);
 	}
 	if ((tour + 1) % 5 == 0) {
 		AjouterBouclier(0.1 * stade * bouclierMax());
+		status().ajouterCompteurProteger(5);
 		if (stade == 5) {
 			attaqueEnnemis();
+			status().ajouterCompteurProteger(10);
 		}
 	}
 }

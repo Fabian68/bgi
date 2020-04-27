@@ -37,7 +37,7 @@ public:
 	void bouclierZone(int bouclier, Personnage* bouclierMan);
 	void vider();
 	void liberer();
-	void chargerEquipe(Equipes Liste);
+	void chargerEquipe(Equipes & Liste);
 	void sauvegarderEquipe();
 	int xpDonner() const;
 	void ajouterPerso(Personnage * P);

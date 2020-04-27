@@ -314,11 +314,19 @@ void Equipes::ajouterExperience(int xp, Experiences E) {
 	xp /= _equipe.size();
 	std::cout << "Les joueurs gagnent " << xp << " d experiences." << std::endl;
 	for (int i = 0; i < _equipe.size(); i++) {
+		if (_equipe[i]->possedeObjetNumero(7)) {
+			E.ajouterXP(_equipe[i]->id(), xp*2);
+			std::cout << " OBJ7 ";
+		}
+		if (_equipe[i]->possedeObjetNumero(8)) {
+			E.ajouterXP(_equipe[i]->id(), xp * 4);
+			std::cout << " OBJ8 ";
+		}
 		E.ajouterXP(_equipe[i]->id(), xp);
 	}
 	E.ecrireEXP("T1.txt");
 }
-void Equipes::chargerEquipe(Equipes Liste)
+void Equipes::chargerEquipe(Equipes & Liste)
 {
 	FILE* file = fopen("monEquipe.txt", "r");
 	if (file == NULL) {

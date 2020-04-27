@@ -28,6 +28,7 @@ void WitherSquelette::attaqueEnnemis()
 	int indice = equipeEnnemi().plusProcheVivant()->indiceEquipe();
 	DEGATS = degats(1.0, 2.0);
 	Attaque(DEGATS, equipeEnnemi()[indice]);
+	equipeEnnemi()[indice]->status().appliquerPoison();
 	if (habile()) {
 		Affichage().dessinerTexte(nom() + " contamine ! ");
 		DEGATS = degats(0.5, 1.0);

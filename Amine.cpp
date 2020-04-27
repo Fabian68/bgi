@@ -1,7 +1,7 @@
 #include "Amine.h"
 #include "Affichage.h"	
 
-Amine::Amine(Experiences E, Orbes O, Animaux A) : Personnage(10, E, O, A, "Amine", 1, 8, 1, 20, 50, -50, 5, 50, 0,5)
+Amine::Amine(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(10, E, O, A, Obj, "Amine", 1, 8, 1, 20, 50, -50, 5, 50, 0,5)
 {
 }
 

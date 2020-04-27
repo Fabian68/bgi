@@ -2,7 +2,7 @@
 #include "Affichage.h"
 #include "Aleatoire.h"
 
-Salim::Salim(Experiences E, Orbes O, Animaux A) : Personnage(15, E, O, A, "Salim", 6, 3, 1, 0, 25, 25, 0, 25, 0, 0), estTransformer{ false }, superTransformation{ false } {}
+Salim::Salim(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(15, E, O, A, Obj, "Salim", 6, 3, 1, 0, 25, 25, 0, 25, 0, 0), estTransformer{ false }, superTransformation{ false } {}
 
 
 void Salim::attaqueEnnemis()

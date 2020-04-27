@@ -2,7 +2,7 @@
 #include "Aleatoire.h"
 #include "Affichage.h"
 
-Bryan::Bryan(Experiences E, Orbes O, Animaux A) : Personnage(5, E, O, A, "Bryan", 1, 5, 4, 30, 30, -100, 0, 0, 30, 3) {
+Bryan::Bryan(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(5, E, O, A, Obj, "Bryan", 1, 5, 4, 30, 30, -100, 0, 0, 30, 3) {
 	ajouterCoupCritique(10);
 	ajouterDegatsCritique(25);
 }

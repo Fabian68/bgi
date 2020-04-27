@@ -4,7 +4,7 @@ class Bryan :
 	public Personnage
 {
 public:
-	Bryan(Experiences E, Orbes O, Animaux A);
+	Bryan(Experiences E, Orbes O, Animaux A, Objets Obj);
 private:
 	virtual void attaqueEnnemis()override;
 	virtual void passif(int tour)override;

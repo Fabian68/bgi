@@ -4,7 +4,7 @@ class Salim :
 	public Personnage
 {
 public:
-	Salim(Experiences E, Orbes O, Animaux A);
+	Salim(Experiences E, Orbes O, Animaux A, Objets Obj);
 private:
 	virtual void attaqueEnnemis()override;
 	virtual void passif(int tour)override;

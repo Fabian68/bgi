@@ -1,7 +1,7 @@
 #include "Pollyana.h"
 #include "Affichage.h"
 
-Pollyana::Pollyana(Experiences E, Orbes O, Animaux A) : Personnage(14, E, O, A, "Pollyana", 6, 1, 3, 0, 30, -20, 0, 80, 0, 0)
+Pollyana::Pollyana(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(14, E, O, A, Obj, "Pollyana", 6, 1, 3, 0, 30, -20, 0, 80, 0, 0)
 {
 	
 }
@@ -68,6 +68,7 @@ void Pollyana::passif(int tour)
 				if (!equipeAllier()[i]->estEnVie()) {
 					equipeAllier()[i]->reduireVieMax(equipeAllier()[i]->vieMax() / 2);
 					equipeAllier()[i]->AjouterVie(1);
+					equipeAllier()[i]->status().soignerPoison();
 				}
 			}
 		}
@@ -77,10 +78,14 @@ void Pollyana::passif(int tour)
 				if (!equipeAllier()[i]->estEnVie()) {
 					equipeAllier()[i]->ajouterVieMax(equipeAllier()[i]->vieMax());
 					equipeAllier()[i]->AjouterVie(equipeAllier()[i]->vieMax());
+					equipeAllier()[i]->status().soignerPoison();
 				}
 			}
 		}
 	
+	}
+	if (status().estEmpoisoner()) {
+		status().soignerPoison();
 	}
 }
 

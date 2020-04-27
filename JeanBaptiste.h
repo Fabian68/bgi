@@ -4,7 +4,7 @@ class JeanBaptiste :
 	public Personnage
 {
 public:
-	JeanBaptiste(Experiences E, Orbes O, Animaux A);
+	JeanBaptiste(Experiences E, Orbes O, Animaux A, Objets Obj);
 private:
 	virtual void attaqueEnnemis()override;
 	virtual void passif(int tour)override;

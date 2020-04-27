@@ -2,7 +2,7 @@
 #include "Aleatoire.h"
 #include "Affichage.h"
 
-David::David(Experiences E, Orbes O, Animaux A) : Personnage(6, E, O, A, "David", 2, 2, 6, 0, 30, 0, 3, 0, 0, 3) {}
+David::David(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(6, E, O, A, Obj, "David", 2, 2, 6, 0, 30, 0, 3, 0, 0, 3) {}
 
 
 void David::attaqueEnnemis()
@@ -57,13 +57,12 @@ void David::attaqueEnnemis()
 		for (int i = 0, j = 0.02;i < equipeEnnemi().taille();i++) {
 			if (equipeEnnemi()[i]->estEnVie()) {
 				DEGATS = static_cast<int>(Aleatoire(j, j * 2).decimal() * (vitesse()*1.0));
-				Attaque(DEGATS, equipeEnnemi()[i]);
-				j *=2;
+				Attaque(DEGATS, equipeEnnemi()[i]);	
 				if (habile()) {
-					j *= 2;
 					DEGATS = static_cast<int>(Aleatoire(j, j * 2).decimal() * (vitesse() * 1.0));
 					AttaqueBrut(DEGATS, equipeEnnemi()[i]);
 				}
+				j *= 2;
 			}
 		}
 		ajouterMana(-3);

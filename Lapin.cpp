@@ -66,13 +66,15 @@ void Lapin::attaqueEnnemis() {
 			Affichage().dessinerTexte(nom() + " coup de boule !  ");
 			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 		}
+		ajouterChanceHabileter(5);
 		ajouterMana(-2);
 		break;
 	case 3:
 		Affichage().dessinerTexte(nom() + "s'enrage !");
 		DEGATS = degats(1.3, 2.2);
+		equipeEnnemi().plusProcheVivant()->status().appliquerPoison();
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-		ajouterChanceHabileter(5);
+		
 		ajouterMana(-3);
 		break;
 	}

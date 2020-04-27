@@ -1,7 +1,7 @@
 #include "Moustick.h"
 #include "Affichage.h"
 
-Moustick::Moustick(Experiences E, Orbes O, Animaux A) : Personnage(4, E, O, A, "Moustick", 3, 4, 3, 0, 0, 0, 0, 0, 0, 0) {}
+Moustick::Moustick(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(4, E, O, A, Obj, "Moustick", 3, 4, 3, 0, 0, 0, 0, 0, 0, 0) {}
 
 
 void Moustick::attaqueEnnemis()
@@ -35,8 +35,9 @@ void Moustick::attaqueEnnemis()
 		if (bouclier() > bouclierMax() / 2) {
 			DEGATS += static_cast<int>(bouclier() * 0.2);
 			ajouterBouclier(-bouclierMax() / 2);
-			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
+			
 		}
+		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 		ajouterMana(-1);
 		break;
 	case 2:

@@ -504,261 +504,298 @@ void Zones::equipeEnZone(int i,Equipes & E)
 		E.ajouterPerso(new Tellurique(900, "GOLEM"));
 		break;
 	case 75:
-		E.ajouterPerso(new Tellurique(1490, "GOLEM"));
-		E.ajouterPerso(new Tellurique(1263, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(1354, "Telluriforce"));
-		E.ajouterPerso(new Magicien(1052, "blbl"));
-		E.ajouterPerso(new Magicien(1500, "blbl"));
-		E.ajouterPerso(new Magicien(1356, "blbl"));
-		E.ajouterPerso(new Tellurique(1245, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1190, "GOLEM"));
+		E.ajouterPerso(new Tellurique(1163, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1154, "Telluriforce"));
+		E.ajouterPerso(new Magicien(1152, "blbl"));
+		E.ajouterPerso(new Magicien(1200, "blbl"));
+		E.ajouterPerso(new Magicien(1156, "blbl"));
+		E.ajouterPerso(new Tellurique(1145, "Telluriforce"));
 		E.ajouterPerso(new Tellurique(1146, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(1369, "GOLEM"));
+		E.ajouterPerso(new Tellurique(1169, "GOLEM"));
 		break;
 	case 76:
-		E.ajouterPerso(new Tellurique(1790, "GOLEM"));
-		E.ajouterPerso(new Tellurique(1963, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(1854, "Telluriforce"));
-		E.ajouterPerso(new Magicien(1952, "blbl"));
-		E.ajouterPerso(new Magicien(1999, "blbl"));
-		E.ajouterPerso(new Dragon(2000, "blbl"));
-		E.ajouterPerso(new Tellurique(1545, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(1646, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(1869, "GOLEM"));
+		E.ajouterPerso(new Tellurique(1290, "GOLEM"));
+		E.ajouterPerso(new Tellurique(1263, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1254, "Telluriforce"));
+		E.ajouterPerso(new Magicien(1252, "blbl"));
+		E.ajouterPerso(new Magicien(1299, "blbl"));
+		E.ajouterPerso(new Dragon(1300, "blbl"));
+		E.ajouterPerso(new Tellurique(1245, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1246, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1269, "GOLEM"));
 		break;
 	case 77:
-		E.ajouterPerso(new Tellurique(2290, "GOLEM"));
-		E.ajouterPerso(new Tellurique(2363, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(2454, "Telluriforce"));
-		E.ajouterPerso(new Magicien(2452, "blbl"));
-		E.ajouterPerso(new Magicien(2499, "blbl"));
-		E.ajouterPerso(new Dragon(2500, "blbl"));
-		E.ajouterPerso(new Tellurique(2345, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(2446, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(2469, "GOLEM"));
+		E.ajouterPerso(new Tellurique(1390, "GOLEM"));
+		E.ajouterPerso(new Tellurique(1363, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1354, "Telluriforce"));
+		E.ajouterPerso(new Magicien(1352, "blbl"));
+		E.ajouterPerso(new Magicien(1399, "blbl"));
+		E.ajouterPerso(new Dragon(1400, "blbl"));
+		E.ajouterPerso(new Tellurique(1345, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1346, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1369, "GOLEM"));
 		break;
 	case 78:
-		E.ajouterPerso(new Tellurique(2790, "GOLEM"));
-		E.ajouterPerso(new Tellurique(2963, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(2854, "Telluriforce"));
-		E.ajouterPerso(new Magicien(2952, "blbl"));
-		E.ajouterPerso(new Magicien(2999, "blbl"));
-		E.ajouterPerso(new Dragon(3000, "blbl"));
-		E.ajouterPerso(new Tellurique(2545, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(2646, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(2869, "GOLEM"));
+		E.ajouterPerso(new Tellurique(1490, "GOLEM"));
+		E.ajouterPerso(new Tellurique(1463, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1454, "Telluriforce"));
+		E.ajouterPerso(new Magicien(1452, "blbl"));
+		E.ajouterPerso(new Magicien(1499, "blbl"));
+		E.ajouterPerso(new Dragon(1500, "blbl"));
+		E.ajouterPerso(new Tellurique(1445, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1446, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1469, "GOLEM"));
 		break;
 	case 79:
-		E.ajouterPerso(new Tellurique(9790, "ATTENDRE MISE A JOUR"));
-		E.ajouterPerso(new Tellurique(9963, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(9854, "Telluriforce"));
-		E.ajouterPerso(new Magicien(9952, "blbl"));
-		E.ajouterPerso(new Magicien(9999, "blbl"));
-		E.ajouterPerso(new Dragon(9000, "blbl"));
-		E.ajouterPerso(new Tellurique(9545, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(9646, "Telluriforce"));
-		E.ajouterPerso(new Tellurique(9869, "GOLEM"));
+		E.ajouterPerso(new Tellurique(1590, "Tellurique de la mise a jour"));
+		E.ajouterPerso(new Tellurique(1563, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1554, "Telluriforce"));
+		E.ajouterPerso(new Magicien(1552, "blbl"));
+		E.ajouterPerso(new Magicien(1599, "blbl"));
+		E.ajouterPerso(new Dragon(1600, "blbl"));
+		E.ajouterPerso(new Tellurique(1545, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1546, "Telluriforce"));
+		E.ajouterPerso(new Tellurique(1569, "GOLEM"));
 		break;
-	/*case 20:
-		E.ajouterPerso(new Lapin(90, "Lapinou", 2, 9, 5));
-		E.ajouterPerso(new Lapin(95, "Lapin", 0, 2, 1));
-		E.ajouterPerso(new Cerf(99, "Cerf", 0, 3, 2));
-		E.ajouterPerso(new Sanglier(92, "Sanglier", 0, 5, 2));
+	case 80:
+		E.ajouterPerso(new Brute(1674, "BRUTUS",1));
+		E.ajouterPerso(new Magicien(1670, "MAGIE"));
+		E.ajouterPerso(new Cerf(1679, "Cerffi",0,9,5));
+		E.ajouterPerso(new SqueletteArcher(1610, "Squelletor"));
+		E.ajouterPerso(new Zombie(1615, "Zombie",0,9,5));
+		E.ajouterPerso(new Ghast(1670, "Ghaston"));
+		E.ajouterPerso(new Sanglier(1682, "Sangline",0,9,5));
+		E.ajouterPerso(new Cerf(1649, "Cerfouille",0,9,5));
+		E.ajouterPerso(new Lapin(1688, "Lapin",0,9,5));
+		E.ajouterPerso(new Brute(1620, "Brutglu"));
 		break;
-	case 21:
-		E.ajouterPerso(new Zombie(100, "Zombie"));
-		E.ajouterPerso(new Zombie(100, "Zombie"));
-		E.ajouterPerso(new Zombie(100, "Zombie"));
+	case 81:
+		E.ajouterPerso(new Grognard(1830, "Grohny"));
+		E.ajouterPerso(new Chasseur(1838, "Chasseur"));
+		E.ajouterPerso(new Elite(1858, "Elitoi", 0, 9, 5));
+		E.ajouterPerso(new SqueletteArcher(1814, "Squelletor"));
+		E.ajouterPerso(new SqueletteArcher(1849, "Squelltor", 0, 9, 5));
+		E.ajouterPerso(new Zombie(1868, "Zomby",0,9,5));
+		E.ajouterPerso(new WitherSquelette(1806, "Wither Squelette", 0, 9, 5));
+		E.ajouterPerso(new Grognard(1872, "Grogny", 0, 9, 5));
+		E.ajouterPerso(new Wither(1892, "Wither", 0, 9, 5));
+		E.ajouterPerso(new Rapace(1819, "Rapacy"));
 		break;
-	case 22:
-		E.ajouterPerso(new Zombie(100, "Zombie"));
-		E.ajouterPerso(new Zombie(102, "Zombie"));
-		E.ajouterPerso(new Zombie(105, "Zombie"));
-		E.ajouterPerso(new Zombie(102, "Zombie"));
+	case 82:
+		E.ajouterPerso(new Tellurique(2024, "MUR TELLURIQUE",0,9,5));
+		E.ajouterPerso(new Tellurique(2098, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2004, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2006, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2052, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2048, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2017, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2038, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2081, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2009, "MUR TELLURIQUE", 0, 9, 5));
 		break;
-	case 23:
-		E.ajouterPerso(new Zombie(115, "Zombie"));
-		E.ajouterPerso(new SqueletteArcher(105, "Squelette archer"));
-		E.ajouterPerso(new SqueletteArcher(110, "Squelette archer"));
+	case 83:
+		E.ajouterPerso(new Tellurique(2279, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2204, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Dragon(2257, "DRAGON TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2208, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Magicien(2228, "MAGICIEN TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Dragon(2260, "DRAGON TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2266, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Magicien(2298, "MAGICIEN TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Dragon(2209, "DRAGON TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2244, "MUR TELLURIQUE", 0, 9, 5));
 		break;
-	case 24:
-		E.ajouterPerso(new Zombie(125, "Zombie"));
-		E.ajouterPerso(new SqueletteArcher(130, "Squelette archer"));
-		E.ajouterPerso(new SqueletteArcher(120, "Squelette archer"));
-		E.ajouterPerso(new SqueletteArcher(130, "Squelette archer"));
+	case 84:
+		E.ajouterPerso(new Tellurique(2579, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2504, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Dragon(2557, "DRAGON TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2508, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Magicien(2528, "MAGICIEN TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Dragon(2560, "DRAGON TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2566, "MUR TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Magicien(2598, "MAGICIEN TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Dragon(2509, "DRAGON TELLURIQUE", 0, 9, 5));
+		E.ajouterPerso(new Tellurique(2544, "MUR TELLURIQUE", 0, 9, 5));
 		break;
-	case 25:
-		E.ajouterPerso(new Zombie(140, "Zombie"));
-		E.ajouterPerso(new SqueletteArcher(145, "Squelette archer"));
-		E.ajouterPerso(new SqueletteArcher(125, "Squelette archer"));
-		E.ajouterPerso(new Zombie(135, "Zombie", 0, 1, 3));
+	case 85:
+		E.ajouterPerso(new Lapin(2690, "Lapinou", 2, 9, 5));
+		E.ajouterPerso(new Lapin(2695, "Lapin", 0, 2, 1));
+		E.ajouterPerso(new Cerf(2699, "Cerf", 0, 3, 2));
+		E.ajouterPerso(new Sanglier(2692, "Sanglier", 0, 5, 2));
+		E.ajouterPerso(new Zombie(2700, "Zombie"));
+		E.ajouterPerso(new Zombie(2700, "Zombie"));
+		E.ajouterPerso(new Zombie(2700, "Zombie"));
 		break;
-	case 26:
-		E.ajouterPerso(new Zombie(150, "Zombie"));
-		E.ajouterPerso(new SqueletteArcher(145, "Squelette archer"));
-		E.ajouterPerso(new Creeper(150, "Cripeur"));
-		E.ajouterPerso(new Zombie(145, "Squelette archer", 0, 1, 3));
+	case 86:
+		E.ajouterPerso(new Zombie(2800, "Zombie"));
+		E.ajouterPerso(new Zombie(2802, "Zombie"));
+		E.ajouterPerso(new Zombie(2805, "Zombie"));
+		E.ajouterPerso(new Zombie(2802, "Zombie"));
+		E.ajouterPerso(new Zombie(2915, "Zombie"));
+		E.ajouterPerso(new SqueletteArcher(2905, "Squelette archer"));
+		E.ajouterPerso(new SqueletteArcher(2900, "Squelette archer"));
 		break;
-	case 27:
-		E.ajouterPerso(new Zombie(160, "Zombie"));
-		E.ajouterPerso(new SqueletteArcher(155, "Squelette archer"));
-		E.ajouterPerso(new Creeper(155, "Creeper"));
-		E.ajouterPerso(new Creeper(160, "Creeper"));
+	case 87:
+		E.ajouterPerso(new Zombie(3025, "Zombie"));
+		E.ajouterPerso(new SqueletteArcher(3030, "Squelette archer"));
+		E.ajouterPerso(new SqueletteArcher(3020, "Squelette archer"));
+		E.ajouterPerso(new SqueletteArcher(3030, "Squelette archer"));
+		E.ajouterPerso(new Zombie(3140, "Zombie"));
+		E.ajouterPerso(new SqueletteArcher(3145, "Squelette archer"));
+		E.ajouterPerso(new SqueletteArcher(3125, "Squelette archer"));
+		E.ajouterPerso(new Zombie(3135, "Zombie", 0, 1, 3));
 		break;
-	case 28:
-		E.ajouterPerso(new Zombie(180, "Zombie"));
-		E.ajouterPerso(new Creeper(175, "Creeper"));
-		E.ajouterPerso(new Creeper(165, "Creeper"));
-		E.ajouterPerso(new Creeper(170, "Creeper"));
+	case 88:
+		E.ajouterPerso(new Zombie(3250, "Zombie"));
+		E.ajouterPerso(new SqueletteArcher(3245, "Squelette archer"));
+		E.ajouterPerso(new Creeper(3250, "Cripeur"));
+		E.ajouterPerso(new Zombie(3245, "Squelette archer", 0, 1, 3));
+		E.ajouterPerso(new Zombie(3260, "Zombie"));
+		E.ajouterPerso(new SqueletteArcher(3255, "Squelette archer"));
+		E.ajouterPerso(new Creeper(3255, "Creeper"));
+		E.ajouterPerso(new Creeper(3260, "Creeper"));
 		break;
-	case 29:
-		E.ajouterPerso(new Zombie(190, "Zombie"));
-		E.ajouterPerso(new Creeper(180, "Creeper"));
-		E.ajouterPerso(new Lapin(199, "Lapin", 0, 1, 5));
-		E.ajouterPerso(new Creeper(175, "Creeper"));
+	case 89:
+		E.ajouterPerso(new Zombie(3380, "Zombie"));
+		E.ajouterPerso(new Creeper(3375, "Creeper"));
+		E.ajouterPerso(new Creeper(3365, "Creeper"));
+		E.ajouterPerso(new Creeper(3370, "Creeper"));
+		E.ajouterPerso(new Zombie(3390, "Zombie"));
+		E.ajouterPerso(new Creeper(3380, "Creeper"));
+		E.ajouterPerso(new Lapin(3399, "Lapin", 0, 1, 5));
+		E.ajouterPerso(new Creeper(3375, "Creeper"));
 		break;
-	case 30:
-		E.ajouterPerso(new Zombie(200, "Zombie Cochon", 0, 1, 3));
-		E.ajouterPerso(new Creeper(199, "Creeper", 1));
-		E.ajouterPerso(new Ghast(200, "Ghast"));
-		E.ajouterPerso(new WitherSquelette(200, "Wither Squelette"));
+	case 90:
+		E.ajouterPerso(new Zombie(3400, "Zombie Cochon", 0, 1, 3));
+		E.ajouterPerso(new Creeper(3499, "Creeper", 1));
+		E.ajouterPerso(new Ghast(3400, "Ghast"));
+		E.ajouterPerso(new WitherSquelette(3400, "Wither Squelette"));
+		E.ajouterPerso(new Zombie(3410, "Zombie Cochon", 0, 1, 3));
+		E.ajouterPerso(new Ghast(3415, "Ghast"));
+		E.ajouterPerso(new Ghast(3410, "Ghast"));
+		E.ajouterPerso(new WitherSquelette(3420, "Wither Squelette"));
 		break;
-	case 31:
-		E.ajouterPerso(new Zombie(210, "Zombie Cochon", 0, 1, 3));
-		E.ajouterPerso(new Ghast(215, "Ghast"));
-		E.ajouterPerso(new Ghast(210, "Ghast"));
-		E.ajouterPerso(new WitherSquelette(220, "Wither Squelette"));
+	case 91:
+		E.ajouterPerso(new Zombie(3520, "Zombie Cochon", 0, 1, 3));
+		E.ajouterPerso(new WitherSquelette(3525, "Wither Squelette"));
+		E.ajouterPerso(new WitherSquelette(3530, "Wither Squelette"));
+		E.ajouterPerso(new WitherSquelette(3522, "Wither Squelette"));
+		E.ajouterPerso(new Wither(3530, "Wither lvl 1"));
+		E.ajouterPerso(new WitherSquelette(3535, "Wither Squelette"));
+		E.ajouterPerso(new WitherSquelette(3530, "Wither Squelette"));
+		E.ajouterPerso(new WitherSquelette(3525, "Wither Squelette"));
 		break;
-	case 32:
-		E.ajouterPerso(new Zombie(220, "Zombie Cochon", 0, 1, 3));
-		E.ajouterPerso(new WitherSquelette(225, "Wither Squelette"));
-		E.ajouterPerso(new WitherSquelette(230, "Wither Squelette"));
-		E.ajouterPerso(new WitherSquelette(222, "Wither Squelette"));
+	case 92:
+		E.ajouterPerso(new WitherSquelette(3640, "Wither Squelette GOD "));
+		E.ajouterPerso(new WitherSquelette(3645, "Wither Squelette"));
+		E.ajouterPerso(new Wither(3650, " WITHER"));
+		E.ajouterPerso(new WitherSquelette(3645, "Wither Squelette"));
+		E.ajouterPerso(new WitherSquelette(3640, "Wither Squelette"));
+		E.ajouterPerso(new Grognard(3650, "Grognard"));
+		E.ajouterPerso(new Grognard(3650, "Grognard"));
+		E.ajouterPerso(new Grognard(3650, "Grognard"));
+		E.ajouterPerso(new Grognard(3650, "Grognard"));
+		E.ajouterPerso(new Grognard(3650, "Grognard"));
 		break;
-	case 33:
-		E.ajouterPerso(new Wither(230, "Wither lvl 1"));
-		E.ajouterPerso(new WitherSquelette(235, "Wither Squelette"));
-		E.ajouterPerso(new WitherSquelette(230, "Wither Squelette"));
-		E.ajouterPerso(new WitherSquelette(225, "Wither Squelette"));
+	case 93:
+		E.ajouterPerso(new Grognard(3755, "Grognard"));
+		E.ajouterPerso(new Grognard(3755, "Grognard"));
+		E.ajouterPerso(new Elite(3755, "Elite"));
+		E.ajouterPerso(new Grognard(3755, "Grognard"));
+		E.ajouterPerso(new Grognard(3755, "Grognard"));
+		E.ajouterPerso(new Elite(3762, "Elite"));
+		E.ajouterPerso(new Grognard(3760, "Grognard"));
+		E.ajouterPerso(new Grognard(3767, "Grognard"));
+		E.ajouterPerso(new Grognard(3763, "Grognard"));
+		E.ajouterPerso(new Elite(3763, "Elite"));
 		break;
-	case 34:
-		E.ajouterPerso(new WitherSquelette(240, "Wither Squelette GOD ", 1));
-		E.ajouterPerso(new WitherSquelette(245, "Wither Squelette"));
-		E.ajouterPerso(new Wither(250, "Super WITHER", 1));
-		E.ajouterPerso(new WitherSquelette(245, "Wither Squelette"));
-		E.ajouterPerso(new WitherSquelette(240, "Wither Squelette"));
+	case 94:
+		E.ajouterPerso(new Elite(4073, "Elite"));
+		E.ajouterPerso(new Grognard(4065, "Grognard"));
+		E.ajouterPerso(new Grognard(4070, "Grognard"));
+		E.ajouterPerso(new Rapace(4072, "Rapace"));
+		E.ajouterPerso(new Elite(4075, "Elite"));
+		E.ajouterPerso(new Elite(4085, "Elite"));
+		E.ajouterPerso(new Rapace(4073, "Rapace"));
+		E.ajouterPerso(new Grognard(4090, "Grognard"));
+		E.ajouterPerso(new Rapace(4080, "Rapace"));
+		E.ajouterPerso(new Elite(4082, "Elite"));
 		break;
-	case 35:
-		E.ajouterPerso(new Grognard(250, "Grognard"));
-		E.ajouterPerso(new Grognard(250, "Grognard"));
-		E.ajouterPerso(new Grognard(250, "Grognard"));
-		E.ajouterPerso(new Grognard(250, "Grognard"));
-		E.ajouterPerso(new Grognard(250, "Grognard"));
+	case 95:
+		E.ajouterPerso(new Chasseur(4500, "Chasseur"));
+		E.ajouterPerso(new Chasseur(4500, "Chasseur"));
+		E.ajouterPerso(new Brute(4510, "Brute"));
+		E.ajouterPerso(new Brute(4510, "Brute"));
+		E.ajouterPerso(new Grognard(4520, "Grognard"));
+		E.ajouterPerso(new Rapace(4515, "Rapace"));
+		E.ajouterPerso(new Rapace(4515, "Rapace"));
 		break;
-	case 36:
-		E.ajouterPerso(new Grognard(255, "Grognard"));
-		E.ajouterPerso(new Grognard(255, "Grognard"));
-		E.ajouterPerso(new Elite(255, "Elite"));
-		E.ajouterPerso(new Grognard(255, "Grognard"));
-		E.ajouterPerso(new Grognard(255, "Grognard"));
+	case 96:
+		E.ajouterPerso(new Brute(5020, "Brute"));
+		E.ajouterPerso(new Brute(5020, "Brute"));
+		E.ajouterPerso(new Brute(5024, "Brute"));
+		E.ajouterPerso(new Rapace(5023, "Rapace"));
+		E.ajouterPerso(new Rapace(5025, "Rapace"));
+		E.ajouterPerso(new Brute(5033, "Brute"));
+		E.ajouterPerso(new Brute(5028, "Brute"));
+		E.ajouterPerso(new Brute(5035, "Brute"));
+		E.ajouterPerso(new Grognard(5038, "Grognard"));
+		E.ajouterPerso(new Grognard(5031, "Grognard"));
 		break;
-	case 37:
-		E.ajouterPerso(new Elite(262, "Elite"));
-		E.ajouterPerso(new Grognard(260, "Grognard"));
-		E.ajouterPerso(new Grognard(267, "Grognard"));
-		E.ajouterPerso(new Grognard(263, "Grognard"));
-		E.ajouterPerso(new Elite(263, "Elite"));
+	case 97:
+		E.ajouterPerso(new Chasseur(5540, "Chasseur"));
+		E.ajouterPerso(new Chasseur(5544, "Chasseur"));
+		E.ajouterPerso(new Brute(5545, "Brute"));
+		E.ajouterPerso(new Rapace(5542, "Rapace"));
+		E.ajouterPerso(new Rapace(5543, "Rapace"));
+		E.ajouterPerso(new Chasseur(5550, "Chasseur"));
+		E.ajouterPerso(new Chasseur(5551, "Chasseur"));
+		E.ajouterPerso(new Elite(5555, "Elite"));
+		E.ajouterPerso(new Grognard(5550, "Grognard"));
+		E.ajouterPerso(new Grognard(5553, "Grognard"));
 		break;
-	case 38:
-		E.ajouterPerso(new Elite(273, "Elite"));
-		E.ajouterPerso(new Grognard(265, "Grognard"));
-		E.ajouterPerso(new Grognard(270, "Grognard"));
-		E.ajouterPerso(new Rapace(272, "Rapace"));
-		E.ajouterPerso(new Elite(275, "Elite"));
+	case 98:
+		E.ajouterPerso(new Grognard(6060, "Grognardmaggedon"));
+		E.ajouterPerso(new Grognard(6065, "Grognardmaggedon"));
+		E.ajouterPerso(new Grognard(6070, "Grognardmaggedon"));
+		E.ajouterPerso(new Grognard(6060, "Grognardmaggedon"));
+		E.ajouterPerso(new Grognard(6065, "Grognardmaggedon"));
+		E.ajouterPerso(new Elite(6060, "Elite"));
+		E.ajouterPerso(new Elite(6062, "Elite"));
+		E.ajouterPerso(new Elite(6064, "Elite"));
+		E.ajouterPerso(new Elite(6066, "Elite"));
+		E.ajouterPerso(new Elite(6068, "Elite"));
 		break;
-	case 39:
-		E.ajouterPerso(new Elite(285, "Elite"));
-		E.ajouterPerso(new Rapace(273, "Rapace"));
-		E.ajouterPerso(new Grognard(290, "Grognard"));
-		E.ajouterPerso(new Rapace(280, "Rapace"));
-		E.ajouterPerso(new Elite(282, "Elite"));
+	case 99:
+		E.ajouterPerso(new Brute(6570, "Brute"));
+		E.ajouterPerso(new Brute(6572, "Brute"));
+		E.ajouterPerso(new Brute(6574, "Chef Brute "));
+		E.ajouterPerso(new Brute(6576, "Brute"));
+		E.ajouterPerso(new Brute(6578, "Brute"));
+		E.ajouterPerso(new Chasseur(6580, "Chasseur"));
+		E.ajouterPerso(new Chasseur(6580, "Chasseur"));
+		E.ajouterPerso(new Chasseur(6590, "Chasseur"));
+		E.ajouterPerso(new Chasseur(6590, "Chasseur"));
 		break;
-	case 40:
-		E.ajouterPerso(new Chasseur(300, "Chasseur"));
-		E.ajouterPerso(new Chasseur(300, "Chasseur"));
+	case 100:
+		E.ajouterPerso(new Chasseur(7000, "Chasseur "));
+		E.ajouterPerso(new Chasseur(7000, "Chasseur"));
+		E.ajouterPerso(new Elite(7000, "Elite"));
+		E.ajouterPerso(new Elite(7000, "Elite"));
+		E.ajouterPerso(new Rapace(7000, "Rapace "));
+		E.ajouterPerso(new Rapace(7000, "Rapace "));
 		break;
-	case 41:
-		E.ajouterPerso(new Brute(310, "Brute"));
-		E.ajouterPerso(new Brute(310, "Brute"));
-		E.ajouterPerso(new Grognard(320, "Grognard"));
-		E.ajouterPerso(new Rapace(315, "Rapace"));
-		E.ajouterPerso(new Rapace(315, "Rapace"));
+	case 101:
+		E.ajouterPerso(new Tellurique(44020, "MUR"));
+		E.ajouterPerso(new Tellurique(44020, "MUR"));
+		E.ajouterPerso(new Tellurique(44020, "MUR"));
+		E.ajouterPerso(new Tellurique(44020, "MUR"));
+		E.ajouterPerso(new Tellurique(44020, "MUR"));
+		E.ajouterPerso(new Tellurique(44020, "MUR"));
+		E.ajouterPerso(new Tellurique(44020, "MUR"));
+		E.ajouterPerso(new Tellurique(44020, "MUR"));
 		break;
-	case 42:
-		E.ajouterPerso(new Brute(320, "Brute"));
-		E.ajouterPerso(new Brute(320, "Brute"));
-		E.ajouterPerso(new Brute(324, "Brute"));
-		E.ajouterPerso(new Rapace(323, "Rapace"));
-		E.ajouterPerso(new Rapace(325, "Rapace"));
-		break;
-	case 43:
-		E.ajouterPerso(new Brute(333, "Brute"));
-		E.ajouterPerso(new Brute(328, "Brute"));
-		E.ajouterPerso(new Brute(335, "Brute"));
-		E.ajouterPerso(new Grognard(338, "Grognard"));
-		E.ajouterPerso(new Grognard(331, "Grognard"));
-		break;
-	case 44:
-		E.ajouterPerso(new Chasseur(340, "Chasseur"));
-		E.ajouterPerso(new Chasseur(344, "Chasseur"));
-		E.ajouterPerso(new Brute(345, "Brute"));
-		E.ajouterPerso(new Rapace(342, "Rapace"));
-		E.ajouterPerso(new Rapace(343, "Rapace"));
-		break;
-	case 45:
-		E.ajouterPerso(new Chasseur(350, "Chasseur"));
-		E.ajouterPerso(new Chasseur(351, "Chasseur"));
-		E.ajouterPerso(new Elite(355, "Elite"));
-		E.ajouterPerso(new Grognard(350, "Grognard"));
-		E.ajouterPerso(new Grognard(353, "Grognard"));
-		break;
-	case 46:
-		E.ajouterPerso(new Grognard(360, "Grognardmaggedon", 1));
-		E.ajouterPerso(new Grognard(365, "Grognardmaggedon", 1));
-		E.ajouterPerso(new Grognard(370, "Grognardmaggedon", 1));
-		E.ajouterPerso(new Grognard(360, "Grognardmaggedon", 1));
-		E.ajouterPerso(new Grognard(365, "Grognardmaggedon", 1));
-		break;
-	case 47:
-		E.ajouterPerso(new Elite(360, "Elite"));
-		E.ajouterPerso(new Elite(362, "Elite"));
-		E.ajouterPerso(new Elite(364, "Elite"));
-		E.ajouterPerso(new Elite(366, "Elite"));
-		E.ajouterPerso(new Elite(368, "Elite"));
-		break;
-	case 48:
-		E.ajouterPerso(new Brute(370, "Brute"));
-		E.ajouterPerso(new Brute(372, "Brute"));
-		E.ajouterPerso(new Brute(374, "Chef Brute (LTOUCA)", 1));
-		E.ajouterPerso(new Brute(376, "Brute"));
-		E.ajouterPerso(new Brute(378, "Brute"));
-		break;
-	case 49:
-		E.ajouterPerso(new Chasseur(380, "Chasseur"));
-		E.ajouterPerso(new Chasseur(380, "Chasseur"));
-		E.ajouterPerso(new Chasseur(390, "Chasseur"));
-		E.ajouterPerso(new Chasseur(390, "Chasseur"));
-		break;
-	case 50:
-		E.ajouterPerso(new Chasseur(400, "Chasseur LTOUCA", 1));
-		E.ajouterPerso(new Chasseur(400, "Chasseur LTOUCA", 1));
-		E.ajouterPerso(new Elite(400, "Elite LTOUCA", 1));
-		E.ajouterPerso(new Elite(400, "Elite LTOUCA", 1));
-		E.ajouterPerso(new Rapace(400, "Rapace LTOUCA", 1));
-		E.ajouterPerso(new Rapace(400, "Rapace LTOUCA", 1));
-		break;
-	case 51:
-		E.ajouterPerso(new Dragon(420, "Poupou le dragon"));
-		break;*/
 	}
 
 	

@@ -2,7 +2,7 @@
 #include "Affichage.h"
 #include "Aleatoire.h"
 
-JeanBaptiste::JeanBaptiste(Experiences E, Orbes O, Animaux A) : Personnage(12, E, O, A, "JB", 4, 1, 5, 5, 10, 50, 15, 50, 15, 5) 
+JeanBaptiste::JeanBaptiste(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(12, E, O, A, Obj, "JB", 4, 1, 5, 5, 10, 50, 15, 50, 15, 5)
 {
 	ajouterVie(9 * vie());
 }
@@ -93,31 +93,6 @@ void JeanBaptiste::passif(int tour)
 		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
 		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax() / 3));
 		reduireVieMax((vieMax() / 30));
-	}
-	if (tour == 250 || tour == 300 || tour == 350) {
-		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
-		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax() / 2));
-		reduireVieMax((vieMax() / 40));
-	}
-	if (tour == 400 || tour == 450 || tour == 500) {
-		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
-		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax()));
-		reduireVieMax((vieMax() / 50));
-	}
-	if (tour == 600 || tour == 700 || tour == 800) {
-		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
-		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax()*2));
-		reduireVieMax((vieMax() / 60));
-	}
-	if (tour == 900 || tour == 1000 || tour == 1100) {
-		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
-		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax() * 3));
-		reduireVieMax((vieMax() / 70));
-	}
-	if (tour == 1300 || tour == 1500 || tour == 2000) {
-		Affichage().dessinerTexte(nom() + " partage sa vie, son énergie, sa pation ! ");
-		equipeAllier().aleatoireEnVie()->ajouterVieMax((vieMax() * 4));
-		reduireVieMax((vieMax() / 80));
 	}
 	
 }

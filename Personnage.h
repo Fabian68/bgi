@@ -1,15 +1,19 @@
 #pragma once
 
 #include <string>
+#include "Status.h"
 #include "Equipes.h"
 #include "Experiences.h"
 #include "Orbes.h"
 #include "Animaux.h"
 #include "Statistiques.h"
+#include "Objets.h"
+
+
 class Personnage
 {
 public:
-	Personnage(int id, Experiences E,Orbes O,Animaux A, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet);
+	Personnage(int id, Experiences E,Orbes O,Animaux A,Objets Obj, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet);
 	Personnage(int LVL, std::string nom, int vieLVL, int attaqueLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet,int indiceAnimal,int rareteAnimal);
 	virtual ~Personnage();
 	int id() const;
@@ -57,6 +61,10 @@ public:
 	void ajouterChanceDoubleAttaque(int montant);
 	void ajouterChanceHabileter(int montant);
 	void ajouterReduction(int montant);
+	void ajouterDeviation(int montant);
+	void ajouterChanceRicochet(int montant);
+	void ajouterEsquive(int montant);
+	bool possedeObjetNumero(int i)const;
 	int bouclier() const;
 	bool bloque() const;
 	bool attaqueDouble() const;
@@ -82,6 +90,10 @@ public:
 	void ajouterDegatsCritique(int pourcentage);
 	void setNom(std::string nom);
 	void modifierStats(double ratio);
+	Status & status();
+	std::pair <Objet, Objet> objets();
+	void appliquerEffets();
+	void equiperObjet(Objet, bool premier);
 private:
 	int _id;
 	int _niveau;
@@ -108,5 +120,7 @@ private:
 	Animal _animal;
 	std::string _nom;
 	Statistiques _S;
+	Status _statusPerso;
+	std::pair<Objet, Objet> _objets;
 };
 

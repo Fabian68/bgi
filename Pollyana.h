@@ -4,7 +4,7 @@ class Pollyana :
 	public Personnage
 {
 public:
-	Pollyana(Experiences E, Orbes O, Animaux A);
+	Pollyana(Experiences E, Orbes O, Animaux A, Objets Obj);
 private:
 	virtual void attaqueEnnemis()override;
 	virtual void passif(int tour)override;

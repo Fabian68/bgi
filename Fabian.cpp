@@ -2,7 +2,7 @@
 #include "Affichage.h"
 #include <iostream>
 
-Fabian::Fabian(Experiences E,Orbes O,Animaux A): Personnage(0, E,O,A,"Fabian",2,4,4,10,10,-70,7,10,10,17){}
+Fabian::Fabian(Experiences E,Orbes O,Animaux A, Objets Obj): Personnage(0, E,O,A,Obj,"Fabian",2,4,4,10,10,-70,7,10,10,17){}
 void Fabian::attaqueEnnemis()
 {
 	int choix = choixAttaque();
@@ -40,7 +40,7 @@ void Fabian::attaqueEnnemis()
 
 			if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 
-				DEGATS = degats(0.27, 0.77);
+				DEGATS = degats(0.17, 0.77);
 				DEGATS += static_cast<int>(ceil(0.07 * equipeEnnemi().plusProcheVivant()->vie()));
 				AttaqueBrut(DEGATS, equipeEnnemi().plusProcheVivant());
 
@@ -52,7 +52,7 @@ void Fabian::attaqueEnnemis()
 		Affichage().dessinerTexte(nom() + " trugdorite");
 		DEGATS = degats(0.77, 1.17);
 		
-		Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+		Attaque(DEGATS, equipeEnnemi().plusFort());
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 		
 			DEGATS = degats(1.07, 2.17);
@@ -82,11 +82,11 @@ void Fabian::attaqueEnnemis()
 			DEGATS = degats(0.07 + i * 0.07, 0.17 + i * 0.17);
 			Attaque(DEGATS, equipeEnnemi().plusFort());
 			if (attaqueDouble() && equipeEnnemi().estEnVie()) {
-				DEGATS = degats(0.07 + i * 0.14, 0.17 + i * 0.34);
+				DEGATS = degats(0.17 + i * 0.07, 0.27 + i * 0.17);
 				Attaque(DEGATS, equipeEnnemi().plusFort());	
 			}
 			if (habile() && equipeEnnemi().estEnVie()) {
-				DEGATS = degats(0.07 + i * 0.14, 0.17 + i * 0.34);
+				DEGATS = degats(0.07 + i * 0.07, 0.17 + i * 0.17);
 				AttaqueBrut(DEGATS, equipeEnnemi().plusProcheVivant());
 			}
 
@@ -106,7 +106,7 @@ void Fabian::attaqueEnnemis()
 		}
 		if (attaqueDouble() && habile() && equipeEnnemi().estEnVie()) {
 			for (int i = 0; i < 7 && equipeEnnemi().estEnVie(); i++) {
-				DEGATS = degats(0.7*i, 0.7+0.7*i);
+				DEGATS = degats(0.35*i, 0.7+0.7*i);
 				Attaque(DEGATS, equipeEnnemi().plusFort());
 				if (habile() && equipeEnnemi().estEnVie()) {
 					DEGATS = degats(0.07*i, 0.17+0.17*i);
@@ -137,7 +137,7 @@ void Fabian::passif(int tour)
 		Affichage().dessinerTexte(this->nom() + " devient plus resistant grace au froid de sa chambre ! ");
 	}
 	if (((tour + 1) % 17) == 0) {
-		ajouterForce(round(force() * 0.17));
+		ajouterForce(round(force() * 0.07));
 		Affichage().dessinerTexte(this->nom() + " a fait de la muscu attention ! ");
 	}
 }

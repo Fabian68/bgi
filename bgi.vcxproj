@@ -102,6 +102,8 @@
     <ClCompile Include="mouse.cxx" />
     <ClCompile Include="Moustick.cpp" />
     <ClCompile Include="Nicolas.cpp" />
+    <ClCompile Include="Objet.cpp" />
+    <ClCompile Include="Objets.cpp" />
     <ClCompile Include="Orbes.cpp" />
     <ClCompile Include="palette.cxx" />
     <ClCompile Include="main.cxx" />
@@ -114,6 +116,7 @@
     <ClCompile Include="Sebastien.cpp" />
     <ClCompile Include="SqueletteArcher.cpp" />
     <ClCompile Include="Statistiques.cpp" />
+    <ClCompile Include="Status.cpp" />
     <ClCompile Include="Tellurique.cpp" />
     <ClCompile Include="text.cxx" />
     <ClCompile Include="Thomas.cpp" />
@@ -159,6 +162,8 @@
     <ClInclude Include="Magicien.h" />
     <ClInclude Include="Moustick.h" />
     <ClInclude Include="Nicolas.h" />
+    <ClInclude Include="Objet.h" />
+    <ClInclude Include="Objets.h" />
     <ClInclude Include="Orbes.h" />
     <ClInclude Include="Personnage.h" />
     <ClInclude Include="Point.h" />
@@ -169,6 +174,7 @@
     <ClInclude Include="Sebastien.h" />
     <ClInclude Include="SqueletteArcher.h" />
     <ClInclude Include="Statistiques.h" />
+    <ClInclude Include="Status.h" />
     <ClInclude Include="Tellurique.h" />
     <ClInclude Include="Thomas.h" />
     <ClInclude Include="winbgi.h" />

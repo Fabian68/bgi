@@ -1,7 +1,7 @@
 #include "Isidore.h"
 #include "Affichage.h"
 
-Isidore::Isidore(Experiences E, Orbes O, Animaux A) : Personnage(7, E, O, A, "Isidore", 1, 1, 8, 10, 10, 10, 10, 10, 10, 10) {}
+Isidore::Isidore(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(7, E, O, A, Obj, "Isidore", 1, 1, 8, 10, 10, 10, 10, 10, 10, 10) {}
 
 
 void Isidore::attaqueEnnemis()

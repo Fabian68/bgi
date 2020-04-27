@@ -43,25 +43,25 @@ void reinitListeEquipe(Equipes& Liste) {
 	Experiences E;
 	Orbes O;
 	Animaux A;
-
+	Objets Obj;
 	Liste.liberer();
 	
-	Liste.ajouterPerso(new Fabian(E,O,A));
-	Liste.ajouterPerso(new Nicolas(E, O, A));
-	Liste.ajouterPerso(new Thomas(E, O, A));
-	Liste.ajouterPerso(new Fiona(E, O, A));
-	Liste.ajouterPerso(new Moustick(E, O, A));
-	Liste.ajouterPerso(new Bryan(E, O, A));
-	Liste.ajouterPerso(new David(E, O, A));
-	Liste.ajouterPerso(new Isidore(E, O, A));
-	Liste.ajouterPerso(new Sebastien(E, O, A));
-	Liste.ajouterPerso(new Cloe(E, O, A));
-	Liste.ajouterPerso(new Amine(E, O, A));
-	Liste.ajouterPerso(new Florian(E,O,A));
-	Liste.ajouterPerso(new JeanBaptiste(E, O, A));
-	Liste.ajouterPerso(new Maelle(E, O, A));
-	Liste.ajouterPerso(new Pollyana(E, O, A));
-	Liste.ajouterPerso(new Salim(E, O, A));
+	Liste.ajouterPerso(new Fabian(E,O,A,Obj));
+	Liste.ajouterPerso(new Nicolas(E, O, A, Obj));
+	Liste.ajouterPerso(new Thomas(E, O, A, Obj));
+	Liste.ajouterPerso(new Fiona(E, O, A, Obj));
+	Liste.ajouterPerso(new Moustick(E, O, A, Obj));
+	Liste.ajouterPerso(new Bryan(E, O, A, Obj));
+	Liste.ajouterPerso(new David(E, O, A, Obj));
+	Liste.ajouterPerso(new Isidore(E, O, A, Obj));
+	Liste.ajouterPerso(new Sebastien(E, O, A, Obj));
+	Liste.ajouterPerso(new Cloe(E, O, A, Obj));
+	Liste.ajouterPerso(new Amine(E, O, A, Obj));
+	Liste.ajouterPerso(new Florian(E,O,A, Obj));
+	Liste.ajouterPerso(new JeanBaptiste(E, O, A, Obj));
+	Liste.ajouterPerso(new Maelle(E, O, A, Obj));
+	Liste.ajouterPerso(new Pollyana(E, O, A, Obj));
+	Liste.ajouterPerso(new Salim(E, O, A, Obj));
 
 }
 
@@ -105,9 +105,10 @@ int main()
 		Zones Z;
 		Orbes O;
 		Animaux A;
+		Objets Obj;
 		Affichage H;
 		
-		H.dessinerTexte("Version 1.17 ");
+		H.dessinerTexte("Version 2.00 ");
 		Meuchant.liberer();
 		reinitListeEquipe(choix);
 		reinitEquipe(Gentil, choix);
@@ -136,7 +137,7 @@ int main()
 			cleardevice();
 			int niveauChoisit = Z.niveauActuel();
 			int repetition = 1;
-			Affichage().choixNiveau(Z, niveauChoisit,repetition);
+			Affichage().choixNiveau(Z,Obj, niveauChoisit,repetition);
 			Z.choixNiveau(niveauChoisit);
 			for (int i = 0; i < repetition; i++) {
 				std::cout << i+1 << std::endl;
