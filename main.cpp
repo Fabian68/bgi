@@ -108,7 +108,7 @@ int main()
 		Objets Obj;
 		Affichage H;
 		
-		H.dessinerTexte("Version 2.02 ");
+		H.dessinerTexte("Version 2.04 ");
 		Meuchant.liberer();
 		reinitListeEquipe(choix);
 		reinitEquipe(Gentil, choix);

@@ -4,6 +4,8 @@
 
 
 Nicolas::Nicolas(Experiences E,Orbes O,Animaux A, Objets Obj) : Personnage(1, E,O,A, Obj, "Niquola", 4, 3, 3, 10, 10, 50, 0, 50, 25, 0) {}
+
+
 void Nicolas::attaqueEnnemis() {
 	int choix = choixAttaque();
 	int DEGATS;

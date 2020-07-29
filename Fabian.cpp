@@ -3,6 +3,7 @@
 #include <iostream>
 
 Fabian::Fabian(Experiences E,Orbes O,Animaux A, Objets Obj): Personnage(0, E,O,A,Obj,"Fabian",2,4,4,10,10,-70,7,10,10,17){}
+
 void Fabian::attaqueEnnemis()
 {
 	int choix = choixAttaque();

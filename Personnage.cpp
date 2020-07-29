@@ -666,11 +666,11 @@ void Personnage::setNom(std::string nom)
 void Personnage::modifierStats(double ratio)
 {
 	std::cout << "ratio " << ratio <<" "<< std::endl;
-	if (ratio > -1.0) {
-		_force = round(_force * (1.0 + ratio));
-		_vieMax = round(_vie * (1.0 + ratio));
+	if (ratio > -1.9) {
+		_force = round(_force * (1.0 + ratio/2));
+		_vieMax = round(_vie * (1.0 + ratio/2));
 		_vie = _vieMax;
-		_vitesse = round(_vitesse * (1.0+ratio));
+		_vitesse = round(_vitesse * (1.0+ratio/2));
 	}
 	else {
 		_force = 1;
