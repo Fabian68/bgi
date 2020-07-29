@@ -1,7 +1,7 @@
 #include "Cloe.h"
 #include "Affichage.h"
 
-Cloe::Cloe(Experiences E, Orbes O, Animaux A) : Personnage(9, E, O, A, "Cloe", 1, 6, 3, 25, 25, -50, 0, 0, 0, 0) {}
+Cloe::Cloe(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(9, E, O, A, Obj, "Cloe", 1, 6, 3, 25, 25, -50, 0, 75, 0, 0) {}
 
 
 void Cloe::attaqueEnnemis()
@@ -19,18 +19,18 @@ void Cloe::attaqueEnnemis()
 		Affichage().dessinerTexte(nom() + " viens jouer  ");
 		for (int i = 0;i < equipeAllier().taille();i++) {
 			if (habile()) {
-				SOINS = soins(0.1, 0.2);
+				SOINS = soins(0.1, 0.3);
 				bouclier(SOINS, equipeAllier()[i]);
 				if (attaqueDouble()) {
-					SOINS = soins(0.1, 0.2);
+					SOINS = soins(0.1, 0.3);
 					bouclier(SOINS, equipeAllier()[i]);
 				}
 			}
 			if (attaqueDouble()) {
-				SOINS = soins(0.1, 0.2);
+				SOINS = soins(0.1, 0.3);
 				bouclier(SOINS, equipeAllier()[i]);
 				if (habile()) {
-					SOINS = soins(0.1, 0.2);
+					SOINS = soins(0.1, 0.3);
 					bouclier(SOINS, equipeAllier()[i]);
 				}
 			}
@@ -38,18 +38,18 @@ void Cloe::attaqueEnnemis()
 		if (attaqueDouble()) {
 			for (int i = 0;i < equipeAllier().taille();i++) {
 				if (habile()) {
-					SOINS = soins(0.1, 0.2);
+					SOINS = soins(0.1, 0.3);
 					bouclier(SOINS, equipeAllier()[i]);
 					if (attaqueDouble()) {
-						SOINS = soins(0.1, 0.2);
+						SOINS = soins(0.1, 0.3);
 						bouclier(SOINS, equipeAllier()[i]);
 					}
 				}
 				if (attaqueDouble()) {
-					SOINS = soins(0.1, 0.2);
+					SOINS = soins(0.1, 0.3);
 					bouclier(SOINS, equipeAllier()[i]);
 					if (habile()) {
-						SOINS = soins(0.1, 0.2);
+						SOINS = soins(0.1, 0.3);
 						bouclier(SOINS, equipeAllier()[i]);
 					}
 				}
@@ -62,12 +62,14 @@ void Cloe::attaqueEnnemis()
 		cible = equipeAllier().aleatoireEnVie()->indiceEquipe();
 		if (cible != this->indiceEquipe()) {
 			if (!habile()) {
-				equipeAllier()[cible]->ajouterForce(niveau() / 20);
+				equipeAllier()[cible]->ajouterForce(niveau() / 20.0);
 				equipeAllier()[cible]->ajouterReduction(3);
+				equipeAllier()[cible]->status().ajouterCompteurProteger(3);
 			}
 			else {
-				equipeAllier()[cible]->ajouterForce(niveau() / 10);
+				equipeAllier()[cible]->ajouterForce(niveau() / 10.0);
 				equipeAllier()[cible]->ajouterReduction(6);
+				equipeAllier()[cible]->status().ajouterCompteurProteger(6);
 			}
 		}
 
@@ -76,7 +78,7 @@ void Cloe::attaqueEnnemis()
 	case 2:
 		Affichage().dessinerTexte(nom() + " soigne l'équipe ! ");
 		for (int i = 0,j=1;i < equipeAllier().taille();i++,j*=2) {
-			SOINS = soins(0.1 * j, 0.2 * j);
+			SOINS = soins(0.2 * j, 0.4 * j);
 			soigner(SOINS, equipeAllier()[i]);
 		}
 		ajouterMana(-2);
@@ -101,4 +103,5 @@ void Cloe::passif(int tour)
 void Cloe::passifDefensif()
 {
 	ajouterReduction(1);
+	ajouterForce(force() / 10.0);
 }

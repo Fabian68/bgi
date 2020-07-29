@@ -4,7 +4,7 @@ class Amine :
 	public Personnage
 {
 public:
-	Amine(Experiences E, Orbes O, Animaux A);
+	Amine(Experiences E, Orbes O, Animaux A, Objets Obj);
 private:
 	virtual void attaqueEnnemis()override;
 	virtual void passif(int tour)override;

@@ -3,9 +3,9 @@
 
 Cerf::Cerf(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal) : Personnage(LVL, nom, 2, 6, 2, 50, 0, 0, 0, 10, 0, 0, animal, rareteAnimal)
 {
+	ajouterForce(force()/2);
+	ajouterVitesse(vitesse()/2);
 	if (difficulte == 1) {
-		ajouterForce(force());
-		ajouterVitesse(vitesse());
 		ajouterVie(9 * vie());
 	}
 	else if (difficulte == 2) {
@@ -13,6 +13,10 @@ Cerf::Cerf(int LVL, std::string nom, int difficulte, int animal, int rareteAnima
 		ajouterVitesse(vitesse());
 		ajouterVie(19 * vie());
 		ajouterReduction(90);
+	}
+	else if (difficulte == 5) {
+		ajouterVie(2*vie());
+		ajouterReduction(99);
 	}
 }
 
@@ -45,6 +49,7 @@ void Cerf::attaqueEnnemis()
 		for (int i = 0; i < equipeAllier().taille(); i++) {
 			SOINS = soins(0.45, 0.75);
 			soigner(SOINS, equipeAllier()[i]);
+			equipeAllier()[i]->status().ajouterCompteurProteger(1);
 		}
 		
 		ajouterMana(-2);
@@ -52,7 +57,7 @@ void Cerf::attaqueEnnemis()
 	case 3:
 		Affichage().dessinerTexte(nom() + "sacrifice !");
 		DEGATS = degats(10.0, 15.0);
-		Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+		Attaque(DEGATS, equipeEnnemi().plusFort());
 		minusVie = round(vie() * 0.999);
 		reduireVie(minusVie);
 		

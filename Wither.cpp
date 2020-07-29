@@ -4,6 +4,7 @@
 Wither::Wither(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal, int id): Personnage(LVL, nom, 30, 4, 4, 33, 33, 33, 0, 0, 0, 12, animal, rareteAnimal)
 {
 	setId(id);
+	ajouterVie(9 * vie());
 	if (difficulte == 1) {
 		ajouterForce(force());
 		ajouterVitesse(vitesse());

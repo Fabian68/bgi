@@ -7,15 +7,18 @@
 
 
 
-Personnage::Personnage(int LVL, std::string nom,int vieLVL,int forceLVL,int vitesseLVL,int chanceDoubleAttaque,int chanceHabilete,int pourcentageReduction,int pourcentageDeviation,int pourcentageBlocage,int pourcentageEsquive,int pourcentageRicochet, int indiceAnimal, int rareteAnimal) :
-	_vieMax{ vieLVL*LVL*10 }, _vie{ vieLVL*LVL*10 }, _nom{ nom },_id{-1},_niveau{LVL},_force{forceLVL*LVL},_vitesse{vitesseLVL*LVL},_chanceDoubleAttaque{chanceDoubleAttaque},
-	_chanceHabilete{chanceHabilete},_pourcentageReduction{pourcentageReduction},_pourcentageDeviation{pourcentageDeviation},_pourcentageBlocage{pourcentageBlocage},_pourcentageEsquive{pourcentageEsquive},_pourcentageRicochet{pourcentageRicochet},
-	_mana{0},_pourcentageCritique{10},_degatCritique{50},_bouclier{0},_indiceAnimal{indiceAnimal},_rareteAnimal{rareteAnimal}
+Personnage::Personnage(int LVL, std::string nom, int vieLVL, int forceLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet, int indiceAnimal, int rareteAnimal) :
+	_vieMax{ vieLVL * LVL * 10 }, _vie{ vieLVL * LVL * 10 }, _nom{ nom }, _id{ -1 }, _niveau{ LVL }, _force{ forceLVL * LVL }, _vitesse{ vitesseLVL * LVL }, _chanceDoubleAttaque{ chanceDoubleAttaque },
+	_chanceHabilete{ chanceHabilete }, _pourcentageReduction{ pourcentageReduction }, _pourcentageDeviation{ pourcentageDeviation }, _pourcentageBlocage{ pourcentageBlocage }, _pourcentageEsquive{ pourcentageEsquive }, _pourcentageRicochet{ pourcentageRicochet },
+	_mana{ 0 }, _pourcentageCritique{ 5 }, _degatCritique{ 50 }, _bouclier{ 0 }, _indiceAnimal{ indiceAnimal }, _rareteAnimal{ rareteAnimal }
 {
+	_statusPerso = Status(this);
 	_animal = Animal(_indiceAnimal);
+	_objets.first = Objet();
+	_objets.second = Objet();
 }
 
-Personnage::Personnage(int id,Experiences E,Orbes O,Animaux A, std::string nom, int vieLVL, int forceLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet) :
+Personnage::Personnage(int id,Experiences E,Orbes O,Animaux A, Objets Obj, std::string nom, int vieLVL, int forceLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet) :
 	_nom{ nom }, _id{ id }, _chanceDoubleAttaque{ chanceDoubleAttaque },
 	_chanceHabilete{ chanceHabilete }, _pourcentageReduction{ pourcentageReduction }, _pourcentageDeviation{ pourcentageDeviation }, _pourcentageBlocage{ pourcentageBlocage }, _pourcentageEsquive{ pourcentageEsquive }, _pourcentageRicochet{ pourcentageRicochet },
 	_mana{ 0 }, _pourcentageCritique{ 10 }, _degatCritique{ 50 }, _bouclier{ 0 }
@@ -25,15 +28,17 @@ Personnage::Personnage(int id,Experiences E,Orbes O,Animaux A, std::string nom, 
 	int bonusLVLvitesse;
 	O.buffOrbes(_id, bonusLVLattaque, bonusLVLvie, bonusLVLvitesse);
 	_niveau = E.calculNiveau(id);
-	_vie = (vieLVL+bonusLVLvie) * _niveau * 10;
+	_vie = (vieLVL + bonusLVLvie) * _niveau * 10;
 	_vieMax = _vie;
-	_force = (forceLVL+bonusLVLattaque) * _niveau;
-	_vitesse = (vitesseLVL+bonusLVLvitesse) * _niveau;
+	_force = (forceLVL + bonusLVLattaque) * _niveau;
+	_vitesse = (vitesseLVL + bonusLVLvitesse) * _niveau;
 	_indiceAnimal = A.indiceAnimal(_id);
 	_rareteAnimal = A.rareteAnimal(_id, _indiceAnimal);
 	//A.animalDuPersonnage(_id, _indiceAnimal, _rareteAnimal);
 	std::cout << _indiceAnimal << " " << _rareteAnimal;
 	_animal = Animal(_indiceAnimal);
+	_statusPerso = Status(this);
+	Obj.objetsDuPersonnage(_id, _objets.first, _objets.second);
 }
 
 Personnage::~Personnage()
@@ -66,8 +71,15 @@ int Personnage::vieMax() const
 }
 void Personnage::ajouterVieMax(int montant) {
 	_vieMax += montant;
+	_S.ajouterAugmentationVieMax(montant);
 }
 
+void Personnage::reduireVieMax(int montant) {
+	ajouterVieMax(-montant);
+	if (_vie > _vieMax) {
+		_vie = _vieMax;
+	}
+}
 void Personnage::reduireVie(int nb)
 {
 	if (_vie < nb) {
@@ -125,6 +137,7 @@ int Personnage::niveau()const {
 void Personnage::ajouterForce(int montant)
 {
 	_force += montant;
+	_S.ajouterAugmentationForce(montant);
 }
 void Personnage::ajouterVitesse(int montant)
 {
@@ -149,7 +162,21 @@ int Personnage::soins(double RatioMin,double RatioMax) const {
 		SOINS *= (_degatCritique / 100.0 + 1);
 	}
 	if (Aleatoire().entier() <= _chanceHabilete) {
-		SOINS *= 2;
+		if (possedeObjetNumero(6)) {
+			if (Aleatoire(0, 101).entier() < 5) {
+				SOINS *= 4;
+			}else if (Aleatoire(0, 101).entier() < 10) {
+				SOINS *= 3;
+			}
+			else {
+				SOINS *= 2;
+			}
+			std::cout << " OBJ6 ";
+		}
+		else {
+			SOINS *= 2;
+		}
+		
 	}
 	return round(SOINS);
 
@@ -165,62 +192,93 @@ int Personnage::degats(double RatioMin, double RatioMax) const
 		degat *= (_degatCritique / 100.0 + 1);
 	}
 	if (Aleatoire().entier() <= _chanceHabilete) {
-		degat *= 2;
+		if (possedeObjetNumero(6)) {
+			if (Aleatoire(0, 101).entier() < 5) {
+				degat *= 4;
+			}
+			else if (Aleatoire(0, 101).entier() < 10) {
+				degat *= 3;
+			}
+			else {
+				degat *= 2;
+			}
+			std::cout << " OBJ6 ";
+		}
+		else {
+			degat *= 2;
+		}
+		
 	}
 	return round(degat);
 }
 
 void Personnage::soigner(int soins,Personnage * P)
 {	if (P->estEnVie()) {
-		if ((soins + _vie) > _vieMax) {
-			soins = _vieMax - _vie;
+		if ((soins + P->vie()) > P->vieMax()) {
+			soins = P->vieMax() - P->vie();
 			
 		}
 		P->stats().ajouterSoinsDonner(soins);
-		P->AjouterVie(soins);	
+		P->AjouterVie(soins);
+		if (possedeObjetNumero(4)) {
+			if (Aleatoire(0, 101).entier() < 20) {
+				P->bouclier(soins, P);
+			}
+			std::cout << " OBJ4 ";
+		}
 	}
 }
 
 void Personnage::AjouterVie(int montant) {
-	if (montant < 0) {
+	if (montant <= 0) {
 		montant = 0;
 	}
-	_vie += montant;
-	Affichage H;
-	H.dessinerSoins(this, montant);
+	else {
+		_vie += montant;
+		Affichage H;
+		H.dessinerSoins(this, montant);
 	
-	if (_vie > _vieMax) {
-		_vie = _vieMax;	
+		if (_vie > _vieMax) {
+			_vie = _vieMax;	
+		}
+		H.dessinerJoueur(this->indiceEquipe() + 1, this->equipeAllier().ia(), this);
 	}
-	H.dessinerJoueur(this->indiceEquipe() + 1, this->equipeAllier().ia(), this);
 }
 
 void Personnage::bouclier(int soins, Personnage* P)
 {
 	if (P->estEnVie()) {
-		if ((soins + _bouclier) >bouclierMax()) {
-			soins = bouclierMax() - _bouclier;
+		if ((soins + P->bouclier()) >P->bouclierMax()) {
+			soins = P->bouclierMax() - P->bouclier();
 
 		}
 		P->stats().ajouterBouclierDonner(soins);
 		P->AjouterBouclier(soins);
+		if (possedeObjetNumero(4)) {
+			if (Aleatoire(0, 101).entier() < 10) {
+				P->status().ajouterCompteurProteger(1);
+			}
+			std::cout << " OBJ4 ";
+		}
 	}
 }
 
 void Personnage::AjouterBouclier(int montant) {
-	if (montant < 0) {
+	if (montant <= 0) {
 		montant = 0;
 	}
-	_bouclier += montant;
-	Affichage H;
+	else {
+		_bouclier += montant;
+		Affichage H;
 
-	
-	H.dessinerBouclier(this,montant);
-	if (_bouclier > bouclierMax()) {
-		_bouclier = bouclierMax();
+		H.dessinerBouclier(this,montant);
+		if (_bouclier > bouclierMax()) {
+			_bouclier = bouclierMax();
 		
+		}
+		H.dessinerJoueur(this->indiceEquipe() + 1, this->equipeAllier().ia(), this);
 	}
-	H.dessinerJoueur(this->indiceEquipe() + 1, this->equipeAllier().ia(), this);
+	
 }
 
 void Personnage::ajouterBouclier(int montant) {
@@ -298,48 +356,103 @@ void Personnage::traitementAnimaux() {
 }
 void  Personnage::Attaque(int Degat, Personnage * Defenseur) 
 {
-	
+
+	bool redirection = false;
+	Degat++;
+	std::string FRAGILISER = "";
+	std::string PROTEGER = "";
 	int degatEffectif;
 	if (Defenseur->estAttaquable()) {
+
+		if (possedeObjetNumero(5)) {
+			Degat *= 2.5;
+			std::cout << " OBJ5 ";
+		}
+		if (possedeObjetNumero(16)) {
+			Degat *= 1.2;
+			std::cout << " OBJ16 ";
+		}
+		if (possedeObjetNumero(12) && _S.nbAttaques()%3==0) {
+			Degat *= 1.3;
+			std::cout << " OBJ12 ";
+		}
 		if (Defenseur->bloque()) {
 			Degat /= 2;
 		}
+		if (Defenseur->status().estProteger()) {
+			Degat /= 2;
+			PROTEGER = "PROTEGER";
+		}
+		if (Defenseur->status().estFragiliser()) {
+			Degat *= 2;
+			FRAGILISER = "FRAGILISER";
+		}
+		Defenseur->status().decrementerCompteur();
+
 		Degat = Defenseur->reductionDesDegats(Degat);
 		if (Degat < 0) {
 			Degat = 0;
 		}
 		if (Defenseur->devie()) {
-			
+			if (Defenseur->possedeObjetNumero(9)) {
+				Degat *= 1.5;
+				std::cout << " OBJ9 ";
+			}
 			Defenseur->Attaque(Degat, this);
 			
 		}
-		else {
-			Defenseur->passifDefensif();
-			Defenseur->traitementAnimaux();
-			this->traitementAnimaux();
-		
-			degatEffectif = Degat;
-			
-			std::cout << _nom << " attaque " <<Defenseur->indiceEquipe()<< Defenseur->nom();
-			std::cout << " "<<Degat << std::endl;
-			if (Defenseur->bouclier() > 0) {
-				Degat=Defenseur->reduireBouclier(Degat);
-			}
-			if (Degat > 0) {
-				if (Degat > Defenseur->vie()) {
-					Degat = Defenseur->vie();
-				}
-				_S.ajouterDegatsProvoquer(Degat);
-				_S.incrementerNbAttaques();
-				Defenseur->stats().incrementerNbAttaquesRecues();
-				Defenseur->reduireVie(Degat);
-			}
-			Affichage H;
-			H.dessinerAttaque(this, Defenseur);
-			H.dessinerJoueur(Defenseur->indiceEquipe()+1, Defenseur->equipeAllier().ia(), Defenseur);
-			H.dessinerDegats(Defenseur, degatEffectif);
+		else if (Defenseur->possedeObjetNumero(10) && Aleatoire(0, 101).entier() < 10) {
+			Defenseur->AjouterBouclier(Degat / 10);
 		}
-		if (ricoche()&&_E.estEnVie()) {
+		else {
+
+			for (int i = 0;i < Defenseur->equipeAllier().taille()&&!redirection;i++) {
+				if (Defenseur->equipeAllier()[i]->possedeObjetNumero(11) && Aleatoire(0, 101).entier() < 25) {
+					redirection = true;
+					Attaque(Degat, Defenseur->equipeAllier()[i]);
+					std::cout << " OBJ11 ";
+				}
+			}
+			if (!redirection) {
+				Defenseur->passifDefensif();
+				Defenseur->traitementAnimaux();
+				this->traitementAnimaux();
+
+				degatEffectif = Degat;
+
+				std::cout << _nom << " attaque " << Defenseur->indiceEquipe() << Defenseur->nom() << " " << FRAGILISER << " " << PROTEGER;
+				std::cout << " " << Degat << std::endl;
+				if (Defenseur->possedeObjetNumero(25)) {
+					Degat -= Defenseur->niveau();
+					if (Degat < 0) {
+						Degat = 1;
+					}
+					std::cout << " OBJ25 ";
+				}
+				if (Defenseur->possedeObjetNumero(14) && _A.estEnVie()) {
+					Defenseur->AttaqueBrut(Degat / 10, _A.plusProcheVivant());
+					std::cout << " OBJ14 ";
+				}
+				if (Defenseur->bouclier() > 0) {
+					Degat = Defenseur->reduireBouclier(Degat);
+				}
+				if (Degat > 0) {
+					if (Degat > Defenseur->vie()) {
+						Degat = Defenseur->vie();
+					}
+					_S.ajouterDegatsProvoquer(Degat);
+					_S.incrementerNbAttaques();
+					Defenseur->stats().incrementerNbAttaquesRecues();
+					Defenseur->reduireVie(Degat);
+					
+				}
+				Affichage H;
+				H.dessinerAttaque(this, Defenseur);
+				H.dessinerJoueur(Defenseur->indiceEquipe() + 1, Defenseur->equipeAllier().ia(), Defenseur);
+				H.dessinerDegats(Defenseur, degatEffectif);
+			}
+		}
+		if (ricoche()&&_E.estEnVie()&&!redirection) {
 			
 			if (Aleatoire().entier() < _pourcentageCritique) {
 				Degat *= (_degatCritique / 100.0 + 1);
@@ -347,8 +460,26 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 			if (Aleatoire().entier() < _chanceHabilete) {
 				Degat *= 2;
 			}
+			if (possedeObjetNumero(27)) {
+				Degat *= 1.3;
+			}
 			Attaque(Degat, _E.aleatoireEnVie());
 		}
+	}
+	else{
+		if (Defenseur->possedeObjetNumero(15)) {
+			Defenseur->ajouterDegatsCritique(5);
+			std::cout << " OBJ15 ";
+		}
+		if (Defenseur->possedeObjetNumero(16)) {
+			Defenseur->AttaqueBrut(degats(0.2,0.4),_A.plusFaible());
+			std::cout << " OBJ16 ";
+		}
+	}
+	if (possedeObjetNumero(13) && _E.estEnVie()) {
+		Degat = degats(0.05, 0.10);
+		AttaqueBrut(Degat, _E.plusFaible());
+		std::cout << " OBJ13 ";
 	}
 	
 }
@@ -383,15 +514,40 @@ void Personnage::setReduction(int montant) {
 }
 void Personnage::ajouterChanceDoubleAttaque(int montant) {
 	_chanceDoubleAttaque += montant;
+	_S.ajouterAugmentationChanceDoubleAttaque(montant);
 }
 void Personnage::ajouterChanceHabileter(int montant) {
 	_chanceHabilete += montant;
+	_S.ajouterAugmentationChanceHabileter(montant);
 }
 void Personnage::ajouterReduction(int montant) {
 	_pourcentageReduction += montant;
-	if (_pourcentageReduction >= 90) {
-		_pourcentageReduction = 90;
+	_S.ajouterAugmentationReduction(montant);
+	if (_pourcentageReduction >= 97) {
+		_pourcentageReduction = 97;
 	}
+}
+
+void Personnage::ajouterDeviation(int montant) {
+	_pourcentageDeviation += montant;
+}
+
+void Personnage::ajouterChanceRicochet(int montant) {
+	_pourcentageRicochet += montant;
+	if (_pourcentageRicochet >= 90) {
+		_pourcentageRicochet = 90;
+	}
+}
+
+void Personnage::ajouterEsquive(int montant) {
+	_pourcentageEsquive += montant;
+	if (_pourcentageEsquive >= 95) {
+		_pourcentageEsquive = 95;
+	}
+}
+bool Personnage::possedeObjetNumero(int i)const {
+	return (_objets.first.numero() == i || _objets.second.numero()==i);
+
 }
 int Personnage::bouclier()const {
 	return _bouclier;
@@ -489,6 +645,7 @@ int Personnage::rareterAnimal() const
 
 void Personnage::ajouterCoupCritique(int pourcentage)
 {
+	_S.ajouterAugmentationCoupCritiques(pourcentage);
 	_pourcentageCritique += pourcentage;
 	if (_pourcentageCritique > 100) {
 		_pourcentageCritique = 100;
@@ -497,5 +654,53 @@ void Personnage::ajouterCoupCritique(int pourcentage)
 
 void Personnage::ajouterDegatsCritique(int pourcentage)
 {
+	_S.ajouterAugmentationDegatsCritique(pourcentage);
 	_degatCritique += pourcentage;
 }
+
+void Personnage::setNom(std::string nom)
+{
+	_nom = nom;
+}
+
+void Personnage::modifierStats(double ratio)
+{
+	std::cout << "ratio " << ratio <<" "<< std::endl;
+	if (ratio > -1.9) {
+		_force = round(_force * (1.0 + ratio/2));
+		_vieMax = round(_vie * (1.0 + ratio/2));
+		_vie = _vieMax;
+		_vitesse = round(_vitesse * (1.0+ratio/2));
+	}
+	else {
+		_force = 1;
+		_vie = 1;
+		_vieMax = 1;
+		_vitesse = 1;
+	}
+}
+
+Status& Personnage::status()
+{
+	return _statusPerso;
+}
+
+std::pair<Objet, Objet> Personnage::objets()
+{
+	return _objets;
+}
+
+void Personnage::equiperObjet(Objet obj, bool premier) {
+	if (premier == true) {
+		_objets.first = obj;
+	}
+	else {
+		_objets.second = obj;
+	}
+}
+
+void Personnage::appliquerEffets() {
+	_objets.first.appliquerEffet(this);
+	_objets.second.appliquerEffet(this);
+}
+

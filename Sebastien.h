@@ -4,7 +4,7 @@ class Sebastien :
 	public Personnage
 {
 public:
-	Sebastien(Experiences E, Orbes O, Animaux A);
+	Sebastien(Experiences E, Orbes O, Animaux A, Objets Obj);
 private:
 	virtual void attaqueEnnemis()override;
 	virtual void passif(int tour)override;

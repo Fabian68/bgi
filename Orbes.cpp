@@ -1,5 +1,6 @@
 #include "Orbes.h"
 #include <iostream>
+#include "Bouton.h"
 
 Orbes::Orbes()
 {
@@ -17,6 +18,9 @@ Orbes::Orbes()
 			os << std::endl;
 		}
 		os.close();
+	}
+	else {
+		fclose(file);
 	}
 
 	_orbesLVL.resize(25);
@@ -81,26 +85,27 @@ bool Orbes::orbeDebloquer(int indiceJoueur, int rareter) const
 
 void Orbes::deblocageOrbe(int indiceJoueur, int rareter, std::string perso)
 {
-	std::cout <<perso<< " a débloquer une orbe ";
-	std::cout << " de rarete ";
+	std::string txt = "";
+	txt+= perso +" a débloquer une orbe ";
+	txt+= " de rarete ";
 	switch (rareter) {
 	case 1:
-		std::cout << " commune ( 1 ";
+		txt+= " commune ( 1 ";
 		break;
 	case 2:
-		std::cout << " rare ( 2 ";
+		txt += " rare ( 2 ";
 		break;
 	case 3:
-		std::cout << " epique ( 3 ";
+		txt += " epique ( 3 ";
 		break;
 	case 4:
-		std::cout << " LEGENDAIRE ( 4 ";
+		txt += " LEGENDAIRE ( 4 ";
 		break;
 	case 5:
-		std::cout << " CHEATER ( 5 ";
+		txt += " CHEATER ( 5 ";
 		break;
 	}
-	std::cout << "points de stats par niveaux) ,vous dever choisir ou l'equiper, entrer ";
+/*	std::cout << "points de stats par niveaux) ,vous dever choisir ou l'equiper, entrer ";
 	std::cout << std::endl;
 	std::cout << " 1 pour attaque ";
 	std::cout << std::endl;
@@ -112,9 +117,42 @@ void Orbes::deblocageOrbe(int indiceJoueur, int rareter, std::string perso)
 	std::cin >> entrer;
 	if (entrer < 1 || entrer >3) {
 		entrer = 1;
-	}
+	}*/
+	Bouton(300, 400, txt, 0, GREEN, GREEN).afficher();
+	Bouton(300, 440, "Equiper sur  : ", 0, GREEN, GREEN).afficher();
+	Bouton Un(320, 480, " Attaque ", 0, GREEN, GREEN);
+	Un.afficher();
+	Bouton Deux(420, 480, " Vie ", 0, GREEN, GREEN);
+	Deux.afficher();
+	Bouton Trois(520, 480, " Vitesse ", 0, GREEN, GREEN);
+	Trois.afficher();
+	int xc, yc;
+	int select;
+	bool selectionner =false;
+	int DELAY = 50;
+	do {
+		while (!ismouseclick(WM_LBUTTONDOWN)) {
+			delay(DELAY);
+		}
+		getmouseclick(WM_LBUTTONDOWN, xc, yc);
+		if (Un.comprendLesCoord(xc, yc)) {
+			selectionner = true;
+			select = 1;
+		}
+		else if (Deux.comprendLesCoord(xc, yc)) {
+			selectionner = true;
+			select = 2;
+		}
+		else if(Trois.comprendLesCoord(xc, yc)){
+			selectionner = true;
+			select = 3;
+		}
+	} while (!selectionner);
+	cleardevice();
+	
+	
 	_orbesLVL[indiceJoueur][rareter - 1] = 1;
-	_choixOrbes[indiceJoueur][rareter - 1] = entrer;
+	_choixOrbes[indiceJoueur][rareter - 1] = select;
 
 	sauvegarder();
 }

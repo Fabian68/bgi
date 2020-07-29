@@ -29,6 +29,15 @@ Personnage*  Equipes::perso(int i)
 	return _equipe[i];
 }
 
+int Equipes::nbEnVie()const {
+	int nb = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->estEnVie()) {
+			nb++;
+		}
+	}
+	return nb;
+}
 void Equipes::setIndiceANul(int indice) {
 	_equipe[indice]=nullptr;
 }
@@ -72,6 +81,36 @@ Personnage* Equipes::plusFaible()
 		if (_equipe[i]->vie()>0&& _equipe[i]->vie()<vieMin) {
 		
 			vieMin = _equipe[i]->vie();
+			j = i;
+		}
+	}
+	return _equipe[j];
+}
+
+Personnage* Equipes::plusFort()
+{
+	int forceMin = INT_MAX;
+	int j = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+
+		if ( _equipe[i]->force() < forceMin) {
+
+			forceMin = _equipe[i]->force();
+			j = i;
+		}
+	}
+	return _equipe[j];
+}
+
+Personnage* Equipes::moinsResistant()
+{
+	int reductionMax = 100;
+	int j = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+
+		if (_equipe[i]->pourcentageReduction() > 0 && _equipe[i]->pourcentageReduction() < reductionMax) {
+
+			reductionMax = _equipe[i]->pourcentageReduction();
 			j = i;
 		}
 	}
@@ -143,38 +182,151 @@ Personnage* Equipes::meilleurBouclier()
 	return _equipe[indice];
 }
 
+Personnage* Equipes::meilleurAugmentationForce()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationForce() > max) {
+			max = _equipe[i]->stats().augmentationForce();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurAugmentationVieMax()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationVieMax() > max) {
+			max = _equipe[i]->stats().augmentationVieMax();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurAugmentationReduction()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationReduction() > max) {
+			max = _equipe[i]->stats().augmentationReduction();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurAugmentationDegatsCritiques()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationDegatsCritique() > max) {
+			max = _equipe[i]->stats().augmentationDegatsCritique();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurAugmentationChanceCritiques()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationCoupCritiques() > max) {
+			max = _equipe[i]->stats().augmentationCoupCritiques();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurAugmentationHabileter()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationChanceHabileter() > max) {
+			max = _equipe[i]->stats().augmentationChanceHabileter();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
+Personnage* Equipes::meilleurAugmentationChanceDoubleAttaque()
+{
+	int max = INT_MIN;
+	int indice = 0;
+	for (int i = 0;i < _equipe.size();i++) {
+		if (_equipe[i]->stats().augmentationChanceDoubleAttaque() > max) {
+			max = _equipe[i]->stats().augmentationChanceDoubleAttaque();
+			indice = i;
+		}
+	}
+	return _equipe[indice];
+}
+
 void Equipes::attaqueZone(int Degats,Personnage * Attaquant)
 {
-	for (int i = 0; i < _equipe.size(); i++) {
-		Attaquant->Attaque(Degats, _equipe[i]);
+	for (int i = 0; i < Attaquant->equipeEnnemi().taille(); i++) {
+		Attaquant->Attaque(Degats, Attaquant->equipeEnnemi()[i]);
 	}
 }
 
 void Equipes::soignerZone(int soins, Personnage* Soigneur)
 {
-	for (int i = 0; i < _equipe.size(); i++) {
-		Soigneur->soigner(soins, _equipe[i]);
+	for (int i = 0; i < Soigneur->equipeAllier().taille(); i++) {
+		Soigneur->soigner(soins, Soigneur->equipeAllier()[i]);
 	}
 }
 void Equipes::bouclierZone(int montantBouclier, Personnage* bouclierMan)
 {
-	for (int i = 0; i < _equipe.size(); i++) {
-		bouclierMan->bouclier(montantBouclier, _equipe[i]);
+	for (int i = 0; i < bouclierMan->equipeAllier().taille(); i++) {
+		bouclierMan->bouclier(montantBouclier, bouclierMan->equipeAllier()[i]);
 	}
 }
 void Equipes::vider()
 {
+/*for (int i = 0;i < _equipe.size();i++) {
+		if (! nullptr) {
+			delete _equipe[i];
+		}
+	}*/
 	_equipe.resize(0);
+}
+void Equipes::liberer()
+{
+	for (int i = 0;i < _equipe.size();i++) {
+		if (!nullptr) {
+			delete _equipe[i];
+		}
+	}
+		_equipe.resize(0);
 }
 void Equipes::ajouterExperience(int xp, Experiences E) {
 	xp /= _equipe.size();
 	std::cout << "Les joueurs gagnent " << xp << " d experiences." << std::endl;
 	for (int i = 0; i < _equipe.size(); i++) {
+		if (_equipe[i]->possedeObjetNumero(7)) {
+			E.ajouterXP(_equipe[i]->id(), xp*2);
+			std::cout << " OBJ7 ";
+		}
+		if (_equipe[i]->possedeObjetNumero(8)) {
+			E.ajouterXP(_equipe[i]->id(), xp * 4);
+			std::cout << " OBJ8 ";
+		}
 		E.ajouterXP(_equipe[i]->id(), xp);
 	}
 	E.ecrireEXP("T1.txt");
 }
-void Equipes::chargerEquipe(Equipes Liste)
+void Equipes::chargerEquipe(Equipes & Liste)
 {
 	FILE* file = fopen("monEquipe.txt", "r");
 	if (file == NULL) {
@@ -186,6 +338,10 @@ void Equipes::chargerEquipe(Equipes Liste)
 		}
 		os.close();
 	}
+	else {
+		fclose(file);
+	}
+	
 
 	std::ifstream is("monEquipe.txt");
 	int perso;
@@ -253,6 +409,12 @@ bool Equipes::estEnVie()const {
 
 bool Equipes::ia()const {
 	return _equipeIA;
+}
+
+void Equipes::modifierStats(std::vector<double> listeRatioModification) {
+	for (int i = 0;i < _equipe.size();i++) {
+		_equipe[i]->modifierStats(listeRatioModification[i]);
+	}
 }
 /*
 test envie equipe

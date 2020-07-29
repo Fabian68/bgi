@@ -16,6 +16,10 @@ Lapin::Lapin(int LVL,std::string nom,int difficulte,int animal,int rareteAnimal,
 		ajouterVie(19 * vie());
 		ajouterReduction(99);
 	}
+	else if (difficulte == 5) {
+		ajouterVie(vie());
+		ajouterReduction(90);
+	}
 }
 void Lapin::attaqueEnnemis() {
 	int choix = choixAttaque();
@@ -62,13 +66,15 @@ void Lapin::attaqueEnnemis() {
 			Affichage().dessinerTexte(nom() + " coup de boule !  ");
 			Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 		}
+		ajouterChanceHabileter(5);
 		ajouterMana(-2);
 		break;
 	case 3:
 		Affichage().dessinerTexte(nom() + "s'enrage !");
 		DEGATS = degats(1.3, 2.2);
+		equipeEnnemi().plusProcheVivant()->status().appliquerPoison();
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
-		ajouterChanceHabileter(5);
+		
 		ajouterMana(-3);
 		break;
 	}

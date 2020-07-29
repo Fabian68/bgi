@@ -3,6 +3,7 @@
 #include "Personnage.h"
 #include "Bouton.h"
 #include "Zones.h"
+#include "Affinites.h"
 #include  <iostream>
 
 Affichage::Affichage()
@@ -13,6 +14,19 @@ void afficherTexte(int x, int y, std::string texte) {
 	outtextxy(x, y, perso);
 }
 
+std::string conversion(int nombre) {
+	std::string nombrestr;
+	if (nombre >= 1000000) {
+		nombrestr = std::to_string(nombre / 1000000) + "M";
+	}
+	else if (nombre >= 1000) {
+		nombrestr = std::to_string(nombre / 1000) + "K";
+	}
+	else {
+		nombrestr = std::to_string(nombre);
+	}
+	return nombrestr;
+}
 void Affichage::affichageTexte(int x, int y, std::string texte) {
 	char* perso = const_cast<char*>(texte.c_str());
 	outtextxy(x, y, perso);
@@ -39,7 +53,7 @@ void Affichage::animationCercle(int xDepart, int yDepart, int xArriver, int yArr
 	}
 }
 
-void Affichage::afficherJoueurs(int indice,Equipes Liste)const {
+void Affichage::afficherJoueurs(int indice,Equipes& Liste)const {
 	int x = 50;
 	int y = 20;
 	std::string str;
@@ -81,8 +95,13 @@ void Affichage::afficherJoueurs(int indice,Equipes Liste)const {
 		str = "Chance de blocage : " + std::to_string(Liste[indice]->pourcentageBlocage());
 		afficherTexte(x, y+220, str);
 	
+		int x2 = x - 20;
+		
 		x = x + 250;
 	
+		afficherTexte(x - 250, y + 350, Liste[indice]->objets().first.nom());
+		afficherTexte(x - 250, y + 390, Liste[indice]->objets().second.nom());
+
 		rectangle(x + 80, y - 10, x + 550, y + 130);
 		
 		Animal A = Liste[indice]->animal();
@@ -193,6 +212,11 @@ void Affichage::afficherJoueurs(int indice,Equipes Liste)const {
 		Precedent.afficher();
 		Bouton Suivant(600, 700, "Suivant");
 		Suivant.afficher();
+
+		Bouton AjouterObjet1(250,350,"Changer");
+		AjouterObjet1.afficher();
+		Bouton AjouterObjet2(250,400,"Changer");
+		AjouterObjet2.afficher();
 		const int DELAY = 50; // Milliseconds of delay between checks
 		int xc, yc;
 		bool equiperAnimal = false;
@@ -226,7 +250,7 @@ void Affichage::afficherJoueurs(int indice,Equipes Liste)const {
 						k += 50;
 					}
 				}
-			} while (!Retour.comprendLesCoord(xc, yc) && !Suivant.comprendLesCoord(xc, yc)&&!equiperAnimal&&!Precedent.comprendLesCoord(xc,yc)&&!OrbeChoisit);
+			} while (!Retour.comprendLesCoord(xc, yc) && !Suivant.comprendLesCoord(xc, yc)&&!equiperAnimal&&!Precedent.comprendLesCoord(xc,yc)&&!OrbeChoisit&&!AjouterObjet1.comprendLesCoord(xc,yc)&&!AjouterObjet2.comprendLesCoord(xc,yc));
 
 			if (Suivant.comprendLesCoord(xc, yc)) {
 				indice = (indice + 1) % Liste.taille();
@@ -245,7 +269,96 @@ void Affichage::afficherJoueurs(int indice,Equipes Liste)const {
 				cleardevice();
 				afficherJoueurs(indice, Liste);
 			}
+			else if (AjouterObjet1.comprendLesCoord(xc, yc)) {
+				Objets obj;
+				cleardevice();
+				choixObjets(1, obj, true, indice, Liste);
+			}
+			else if (AjouterObjet2.comprendLesCoord(xc, yc)) {
+				Objets obj;
+				cleardevice();
+				choixObjets(1, obj, false, indice, Liste);
+			}
 	cleardevice();
+}
+
+void Affichage::choixObjets(int page, Objets obj, bool premierObjet, int indicePersonnage, Equipes & Liste)const {
+	int maxPage = ceil(obj.nombreObjets() / 15.0);
+	int y = 20;
+	std::string txt = "";	
+
+	for (int i = (page - 1) * 15 + 1;i <= min(obj.nombreObjets(), page * 15);i++) {
+		if (obj.estDebloquer(obj.objetNumero(i))) {
+			txt = obj.objetNumero(i).nom() + "     " + obj.objetNumero(i).rareterTexte();
+			afficherTexte(50, y + 20, txt);
+			txt = obj.objetNumero(i).effet();
+			afficherTexte(50, y + 40, txt);
+			Bouton(1000, y + 25, "Equiper").afficher();
+		}
+		else {
+			txt = "???     "+ obj.objetNumero(i).rareterTexte();
+			afficherTexte(50, y + 20, txt);
+			txt = "???";
+			afficherTexte(50, y + 40, txt);
+			//Bouton(1000, y + 25, "Equiper").afficher();
+		}
+		y += 50;
+	}
+
+	y = 20;
+	bool choix = false;
+
+	Bouton Precedent(10, -5, "Page precedente");
+	Precedent.afficher();
+
+	Bouton Retour(525, -5, "Retour");
+	Retour.afficher();
+
+	Bouton Suivant(1065, -5, "Page suivante");
+	Suivant.afficher();
+
+	const int DELAY = 50; // Milliseconds of delay between checks
+	int xc, yc;
+	do {
+		while (!ismouseclick(WM_LBUTTONDOWN)) {
+			delay(DELAY);
+		}
+		getmouseclick(WM_LBUTTONDOWN, xc, yc);
+
+		for (int i = (page - 1) * 15 + 1;i <= min(obj.nombreObjets(), page * 15);i++) {
+			if (obj.estDebloquer(obj.objetNumero(i))&& Bouton(1000, y + 25, "Equiper").comprendLesCoord(xc, yc)) {
+				Liste[indicePersonnage]->equiperObjet(obj.objetNumero(i), premierObjet);
+				obj.equiperObjetDuPersonnage(indicePersonnage, obj.objetNumero(i), premierObjet);
+				choix = true;
+			}
+			y += 50;
+		}
+		if (choix != true) {
+			if (Precedent.comprendLesCoord(xc, yc)) {
+				page--;
+				if (page <= 0) {
+					page = maxPage;
+				}
+				choix = true;
+				cleardevice();
+				choixObjets(page, obj, premierObjet, indicePersonnage, Liste);
+			}
+			else if (Suivant.comprendLesCoord(xc, yc)) {
+				page++;
+				if (page > maxPage) {
+					page = 1;
+				}
+				choix = true;
+				cleardevice();
+				choixObjets(page, obj, premierObjet, indicePersonnage, Liste);
+			}
+			else if (Retour.comprendLesCoord(xc, yc)) {
+				choix = true;
+			}
+		}
+	} while (!choix);
+	cleardevice();
+	afficherJoueurs(indicePersonnage, Liste);
 }
 void Affichage::afficherAnimaux(Animaux A) const
 {
@@ -314,110 +427,165 @@ void Affichage::dessinerJoueur(int indice, bool equipeIA,Personnage*  P) const
 {
 	int x;
 	if (equipeIA) {
-		x = 1200 - 360;
+		x = 1180 - 360;
 	}
 	else {
-		x = 60;
+		x = 20;
 	}
 	std::string str = P->nom()+" "+std::to_string(P->niveau());
 	char* perso = const_cast<char*>(str.c_str());
 //	setcolor(GREEN);
 	int y = -50 + 70 * indice;
-	rectangle(x, y, x + 300, y + 65);
+	rectangle(x, y, x + 360, y + 65);
 	outtextxy(x + 2, y + 5, perso);
 	int pourcentageVie = P->pourcentageVie();
 	int pourcentageBouclier = P->pourcentageBouclier();
+
+	if (P->status().estEmpoisoner()) {
+		setfillstyle(1, MAGENTA);
+	}
+	else {
+		setfillstyle(1, BLACK);
+	}
+	fillellipse(x - 10, y+10 , 5, 5);
+	if (P->status().estBruler()) {
+		setfillstyle(1, RED);
+	}
+	else {
+		setfillstyle(1, BLACK);
+	}
+	fillellipse(x - 10, y + 20, 5, 5);
+	int TabFragiliser[8] = {x-15,y+30,x-5,y+30,x-5,y+40,x-15,y+40};
+	int TabProteger[8] = { x - 15,y+45,x - 5,y+45,x - 5,y + 55,x - 15,y + 55 };
+	if (P->status().estFragiliser()) {
+		setfillstyle(1, RED);
+	}
+	else {
+		setfillstyle(1, BLACK);
+	}
+	fillpoly(4, TabFragiliser);
+	if (P->status().estProteger()) {
+		setfillstyle(1, GREEN);
+	}
+	else {
+		setfillstyle(1, BLACK);
+	}
+	fillpoly(4, TabProteger);
+
 	setfillstyle(1, GREEN);
 	int Tab[8] = { x + 2,y + 25,x + 2 + pourcentageVie*2,y + 25,x + 2 + pourcentageVie * 2,y + 40,x + 2,y + 40 };
 	fillpoly(4, Tab);
-
 	setfillstyle(1, BLACK);
 	int Tab3[8] = { x + 2 + pourcentageVie * 2,y + 25,x + 202,y + 25,x + 202,y + 40,x + 2 + pourcentageVie * 2,y + 40 };
 	fillpoly(4, Tab3);
+
 	// y 45 et 60
 	setfillstyle(1, MAGENTA);
 	int Tab2[8] = { x + 2,y + 45,x +2 + pourcentageBouclier*2,y + 45,x + 2 + pourcentageBouclier*2,y + 60,x + 2,y + 60 };
 	fillpoly(4, Tab2);
-
 	setfillstyle(1, BLACK);
 	int Tab4[8] = { x + 2 + pourcentageBouclier * 2,y + 45,x + 202,y + 45,x + 202,y + 60,x + 2 + pourcentageBouclier * 2,y + 60 };
 	fillpoly(4, Tab4);
+	
+	setfillstyle(1, BLACK);
+	setcolor(BLACK);
+	int Taby[8] = { x+206,y+20,x+285,y+20,x+285,y+59,x+206,y+59 };
+	fillpoly(4, Taby);
+	setcolor(WHITE);
+	
+	str = conversion(P->vie()) + " / " + conversion(P->vieMax());
+	perso = const_cast<char*>(str.c_str());
+	outtextxy(x +210, y + 25, perso);
+
+	str = conversion(P->bouclier()) + " / " + conversion(P->bouclierMax());
+	perso = const_cast<char*>(str.c_str());
+	
+	outtextxy(x +210, y + 45, perso);
+
 
 }
 
 void Affichage::dessinerDegats(Personnage* P, int degats) const {
 	int x;
 	if (P->equipeAllier().ia()) {
-		x = 1200 - 150;
+		x = 1200 - 95;
 		
 	}
 	else {
-		x = 270;
+		x = 310;
 	}
 	int y = -20 + 70 * (P->indiceEquipe()+1);
 	setcolor(BLACK);
 	setfillstyle(1,BLACK);
-	int Tab[8] = { x - 5,y -5,x +80 ,y -5,x+80 ,y + 20,x -5,y + 20 };
+	int Tab[8] = { x - 5,y -5,x +50 ,y -5,x+50 ,y + 20,x -5,y + 20 };
 	fillpoly(4, Tab);
-	std::string texte = " - " + std::to_string(degats);
+	std::string texte = " - " + conversion(degats);
 	setcolor(RED);
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(x, y,txt);
-	delay(200);
+	delay(50);
 }
 
 void Affichage::dessinerSoins(Personnage* P, int soins) const {
 	int x;
 	if (P->equipeAllier().ia()) {
-		x = 1200 - 150;
+		x = 1200 - 95;
 	}
 	else {
-		x = 270;
+		x = 310;
 	}
 	int y = -20 + 70 * (P->indiceEquipe() + 1);
 	setcolor(BLACK);
 	setfillstyle(1, BLACK);
-	int Tab[8] = { x - 5,y - 5,x + 80 ,y - 5,x + 80 ,y + 20,x - 5,y + 20 };
+	int Tab[8] = { x - 5,y - 5,x + 50 ,y - 5,x + 50 ,y + 20,x - 5,y + 20 };
 	fillpoly(4, Tab);
 	setcolor(GREEN);
-	std::string texte = " + " + std::to_string(soins);
+	std::string texte = " + " + conversion(soins);
 	
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(x, y, txt);
-	delay(200);
+	delay(50);
 }
 
 void Affichage::dessinerBouclier(Personnage* P, int soins) const {
 	int x;
 	if (P->equipeAllier().ia()) {
-		x = 1200 - 150;
+		x = 1200 - 95;
 	}
 	else {
-		x = 270;
+		x = 310;
 	}
 	int y = -20 + 70 * (P->indiceEquipe() + 1);
 	setcolor(BLACK);
 	setfillstyle(1, BLACK);
 	
-	int Tab[8] = { x - 5,y - 5,x + 80 ,y - 5,x + 80 ,y + 20,x - 5,y + 20 };
+	int Tab[8] = { x - 5,y - 5,x + 50 ,y - 5,x + 50 ,y + 20,x - 5,y + 20 };
 	fillpoly(4, Tab);
 	setcolor(MAGENTA);
-	std::string texte = " + " + std::to_string(soins);
+	std::string texte = " + " + conversion(soins);
 
 	char* txt = const_cast<char*>(texte.c_str());
 	outtextxy(x, y, txt);
-	delay(200);
+	delay(50);
 }
 
 void Affichage::dessinerTexte(std::string texte)const {
+	delay(500);
 	setfillstyle(1, BLACK);
 	setcolor(BLACK);
-	int Tab[8] = { 365,0,835,0,835,30,365,30 };
+	int Tab[8] = { 385,0,780,0,780,30,385,30 };
 	fillpoly(4, Tab);
+
+	setfillstyle(1, BLACK);
+	setcolor(BLACK);
+	int Tab2[8] = { 385,30,801,30,801,800,385,800 };
+	fillpoly(4, Tab2);
+	setcolor(RED);
+
 	setcolor(RED);
 	char* txt = const_cast<char*>(texte.c_str());
-	outtextxy(400,15, txt);	
-	delay(200);
+	outtextxy(390,5, txt);	
+	delay(500);
 }
 void Affichage::dessinerEquipeJoueur(Equipes J) const
 {
@@ -433,7 +601,7 @@ void Affichage::dessinerEquipeIA(Equipes I) const
 	}
 }
 
-void Affichage::choixNiveau(Zones Z, int & niveau,int & repetition) const
+void Affichage::choixNiveau(Zones Z,Objets obj, int & niveau,int & repetition) const
 {
 	
 	int niveauMax = Z.niveauMax();
@@ -444,11 +612,13 @@ void Affichage::choixNiveau(Zones Z, int & niveau,int & repetition) const
 		niveau = niveauMax;
 	}
 	if (repetition < 1) {
-		repetition = 1;
+		repetition = 100;
 	}
 	else if (repetition > 100) {
 		repetition = 100;
 	}
+	afficherObjetsDeblocableNiveau(obj, niveau);
+
 
 	afficherTexte(100, 100, "Choix du niveau, niveau max = "+std::to_string(niveauMax));
 	Bouton plus1(100, 200, " + 1 ");
@@ -492,56 +662,83 @@ void Affichage::choixNiveau(Zones Z, int & niveau,int & repetition) const
 		if (plus1.comprendLesCoord(xc, yc)) {
 				
 			bouttonHit = true;
-			choixNiveau(Z, ++niveau,repetition);
+			choixNiveau(Z,obj, ++niveau,repetition);
 		}else if (plus10.comprendLesCoord(xc, yc)) {
 			bouttonHit = true;
 			niveau = niveau + 10;
-			choixNiveau(Z, niveau,repetition);
+			choixNiveau(Z,obj, niveau,repetition);
 		}else if (moins1.comprendLesCoord(xc, yc)) {
 
 			bouttonHit = true;
-			choixNiveau(Z, --niveau,repetition);
+			choixNiveau(Z,obj, --niveau,repetition);
 		}
 		else if (moins10.comprendLesCoord(xc, yc)) {
 			bouttonHit = true;
 			niveau = niveau - 10;
-			choixNiveau(Z, niveau,repetition);
+			choixNiveau(Z,obj, niveau,repetition);
 		}
 		else if (plus1r.comprendLesCoord(xc, yc)) {
 
 			bouttonHit = true;
-			choixNiveau(Z, niveau, ++repetition);
+			choixNiveau(Z,obj, niveau, ++repetition);
 		}
 		else if (plus10r.comprendLesCoord(xc, yc)) {
 			bouttonHit = true;
 			repetition += 10;
-			choixNiveau(Z, niveau, repetition);
+			choixNiveau(Z,obj, niveau, repetition);
 		}
 		else if (moins1r.comprendLesCoord(xc, yc)) {
 
 			bouttonHit = true;
-			choixNiveau(Z, niveau, --repetition);
+			choixNiveau(Z,obj, niveau, --repetition);
 		}
 		else if (moins10r.comprendLesCoord(xc, yc)) {
 
 			bouttonHit = true;
 			repetition -= 10;
-			choixNiveau(Z, niveau, repetition);
+			choixNiveau(Z,obj, niveau, repetition);
 		}
 	} while (!confirmer.comprendLesCoord(xc,yc)&&!bouttonHit);
 	cleardevice();
 }
 
+void Affichage::afficherObjetsDeblocableNiveau(Objets obj,int niveau)const {
+	setfillstyle(1, BLACK);
+	setcolor(BLACK);
+	int Tab[8] = { 0,450,0,800,1200,800,1200,450 };
+	fillpoly(4, Tab);
+	setcolor(RED);
+	std::vector<Objet> objets = obj.objetsDuNiveau(niveau);
+	std::string txt="";
+	for (int i = 0;i < objets.size();i++) {
+		if (!obj.estDebloquer(objets[i])) {
+			txt += " ???   ";
+		}
+		else {
+			txt += objets[i].nom()+"   ";
+		}
+	}
+	afficherTexte(300, 460, "LOOT");
+	afficherTexte(50, 490, txt);
+}
 void Affichage::menuModifierEquipe(Equipes& Gentil, Equipes choix,int max) const
 {
-	afficherTexte(100, 20, "Equipe actuel");
+	Affinites f;
+	std::vector<double> Aff;
+	Aff=f.listeAffinites(Gentil);
+	std::string AffString;
+	afficherTexte(100, 20, "Equipe actuel");afficherTexte(220, 20, "Affinites");
 	for (int i = 0; i < Gentil.taille(); i++) {
 		Bouton(100, (i + 1) * 50, std::to_string(i) + Gentil[i]->nom()).afficher();
+		AffString = std::to_string(Aff[i]);
+		AffString.resize(4);
+		AffString+= "  ";
+		afficherTexte(220, (i + 1) * 50+10, AffString);
 	}
 	if (max > 0) {
-		afficherTexte(400, 20, "Personnages selectionnable");
+		afficherTexte(400, 10, "Personnages selectionnable");
 		for (int i = 0; i < choix.taille(); i++) {
-			Bouton(400, (i + 1) * 50, std::to_string(i) + choix[i]->nom()).afficher();
+			Bouton(400, (i + 1) * 45, std::to_string(i) +" "+ choix[i]->nom()+ " LVL : " +std::to_string(choix[i]->niveau())).afficher();
 		}
 	}
 	else {
@@ -567,7 +764,7 @@ void Affichage::menuModifierEquipe(Equipes& Gentil, Equipes choix,int max) const
 		getmouseclick(WM_LBUTTONDOWN, xc, yc);
 		if (max > 0) {
 			for (int i = 0; i < choix.taille(); i++) {
-				if (Bouton(400, (i + 1) * 50, std::to_string(i) + choix[i]->nom()).comprendLesCoord(xc, yc)) {
+				if (Bouton(400, (i + 1) * 45, std::to_string(i) + choix[i]->nom()).comprendLesCoord(xc, yc)) {
 					Gentil.ajouterPerso(choix[i]);
 					boutonSelectionnerPerso = true;
 					menuModifierEquipe(Gentil, choix, --max);
@@ -604,7 +801,7 @@ void Affichage::dessinerAttaque(Personnage * Attaquant, Personnage * Defenseur) 
 	
 	setfillstyle(1, BLACK);
 	setcolor(BLACK);
-	int Tab[8] = { 365,30,835,30,835,800,365,800 };
+	int Tab[8] = { 385,30,801,30,801,800,385,800 };
 	fillpoly(4, Tab);
 	setcolor(RED);
 	
@@ -620,18 +817,18 @@ void Affichage::dessinerAttaque(Personnage * Attaquant, Personnage * Defenseur) 
 		 i = Defenseur->indiceEquipe() + 1;
 	//	animationCercle(810, -20 + 70 * j, 390, -20 + 70 * i);
 	}
-	line(370, -25 + 70 * i, 830, -25 + 70 * j);
+	line(385, -25 + 70 * i, 800, -25 + 70 * j);
 	if (!Attaquant->equipeAllier().ia()) {
 		
-		line(810, -5 + 70 *j, 830, -25 + 70 * j);
-		line(810, -45 + 70 * j, 830, -25 + 70 * j);
+		line(780, -5 + 70 *j, 800, -25 + 70 * j);
+		line(780, -45 + 70 * j, 800, -25 + 70 * j);
 	}
 	else {
-		line(390, -5 + 70 * i, 370, -25 + 70 * i);
-		line(390, -45 + 70 * i, 370, -25 + 70 * i);
+		line(405, -5 + 70 * i, 385, -25 + 70 * i);
+		line(405, -45 + 70 * i, 385, -25 + 70 * i);
 		
 	}
-	delay(200);
+	delay(25);
 }
 
 Affichage::~Affichage()

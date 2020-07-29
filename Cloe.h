@@ -4,7 +4,7 @@ class Cloe :
 	public Personnage
 {
 public:
-	Cloe(Experiences E, Orbes O, Animaux A);
+	Cloe(Experiences E, Orbes O, Animaux A, Objets Obj);
 private:
 
 	virtual void attaqueEnnemis()override;

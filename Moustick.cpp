@@ -1,7 +1,7 @@
 #include "Moustick.h"
 #include "Affichage.h"
 
-Moustick::Moustick(Experiences E, Orbes O, Animaux A) : Personnage(4, E, O, A, "Moustick", 3, 4, 3, 0, 0, 0, 0, 0, 0, 0) {}
+Moustick::Moustick(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(4, E, O, A, Obj, "Moustick", 3, 4, 3, 0, 0, 0, 0, 0, 0, 0) {}
 
 
 void Moustick::attaqueEnnemis()
@@ -9,10 +9,10 @@ void Moustick::attaqueEnnemis()
 	int choix = choixAttaque();
 	int DEGATS;
 	int SOINS;
-	int ratio = static_cast<int>(1.0-(vie() * 1.0) / (vieMax() * 1.0));
+	int ratio = 100 * static_cast<int>(1.0 - (vie() * 1.0) / (vieMax() * 1.0));
 	ratio = min(99, ratio);
 	int ratioPositif = static_cast<int>((vieMax() * 1.0) / (vie() * 1.0));
-	ratioPositif = min(ratioPositif, 10);
+	ratioPositif = min(ratioPositif, 20);
 	setReduction(ratio);
 	
 	switch (choix) {
@@ -35,7 +35,9 @@ void Moustick::attaqueEnnemis()
 		if (bouclier() > bouclierMax() / 2) {
 			DEGATS += static_cast<int>(bouclier() * 0.2);
 			ajouterBouclier(-bouclierMax() / 2);
+			
 		}
+		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 		ajouterMana(-1);
 		break;
 	case 2:
@@ -59,16 +61,16 @@ void Moustick::attaqueEnnemis()
 
 void Moustick::passif(int tour)
 {
-	reduireVie(static_cast<int>(vie() / 5.0));
+	reduireVie(static_cast<int>(vie() / 20.0));
 
-	int ratio = static_cast<int>(1.0 - (vie() * 1.0) / (vieMax() * 1.0));
+	int ratio = 100*static_cast<int>(1.0-(vie() * 1.0) / (vieMax() * 1.0));
 	ratio = min(99, ratio);
 	setReduction(ratio);
 }
 
 void Moustick::passifDefensif()
 {
-	int ratio = static_cast<int>(1.0 - (vie() * 1.0) / (vieMax() * 1.0));
+	int ratio = 100 * static_cast<int>(1.0 - (vie() * 1.0) / (vieMax() * 1.0));
 	ratio = min(99, ratio);
 	setReduction(ratio);
 }

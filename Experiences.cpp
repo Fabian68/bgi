@@ -12,6 +12,9 @@ Experiences::Experiences()
 		}
 		os.close();
 	}
+	else {
+		fclose(file);
+	}
 	std::ifstream is("T1.txt");
 
 	int i = 0;
@@ -30,7 +33,7 @@ Experiences::Experiences()
 	for (long long int i = 0;i < 10000;i++) {
 
 
-		UnEntierTresTresLong = static_cast<long long int>(100 * pow(1.0024, i) - 100 + 3 * i*i);
+		UnEntierTresTresLong = static_cast<long long int>(100 * pow(1.0024, i)  + 3 * i*i)*10-1010;
 		os << UnEntierTresTresLong << std::endl;
 		_tabXp[i] = UnEntierTresTresLong;
 	}

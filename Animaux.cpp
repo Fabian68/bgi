@@ -1,5 +1,6 @@
 #include "Animaux.h"
 #include <iostream>
+#include "Bouton.h"
 
 Animaux::Animaux()
 {
@@ -16,6 +17,9 @@ Animaux::Animaux()
 			os << std::endl;
 		}
 		os.close();
+	}
+	else {
+		fclose(file);
 	}
 
 	_animauxPosseder.resize(25);
@@ -64,63 +68,88 @@ bool Animaux::animalDebloquer(int indicePersonnage, int indiceAnimal, int rarete
 
 void Animaux::deblocageAnimal(int indicePersonnage, int indiceAnimal, int rareteAnimal,std::string perso)
 {
-	std::cout <<perso<< " a débloquer un animal ";
+	std::string txt= "";
+	txt+= perso + " a débloquer un animal ";
 	switch (indiceAnimal) {
 	case 0:
-		std::cout << " de soins de zone ";
+		txt += " de soins de zone ";
 		break;
 	case 1:
-		std::cout << " qui soigne le plus faible ";
+		txt += " qui soigne le plus faible ";
 		break;
 	case 2:
-		std::cout << " qui soigne un allier aleatoire ";
+		txt += " qui soigne un allier aleatoire ";
 		break;
 	case 3:
-		std::cout << " qui attaque l'ennemi le plus faible ";
+		txt += " qui attaque l'ennemi le plus faible ";
 		break;
 	case 4:
-		std::cout << " qui attaque l'équipe ennemi ";
+		txt += " qui attaque l'équipe ennemi ";
 		break;
 	case 5:
-		std::cout << " qui attaque une cible aleatoire ";
+		txt += " qui attaque l'ennemi le plus fort ";
 		break;
 	case 6:
-		std::cout << " qui bouclier de zone ";
+		txt += " qui bouclier de zone ";
 		break;
 	case 7:
-		std::cout << " qui bouclier le plus faible ";
+		txt += " qui bouclier le plus faible ";
 		break;
 	case 8:
-		std::cout << " qui bouclier une cible aleatoire ";
+		txt += " qui bouclier une cible aleatoire ";
 		break;
 	case 9:
-		std::cout << " qui soigne et bouclier de zone ";
+		txt += " qui soigne et bouclier de zone ";
 		break;
 	}
-	std::cout << " de rarete ";
+	txt += " de rarete ";
 	switch (rareteAnimal) {
 	case 1:
-		std::cout << " commune ";
+		txt += " commune ";
 		break;
 	case 2:
-		std::cout << " rare ";
+		txt += " rare ";
 		break;
 	case 3:
-		std::cout << " epique ";
+		txt += " epique ";
 		break;
 	case 4:
-		std::cout << " LEGENDAIRE ";
+		txt += " LEGENDAIRE ";
 		break;
 	case 5:
-		std::cout << " CHEATER ";
+		txt += " CHEATER ";
 		break;
 	}
-	std::cout << ", voulez voul l'equiper ? Entrer le chiffre 0 si oui ";
+	/*std::cout << ", voulez voul l'equiper ? Entrer le chiffre 0 si oui ";
 	int entrer;
 	std::cin >> entrer;
 	if (entrer == 0) {
 		_animauxUtiliser[indicePersonnage] = indiceAnimal;
-	}
+	}*/
+	Bouton(300, 400, txt, 0, GREEN, GREEN).afficher();
+	
+	Bouton Equiper(340, 450, " Equiper ", 0, GREEN, GREEN);
+	Equiper.afficher();
+	Bouton NePasEquiper(440, 450, " NePasEquiper ", 0, GREEN, GREEN);
+	NePasEquiper.afficher();
+
+	int xc, yc;
+	bool selectionner = false;
+	int DELAY = 50;
+	do {
+		while (!ismouseclick(WM_LBUTTONDOWN)) {
+			delay(DELAY);
+		}
+		getmouseclick(WM_LBUTTONDOWN, xc, yc);
+		if (Equiper.comprendLesCoord(xc, yc)) {
+			selectionner = true;
+			_animauxUtiliser[indicePersonnage] = indiceAnimal;
+		}
+		else if (NePasEquiper.comprendLesCoord(xc, yc)) {
+			selectionner = true;
+		}	
+	} while (!selectionner);
+	cleardevice();
 	_animauxPosseder[indicePersonnage][indiceAnimal] = rareteAnimal;
 	sauvegarder();
 }

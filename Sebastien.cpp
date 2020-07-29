@@ -1,7 +1,7 @@
 #include "Sebastien.h"
 #include "Affichage.h"
 
-Sebastien::Sebastien(Experiences E, Orbes O, Animaux A) : Personnage(8, E, O, A, "Sebastien", 2, 1, 7, 20, 0, -25, 0, 0, 0, 6), pause{ 0 } {}
+Sebastien::Sebastien(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(8, E, O, A, Obj, "Sebastien", 2, 1, 7, 20, 0, -25, 0, 0, 0, 6), pause{ 0 } {}
 
 
 void Sebastien::attaqueEnnemis()
@@ -58,7 +58,7 @@ void Sebastien::attaqueEnnemis()
 	case 2:
 
 		Affichage().dessinerTexte(nom() + " coup épée ");
-		DEGATS = degats(3.0, 6.0);
+		DEGATS = degats(2.0, 4.0);
 		Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 			DEGATS = degats(1.5, 3.0);

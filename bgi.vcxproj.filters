@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Personnages">
+      <UniqueIdentifier>{99e55798-0008-41a2-8f46-698902178b66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Ennemis">
+      <UniqueIdentifier>{b0d3de89-0eaa-402a-8af8-84a94700d35c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ennemis">
+      <UniqueIdentifier>{7affa74e-053f-4d27-a514-4e42303a9308}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Personnages">
+      <UniqueIdentifier>{020a9fc8-9792-4da1-8ba2-8d8a28ccae1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bgiout.cxx">
@@ -72,15 +84,6 @@
     <ClCompile Include="Aleatoire.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Fabian.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Nicolas.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Lapin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Zones.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -93,61 +96,124 @@
     <ClCompile Include="Bouton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sanglier.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Thomas.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cerf.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Animal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Fiona.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Zombie.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SqueletteArcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Creeper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Ghast.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WitherSquelette.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Wither.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Moustick.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Statistiques.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bryan.cpp">
+    <ClCompile Include="Affinites.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="David.cpp">
+    <ClCompile Include="Conseils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Isidore.cpp">
+    <ClCompile Include="Status.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sebastien.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cloe.cpp">
+    <ClCompile Include="Objets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Amine.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Bryan.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Brute.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Cerf.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Cloe.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Chasseur.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Creeper.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Elite.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="David.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Fabian.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Fiona.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Florian.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Ghast.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="JeanBaptiste.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Dragon.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Grognard.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Lapin.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Maelle.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Magicien.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Isidore.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Moustick.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Nicolas.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Pollyana.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Sebastien.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Salim.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Rapace.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="SqueletteArcher.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Sanglier.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Thomas.cpp">
+      <Filter>Source Files\Personnages</Filter>
+    </ClCompile>
+    <ClCompile Include="Tellurique.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Wither.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="WitherSquelette.cpp">
+      <Filter>Source Files\Ennemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Objet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -188,15 +254,6 @@
     <ClInclude Include="Aleatoire.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Fabian.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Nicolas.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Lapin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Zones.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -209,61 +266,124 @@
     <ClInclude Include="Bouton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sanglier.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Thomas.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cerf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Animal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Fiona.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Zombie.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SqueletteArcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Creeper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Ghast.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WitherSquelette.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Wither.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Moustick.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Statistiques.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bryan.h">
+    <ClInclude Include="Affinites.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="David.h">
+    <ClInclude Include="Conseils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Isidore.h">
+    <ClInclude Include="Status.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sebastien.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cloe.h">
+    <ClInclude Include="Objets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Amine.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Brute.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Bryan.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Cerf.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Chasseur.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Cloe.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Creeper.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="David.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Dragon.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Elite.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Fabian.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Florian.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Fiona.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Ghast.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Grognard.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Isidore.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="JeanBaptiste.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Maelle.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Lapin.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Magicien.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Moustick.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Nicolas.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Salim.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Rapace.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Sanglier.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Pollyana.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Sebastien.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Zombie.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="WitherSquelette.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Wither.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Thomas.h">
+      <Filter>Header Files\Personnages</Filter>
+    </ClInclude>
+    <ClInclude Include="Tellurique.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="SqueletteArcher.h">
+      <Filter>Header Files\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Objet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

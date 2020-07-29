@@ -3,15 +3,13 @@
 #include "Affichage.h"
 
 
-Nicolas::Nicolas(Experiences E,Orbes O,Animaux A) : Personnage(1, E,O,A, "Niquola", 4, 3, 3, 10, 10, 50, 0, 50, 25, 0) {}
+Nicolas::Nicolas(Experiences E,Orbes O,Animaux A, Objets Obj) : Personnage(1, E,O,A, Obj, "Niquola", 4, 3, 3, 10, 10, 50, 0, 50, 25, 0) {}
+
+
 void Nicolas::attaqueEnnemis() {
 	int choix = choixAttaque();
 	int DEGATS;
 	int SOINS;
-	/*if ((Tour % 3) == 0) {
-		cout << Personnage[Joueur] << " Le froid de la chambre a Fabian le renforce, il est désormait plus résistant ! " << endl;
-		PersoCarac[Joueur][REDUCTION]++;
-	}*/
 	std::string a = nom();
 
 	int i, j;
@@ -80,12 +78,12 @@ void Nicolas::attaqueEnnemis() {
 		Affichage().dessinerTexte(nom() + " fusil d'assaut ! ");
 		for (int i = 0; i< Aleatoire(20, 40).entier() && equipeEnnemi().estEnVie() ; i++) {
 			DEGATS = degats(0.10, 0.25);
-			Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+			Attaque(DEGATS, equipeEnnemi().plusFort());
 		}
 		if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 			for (int i = 0; i < Aleatoire(10, 50).entier() && equipeEnnemi().estEnVie(); i++) {
 				DEGATS = degats(0.05, 0.30);
-				Attaque(DEGATS, equipeEnnemi().aleatoireEnVie());
+				Attaque(DEGATS, equipeEnnemi().plusFort());
 			}
 		}
 		ajouterMana(-2);
@@ -108,9 +106,10 @@ void Nicolas::passif(int tour)
 	
 		Affichage().dessinerTexte(this->nom() + " ce fait mal en voulant impressioner ses amis ! ");
 		reduireVie(vie() / 2);
+		ajouterForce(niveau());
 	}
 	if (tour>100) {
-		int Degats = degats(tour/10.0, tour/5.0);
+		int Degats = degats(tour/100.0, tour/50.0);
 		Affichage().dessinerTexte(this->nom() + " est enerver le combat est trop long ! ");
 		equipeEnnemi().attaqueZone(Degats, this);
 	}
@@ -119,7 +118,7 @@ void Nicolas::passif(int tour)
 void Nicolas::passifDefensif()
 {
 	if (Aleatoire(0, 101).entier() <= 10) {
-		int Degats = degats(0.10, 0.25);
+		int Degats = degats(0.25, 0.5);
 		Affichage().dessinerTexte(this->nom() + " contre attaque ");
 		Attaque(Degats, equipeEnnemi().plusProcheVivant());
 	}

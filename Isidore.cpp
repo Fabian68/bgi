@@ -1,7 +1,7 @@
 #include "Isidore.h"
 #include "Affichage.h"
 
-Isidore::Isidore(Experiences E, Orbes O, Animaux A) : Personnage(7, E, O, A, "Isidore", 1, 1, 8, 10, 10, 10, 10, 10, 10, 10) {}
+Isidore::Isidore(Experiences E, Orbes O, Animaux A, Objets Obj) : Personnage(7, E, O, A, Obj, "Isidore", 1, 1, 8, 10, 10, 10, 10, 10, 10, 10) {}
 
 
 void Isidore::attaqueEnnemis()
@@ -9,7 +9,7 @@ void Isidore::attaqueEnnemis()
 	int choix = choixAttaque();
 	int DEGATS;
 	int SOINS;
-
+	ajouterVieMax(niveau());
 	int cible;
 	switch (choix) {
 
@@ -24,7 +24,7 @@ void Isidore::attaqueEnnemis()
 
 
 			Affichage().dessinerTexte(nom() + "saute sur " + equipeEnnemi()[cible]->nom());
-			DEGATS = degats(1.0, 4.0);
+			DEGATS = degats(1.0, 6.0);
 		
 			Attaque(DEGATS, equipeEnnemi()[cible]);
 			ajouterMana(2);
@@ -37,6 +37,8 @@ void Isidore::attaqueEnnemis()
 			if (habile()) {
 				SOINS = soins(i / 10.0, i / 10.0 + 0.01);
 				soigner(SOINS, this);
+			
+				ajouterVieMax(vieMax()*0.01);
 			}
 		}
 		ajouterMana(1);
@@ -54,7 +56,7 @@ void Isidore::attaqueEnnemis()
 	case 3:
 		cible = equipeEnnemi().aleatoireEnVie()->indiceEquipe();
 		Affichage().dessinerTexte(nom() + " encule " + equipeEnnemi()[cible]->nom());
-		DEGATS = degats(2.0, 6.0);
+		DEGATS = degats(2.0, 5.0);
 		Attaque(DEGATS, equipeEnnemi()[cible]);
 		ajouterMana(-3);
 		break;
@@ -63,11 +65,18 @@ void Isidore::attaqueEnnemis()
 
 void Isidore::passif(int tour)
 {
-
+	ajouterVieMax(niveau()/10);
 	if ((tour + 1) % 5 == 0) {
+		if (habile() || attaqueDouble()) {
+			ajouterForce(niveau() / 10);
+			ajouterVieMax(niveau()*10);
+		}
+		else {
+			ajouterForce(niveau() / 10);
+			ajouterVieMax(niveau());
+		}
 		Affichage().dessinerTexte(nom() + "grandit ! ");
-		ajouterForce(niveau() / 10);
-		ajouterVieMax(niveau());
+		
 	}
 	if ((tour + 1) % 30 == 0) {
 		Affichage().dessinerTexte(nom() + "se repose ! ");

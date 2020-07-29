@@ -9,6 +9,10 @@ WitherSquelette::WitherSquelette(int LVL, std::string nom, int difficulte, int a
 		ajouterVitesse(vitesse());
 		ajouterVie(9 * vie());
 	}
+	else if (difficulte == 5) {
+		ajouterVie(vie());
+		ajouterReduction(90);
+	}
 }
 
 
@@ -22,29 +26,30 @@ void WitherSquelette::attaqueEnnemis()
 	Affichage().dessinerTexte(nom() + " attaque ! ! ");
 	equipeEnnemi().plusProcheVivant()->ajouterReduction(-5);
 	int indice = equipeEnnemi().plusProcheVivant()->indiceEquipe();
-	DEGATS = degats(1.5, 3.5);
+	DEGATS = degats(1.0, 2.0);
 	Attaque(DEGATS, equipeEnnemi()[indice]);
+	equipeEnnemi()[indice]->status().appliquerPoison();
 	if (habile()) {
 		Affichage().dessinerTexte(nom() + " contamine ! ");
-		DEGATS = degats(0.75, 1.75);
+		DEGATS = degats(0.5, 1.0);
 		Attaque(DEGATS, equipeEnnemi()[indice]);
-		DEGATS = degats(0.35, 0.7);
+		DEGATS = degats(0.25, 0.5);
 		Attaque(DEGATS, equipeEnnemi()[indice]);
-		DEGATS = degats(0.15, 0.35);
+		DEGATS = degats(0.125, 0.25);
 		Attaque(DEGATS, equipeEnnemi()[indice]);
 	}
 	if (attaqueDouble() && equipeEnnemi().estEnVie()) {
 		equipeEnnemi().plusProcheVivant()->ajouterReduction(-5);
-		indice = equipeEnnemi().plusProcheVivant()->indiceEquipe();
-		DEGATS = degats(1.5, 3.5);
+		int indice = equipeEnnemi().plusProcheVivant()->indiceEquipe();
+		DEGATS = degats(1.0, 2.0);
 		Attaque(DEGATS, equipeEnnemi()[indice]);
 		if (habile()) {
 			Affichage().dessinerTexte(nom() + " contamine ! ");
-			DEGATS = degats(0.75, 1.75);
+			DEGATS = degats(0.5, 1.0);
 			Attaque(DEGATS, equipeEnnemi()[indice]);
-			DEGATS = degats(0.35, 0.7);
+			DEGATS = degats(0.25, 0.5);
 			Attaque(DEGATS, equipeEnnemi()[indice]);
-			DEGATS = degats(0.15, 0.35);
+			DEGATS = degats(0.125, 0.25);
 			Attaque(DEGATS, equipeEnnemi()[indice]);
 		}
 	}

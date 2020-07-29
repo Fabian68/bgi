@@ -4,7 +4,7 @@ class Fiona :
 	public Personnage
 {
 public:
-	Fiona(Experiences E, Orbes O, Animaux A);
+	Fiona(Experiences E, Orbes O, Animaux A, Objets Obj);
 private:
 	int _nbAnimaux;
 	virtual void attaqueEnnemis()override;
