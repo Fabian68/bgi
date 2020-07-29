@@ -10,7 +10,7 @@
 Personnage::Personnage(int LVL, std::string nom, int vieLVL, int forceLVL, int vitesseLVL, int chanceDoubleAttaque, int chanceHabilete, int pourcentageReduction, int pourcentageDeviation, int pourcentageBlocage, int pourcentageEsquive, int pourcentageRicochet, int indiceAnimal, int rareteAnimal) :
 	_vieMax{ vieLVL * LVL * 10 }, _vie{ vieLVL * LVL * 10 }, _nom{ nom }, _id{ -1 }, _niveau{ LVL }, _force{ forceLVL * LVL }, _vitesse{ vitesseLVL * LVL }, _chanceDoubleAttaque{ chanceDoubleAttaque },
 	_chanceHabilete{ chanceHabilete }, _pourcentageReduction{ pourcentageReduction }, _pourcentageDeviation{ pourcentageDeviation }, _pourcentageBlocage{ pourcentageBlocage }, _pourcentageEsquive{ pourcentageEsquive }, _pourcentageRicochet{ pourcentageRicochet },
-	_mana{ 0 }, _pourcentageCritique{ 10 }, _degatCritique{ 50 }, _bouclier{ 0 }, _indiceAnimal{ indiceAnimal }, _rareteAnimal{ rareteAnimal }
+	_mana{ 0 }, _pourcentageCritique{ 5 }, _degatCritique{ 50 }, _bouclier{ 0 }, _indiceAnimal{ indiceAnimal }, _rareteAnimal{ rareteAnimal }
 {
 	_statusPerso = Status(this);
 	_animal = Animal(_indiceAnimal);
@@ -372,7 +372,7 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 			Degat *= 1.2;
 			std::cout << " OBJ16 ";
 		}
-		if (possedeObjetNumero(12) && _S.nbAttaquesRecues()%3==0) {
+		if (possedeObjetNumero(12) && _S.nbAttaques()%3==0) {
 			Degat *= 1.3;
 			std::cout << " OBJ12 ";
 		}
@@ -424,7 +424,14 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 				std::cout << " " << Degat << std::endl;
 				if (Defenseur->possedeObjetNumero(25)) {
 					Degat -= Defenseur->niveau();
+					if (Degat < 0) {
+						Degat = 1;
+					}
 					std::cout << " OBJ25 ";
+				}
+				if (Defenseur->possedeObjetNumero(14) && _A.estEnVie()) {
+					Defenseur->AttaqueBrut(Degat / 10, _A.plusProcheVivant());
+					std::cout << " OBJ14 ";
 				}
 				if (Defenseur->bouclier() > 0) {
 					Degat = Defenseur->reduireBouclier(Degat);
@@ -437,10 +444,7 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 					_S.incrementerNbAttaques();
 					Defenseur->stats().incrementerNbAttaquesRecues();
 					Defenseur->reduireVie(Degat);
-					if (Defenseur->possedeObjetNumero(14) && _A.estEnVie()) {
-						Defenseur->AttaqueBrut(Degat / 10, _A.plusProcheVivant());
-						std::cout << " OBJ14 ";
-					}
+					
 				}
 				Affichage H;
 				H.dessinerAttaque(this, Defenseur);
@@ -519,8 +523,8 @@ void Personnage::ajouterChanceHabileter(int montant) {
 void Personnage::ajouterReduction(int montant) {
 	_pourcentageReduction += montant;
 	_S.ajouterAugmentationReduction(montant);
-	if (_pourcentageReduction >= 95) {
-		_pourcentageReduction = 95;
+	if (_pourcentageReduction >= 97) {
+		_pourcentageReduction = 97;
 	}
 }
 
@@ -530,13 +534,19 @@ void Personnage::ajouterDeviation(int montant) {
 
 void Personnage::ajouterChanceRicochet(int montant) {
 	_pourcentageRicochet += montant;
+	if (_pourcentageRicochet >= 90) {
+		_pourcentageRicochet = 90;
+	}
 }
 
 void Personnage::ajouterEsquive(int montant) {
 	_pourcentageEsquive += montant;
+	if (_pourcentageEsquive >= 95) {
+		_pourcentageEsquive = 95;
+	}
 }
 bool Personnage::possedeObjetNumero(int i)const {
-	return (_objets.first.numero() == i || _objets.second.numero());
+	return (_objets.first.numero() == i || _objets.second.numero()==i);
 
 }
 int Personnage::bouclier()const {

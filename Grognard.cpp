@@ -3,6 +3,7 @@
 
 Grognard::Grognard(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal) : Personnage(LVL, nom, 1, 3, 6, 50, 0, 0, 0, 0, 10, 10, animal, rareteAnimal)
 {	
+	ajouterVitesse(vitesse());
 	if (difficulte == 1) {
 		ajouterForce(force());
 		ajouterVitesse(vitesse());

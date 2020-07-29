@@ -441,6 +441,37 @@ void Affichage::dessinerJoueur(int indice, bool equipeIA,Personnage*  P) const
 	int pourcentageVie = P->pourcentageVie();
 	int pourcentageBouclier = P->pourcentageBouclier();
 
+	if (P->status().estEmpoisoner()) {
+		setfillstyle(1, MAGENTA);
+	}
+	else {
+		setfillstyle(1, BLACK);
+	}
+	fillellipse(x - 10, y+10 , 5, 5);
+	if (P->status().estBruler()) {
+		setfillstyle(1, RED);
+	}
+	else {
+		setfillstyle(1, BLACK);
+	}
+	fillellipse(x - 10, y + 20, 5, 5);
+	int TabFragiliser[8] = {x-15,y+30,x-5,y+30,x-5,y+40,x-15,y+40};
+	int TabProteger[8] = { x - 15,y+45,x - 5,y+45,x - 5,y + 55,x - 15,y + 55 };
+	if (P->status().estFragiliser()) {
+		setfillstyle(1, RED);
+	}
+	else {
+		setfillstyle(1, BLACK);
+	}
+	fillpoly(4, TabFragiliser);
+	if (P->status().estProteger()) {
+		setfillstyle(1, GREEN);
+	}
+	else {
+		setfillstyle(1, BLACK);
+	}
+	fillpoly(4, TabProteger);
+
 	setfillstyle(1, GREEN);
 	int Tab[8] = { x + 2,y + 25,x + 2 + pourcentageVie*2,y + 25,x + 2 + pourcentageVie * 2,y + 40,x + 2,y + 40 };
 	fillpoly(4, Tab);
@@ -581,7 +612,7 @@ void Affichage::choixNiveau(Zones Z,Objets obj, int & niveau,int & repetition) c
 		niveau = niveauMax;
 	}
 	if (repetition < 1) {
-		repetition = 1;
+		repetition = 100;
 	}
 	else if (repetition > 100) {
 		repetition = 100;

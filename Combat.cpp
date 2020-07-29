@@ -32,7 +32,7 @@ Combat::Combat(Equipes  & Joueur, Equipes  & Ia,Zones & Z,Animaux & A,Orbes & O)
 	for (int i = 0;i < _ia.taille();i++) {
 		somme += _ia.perso(i)->vitesse();
 	}
-	int moyenne = somme / nombrePersonnages;
+	int moyenne = static_cast<int>(somme / (nombrePersonnages*1.0));
 	std::cout << moyenne << " ";
 	for (int i = 0;i < _joueur.taille();i++) {
 		nombreTourJoueur[i] = ceil((_joueur.perso(i)->vitesse()*1.0) / (moyenne*1.0));
@@ -144,7 +144,7 @@ void Combat::tirageRecompenses(Zones Z,Animaux A,Orbes O) {
 		indiceJoueur = _joueur[i]->id();
 		for (int j = 0; j < 9; j++) {
 			//Pour chaque rarete animal
-			chanceTirage = 100 + 500 - 5 * Z.niveauActuel();
+			chanceTirage = 2000 + 147 - 2 * Z.niveauActuel();
 			for (int k = 1; k <= 5; k++) {
 				if (Aleatoire(0, chanceTirage).entier() ==1) {
 					if (!A.animalDebloquer(indiceJoueur, j, k)) {

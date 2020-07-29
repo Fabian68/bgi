@@ -3,9 +3,9 @@
 
 Cerf::Cerf(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal) : Personnage(LVL, nom, 2, 6, 2, 50, 0, 0, 0, 10, 0, 0, animal, rareteAnimal)
 {
+	ajouterForce(force()/2);
+	ajouterVitesse(vitesse()/2);
 	if (difficulte == 1) {
-		ajouterForce(force());
-		ajouterVitesse(vitesse());
 		ajouterVie(9 * vie());
 	}
 	else if (difficulte == 2) {

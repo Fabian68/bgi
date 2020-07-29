@@ -4,6 +4,7 @@
 Tellurique::Tellurique(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal, int id) : Personnage(LVL, nom, 4, 4, 2, 20, 20, 20, 2, 20, 2, 12, animal, rareteAnimal), premiereFoisToucher{false}
 {
 	setId(id);
+	ajouterVie(9 * vie());
 	if (difficulte == 1) {
 		
 		ajouterVie(19 * vie());

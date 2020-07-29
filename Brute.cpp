@@ -3,9 +3,8 @@
 
 Brute::Brute(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal) : Personnage(LVL, nom, 2, 6, 2, 10, 50, 25, 0, 0, 0, 0, animal, rareteAnimal)
 {
-	
+	ajouterForce(force());
 	if (difficulte == 1) {
-		ajouterForce(force());
 		ajouterVitesse(vitesse());
 		ajouterVie(9 * vie());
 	}

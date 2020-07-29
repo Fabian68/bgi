@@ -20,7 +20,7 @@ Objets::Objets()
 	}
 	_objetsDebloquer.resize(300);
 	std::ifstream is("objdblc.txt");
-	for (int i = 0; i < 25; i++) {
+	for (int i = 0; i < 300; i++) {
 		is >> _objetsDebloquer[i];
 	}
 	is.close();

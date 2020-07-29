@@ -3,6 +3,7 @@
 #include "Aleatoire.h"
 Creeper::Creeper(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal) : Personnage(LVL, nom, 2, 4, 4, 0, 50, 50, 0, 0, 0, 0, animal, rareteAnimal)
 {
+	ajouterVie(2 * vie());
 	if (difficulte == 1) {
 		ajouterForce(force());
 		ajouterVitesse(vitesse());

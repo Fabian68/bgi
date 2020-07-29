@@ -3,6 +3,7 @@
 
 Dragon::Dragon(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal, int id) : Personnage(LVL, nom, 2, 4, 4, 10, 10, 10, 10, 10, 10, 10, animal, rareteAnimal)
 {
+	ajouterVie(4 * vie());
 	if (difficulte == 1) {
 		ajouterForce(force());
 		ajouterVitesse(vitesse());

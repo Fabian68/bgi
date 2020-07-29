@@ -3,6 +3,7 @@
 
 Elite::Elite(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal) : Personnage(LVL, nom, 2, 4, 4, 20, 20, 50, 0, 0, 20, 0, animal, rareteAnimal)
 {
+	ajouterVie( vie());
 	AjouterBouclier(vieMax());
 	if (difficulte == 1) {
 		ajouterForce(force());

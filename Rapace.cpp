@@ -3,6 +3,8 @@
 
 Rapace::Rapace(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal) : Personnage(LVL, nom, 1, 2, 7, 50, 0, 0, 0, 50, 50, 10, animal, rareteAnimal)
 {
+	ajouterForce(force());
+	ajouterVitesse(vitesse());
 	AjouterBouclier(bouclierMax());
 	if (difficulte == 1) {
 		ajouterForce(force());

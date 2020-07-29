@@ -26,14 +26,14 @@ void Zombie::attaqueEnnemis()
 	int cible2;
 	int dernier;
 	
-	DEGATS = degats(0.5, 2.5);
+	DEGATS = degats(1.5, 3.5);
 	Affichage().dessinerTexte(nom() + " mords ");
 	cible1 = equipeEnnemi().plusProcheVivant()->indiceEquipe();
 	if (!equipeEnnemi().plusProcheVivant()->status().estEmpoisoner()) {
 		equipeEnnemi().plusProcheVivant()->status().appliquerPoison();
 		equipeEnnemi().plusProcheVivant()->status().ajouterCompteurFragile(10);
 	}
-	Attaque(DEGATS, equipeEnnemi().plusProcheVivant());
+	AttaqueBrut(DEGATS, equipeEnnemi().plusProcheVivant());
 	if (equipeEnnemi().estEnVie()) {
 		cible2 = equipeEnnemi().plusProcheVivant()->indiceEquipe();
 		if (cible1 != cible2 && equipeAllier().taille() < 10) {

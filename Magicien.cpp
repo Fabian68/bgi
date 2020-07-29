@@ -4,6 +4,8 @@
 Magicien::Magicien(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal) : Personnage(LVL, nom, 1, 3, 6, 5, 5, -50, 1, 1, 1, 1, animal, rareteAnimal), stade{1}
 {
 	setNom("Petit magicien");
+	ajouterVie( vie());
+	ajouterVitesse(vitesse());
 }
 
 void Magicien::attaqueEnnemis()
