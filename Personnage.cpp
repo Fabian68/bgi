@@ -364,6 +364,10 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 	int degatEffectif;
 	if (Defenseur->estAttaquable()) {
 
+		if (possedeObjetNumero(29)) {
+			Degat += stats().nbAttaques()*(1+_niveau/100);
+			std::cout << " OBJ29 ";
+		}
 		if (possedeObjetNumero(5)) {
 			Degat *= 2.5;
 			std::cout << " OBJ5 ";
@@ -424,10 +428,14 @@ void  Personnage::Attaque(int Degat, Personnage * Defenseur)
 				std::cout << " " << Degat << std::endl;
 				if (Defenseur->possedeObjetNumero(25)) {
 					Degat -= Defenseur->niveau();
-					if (Degat < 0) {
-						Degat = 1;
-					}
 					std::cout << " OBJ25 ";
+				}
+				if (possedeObjetNumero(28)) {
+					Degat -= Defenseur->stats().nbAttaquesRecues() * (1 + Defenseur->niveau() / 100);
+					std::cout << " OBJ28 ";
+				}
+				if (Degat < 0) {
+					Degat = 1;
 				}
 				if (Defenseur->possedeObjetNumero(14) && _A.estEnVie()) {
 					Defenseur->AttaqueBrut(Degat / 10, _A.plusProcheVivant());

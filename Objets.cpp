@@ -80,6 +80,8 @@ Objets::Objets()
 	_listeObjets.push_back(Objet(" Gilet par balle", 25, 10000," Les dégats sont reduit de 1 par niveau du personnage "));
 	_listeObjets.push_back(Objet("EXCALIBUR", 26, 10000, "+10000 points dans chaque stats"));
 	_listeObjets.push_back(Objet("Flèches tranchantes", 27, 10000, "+7% de chance de ricochet, les ricochet font 30% de plus de dégats."));
+	_listeObjets.push_back(Objet("Cote du sadomaso", 28, 10000, "Reduit de 1(+ 1 tout les 100 niveau) les dégats par coup reçu."));
+	_listeObjets.push_back(Objet("Fméau du sadique", 29, 10000, "Ajoute 1(+1 tout les 100 niveau) de dégats par attaques réaliser."));
 	//_listeObjets.push_back(Objet("Antidote", 18, 100000, "Rend insensible au poison"));
 
 	_tableLoot.resize(300);
@@ -104,6 +106,8 @@ Objets::Objets()
 	_tableLoot[5].push_back(_listeObjets[17]);
 	_tableLoot[5].push_back(_listeObjets[7]);
 	_tableLoot[5].push_back(_listeObjets[19]);
+	_tableLoot[5].push_back(_listeObjets[28]);
+	_tableLoot[5].push_back(_listeObjets[29]);
 
 	_tableLoot[6].push_back(_listeObjets[22]);
 	_tableLoot[7].push_back(_listeObjets[22]);
@@ -111,6 +115,8 @@ Objets::Objets()
 	_tableLoot[9].push_back(_listeObjets[22]);
 	
 	_tableLoot[10].push_back(_listeObjets[14]);
+	_tableLoot[10].push_back(_listeObjets[28]);
+	_tableLoot[10].push_back(_listeObjets[29]);
 
 	_tableLoot[11].push_back(_listeObjets[23]);
 	_tableLoot[12].push_back(_listeObjets[23]);
@@ -126,10 +132,13 @@ Objets::Objets()
 	_tableLoot[18].push_back(_listeObjets[24]);
 	_tableLoot[19].push_back(_listeObjets[24]);
 
+
 	_tableLoot[20].push_back(_listeObjets[5]);
 	_tableLoot[20].push_back(_listeObjets[9]);
 	_tableLoot[20].push_back(_listeObjets[10]);
 	_tableLoot[20].push_back(_listeObjets[11]);
+	_tableLoot[20].push_back(_listeObjets[28]);
+	_tableLoot[20].push_back(_listeObjets[29]);
 
 	_tableLoot[21].push_back(_listeObjets[1]);
 	_tableLoot[22].push_back(_listeObjets[1]);
@@ -164,6 +173,12 @@ Objets::Objets()
 	_tableLoot[36].push_back(_listeObjets[27]);
 	_tableLoot[37].push_back(_listeObjets[27]);
 
+	_tableLoot[40].push_back(_listeObjets[28]);
+	_tableLoot[40].push_back(_listeObjets[29]);
+	_tableLoot[40].push_back(_listeObjets[28]);
+	_tableLoot[40].push_back(_listeObjets[29]);
+	_tableLoot[40].push_back(_listeObjets[28]);
+	_tableLoot[40].push_back(_listeObjets[29]);
 
 	_tableLoot[44].push_back(_listeObjets[9]);
 	_tableLoot[45].push_back(_listeObjets[9]);
