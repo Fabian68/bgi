@@ -1,0 +1,15 @@
+
+
+addons:
+  sonarcloud:
+    organization: "fabian68"
+    token:
+      secure: "nIe6Zmk-zWy3aiazfhTgIA" # encrypted value of your token
+
+script:
+  # Wraps the compilation with the Build Wrapper to generate configuration (used
+  # later by the SonarScanner) into the "bw-output" folder
+  - build-wrapper-linux-x86-64 --out-dir bw-output CMake
+  # And finally run the SonarCloud analysis - read the "sonar-project.properties"
+  # file to see the specific configuration
+  - sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output
