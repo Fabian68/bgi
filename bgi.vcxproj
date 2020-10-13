@@ -48,6 +48,10 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -106,7 +110,6 @@
     <ClCompile Include="Objets.cpp" />
     <ClCompile Include="Orbes.cpp" />
     <ClCompile Include="palette.cxx" />
-    <ClCompile Include="main.cxx" />
     <ClCompile Include="Personnage.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Pollyana.cpp" />

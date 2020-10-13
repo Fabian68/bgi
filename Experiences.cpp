@@ -63,7 +63,7 @@ Experiences::~Experiences()
 int Experiences::calculNiveau(int indiceTabxp) const
 {
 	int niv = 1;
-	int xp = _ExperiencesPersonnages[indiceTabxp];
+	long long int xp = _ExperiencesPersonnages[indiceTabxp];
 	int i = 0;
 	while (xp > _tabXp[i]) {
 		i++;

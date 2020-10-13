@@ -1,10 +1,10 @@
 #include "Magicien.h"
 #include "Affichage.h"
 
-Magicien::Magicien(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal) : Personnage(LVL, nom, 1, 3, 6, 5, 5, -50, 1, 1, 1, 1, animal, rareteAnimal), stade{1}
+Magicien::Magicien(int LVL, std::string nom, int difficulte, int animal, int rareteAnimal) : Personnage(LVL, nom, 1, 3, 6, 5, 5, -30, 1, 1, 1, 1, animal, rareteAnimal), stade{1}
 {
 	setNom("Petit magicien");
-	ajouterVie( vie());
+	ajouterVie( 2*vie());
 	ajouterVitesse(vitesse());
 }
 
@@ -127,7 +127,7 @@ void Magicien::attaqueEnnemis()
 
 void Magicien::passif(int tour)
 {
-	if (tour == 20) {
+	if (tour == 10) {
 		stade = 2;
 		ajouterChanceDoubleAttaque(5);
 		ajouterChanceHabileter(5);
@@ -138,7 +138,7 @@ void Magicien::passif(int tour)
 		setNom("Apprenti Magicien");
 		status().ajouterCompteurProteger(4);
 	}
-	else if (tour == 40) {
+	else if (tour == 20) {
 		stade = 3;
 		ajouterChanceDoubleAttaque(10);
 		ajouterChanceHabileter(10);
@@ -149,7 +149,7 @@ void Magicien::passif(int tour)
 		setNom("Magicien confirmé");
 		status().ajouterCompteurProteger(12);
 	}
-	else if (tour == 80) {
+	else if (tour == 40) {
 		stade = 4;
 		ajouterChanceDoubleAttaque(10);
 		ajouterChanceHabileter(10);
@@ -160,7 +160,7 @@ void Magicien::passif(int tour)
 		setNom("Grand mage");
 		status().ajouterCompteurProteger(36);
 	}
-	else if (tour == 160) {
+	else if (tour == 80) {
 		stade = 5;
 		ajouterChanceDoubleAttaque(10);
 		ajouterChanceHabileter(10);

@@ -787,14 +787,7 @@ void Zones::equipeEnZone(int i,Equipes & E)
 		E.ajouterPerso(new Rapace(7000, "Rapace "));
 		break;
 	case 101:
-		E.ajouterPerso(new Tellurique(44020, "MUR"));
-		E.ajouterPerso(new Tellurique(44020, "MUR"));
-		E.ajouterPerso(new Tellurique(44020, "MUR"));
-		E.ajouterPerso(new Tellurique(44020, "MUR"));
-		E.ajouterPerso(new Tellurique(44020, "MUR"));
-		E.ajouterPerso(new Tellurique(44020, "MUR"));
-		E.ajouterPerso(new Tellurique(44020, "MUR"));
-		E.ajouterPerso(new Tellurique(44020, "MUR"));
+		E.ajouterPerso(new Dragon(8888, "SUPER Dragon de l'END", 2));
 		break;
 	}
 

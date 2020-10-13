@@ -9,6 +9,11 @@ Dragon::Dragon(int LVL, std::string nom, int difficulte, int animal, int rareteA
 		ajouterVitesse(vitesse());
 		ajouterVie(90 * vie());
 	}
+	if (difficulte == 2) {
+		ajouterForce(force());
+		ajouterVitesse(vitesse());
+		ajouterVie(270 * vie());
+	}
 }
 
 void Dragon::attaqueEnnemis()

@@ -83,9 +83,9 @@ void Tellurique::attaqueEnnemis()
 
 void Tellurique::passif(int tour)
 {
-	AjouterBouclier(bouclierMax() / 5);
+	AjouterBouclier(bouclierMax() / 10);
 	status().ajouterCompteurProteger(1);
-	ajouterVieMax(0.10 * vie());
+	ajouterVieMax(0.01 * vie());
 }
 
 void Tellurique::passifDefensif()
